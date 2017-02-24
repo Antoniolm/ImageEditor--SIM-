@@ -64,6 +64,8 @@ public class MainWindow extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -87,7 +89,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setMaximumSize(new java.awt.Dimension(35, 35));
+        jPanel2.setMaximumSize(new java.awt.Dimension(1000, 1000));
+        jPanel2.setMinimumSize(new java.awt.Dimension(237, 35));
+        jPanel2.setPreferredSize(new java.awt.Dimension(140, 70));
+        jPanel2.setRequestFocusEnabled(false);
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setText(" ");
@@ -116,6 +121,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.WEST);
 
+        jCheckBox1.setText("Filled");
+        jPanel4.add(jCheckBox1);
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.LINE_END);
+
         getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
 
         jMenu1.setText("Archivo");
@@ -140,12 +150,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToggleButton jToggleButton5;
