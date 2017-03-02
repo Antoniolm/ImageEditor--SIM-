@@ -67,6 +67,8 @@ public class MainWindow extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -137,6 +139,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.LINE_END);
 
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setText("State bar");
+        jPanel6.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel6, java.awt.BorderLayout.SOUTH);
+
         getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
 
         jMenu1.setText("Archivo");
@@ -162,6 +171,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -170,6 +180,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToggleButton jToggleButton5;
