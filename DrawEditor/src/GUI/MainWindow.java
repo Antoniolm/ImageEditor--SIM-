@@ -72,16 +72,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        buttonGroup1.add(jToggleButton3);
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Lapiz.gif"))); // NOI18N
         jPanel1.add(jToggleButton3);
 
+        buttonGroup1.add(jToggleButton4);
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Linea.gif"))); // NOI18N
         jToggleButton4.setSelected(true);
         jPanel1.add(jToggleButton4);
 
+        buttonGroup1.add(jToggleButton5);
         jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Rectangulo.gif"))); // NOI18N
         jPanel1.add(jToggleButton5);
 
+        buttonGroup1.add(jToggleButton6);
         jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ovalo.gif"))); // NOI18N
         jPanel1.add(jToggleButton6);
 
@@ -121,8 +125,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.WEST);
 
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
         jCheckBox1.setText("Filled");
-        jPanel4.add(jCheckBox1);
+        jPanel4.add(jCheckBox1, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.LINE_END);
 
