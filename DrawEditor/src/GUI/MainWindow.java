@@ -33,6 +33,7 @@ public class MainWindow extends javax.swing.JFrame {
         setMinimumSize(new Dimension(800,500));
         Canvas canvas=new Canvas();
         canvas.setBackground(Color.white);
+        canvas.addAncestorListener(null);
         getContentPane().add(canvas, java.awt.BorderLayout.CENTER);
         
         initComponents();
@@ -80,6 +81,7 @@ public class MainWindow extends javax.swing.JFrame {
         SeeSBMenu = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DrawEditor");
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 

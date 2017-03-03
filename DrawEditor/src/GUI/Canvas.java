@@ -19,11 +19,38 @@
 
 package GUI;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel{
     public Canvas(){
         super();
+        addMouseListener(new MouseAdapter() {
+                private Color background;
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    background = getBackground();
+                    setBackground(Color.RED);
+                    repaint();
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    setBackground(background);
+                }
+        });
+    }
+    
+    public void paint(Graphics g){
+        super.paint(g);
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.drawOval(5, 5, 100, 100);
+        // Código (mensajes a g)
     }
     
     
