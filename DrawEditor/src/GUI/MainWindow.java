@@ -52,115 +52,185 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
+        DrawPanel = new javax.swing.JPanel();
+        PointButton = new javax.swing.JToggleButton();
+        LineButton = new javax.swing.JToggleButton();
+        RtgleButton = new javax.swing.JToggleButton();
+        CircleButton = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        ColorPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        FilledPanel = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        StateBarPanel = new javax.swing.JPanel();
+        StateBarLabel = new javax.swing.JLabel();
+        MenuBar = new javax.swing.JMenuBar();
+        FileMenu = new javax.swing.JMenu();
+        newMenu = new javax.swing.JMenuItem();
+        OpenMenu = new javax.swing.JMenuItem();
+        LoadMenu = new javax.swing.JMenuItem();
+        EditMenu = new javax.swing.JMenu();
+        SeeSBMenu = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        buttonGroup1.add(jToggleButton3);
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Lapiz.gif"))); // NOI18N
-        jPanel5.add(jToggleButton3);
+        buttonGroup1.add(PointButton);
+        PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Lapiz.gif"))); // NOI18N
+        PointButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PointButtonActionPerformed(evt);
+            }
+        });
+        DrawPanel.add(PointButton);
 
-        buttonGroup1.add(jToggleButton4);
-        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Linea.gif"))); // NOI18N
-        jToggleButton4.setSelected(true);
-        jPanel5.add(jToggleButton4);
+        buttonGroup1.add(LineButton);
+        LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Linea.gif"))); // NOI18N
+        LineButton.setSelected(true);
+        LineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LineButtonActionPerformed(evt);
+            }
+        });
+        DrawPanel.add(LineButton);
 
-        buttonGroup1.add(jToggleButton5);
-        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Rectangulo.gif"))); // NOI18N
-        jPanel5.add(jToggleButton5);
+        buttonGroup1.add(RtgleButton);
+        RtgleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Rectangulo.gif"))); // NOI18N
+        RtgleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RtgleButtonActionPerformed(evt);
+            }
+        });
+        DrawPanel.add(RtgleButton);
 
-        buttonGroup1.add(jToggleButton6);
-        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ovalo.gif"))); // NOI18N
-        jPanel5.add(jToggleButton6);
+        buttonGroup1.add(CircleButton);
+        CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ovalo.gif"))); // NOI18N
+        DrawPanel.add(CircleButton);
 
-        jPanel1.add(jPanel5, java.awt.BorderLayout.LINE_START);
+        jPanel1.add(DrawPanel, java.awt.BorderLayout.LINE_START);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.NORTH);
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setMaximumSize(new java.awt.Dimension(1000, 1000));
-        jPanel2.setMinimumSize(new java.awt.Dimension(237, 35));
-        jPanel2.setPreferredSize(new java.awt.Dimension(140, 70));
-        jPanel2.setRequestFocusEnabled(false);
+        ColorPanel.setMaximumSize(new java.awt.Dimension(1000, 1000));
+        ColorPanel.setMinimumSize(new java.awt.Dimension(237, 35));
+        ColorPanel.setPreferredSize(new java.awt.Dimension(140, 70));
+        ColorPanel.setRequestFocusEnabled(false);
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setText(" ");
-        jPanel2.add(jButton1);
+        ColorPanel.add(jButton1);
 
         jButton2.setBackground(new java.awt.Color(204, 0, 0));
         jButton2.setText(" ");
-        jPanel2.add(jButton2);
+        ColorPanel.add(jButton2);
 
         jButton3.setBackground(new java.awt.Color(0, 0, 204));
         jButton3.setText(" ");
-        jPanel2.add(jButton3);
+        ColorPanel.add(jButton3);
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText(" ");
-        jPanel2.add(jButton4);
+        ColorPanel.add(jButton4);
 
         jButton5.setBackground(new java.awt.Color(255, 255, 51));
         jButton5.setText(" ");
-        jPanel2.add(jButton5);
+        ColorPanel.add(jButton5);
 
         jButton6.setBackground(new java.awt.Color(0, 204, 0));
         jButton6.setText(" ");
         jButton6.setToolTipText("");
-        jPanel2.add(jButton6);
+        ColorPanel.add(jButton6);
 
-        jPanel3.add(jPanel2, java.awt.BorderLayout.WEST);
+        jPanel3.add(ColorPanel, java.awt.BorderLayout.WEST);
 
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        FilledPanel.setLayout(new java.awt.BorderLayout());
 
         jCheckBox1.setText("Filled");
-        jPanel4.add(jCheckBox1, java.awt.BorderLayout.CENTER);
+        FilledPanel.add(jCheckBox1, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel4, java.awt.BorderLayout.LINE_END);
+        jPanel3.add(FilledPanel, java.awt.BorderLayout.LINE_END);
 
-        jPanel6.setLayout(new java.awt.BorderLayout());
+        StateBarPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setText("State bar");
-        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        jPanel6.add(jLabel1, java.awt.BorderLayout.CENTER);
+        StateBarLabel.setText("State bar");
+        StateBarLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        StateBarPanel.add(StateBarLabel, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel6, java.awt.BorderLayout.SOUTH);
+        jPanel3.add(StateBarPanel, java.awt.BorderLayout.SOUTH);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        FileMenu.setText("File");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        newMenu.setText("New");
+        FileMenu.add(newMenu);
 
-        setJMenuBar(jMenuBar1);
+        OpenMenu.setText("Open");
+        FileMenu.add(OpenMenu);
+
+        LoadMenu.setText("Load");
+        FileMenu.add(LoadMenu);
+
+        MenuBar.add(FileMenu);
+
+        EditMenu.setText("Edit");
+
+        SeeSBMenu.setSelected(true);
+        SeeSBMenu.setText("See state bar");
+        SeeSBMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeeSBMenuActionPerformed(evt);
+            }
+        });
+        EditMenu.add(SeeSBMenu);
+
+        MenuBar.add(EditMenu);
+
+        setJMenuBar(MenuBar);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void SeeSBMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeSBMenuActionPerformed
+      StateBarPanel.setVisible(SeeSBMenu.isSelected());
+    }//GEN-LAST:event_SeeSBMenuActionPerformed
+
+    private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
+        StateBarLabel.setText("Point");
+    }//GEN-LAST:event_PointButtonActionPerformed
+
+    private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
+        StateBarLabel.setText("Line");
+    }//GEN-LAST:event_LineButtonActionPerformed
+
+    private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
+        StateBarLabel.setText("Rectangle");
+    }//GEN-LAST:event_RtgleButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton CircleButton;
+    private javax.swing.JPanel ColorPanel;
+    private javax.swing.JPanel DrawPanel;
+    private javax.swing.JMenu EditMenu;
+    private javax.swing.JMenu FileMenu;
+    private javax.swing.JPanel FilledPanel;
+    private javax.swing.JToggleButton LineButton;
+    private javax.swing.JMenuItem LoadMenu;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenuItem OpenMenu;
+    private javax.swing.JToggleButton PointButton;
+    private javax.swing.JToggleButton RtgleButton;
+    private javax.swing.JCheckBoxMenuItem SeeSBMenu;
+    private javax.swing.JLabel StateBarLabel;
+    private javax.swing.JPanel StateBarPanel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -172,19 +242,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JMenuItem newMenu;
     // End of variables declaration//GEN-END:variables
 }
