@@ -39,11 +39,13 @@ public class Canvas extends JPanel{
     int initialX,initialY;
     int currentX,currentY;
     boolean isClicked,filled;
+    Color currentColor;
     
     
     public Canvas(){
         super();
         type=POINT;
+        currentColor=Color.BLACK;
         isClicked=false;
         filled=false;
         
@@ -78,7 +80,7 @@ public class Canvas extends JPanel{
     
     public void paint(Graphics g){
         super.paint(g);
-        g.setColor(Color.BLUE);
+        g.setColor(currentColor);
         //if(isClicked){
             switch(type){
                 case POINT:
@@ -110,6 +112,10 @@ public class Canvas extends JPanel{
     
     public void setFilled(boolean value){
         filled=value;
+    }
+    
+    public void setColor(Color value){
+        currentColor=value;
     }
     
     
