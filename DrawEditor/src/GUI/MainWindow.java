@@ -20,6 +20,8 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 public class MainWindow extends javax.swing.JFrame {
@@ -178,9 +180,19 @@ public class MainWindow extends javax.swing.JFrame {
         FileMenu.add(newMenu);
 
         OpenMenu.setText("Open");
+        OpenMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenMenuActionPerformed(evt);
+            }
+        });
         FileMenu.add(OpenMenu);
 
         LoadMenu.setText("Load");
+        LoadMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoadMenuActionPerformed(evt);
+            }
+        });
         FileMenu.add(LoadMenu);
 
         MenuBar.add(FileMenu);
@@ -222,6 +234,25 @@ public class MainWindow extends javax.swing.JFrame {
     private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
         StateBarLabel.setText("Circle");
     }//GEN-LAST:event_CircleButtonActionPerformed
+
+    private void OpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuActionPerformed
+        JFileChooser dlg = new JFileChooser();
+        int resp = dlg.showOpenDialog(this);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+            File f = dlg.getSelectedFile();
+}
+
+    }//GEN-LAST:event_OpenMenuActionPerformed
+
+    private void LoadMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadMenuActionPerformed
+        JFileChooser dlg = new JFileChooser();
+        int resp = dlg.showSaveDialog(this);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+            File f = dlg.getSelectedFile();
+ //Código
+}
+
+    }//GEN-LAST:event_LoadMenuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton CircleButton;
