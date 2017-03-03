@@ -44,25 +44,20 @@ public class Canvas extends JPanel{
         super();
         type=POINT;
         isClicked=false;
-        addMouseMotionListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() {
                 private Color background;
 
                 @Override
-                public void mouseDragged(MouseEvent e){
-                    if(!isClicked){
-                        initialX=e.getX();
-                        initialY=e.getY();
-                    }
+                public void mousePressed(MouseEvent e){
+                    initialX=e.getX();
+                    initialY=e.getY();
                     isClicked=true;
-                    currentX=e.getX();
-                    currentY=e.getY();
                     repaint();                    
                 }
                 
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     isClicked=false;
-                    System.out.println("is true");
                 }
         });
         
@@ -71,20 +66,9 @@ public class Canvas extends JPanel{
 
                 @Override
                 public void mouseDragged(MouseEvent e){
-                    if(!isClicked){
-                        initialX=e.getX();
-                        initialY=e.getY();
-                    }
-                    isClicked=true;
                     currentX=e.getX();
                     currentY=e.getY();
                     repaint();                    
-                }
-                
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    isClicked=false;
-                    System.out.println("is true");
                 }
         });
     }
