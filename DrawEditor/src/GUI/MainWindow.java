@@ -92,7 +92,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(LineButton);
         LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Linea.gif"))); // NOI18N
-        LineButton.setSelected(true);
         LineButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LineButtonActionPerformed(evt);
@@ -111,6 +110,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(CircleButton);
         CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ovalo.gif"))); // NOI18N
+        CircleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CircleButtonActionPerformed(evt);
+            }
+        });
         DrawPanel.add(CircleButton);
 
         jPanel1.add(DrawPanel, java.awt.BorderLayout.LINE_START);
@@ -214,6 +218,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
     }//GEN-LAST:event_RtgleButtonActionPerformed
+
+    private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
+        StateBarLabel.setText("Circle");
+    }//GEN-LAST:event_CircleButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton CircleButton;
