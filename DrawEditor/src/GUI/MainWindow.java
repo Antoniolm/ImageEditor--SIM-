@@ -33,7 +33,6 @@ public class MainWindow extends javax.swing.JFrame {
         setMinimumSize(new Dimension(800,500));
         Canvas canvas=new Canvas();
         canvas.setBackground(Color.white);
-        canvas.addAncestorListener(null);
         getContentPane().add(canvas, java.awt.BorderLayout.CENTER);
         
         initComponents();

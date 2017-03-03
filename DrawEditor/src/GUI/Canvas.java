@@ -19,6 +19,7 @@
 
 package GUI;
 
+import static GUI.GeometryType.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -26,32 +27,68 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
+enum GeometryType{
+    POINT,
+    LINE,
+    RECTANGLE,
+    CIRCLE
+}
+
 public class Canvas extends JPanel{
+    GeometryType type;
+    int initialX,initialY;
+    int currentX,currentY;
+    Boolean isClicked;
+    
     public Canvas(){
         super();
+        type=POINT;
+        isClicked=false;
         addMouseListener(new MouseAdapter() {
                 private Color background;
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    background = getBackground();
-                    setBackground(Color.RED);
+                    isClicked=true;
+                    initialX=e.getX();
+                    initialY=e.getY();
                     repaint();
                 }
-
+                
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    setBackground(background);
+                    System.out.println("noClicked");
+                    isClicked=false;
                 }
         });
     }
     
     public void paint(Graphics g){
         super.paint(g);
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.drawOval(5, 5, 100, 100);
-        // Código (mensajes a g)
+        //if(isClicked){
+            System.out.println("isClicked");
+            switch(type){
+                case POINT:
+                    g.drawOval(initialX, initialY, 50, 100);
+                break;
+                case LINE:
+                    g.drawOval(5, 5, 20, 20);
+                break;
+                case RECTANGLE:
+                    g.drawOval(5, 5, 20, 20);
+                break;
+                case CIRCLE:
+                    g.drawOval(5, 5, 20, 20);
+                break;
+
+            }
+        //}
     }
+    
+    public void setType(GeometryType aType){
+        type=aType;
+    }
+    
     
     
 }
