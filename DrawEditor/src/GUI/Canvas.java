@@ -88,7 +88,10 @@ public class Canvas extends JPanel{
                     g.drawLine(initialX, initialY, currentX, currentY);
                 break;
                 case RECTANGLE:
-                    g.drawOval(5, 5, 20, 20);
+                    if(!filled)
+                        g.drawRect(initialX, initialY, currentX-initialX, currentY-initialY);
+                    else
+                        g.fillRect(initialX, initialY, currentX-initialX, currentY-initialY);
                 break;
                 case CIRCLE:
                     if(!filled)
