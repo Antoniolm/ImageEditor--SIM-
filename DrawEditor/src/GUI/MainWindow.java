@@ -227,18 +227,22 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
         StateBarLabel.setText("Point");
+        canvas.setType(GeometryType.POINT);
     }//GEN-LAST:event_PointButtonActionPerformed
 
     private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
         StateBarLabel.setText("Line");
+        canvas.setType(GeometryType.LINE);
     }//GEN-LAST:event_LineButtonActionPerformed
 
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
+        canvas.setType(GeometryType.RECTANGLE);
     }//GEN-LAST:event_RtgleButtonActionPerformed
 
     private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
         StateBarLabel.setText("Circle");
+        canvas.setType(GeometryType.CIRCLE);
     }//GEN-LAST:event_CircleButtonActionPerformed
 
     private void OpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuActionPerformed

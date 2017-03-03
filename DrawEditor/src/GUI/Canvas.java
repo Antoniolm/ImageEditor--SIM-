@@ -82,19 +82,19 @@ public class Canvas extends JPanel{
         //if(isClicked){
             switch(type){
                 case POINT:
-                    if(!filled)
-                        g.drawOval(initialX, initialY, currentX-initialX, currentY-initialY);
-                    else
-                        g.fillOval(initialX, initialY, currentX-initialX, currentY-initialY);
+                    g.fillOval(initialX, initialY, 10, 10);
                 break;
                 case LINE:
-                    g.drawOval(5, 5, 20, 20);
+                    g.drawLine(initialX, initialY, currentX, currentY);
                 break;
                 case RECTANGLE:
                     g.drawOval(5, 5, 20, 20);
                 break;
                 case CIRCLE:
-                    g.drawOval(5, 5, 20, 20);
+                    if(!filled)
+                        g.drawOval(initialX, initialY, currentX-initialX, currentY-initialY);
+                    else
+                        g.fillOval(initialX, initialY, currentX-initialX, currentY-initialY);
                 break;
 
             }
