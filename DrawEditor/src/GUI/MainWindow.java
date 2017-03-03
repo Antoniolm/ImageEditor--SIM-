@@ -25,13 +25,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 public class MainWindow extends javax.swing.JFrame {
-
+    Canvas canvas;
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         setMinimumSize(new Dimension(800,500));
-        Canvas canvas=new Canvas();
+        canvas=new Canvas();
         canvas.setBackground(Color.white);
         getContentPane().add(canvas, java.awt.BorderLayout.CENTER);
         
@@ -68,7 +68,7 @@ public class MainWindow extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         FilledPanel = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        Filled = new javax.swing.JCheckBox();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
@@ -160,8 +160,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         FilledPanel.setLayout(new java.awt.BorderLayout());
 
-        jCheckBox1.setText("Filled");
-        FilledPanel.add(jCheckBox1, java.awt.BorderLayout.CENTER);
+        Filled.setText("Filled");
+        Filled.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FilledActionPerformed(evt);
+            }
+        });
+        FilledPanel.add(Filled, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(FilledPanel, java.awt.BorderLayout.LINE_END);
 
@@ -255,12 +260,17 @@ public class MainWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_LoadMenuActionPerformed
 
+    private void FilledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledActionPerformed
+        canvas.setFilled(Filled.isSelected());
+    }//GEN-LAST:event_FilledActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JPanel ColorPanel;
     private javax.swing.JPanel DrawPanel;
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
+    private javax.swing.JCheckBox Filled;
     private javax.swing.JPanel FilledPanel;
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuItem LoadMenu;
@@ -281,7 +291,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JMenuItem newMenu;

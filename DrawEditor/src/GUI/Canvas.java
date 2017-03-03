@@ -38,12 +38,15 @@ public class Canvas extends JPanel{
     GeometryType type;
     int initialX,initialY;
     int currentX,currentY;
-    Boolean isClicked;
+    boolean isClicked,filled;
+    
     
     public Canvas(){
         super();
         type=POINT;
         isClicked=false;
+        filled=false;
+        
         addMouseListener(new MouseAdapter() {
                 private Color background;
 
@@ -75,10 +78,14 @@ public class Canvas extends JPanel{
     
     public void paint(Graphics g){
         super.paint(g);
+        g.setColor(Color.BLUE);
         //if(isClicked){
             switch(type){
                 case POINT:
-                    g.drawOval(initialX, initialY, currentX-initialX, currentY-initialY);
+                    if(!filled)
+                        g.drawOval(initialX, initialY, currentX-initialX, currentY-initialY);
+                    else
+                        g.fillOval(initialX, initialY, currentX-initialX, currentY-initialY);
                 break;
                 case LINE:
                     g.drawOval(5, 5, 20, 20);
@@ -98,6 +105,9 @@ public class Canvas extends JPanel{
         type=aType;
     }
     
+    public void setFilled(boolean value){
+        filled=value;
+    }
     
     
 }
