@@ -44,21 +44,47 @@ public class Canvas extends JPanel{
         super();
         type=POINT;
         isClicked=false;
-        addMouseListener(new MouseAdapter() {
+        addMouseMotionListener(new MouseAdapter() {
                 private Color background;
 
                 @Override
-                public void mousePressed(MouseEvent e) {
+                public void mouseDragged(MouseEvent e){
+                    if(!isClicked){
+                        initialX=e.getX();
+                        initialY=e.getY();
+                    }
                     isClicked=true;
-                    initialX=e.getX();
-                    initialY=e.getY();
-                    repaint();
+                    currentX=e.getX();
+                    currentY=e.getY();
+                    repaint();                    
                 }
                 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    System.out.println("noClicked");
                     isClicked=false;
+                    System.out.println("is true");
+                }
+        });
+        
+        addMouseMotionListener(new MouseAdapter() {
+                private Color background;
+
+                @Override
+                public void mouseDragged(MouseEvent e){
+                    if(!isClicked){
+                        initialX=e.getX();
+                        initialY=e.getY();
+                    }
+                    isClicked=true;
+                    currentX=e.getX();
+                    currentY=e.getY();
+                    repaint();                    
+                }
+                
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    isClicked=false;
+                    System.out.println("is true");
                 }
         });
     }
@@ -66,10 +92,9 @@ public class Canvas extends JPanel{
     public void paint(Graphics g){
         super.paint(g);
         //if(isClicked){
-            System.out.println("isClicked");
             switch(type){
                 case POINT:
-                    g.drawOval(initialX, initialY, 50, 100);
+                    g.drawOval(initialX, initialY, currentX-initialX, currentY-initialY);
                 break;
                 case LINE:
                     g.drawOval(5, 5, 20, 20);
