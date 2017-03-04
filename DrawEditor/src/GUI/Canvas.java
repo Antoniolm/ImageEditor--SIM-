@@ -23,6 +23,7 @@ import static GUI.GeometryType.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
@@ -36,8 +37,7 @@ enum GeometryType{
 
 public class Canvas extends JPanel{
     GeometryType type;
-    int initialX,initialY;
-    int currentX,currentY;
+    Point initialPos,currentPos;
     boolean isClicked,filled;
     Color currentColor;
     
@@ -48,14 +48,16 @@ public class Canvas extends JPanel{
         currentColor=Color.BLACK;
         isClicked=false;
         filled=false;
+        initialPos=new Point();
+        currentPos=new Point();
+        setBackground(Color.white);
         
         addMouseListener(new MouseAdapter() {
                 private Color background;
 
                 @Override
                 public void mousePressed(MouseEvent e){
-                    initialX=e.getX();
-                    initialY=e.getY();
+                    initialPos=e.getPoint();
                     isClicked=true;
                     repaint();                    
                 }
@@ -71,8 +73,7 @@ public class Canvas extends JPanel{
 
                 @Override
                 public void mouseDragged(MouseEvent e){
-                    currentX=e.getX();
-                    currentY=e.getY();
+                    currentPos=e.getPoint();
                     repaint();                    
                 }
         });
@@ -84,22 +85,26 @@ public class Canvas extends JPanel{
         //if(isClicked){
             switch(type){
                 case POINT:
-                    g.fillOval(initialX, initialY, 10, 10);
+                    g.fillOval(initialPos.x, initialPos.y, 10, 10);
                 break;
                 case LINE:
-                    g.drawLine(initialX, initialY, currentX, currentY);
+                    g.drawLine(initialPos.x, initialPos.y, currentPos.x, currentPos.y);
                 break;
                 case RECTANGLE:
                     if(!filled)
-                        g.drawRect(initialX, initialY, currentX-initialX, currentY-initialY);
+                        g.drawRect(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
+                                Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
                     else
-                        g.fillRect(initialX, initialY, currentX-initialX, currentY-initialY);
+                        g.fillRect(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
+                                Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
                 break;
                 case CIRCLE:
                     if(!filled)
-                        g.drawOval(initialX, initialY, currentX-initialX, currentY-initialY);
+                        g.drawOval(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
+                                Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
                     else
-                        g.fillOval(initialX, initialY, currentX-initialX, currentY-initialY);
+                        g.fillOval(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
+                                Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
                 break;
 
             }
