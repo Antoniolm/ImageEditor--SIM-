@@ -56,6 +56,7 @@ public class CanvasPanel extends javax.swing.JPanel {
                 @Override
                 public void mousePressed(MouseEvent e){
                     initialPos=e.getPoint();
+                    currentPos=e.getPoint();
                     isClicked=true;
                     repaint();                    
                 }
