@@ -25,15 +25,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 public class MainWindow extends javax.swing.JFrame {
-    Canvas canvas;
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         setMinimumSize(new Dimension(800,500));
-        canvas=new Canvas();
-        getContentPane().add(canvas, java.awt.BorderLayout.CENTER);
-        
         initComponents();
         
         
@@ -70,6 +66,7 @@ public class MainWindow extends javax.swing.JFrame {
         Filled = new javax.swing.JCheckBox();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
+        canvasPanel = new GUI.CanvasPanel();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         newMenu = new javax.swing.JMenuItem();
@@ -209,6 +206,19 @@ public class MainWindow extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
 
+        javax.swing.GroupLayout canvasPanelLayout = new javax.swing.GroupLayout(canvasPanel);
+        canvasPanel.setLayout(canvasPanelLayout);
+        canvasPanelLayout.setHorizontalGroup(
+            canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 501, Short.MAX_VALUE)
+        );
+        canvasPanelLayout.setVerticalGroup(
+            canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 180, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(canvasPanel, java.awt.BorderLayout.CENTER);
+
         FileMenu.setText("File");
 
         newMenu.setText("New");
@@ -256,22 +266,22 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
         StateBarLabel.setText("Point");
-        canvas.setType(GeometryType.POINT);
+        canvasPanel.setType(GeometryType.POINT);
     }//GEN-LAST:event_PointButtonActionPerformed
 
     private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
         StateBarLabel.setText("Line");
-        canvas.setType(GeometryType.LINE);
+        canvasPanel.setType(GeometryType.LINE);
     }//GEN-LAST:event_LineButtonActionPerformed
 
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
-        canvas.setType(GeometryType.RECTANGLE);
+        canvasPanel.setType(GeometryType.RECTANGLE);
     }//GEN-LAST:event_RtgleButtonActionPerformed
 
     private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
         StateBarLabel.setText("Circle");
-        canvas.setType(GeometryType.CIRCLE);
+        canvasPanel.setType(GeometryType.CIRCLE);
     }//GEN-LAST:event_CircleButtonActionPerformed
 
     private void OpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuActionPerformed
@@ -288,37 +298,36 @@ public class MainWindow extends javax.swing.JFrame {
         int resp = dlg.showSaveDialog(this);
         if( resp == JFileChooser.APPROVE_OPTION) {
             File f = dlg.getSelectedFile();
- //Código
 }
 
     }//GEN-LAST:event_LoadMenuActionPerformed
 
     private void FilledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledActionPerformed
-        canvas.setFilled(Filled.isSelected());
+        canvasPanel.setFilled(Filled.isSelected());
     }//GEN-LAST:event_FilledActionPerformed
 
     private void BlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackButtonActionPerformed
-        canvas.setColor(Color.BLACK);
+        canvasPanel.setColor(Color.BLACK);
     }//GEN-LAST:event_BlackButtonActionPerformed
 
     private void RedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedButtonActionPerformed
-        canvas.setColor(Color.RED);
+        canvasPanel.setColor(Color.RED);
     }//GEN-LAST:event_RedButtonActionPerformed
 
     private void BlueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlueButtonActionPerformed
-        canvas.setColor(Color.BLUE);
+        canvasPanel.setColor(Color.BLUE);
     }//GEN-LAST:event_BlueButtonActionPerformed
 
     private void WhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WhiteButtonActionPerformed
-        canvas.setColor(Color.WHITE);
+        canvasPanel.setColor(Color.WHITE);
     }//GEN-LAST:event_WhiteButtonActionPerformed
 
     private void YellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YellowButtonActionPerformed
-        canvas.setColor(Color.YELLOW);
+        canvasPanel.setColor(Color.YELLOW);
     }//GEN-LAST:event_YellowButtonActionPerformed
 
     private void GreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GreenButtonActionPerformed
-        canvas.setColor(Color.GREEN);
+        canvasPanel.setColor(Color.GREEN);
     }//GEN-LAST:event_GreenButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -348,6 +357,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private GUI.CanvasPanel canvasPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JMenuItem newMenu;
