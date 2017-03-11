@@ -70,7 +70,7 @@ public class MainWindow extends javax.swing.JFrame {
         FileMenu = new javax.swing.JMenu();
         newMenu = new javax.swing.JMenuItem();
         OpenMenu = new javax.swing.JMenuItem();
-        LoadMenu = new javax.swing.JMenuItem();
+        SaveMenu = new javax.swing.JMenuItem();
         EditMenu = new javax.swing.JMenu();
         SeeSBMenu = new javax.swing.JCheckBoxMenuItem();
 
@@ -220,6 +220,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         FileMenu.setText("File");
 
+        newMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK));
         newMenu.setMnemonic('A');
         newMenu.setText("New");
         newMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +230,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         FileMenu.add(newMenu);
 
+        OpenMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         OpenMenu.setText("Open");
         OpenMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,13 +239,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
         FileMenu.add(OpenMenu);
 
-        LoadMenu.setText("Load");
-        LoadMenu.addActionListener(new java.awt.event.ActionListener() {
+        SaveMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
+        SaveMenu.setText("Save");
+        SaveMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoadMenuActionPerformed(evt);
+                SaveMenuActionPerformed(evt);
             }
         });
-        FileMenu.add(LoadMenu);
+        FileMenu.add(SaveMenu);
 
         MenuBar.add(FileMenu);
 
@@ -303,13 +306,13 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_OpenMenuActionPerformed
 
-    private void LoadMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadMenuActionPerformed
+    private void SaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveMenuActionPerformed
         JFileChooser dlg = new JFileChooser();
         int resp = dlg.showSaveDialog(this);
         if( resp == JFileChooser.APPROVE_OPTION) {
             File f = dlg.getSelectedFile();
         }
-    }//GEN-LAST:event_LoadMenuActionPerformed
+    }//GEN-LAST:event_SaveMenuActionPerformed
 
     private void FilledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledActionPerformed
         canvasPanel.setFilled(Filled.isSelected());
@@ -358,12 +361,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel FilledPanel;
     private javax.swing.JButton GreenButton;
     private javax.swing.JToggleButton LineButton;
-    private javax.swing.JMenuItem LoadMenu;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenuItem OpenMenu;
     private javax.swing.JToggleButton PointButton;
     private javax.swing.JButton RedButton;
     private javax.swing.JToggleButton RtgleButton;
+    private javax.swing.JMenuItem SaveMenu;
     private javax.swing.JCheckBoxMenuItem SeeSBMenu;
     private javax.swing.JLabel StateBarLabel;
     private javax.swing.JPanel StateBarPanel;
