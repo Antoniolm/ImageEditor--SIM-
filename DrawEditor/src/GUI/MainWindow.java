@@ -16,6 +16,7 @@
 // ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // **
 // *********************************************************************
+
 package GUI;
 
 import java.awt.Color;
@@ -30,9 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         setMinimumSize(new Dimension(800,500));
-        initComponents();
-        
-        
+        initComponents();       
     }
 
     /**
@@ -264,6 +263,9 @@ public class MainWindow extends javax.swing.JFrame {
       StateBarPanel.setVisible(SeeSBMenu.isSelected());
     }//GEN-LAST:event_SeeSBMenuActionPerformed
 
+    //////////////////////////////////////////////////////////////////////////
+    // Geometry buttons
+    //////////////////////////////////////////////////////////////////////////
     private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
         StateBarLabel.setText("Point");
         canvasPanel.setType(GeometryType.POINT);
@@ -284,13 +286,15 @@ public class MainWindow extends javax.swing.JFrame {
         canvasPanel.setType(GeometryType.CIRCLE);
     }//GEN-LAST:event_CircleButtonActionPerformed
 
+    //////////////////////////////////////////////////////////////////////////
+    //  Menu events
+    //////////////////////////////////////////////////////////////////////////
     private void OpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuActionPerformed
         JFileChooser dlg = new JFileChooser();
         int resp = dlg.showOpenDialog(this);
         if( resp == JFileChooser.APPROVE_OPTION) {
             File f = dlg.getSelectedFile();
-}
-
+        }
     }//GEN-LAST:event_OpenMenuActionPerformed
 
     private void LoadMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadMenuActionPerformed
@@ -298,14 +302,16 @@ public class MainWindow extends javax.swing.JFrame {
         int resp = dlg.showSaveDialog(this);
         if( resp == JFileChooser.APPROVE_OPTION) {
             File f = dlg.getSelectedFile();
-}
-
+        }
     }//GEN-LAST:event_LoadMenuActionPerformed
 
     private void FilledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledActionPerformed
         canvasPanel.setFilled(Filled.isSelected());
     }//GEN-LAST:event_FilledActionPerformed
 
+    //////////////////////////////////////////////////////////////////////////
+    // Color buttons
+    //////////////////////////////////////////////////////////////////////////
     private void BlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackButtonActionPerformed
         canvasPanel.setColor(Color.BLACK);
     }//GEN-LAST:event_BlackButtonActionPerformed

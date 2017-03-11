@@ -38,7 +38,7 @@ enum GeometryType{
 public class CanvasPanel extends javax.swing.JPanel {
     GeometryType type;
     Point initialPos,currentPos;
-    boolean isClicked,filled;
+    boolean isDrawing,filled;
     Color currentColor;
     
     public CanvasPanel() {
@@ -46,22 +46,24 @@ public class CanvasPanel extends javax.swing.JPanel {
         
         type=POINT;
         currentColor=Color.BLACK;
-        isClicked=false;
+        isDrawing=false;
         filled=false;
         initialPos=new Point();
         currentPos=new Point();
         setBackground(Color.white);
         
+        //Added our mouseListener 
         addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e){
                     initialPos=e.getPoint();
                     currentPos=e.getPoint();
-                    isClicked=true;
+                    isDrawing=true;
                     repaint();                    
                 }
         });
         
+        //Added our mouseMotionListener 
         addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e){
@@ -74,27 +76,28 @@ public class CanvasPanel extends javax.swing.JPanel {
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(currentColor);
-        if(isClicked){
+        if(isDrawing){ //if the user was drawn something
+            
             switch(type){
-                case POINT:
+                case POINT: //Case point geoometry
                     g.fillOval(initialPos.x, initialPos.y, 10, 10);
                 break;
-                case LINE:
+                case LINE: //Case line geoometry
                     g.drawLine(initialPos.x, initialPos.y, currentPos.x, currentPos.y);
                 break;
-                case RECTANGLE:
-                    if(!filled)
+                case RECTANGLE: //Case rectangle geoometry
+                    if(!filled) //Not filled
                         g.drawRect(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
                                 Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
-                    else
+                    else //Filled
                         g.fillRect(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
                                 Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
                 break;
-                case CIRCLE:
-                    if(!filled)
+                case CIRCLE: //Case circle geoometry
+                    if(!filled) //Not filled
                         g.drawOval(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
                                 Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
-                    else
+                    else //Filled
                         g.fillOval(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
                                 Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
                 break;
