@@ -220,7 +220,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         FileMenu.setText("File");
 
+        newMenu.setMnemonic('A');
         newMenu.setText("New");
+        newMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newMenuActionPerformed(evt);
+            }
+        });
         FileMenu.add(newMenu);
 
         OpenMenu.setText("Open");
@@ -335,6 +341,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void GreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GreenButtonActionPerformed
         canvasPanel.setColor(Color.GREEN);
     }//GEN-LAST:event_GreenButtonActionPerformed
+
+    private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
+        canvasPanel.resetCanvas();
+    }//GEN-LAST:event_newMenuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BlackButton;

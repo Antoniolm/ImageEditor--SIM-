@@ -48,8 +48,8 @@ public class CanvasPanel extends javax.swing.JPanel {
         currentColor=Color.BLACK;
         isDrawing=false;
         filled=false;
-        initialPos=new Point();
-        currentPos=new Point();
+        initialPos=new Point(0,0);
+        currentPos=new Point(0,0);
         setBackground(Color.white);
         
         //Added our mouseListener 
@@ -116,6 +116,11 @@ public class CanvasPanel extends javax.swing.JPanel {
     
     public void setColor(Color value){
         currentColor=value;
+    }
+    
+    public void resetCanvas(){
+        isDrawing=false;
+        repaint();
     }
     /**
      * This method is called from within the constructor to initialize the form.
