@@ -66,9 +66,9 @@ public class CanvasPanel extends javax.swing.JPanel {
                 public void mousePressed(MouseEvent e){
                     if(editMode) currentShape=getSelectedShape(e.getPoint());
                     else{
+                        initPos=e.getPoint();       
                         currentShape=createShape();
                         vShape.add(currentShape);
-                        initPos=e.getPoint();       
                     }
                 repaint();                  
                 }
@@ -107,32 +107,6 @@ public class CanvasPanel extends javax.swing.JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
         for(Shape s:vShape) g2d.draw(s);
-        
-            /*switch(type){
-                case POINT: //Case point geoometry
-                    g.fillOval(initialPos.x, initialPos.y, 10, 10);
-                break;
-                case LINE: //Case line geoometry
-                    g.drawLine(initialPos.x, initialPos.y, currentPos.x, currentPos.y);
-                break;
-                case RECTANGLE: //Case rectangle geoometry
-                    if(!filled) //Not filled
-                        g.drawRect(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
-                                Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
-                    else //Filled
-                        g.fillRect(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
-                                Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
-                break;
-                case CIRCLE: //Case circle geoometry
-                    if(!filled) //Not filled
-                        g.drawOval(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
-                                Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
-                    else //Filled
-                        g.fillOval(Math.min(currentPos.x, initialPos.x), Math.min(currentPos.y, initialPos.y),
-                                Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
-                break;
-
-            }*/
     }
     
      private Shape getSelectedShape(Point2D p){
