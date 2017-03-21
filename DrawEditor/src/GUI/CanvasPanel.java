@@ -23,9 +23,15 @@ package GUI;
 import static GUI.GeometryType.*;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 
 enum GeometryType{
     POINT,
@@ -37,29 +43,32 @@ enum GeometryType{
 
 public class CanvasPanel extends javax.swing.JPanel {
     GeometryType type;
-    Point initialPos,currentPos;
-    boolean isDrawing,filled;
-    Color currentColor;
+    public Point initPos;
+    Shape currentShape;
+    List<Shape> vShape;
+    boolean editMode;
     
     public CanvasPanel() {
         initComponents();
+        initPos=new Point(0,0);
+        vShape = new ArrayList();
+        editMode=false;
         
         type=POINT;
-        currentColor=Color.BLACK;
-        isDrawing=false;
-        filled=false;
-        initialPos=new Point(0,0);
-        currentPos=new Point(0,0);
+        initPos=new Point(0,0);
         setBackground(Color.white);
         
         //Added our mouseListener 
         addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e){
-                    initialPos=e.getPoint();
-                    currentPos=e.getPoint();
-                    isDrawing=true;
-                    repaint();                    
+                    if(editMode) currentShape=(Rectangle)getSelectedShape(e.getPoint());
+                    else{
+                        currentShape=new Rectangle();
+                        vShape.add(currentShape);
+                        initPos=e.getPoint();       
+                    }
+                repaint();                  
                 }
         });
         
@@ -67,18 +76,24 @@ public class CanvasPanel extends javax.swing.JPanel {
         addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e){
-                    currentPos=e.getPoint();
-                    repaint();                    
+                if(editMode){
+                    if(currentShape!=null)
+                        ((Rectangle)currentShape).setLocation(e.getPoint());
+                    }
+                    else{
+                        ((Rectangle)currentShape).setFrameFromDiagonal(initPos,e.getPoint());
+                    }
+                repaint();                  
                 }
         });
     }
     
     public void paint(Graphics g){
         super.paint(g);
-        g.setColor(currentColor);
-        if(isDrawing){ //if the user was drawn something
-            
-            switch(type){
+        Graphics2D g2d = (Graphics2D)g;
+        for(Shape s:vShape) g2d.draw(s);
+        
+            /*switch(type){
                 case POINT: //Case point geoometry
                     g.fillOval(initialPos.x, initialPos.y, 10, 10);
                 break;
@@ -102,24 +117,26 @@ public class CanvasPanel extends javax.swing.JPanel {
                                 Math.abs(initialPos.x - currentPos.x), Math.abs(initialPos.y - currentPos.y));
                 break;
 
-            }
-        }
+            }*/
     }
     
+     private Shape getSelectedShape(Point2D p){
+        for(Shape s:vShape)
+            if(s.contains(p)) return s;
+        return null;
+    }
+     
     public void setType(GeometryType aType){
         type=aType;
     }
     
     public void setFilled(boolean value){
-        filled=value;
     }
     
     public void setColor(Color value){
-        currentColor=value;
     }
     
     public void resetCanvas(){
-        isDrawing=false;
         repaint();
     }
     /**
