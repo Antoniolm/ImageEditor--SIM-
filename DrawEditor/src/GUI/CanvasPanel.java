@@ -29,6 +29,8 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +44,7 @@ enum GeometryType{
 
 
 public class CanvasPanel extends javax.swing.JPanel {
-    GeometryType type;
+    GeometryType type,selectedGeometry;
     public Point initPos;
     Shape currentShape;
     List<Shape> vShape;
@@ -62,9 +64,9 @@ public class CanvasPanel extends javax.swing.JPanel {
         addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e){
-                    if(editMode) currentShape=(Rectangle)getSelectedShape(e.getPoint());
+                    if(editMode) currentShape=getSelectedShape(e.getPoint());
                     else{
-                        currentShape=new Rectangle();
+                        currentShape=createShape();
                         vShape.add(currentShape);
                         initPos=e.getPoint();       
                     }
@@ -81,11 +83,24 @@ public class CanvasPanel extends javax.swing.JPanel {
                         ((Rectangle)currentShape).setLocation(e.getPoint());
                     }
                     else{
-                        ((Rectangle)currentShape).setFrameFromDiagonal(initPos,e.getPoint());
+                        switch (type) {
+                        case POINT: //Case point geoometry
+                           
+                            break;
+                        case LINE: //Case line geoometry
+                            ((Line2D.Float)currentShape).setLine(initPos,e.getPoint());
+                            break;
+                        case RECTANGLE: //Case rectangle geoometry
+                            ((Rectangle)currentShape).setFrameFromDiagonal(initPos,e.getPoint());
+                            break;
+                        case CIRCLE: //Case circle geoometry
+                            ((Ellipse2D.Float)currentShape).setFrameFromDiagonal(initPos,e.getPoint());
+                            break;
+                        }
                     }
                 repaint();                  
-                }
-        });
+                } 
+        }); 
     }
     
     public void paint(Graphics g){
@@ -138,6 +153,26 @@ public class CanvasPanel extends javax.swing.JPanel {
     
     public void resetCanvas(){
         repaint();
+    }
+    
+    private Shape createShape(){
+        Shape result=null;
+        switch(type){
+            case POINT: //Case point geoometry
+                result=new Ellipse2D.Float(initPos.x,initPos.y,5,5);
+                break;
+            case LINE: //Case line geoometry
+                result=new Line2D.Float();
+                break;
+            case RECTANGLE: //Case rectangle geoometry
+                result=new Rectangle();
+                break;
+            case CIRCLE: //Case circle geoometry
+                result=new Ellipse2D.Float();
+                break;
+
+        }
+        return result;
     }
     /**
      * This method is called from within the constructor to initialize the form.
