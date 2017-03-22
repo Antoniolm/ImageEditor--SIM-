@@ -49,12 +49,15 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup4 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         DrawPanel = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
+        GeomToolBar = new javax.swing.JToolBar();
         PointButton = new javax.swing.JToggleButton();
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
         CircleButton = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
+        StateBarPanel = new javax.swing.JPanel();
+        StateBarLabel = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
         ColorPanel = new javax.swing.JPanel();
         BlackButton = new javax.swing.JButton();
         RedButton = new javax.swing.JButton();
@@ -62,10 +65,8 @@ public class MainWindow extends javax.swing.JFrame {
         WhiteButton = new javax.swing.JButton();
         YellowButton = new javax.swing.JButton();
         GreenButton = new javax.swing.JButton();
-        FilledPanel = new javax.swing.JPanel();
-        Filled = new javax.swing.JCheckBox();
-        StateBarPanel = new javax.swing.JPanel();
-        StateBarLabel = new javax.swing.JLabel();
+        thicknessPanel = new javax.swing.JPanel();
+        thickSpinner = new javax.swing.JSpinner();
         canvasPanel = new GUI.CanvasPanel();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -80,7 +81,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jToolBar1.setRollover(true);
+        GeomToolBar.setRollover(true);
 
         buttonGroup1.add(PointButton);
         PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Lapiz.gif"))); // NOI18N
@@ -92,7 +93,7 @@ public class MainWindow extends javax.swing.JFrame {
                 PointButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(PointButton);
+        GeomToolBar.add(PointButton);
 
         buttonGroup1.add(LineButton);
         LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Linea.gif"))); // NOI18N
@@ -104,7 +105,7 @@ public class MainWindow extends javax.swing.JFrame {
                 LineButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(LineButton);
+        GeomToolBar.add(LineButton);
 
         buttonGroup1.add(RtgleButton);
         RtgleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Rectangulo.gif"))); // NOI18N
@@ -116,7 +117,7 @@ public class MainWindow extends javax.swing.JFrame {
                 RtgleButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(RtgleButton);
+        GeomToolBar.add(RtgleButton);
 
         buttonGroup1.add(CircleButton);
         CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ovalo.gif"))); // NOI18N
@@ -128,9 +129,9 @@ public class MainWindow extends javax.swing.JFrame {
                 CircleButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(CircleButton);
+        GeomToolBar.add(CircleButton);
 
-        DrawPanel.add(jToolBar1);
+        DrawPanel.add(GeomToolBar);
 
         jPanel1.add(DrawPanel, java.awt.BorderLayout.LINE_START);
 
@@ -138,9 +139,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
+        StateBarPanel.setLayout(new java.awt.BorderLayout());
+
+        StateBarLabel.setText("State bar");
+        StateBarLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        StateBarPanel.add(StateBarLabel, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(StateBarPanel, java.awt.BorderLayout.SOUTH);
+
+        jToolBar1.setRollover(true);
+
+        ColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Color"));
         ColorPanel.setMaximumSize(new java.awt.Dimension(1000, 1000));
         ColorPanel.setMinimumSize(new java.awt.Dimension(237, 35));
-        ColorPanel.setPreferredSize(new java.awt.Dimension(140, 70));
+        ColorPanel.setPreferredSize(new java.awt.Dimension(140, 110));
         ColorPanel.setRequestFocusEnabled(false);
 
         BlackButton.setBackground(new java.awt.Color(0, 0, 0));
@@ -198,27 +210,15 @@ public class MainWindow extends javax.swing.JFrame {
         });
         ColorPanel.add(GreenButton);
 
-        jPanel3.add(ColorPanel, java.awt.BorderLayout.WEST);
+        jToolBar1.add(ColorPanel);
 
-        FilledPanel.setLayout(new java.awt.BorderLayout());
+        thicknessPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Thickness"));
+        thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
+        thicknessPanel.add(thickSpinner);
 
-        Filled.setText("Filled");
-        Filled.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FilledActionPerformed(evt);
-            }
-        });
-        FilledPanel.add(Filled, java.awt.BorderLayout.CENTER);
+        jToolBar1.add(thicknessPanel);
 
-        jPanel3.add(FilledPanel, java.awt.BorderLayout.LINE_END);
-
-        StateBarPanel.setLayout(new java.awt.BorderLayout());
-
-        StateBarLabel.setText("State bar");
-        StateBarLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        StateBarPanel.add(StateBarLabel, java.awt.BorderLayout.CENTER);
-
-        jPanel3.add(StateBarPanel, java.awt.BorderLayout.SOUTH);
+        jPanel3.add(jToolBar1, java.awt.BorderLayout.LINE_START);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
 
@@ -226,11 +226,11 @@ public class MainWindow extends javax.swing.JFrame {
         canvasPanel.setLayout(canvasPanelLayout);
         canvasPanelLayout.setHorizontalGroup(
             canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 501, Short.MAX_VALUE)
+            .addGap(0, 565, Short.MAX_VALUE)
         );
         canvasPanelLayout.setVerticalGroup(
             canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
+            .addGap(0, 193, Short.MAX_VALUE)
         );
 
         getContentPane().add(canvasPanel, java.awt.BorderLayout.CENTER);
@@ -331,10 +331,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SaveMenuActionPerformed
 
-    private void FilledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledActionPerformed
-        canvasPanel.setFilled(Filled.isSelected());
-    }//GEN-LAST:event_FilledActionPerformed
-
     //////////////////////////////////////////////////////////////////////////
     // Color buttons
     //////////////////////////////////////////////////////////////////////////
@@ -374,8 +370,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel DrawPanel;
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
-    private javax.swing.JCheckBox Filled;
-    private javax.swing.JPanel FilledPanel;
+    private javax.swing.JToolBar GeomToolBar;
     private javax.swing.JButton GreenButton;
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuBar MenuBar;
@@ -398,5 +393,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuItem newMenu;
+    private javax.swing.JSpinner thickSpinner;
+    private javax.swing.JPanel thicknessPanel;
     // End of variables declaration//GEN-END:variables
 }
