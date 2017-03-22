@@ -56,7 +56,7 @@ public class MainWindow extends javax.swing.JFrame {
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
-        jToolBar1 = new javax.swing.JToolBar();
+        AttributeToolBar = new javax.swing.JToolBar();
         ColorPanel = new javax.swing.JPanel();
         BlackButton = new javax.swing.JButton();
         RedButton = new javax.swing.JButton();
@@ -71,7 +71,7 @@ public class MainWindow extends javax.swing.JFrame {
         transparencyCB = new javax.swing.JCheckBox();
         smoothCB = new javax.swing.JCheckBox();
         editCheckBox = new javax.swing.JCheckBox();
-        canvasPanel = new GUI.CanvasPanel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         newMenu = new javax.swing.JMenuItem();
@@ -149,7 +149,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         AttributePanel.add(StateBarPanel, java.awt.BorderLayout.SOUTH);
 
-        jToolBar1.setRollover(true);
+        AttributeToolBar.setRollover(true);
 
         ColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Color"));
         ColorPanel.setMaximumSize(new java.awt.Dimension(1000, 1000));
@@ -213,13 +213,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
         ColorPanel.add(GreenButton);
 
-        jToolBar1.add(ColorPanel);
+        AttributeToolBar.add(ColorPanel);
 
         thicknessPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Thickness"));
         thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
         thicknessPanel.add(thickSpinner);
 
-        jToolBar1.add(thicknessPanel);
+        AttributeToolBar.add(thicknessPanel);
 
         AttributePanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " ", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         AttributePanel2.setPreferredSize(new java.awt.Dimension(200, 110));
@@ -236,24 +236,24 @@ public class MainWindow extends javax.swing.JFrame {
         editCheckBox.setText("Edit");
         AttributePanel2.add(editCheckBox);
 
-        jToolBar1.add(AttributePanel2);
+        AttributeToolBar.add(AttributePanel2);
 
-        AttributePanel.add(jToolBar1, java.awt.BorderLayout.LINE_START);
+        AttributePanel.add(AttributeToolBar, java.awt.BorderLayout.LINE_START);
 
         getContentPane().add(AttributePanel, java.awt.BorderLayout.SOUTH);
 
-        javax.swing.GroupLayout canvasPanelLayout = new javax.swing.GroupLayout(canvasPanel);
-        canvasPanel.setLayout(canvasPanelLayout);
-        canvasPanelLayout.setHorizontalGroup(
-            canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 663, Short.MAX_VALUE)
         );
-        canvasPanelLayout.setVerticalGroup(
-            canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 203, Short.MAX_VALUE)
         );
 
-        getContentPane().add(canvasPanel, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jDesktopPane1, java.awt.BorderLayout.CENTER);
 
         FileMenu.setText("File");
 
@@ -314,22 +314,22 @@ public class MainWindow extends javax.swing.JFrame {
     //////////////////////////////////////////////////////////////////////////
     private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
         StateBarLabel.setText("Point");
-        canvasPanel.setType(GeometryType.POINT);
+        //canvasPanel.setType(GeometryType.POINT);
     }//GEN-LAST:event_PointButtonActionPerformed
 
     private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
         StateBarLabel.setText("Line");
-        canvasPanel.setType(GeometryType.LINE);
+        //canvasPanel.setType(GeometryType.LINE);
     }//GEN-LAST:event_LineButtonActionPerformed
 
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
-        canvasPanel.setType(GeometryType.RECTANGLE);
+        //canvasPanel.setType(GeometryType.RECTANGLE);
     }//GEN-LAST:event_RtgleButtonActionPerformed
 
     private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
         StateBarLabel.setText("Circle");
-        canvasPanel.setType(GeometryType.CIRCLE);
+        //canvasPanel.setType(GeometryType.CIRCLE);
     }//GEN-LAST:event_CircleButtonActionPerformed
 
     //////////////////////////////////////////////////////////////////////////
@@ -355,36 +355,37 @@ public class MainWindow extends javax.swing.JFrame {
     // Color buttons
     //////////////////////////////////////////////////////////////////////////
     private void BlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackButtonActionPerformed
-        canvasPanel.setColor(Color.BLACK);
+        //canvasPanel.setColor(Color.BLACK);
     }//GEN-LAST:event_BlackButtonActionPerformed
 
     private void RedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedButtonActionPerformed
-        canvasPanel.setColor(Color.RED);
+        //canvasPanel.setColor(Color.RED);
     }//GEN-LAST:event_RedButtonActionPerformed
 
     private void BlueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlueButtonActionPerformed
-        canvasPanel.setColor(Color.BLUE);
+        //canvasPanel.setColor(Color.BLUE);
     }//GEN-LAST:event_BlueButtonActionPerformed
 
     private void WhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WhiteButtonActionPerformed
-        canvasPanel.setColor(Color.WHITE);
+        //canvasPanel.setColor(Color.WHITE);
     }//GEN-LAST:event_WhiteButtonActionPerformed
 
     private void YellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YellowButtonActionPerformed
-        canvasPanel.setColor(Color.YELLOW);
+        //canvasPanel.setColor(Color.YELLOW);
     }//GEN-LAST:event_YellowButtonActionPerformed
 
     private void GreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GreenButtonActionPerformed
-        canvasPanel.setColor(Color.GREEN);
+        //canvasPanel.setColor(Color.GREEN);
     }//GEN-LAST:event_GreenButtonActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
-        canvasPanel.resetCanvas();
+        //canvasPanel.resetCanvas();
     }//GEN-LAST:event_newMenuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
     private javax.swing.JPanel AttributePanel2;
+    private javax.swing.JToolBar AttributeToolBar;
     private javax.swing.JButton BlackButton;
     private javax.swing.JButton BlueButton;
     private javax.swing.JToggleButton CircleButton;
@@ -410,10 +411,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
-    private GUI.CanvasPanel canvasPanel;
     private javax.swing.JCheckBox editCheckBox;
     private javax.swing.JCheckBox filledCheckBox;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JCheckBox smoothCB;
     private javax.swing.JSpinner thickSpinner;
