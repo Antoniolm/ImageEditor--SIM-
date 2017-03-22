@@ -30,8 +30,11 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     public MainWindow() {
-        setMinimumSize(new Dimension(800,500));
-        initComponents();       
+        setMinimumSize(new Dimension(800,700));
+        initComponents();
+        InternalWindow vi = new InternalWindow();
+        mainDesktop.add(vi);
+        vi.setVisible(true);
     }
 
     /**
