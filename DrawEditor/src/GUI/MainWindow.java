@@ -47,7 +47,6 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
         DrawPanel = new javax.swing.JPanel();
         GeomToolBar = new javax.swing.JToolBar();
         PointButton = new javax.swing.JToggleButton();
@@ -84,7 +83,7 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DrawEditor");
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        DrawPanel.setLayout(new java.awt.BorderLayout());
 
         GeomToolBar.setRollover(true);
 
@@ -136,11 +135,9 @@ public class MainWindow extends javax.swing.JFrame {
         });
         GeomToolBar.add(CircleButton);
 
-        DrawPanel.add(GeomToolBar);
+        DrawPanel.add(GeomToolBar, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(DrawPanel, java.awt.BorderLayout.LINE_START);
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.NORTH);
+        getContentPane().add(DrawPanel, java.awt.BorderLayout.NORTH);
 
         AttributePanel.setLayout(new java.awt.BorderLayout());
 
@@ -253,7 +250,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         canvasPanelLayout.setVerticalGroup(
             canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 193, Short.MAX_VALUE)
+            .addGap(0, 203, Short.MAX_VALUE)
         );
 
         getContentPane().add(canvasPanel, java.awt.BorderLayout.CENTER);
@@ -416,7 +413,6 @@ public class MainWindow extends javax.swing.JFrame {
     private GUI.CanvasPanel canvasPanel;
     private javax.swing.JCheckBox editCheckBox;
     private javax.swing.JCheckBox filledCheckBox;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JCheckBox smoothCB;
