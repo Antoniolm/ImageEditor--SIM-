@@ -49,6 +49,7 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup4 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         DrawPanel = new javax.swing.JPanel();
+        jToolBar1 = new javax.swing.JToolBar();
         PointButton = new javax.swing.JToggleButton();
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
@@ -79,41 +80,57 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jToolBar1.setRollover(true);
+
         buttonGroup1.add(PointButton);
         PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Lapiz.gif"))); // NOI18N
+        PointButton.setFocusable(false);
+        PointButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        PointButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         PointButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PointButtonActionPerformed(evt);
             }
         });
-        DrawPanel.add(PointButton);
+        jToolBar1.add(PointButton);
 
         buttonGroup1.add(LineButton);
         LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Linea.gif"))); // NOI18N
+        LineButton.setFocusable(false);
+        LineButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LineButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         LineButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LineButtonActionPerformed(evt);
             }
         });
-        DrawPanel.add(LineButton);
+        jToolBar1.add(LineButton);
 
         buttonGroup1.add(RtgleButton);
         RtgleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Rectangulo.gif"))); // NOI18N
+        RtgleButton.setFocusable(false);
+        RtgleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        RtgleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         RtgleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RtgleButtonActionPerformed(evt);
             }
         });
-        DrawPanel.add(RtgleButton);
+        jToolBar1.add(RtgleButton);
 
         buttonGroup1.add(CircleButton);
         CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ovalo.gif"))); // NOI18N
+        CircleButton.setFocusable(false);
+        CircleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CircleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         CircleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CircleButtonActionPerformed(evt);
             }
         });
-        DrawPanel.add(CircleButton);
+        jToolBar1.add(CircleButton);
+
+        DrawPanel.add(jToolBar1);
 
         jPanel1.add(DrawPanel, java.awt.BorderLayout.LINE_START);
 
@@ -379,6 +396,7 @@ public class MainWindow extends javax.swing.JFrame {
     private GUI.CanvasPanel canvasPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuItem newMenu;
     // End of variables declaration//GEN-END:variables
 }
