@@ -71,7 +71,7 @@ public class MainWindow extends javax.swing.JFrame {
         transparencyCB = new javax.swing.JCheckBox();
         smoothCB = new javax.swing.JCheckBox();
         editCheckBox = new javax.swing.JCheckBox();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        mainDesktop = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         newMenu = new javax.swing.JMenuItem();
@@ -242,18 +242,18 @@ public class MainWindow extends javax.swing.JFrame {
 
         getContentPane().add(AttributePanel, java.awt.BorderLayout.SOUTH);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout mainDesktopLayout = new javax.swing.GroupLayout(mainDesktop);
+        mainDesktop.setLayout(mainDesktopLayout);
+        mainDesktopLayout.setHorizontalGroup(
+            mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 663, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        mainDesktopLayout.setVerticalGroup(
+            mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 203, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jDesktopPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(mainDesktop, java.awt.BorderLayout.CENTER);
 
         FileMenu.setText("File");
 
@@ -380,6 +380,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
         //canvasPanel.resetCanvas();
+        InternalWindow vi = new InternalWindow();
+        mainDesktop.add(vi);
+        vi.setVisible(true);
+
     }//GEN-LAST:event_newMenuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -413,7 +417,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JCheckBox editCheckBox;
     private javax.swing.JCheckBox filledCheckBox;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JCheckBox smoothCB;
     private javax.swing.JSpinner thickSpinner;
