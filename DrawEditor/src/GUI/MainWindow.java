@@ -35,6 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
         InternalWindow vi = new InternalWindow();
         mainDesktop.add(vi);
         vi.setVisible(true);
+                
     }
 
     /**
@@ -82,6 +83,8 @@ public class MainWindow extends javax.swing.JFrame {
         SaveMenu = new javax.swing.JMenuItem();
         EditMenu = new javax.swing.JMenu();
         SeeSBMenu = new javax.swing.JCheckBoxMenuItem();
+        SeeGeoMenu = new javax.swing.JCheckBoxMenuItem();
+        SeeAttMenu = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DrawEditor");
@@ -301,6 +304,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
         EditMenu.add(SeeSBMenu);
 
+        SeeGeoMenu.setSelected(true);
+        SeeGeoMenu.setText("See geometry bar");
+        EditMenu.add(SeeGeoMenu);
+
+        SeeAttMenu.setSelected(true);
+        SeeAttMenu.setText("See attribute bar");
+        EditMenu.add(SeeAttMenu);
+
         MenuBar.add(EditMenu);
 
         setJMenuBar(MenuBar);
@@ -409,6 +420,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton RedButton;
     private javax.swing.JToggleButton RtgleButton;
     private javax.swing.JMenuItem SaveMenu;
+    private javax.swing.JCheckBoxMenuItem SeeAttMenu;
+    private javax.swing.JCheckBoxMenuItem SeeGeoMenu;
     private javax.swing.JCheckBoxMenuItem SeeSBMenu;
     private javax.swing.JLabel StateBarLabel;
     private javax.swing.JPanel StateBarPanel;
