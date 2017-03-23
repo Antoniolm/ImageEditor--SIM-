@@ -306,10 +306,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         SeeGeoMenu.setSelected(true);
         SeeGeoMenu.setText("See geometry bar");
+        SeeGeoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeeGeoMenuActionPerformed(evt);
+            }
+        });
         EditMenu.add(SeeGeoMenu);
 
         SeeAttMenu.setSelected(true);
         SeeAttMenu.setText("See attribute bar");
+        SeeAttMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeeAttMenuActionPerformed(evt);
+            }
+        });
         EditMenu.add(SeeAttMenu);
 
         MenuBar.add(EditMenu);
@@ -399,6 +409,14 @@ public class MainWindow extends javax.swing.JFrame {
         vi.setVisible(true);
 
     }//GEN-LAST:event_newMenuActionPerformed
+
+    private void SeeGeoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeGeoMenuActionPerformed
+        GeomToolBar.setVisible(SeeGeoMenu.isSelected());
+    }//GEN-LAST:event_SeeGeoMenuActionPerformed
+
+    private void SeeAttMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeAttMenuActionPerformed
+        AttributeToolBar.setVisible(SeeAttMenu.isSelected());
+    }//GEN-LAST:event_SeeAttMenuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
