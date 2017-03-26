@@ -20,12 +20,17 @@
 package GUI;
 
 import static GUI.GeometryType.*;
+import draweditor.Attribute;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.Shape;
+import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
@@ -48,14 +53,14 @@ public class CanvasPanel extends javax.swing.JPanel {
     Shape currentShape;
     List<Shape> vShape;
     boolean editMode;
+    Attribute attribute;
     
     public CanvasPanel() {
         initComponents();
         initPos=new Point(0,0);
         vShape = new ArrayList();
         editMode=false;
-        
-        initPos=new Point(0,0);
+        attribute=new Attribute();
         setBackground(Color.white);
         
         //Added our mouseListener 
@@ -91,6 +96,7 @@ public class CanvasPanel extends javax.swing.JPanel {
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
+        //insert attribute
         for(Shape s:vShape) g2d.draw(s);
     }
     
@@ -104,7 +110,20 @@ public class CanvasPanel extends javax.swing.JPanel {
         geometry=aType;
     }
     
-    public void setFilled(boolean value){
+    public void setFilled(Paint value){
+        attribute.setFilled(value);
+    }
+    
+    public void setThick(Stroke value){
+        attribute.setStroke(value);
+    }
+    
+    public void setTransparency(Composite value){
+        attribute.setComp(value);
+    }
+    
+    public void setRender(RenderingHints value){
+        attribute.setRender(value);
     }
     
     public void setColor(Color value){

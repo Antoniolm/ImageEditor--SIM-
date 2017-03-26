@@ -37,10 +37,17 @@ public class Attribute {
     }
    
     public void apply(Graphics2D g2d){
-        g2d.setStroke(stroke);
-        g2d.setPaint(filled);
-        g2d.setComposite(comp);
-        g2d.setRenderingHints(render);
+        if(stroke!=null)
+            g2d.setStroke(stroke);
+        
+        if(filled!=null)
+            g2d.setPaint(filled);
+        
+        if(comp!=null)
+            g2d.setComposite(comp);
+        
+        if(render!=null)
+            g2d.setRenderingHints(render);
     }
     
     public Stroke getStroke() {

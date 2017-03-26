@@ -18,6 +18,15 @@
 // *********************************************************************
 package GUI;
 
+import draweditor.Attribute;
+import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Composite;
+import java.awt.Paint;
+import java.awt.RenderingHints;
+import java.awt.Stroke;
+
 /**
  *
  * @author LENOVO
@@ -26,6 +35,8 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalWindow
      */
+    
+    
     public InternalWindow() {
         initComponents();
         setClosable(true);
@@ -63,6 +74,22 @@ public class InternalWindow extends javax.swing.JInternalFrame {
 
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
+    }
+    
+    void setFilled(boolean value){
+        canvasPanel.setFilled(new Color(0, 0, 0));
+    }
+    
+    void setThickness(int value){
+        canvasPanel.setThick(new BasicStroke(value));
+    }
+    
+    void setTransparency(boolean value){
+         canvasPanel.setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+    }
+    
+    void setRender(boolean value){
+        canvasPanel.setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private GUI.CanvasPanel canvasPanel;
