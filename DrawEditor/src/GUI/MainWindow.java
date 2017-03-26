@@ -415,7 +415,6 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_GreenButtonActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
-        //canvasPanel.resetCanvas();
         currentIntWind = new InternalWindow();
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);

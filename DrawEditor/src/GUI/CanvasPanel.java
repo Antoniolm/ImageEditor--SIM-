@@ -82,20 +82,7 @@ public class CanvasPanel extends javax.swing.JPanel {
                         ((Rectangle)currentShape).setLocation(e.getPoint());
                     }
                     else{
-                        switch (geometry) {
-                        case POINT: //Case point geoometry
-                           
-                            break;
-                        case LINE: //Case line geoometry
-                            ((Line2D.Float)currentShape).setLine(initPos,e.getPoint());
-                            break;
-                        case RECTANGLE: //Case rectangle geoometry
-                            ((Rectangle)currentShape).setFrameFromDiagonal(initPos,e.getPoint());
-                            break;
-                        case CIRCLE: //Case circle geoometry
-                            ((Ellipse2D.Float)currentShape).setFrameFromDiagonal(initPos,e.getPoint());
-                            break;
-                        }
+                        updateShape(e.getPoint());
                     }
                 repaint();                  
                 } 
@@ -146,6 +133,22 @@ public class CanvasPanel extends javax.swing.JPanel {
 
         }
         return result;
+    }
+    
+    private void updateShape(Point2D point){
+        switch (geometry) {
+            case POINT: //Case point geoometry
+                break;
+            case LINE: //Case line geoometry
+                ((Line2D.Float) currentShape).setLine(initPos, point);
+                break;
+            case RECTANGLE: //Case rectangle geoometry
+                ((Rectangle) currentShape).setFrameFromDiagonal(initPos, point);
+                break;
+            case CIRCLE: //Case circle geoometry
+                ((Ellipse2D.Float) currentShape).setFrameFromDiagonal(initPos, point);
+                break;
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
