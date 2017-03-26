@@ -44,7 +44,7 @@ enum GeometryType{
 
 
 public class CanvasPanel extends javax.swing.JPanel {
-    GeometryType type,selectedGeometry;
+    static GeometryType geometry=POINT;
     public Point initPos;
     Shape currentShape;
     List<Shape> vShape;
@@ -56,7 +56,6 @@ public class CanvasPanel extends javax.swing.JPanel {
         vShape = new ArrayList();
         editMode=false;
         
-        type=POINT;
         initPos=new Point(0,0);
         setBackground(Color.white);
         
@@ -83,7 +82,7 @@ public class CanvasPanel extends javax.swing.JPanel {
                         ((Rectangle)currentShape).setLocation(e.getPoint());
                     }
                     else{
-                        switch (type) {
+                        switch (geometry) {
                         case POINT: //Case point geoometry
                            
                             break;
@@ -115,8 +114,8 @@ public class CanvasPanel extends javax.swing.JPanel {
         return null;
     }
      
-    public void setType(GeometryType aType){
-        type=aType;
+    public void setGeometry(GeometryType aType){
+        geometry=aType;
     }
     
     public void setFilled(boolean value){
@@ -131,7 +130,7 @@ public class CanvasPanel extends javax.swing.JPanel {
     
     private Shape createShape(){
         Shape result=null;
-        switch(type){
+        switch(geometry){
             case POINT: //Case point geoometry
                 result=new Ellipse2D.Float(initPos.x,initPos.y,5,5);
                 break;

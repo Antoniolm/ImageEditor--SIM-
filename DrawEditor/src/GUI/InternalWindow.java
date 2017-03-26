@@ -23,7 +23,6 @@ package GUI;
  * @author LENOVO
  */
 public class InternalWindow extends javax.swing.JInternalFrame {
-
     /**
      * Creates new form InternalWindow
      */
@@ -44,26 +43,28 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        canvasPanel1 = new GUI.CanvasPanel();
+        canvasPanel = new GUI.CanvasPanel();
 
-        javax.swing.GroupLayout canvasPanel1Layout = new javax.swing.GroupLayout(canvasPanel1);
-        canvasPanel1.setLayout(canvasPanel1Layout);
-        canvasPanel1Layout.setHorizontalGroup(
-            canvasPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout canvasPanelLayout = new javax.swing.GroupLayout(canvasPanel);
+        canvasPanel.setLayout(canvasPanelLayout);
+        canvasPanelLayout.setHorizontalGroup(
+            canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 394, Short.MAX_VALUE)
         );
-        canvasPanel1Layout.setVerticalGroup(
-            canvasPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        canvasPanelLayout.setVerticalGroup(
+            canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 278, Short.MAX_VALUE)
         );
 
-        getContentPane().add(canvasPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(canvasPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    void setGeometry(GeometryType geom){
+        canvasPanel.setGeometry(geom);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private GUI.CanvasPanel canvasPanel1;
+    private GUI.CanvasPanel canvasPanel;
     // End of variables declaration//GEN-END:variables
 }

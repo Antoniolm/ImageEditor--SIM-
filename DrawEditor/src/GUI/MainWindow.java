@@ -29,12 +29,17 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form MainWindow
      */
+    
+    InternalWindow currentIntWind;
+    
+    
+    
     public MainWindow() {
         setMinimumSize(new Dimension(800,700));
         initComponents();
-        InternalWindow vi = new InternalWindow();
-        mainDesktop.add(vi);
-        vi.setVisible(true);
+        currentIntWind = new InternalWindow();
+        mainDesktop.add(currentIntWind);
+        currentIntWind.setVisible(true);
                 
     }
 
@@ -248,6 +253,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         getContentPane().add(AttributePanel, java.awt.BorderLayout.SOUTH);
 
+        mainDesktop.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mainDesktopFocusGained(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainDesktopLayout = new javax.swing.GroupLayout(mainDesktop);
         mainDesktop.setLayout(mainDesktopLayout);
         mainDesktopLayout.setHorizontalGroup(
@@ -404,9 +415,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
         //canvasPanel.resetCanvas();
-        InternalWindow vi = new InternalWindow();
-        mainDesktop.add(vi);
-        vi.setVisible(true);
+        currentIntWind = new InternalWindow();
+        mainDesktop.add(currentIntWind);
+        currentIntWind.setVisible(true);
 
     }//GEN-LAST:event_newMenuActionPerformed
 
@@ -417,6 +428,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void SeeAttMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeAttMenuActionPerformed
         AttributeToolBar.setVisible(SeeAttMenu.isSelected());
     }//GEN-LAST:event_SeeAttMenuActionPerformed
+
+    private void mainDesktopFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainDesktopFocusGained
+        currentIntWind = (InternalWindow)mainDesktop.getSelectedFrame();
+    }//GEN-LAST:event_mainDesktopFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
