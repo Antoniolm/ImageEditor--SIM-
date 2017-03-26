@@ -19,6 +19,7 @@
 
 package GUI;
 
+import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
@@ -349,22 +350,22 @@ public class MainWindow extends javax.swing.JFrame {
     //////////////////////////////////////////////////////////////////////////
     private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
         StateBarLabel.setText("Point");
-        //canvasPanel.setType(GeometryType.POINT);
+        currentIntWind.setGeometry(GeometryType.POINT);
     }//GEN-LAST:event_PointButtonActionPerformed
 
     private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
         StateBarLabel.setText("Line");
-        //canvasPanel.setType(GeometryType.LINE);
+        currentIntWind.setGeometry(GeometryType.LINE);
     }//GEN-LAST:event_LineButtonActionPerformed
 
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
-        //canvasPanel.setType(GeometryType.RECTANGLE);
+        currentIntWind.setGeometry(GeometryType.RECTANGLE);
     }//GEN-LAST:event_RtgleButtonActionPerformed
 
     private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
         StateBarLabel.setText("Circle");
-        //canvasPanel.setType(GeometryType.CIRCLE);
+        currentIntWind.setGeometry(GeometryType.CIRCLE);
     }//GEN-LAST:event_CircleButtonActionPerformed
 
     //////////////////////////////////////////////////////////////////////////
