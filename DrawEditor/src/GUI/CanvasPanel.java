@@ -17,7 +17,6 @@
 // **
 // *********************************************************************
 
-
 package GUI;
 
 import static GUI.GeometryType.*;
@@ -119,7 +118,7 @@ public class CanvasPanel extends javax.swing.JPanel {
         Shape result=null;
         switch(geometry){
             case POINT: //Case point geoometry
-                result=new Ellipse2D.Float(initPos.x,initPos.y,5,5);
+                result=new Ellipse2D.Float(initPos.x,initPos.y,1,1);
                 break;
             case LINE: //Case line geoometry
                 result=new Line2D.Float();

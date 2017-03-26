@@ -31,9 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     
-    InternalWindow currentIntWind;
-    
-    
+    InternalWindow currentIntWind;    
     
     public MainWindow() {
         setMinimumSize(new Dimension(800,700));
@@ -229,6 +227,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         thicknessPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Thickness"));
         thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
+
+        thickSpinner.setValue(1);
         thicknessPanel.add(thickSpinner);
 
         AttributeToolBar.add(thicknessPanel);
