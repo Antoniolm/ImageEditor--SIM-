@@ -77,7 +77,10 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     }
     
     void setFilled(boolean value){
-        canvasPanel.setFilled(new Color(0, 0, 0));
+        if(value)
+            canvasPanel.setFilled(new Color(0, 0, 0));
+        else
+            canvasPanel.setFilled(null);
     }
     
     void setThickness(int value){
@@ -85,11 +88,17 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     }
     
     void setTransparency(boolean value){
-         canvasPanel.setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        if(value)
+            canvasPanel.setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        else
+            canvasPanel.setTransparency(null);
     }
     
     void setRender(boolean value){
-        canvasPanel.setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
+        if(value)
+            canvasPanel.setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
+        else
+            canvasPanel.setRender(null);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private GUI.CanvasPanel canvasPanel;

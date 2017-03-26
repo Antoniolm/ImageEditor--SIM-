@@ -96,7 +96,9 @@ public class CanvasPanel extends javax.swing.JPanel {
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
-        //insert attribute
+        
+        attribute.apply(g2d);
+        
         for(Shape s:vShape) g2d.draw(s);
     }
     
@@ -112,18 +114,22 @@ public class CanvasPanel extends javax.swing.JPanel {
     
     public void setFilled(Paint value){
         attribute.setFilled(value);
+        repaint();
     }
     
     public void setThick(Stroke value){
         attribute.setStroke(value);
+        repaint();
     }
     
     public void setTransparency(Composite value){
         attribute.setComp(value);
+        repaint();
     }
     
     public void setRender(RenderingHints value){
         attribute.setRender(value);
+        repaint();
     }
     
     public void setColor(Color value){

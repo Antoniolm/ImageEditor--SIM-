@@ -229,6 +229,11 @@ public class MainWindow extends javax.swing.JFrame {
         thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
 
         thickSpinner.setValue(1);
+        thickSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                thickSpinnerStateChanged(evt);
+            }
+        });
         thicknessPanel.add(thickSpinner);
 
         AttributeToolBar.add(thicknessPanel);
@@ -237,12 +242,27 @@ public class MainWindow extends javax.swing.JFrame {
         AttributePanel2.setPreferredSize(new java.awt.Dimension(200, 110));
 
         filledCheckBox.setText("Filled");
+        filledCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filledCheckBoxActionPerformed(evt);
+            }
+        });
         AttributePanel2.add(filledCheckBox);
 
         transparencyCB.setText("Transparency");
+        transparencyCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transparencyCBActionPerformed(evt);
+            }
+        });
         AttributePanel2.add(transparencyCB);
 
         smoothCB.setText("Smooth");
+        smoothCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smoothCBActionPerformed(evt);
+            }
+        });
         AttributePanel2.add(smoothCB);
 
         editCheckBox.setText("Edit");
@@ -432,6 +452,22 @@ public class MainWindow extends javax.swing.JFrame {
     private void mainDesktopFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainDesktopFocusGained
         currentIntWind = (InternalWindow)mainDesktop.getSelectedFrame();
     }//GEN-LAST:event_mainDesktopFocusGained
+
+    private void filledCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filledCheckBoxActionPerformed
+        currentIntWind.setFilled(filledCheckBox.isSelected());
+    }//GEN-LAST:event_filledCheckBoxActionPerformed
+
+    private void transparencyCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transparencyCBActionPerformed
+        currentIntWind.setTransparency(transparencyCB.isSelected());
+    }//GEN-LAST:event_transparencyCBActionPerformed
+
+    private void smoothCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothCBActionPerformed
+        currentIntWind.setRender(smoothCB.isSelected());
+    }//GEN-LAST:event_smoothCBActionPerformed
+
+    private void thickSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_thickSpinnerStateChanged
+        currentIntWind.setThickness((int)thickSpinner.getValue());
+    }//GEN-LAST:event_thickSpinnerStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;

@@ -361,6 +361,9 @@
                       <Connection code="1" type="code"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="thickSpinnerStateChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -382,16 +385,25 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Filled"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="filledCheckBoxActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="transparencyCB">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Transparency"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transparencyCBActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="smoothCB">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Smooth"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smoothCBActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="editCheckBox">
                   <Properties>
