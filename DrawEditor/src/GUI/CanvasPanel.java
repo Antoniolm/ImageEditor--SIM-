@@ -118,6 +118,7 @@ public class CanvasPanel extends javax.swing.JPanel {
     
     public void setColor(Paint value){
         attribute.setFilled(value);
+        repaint();
     }
     
     public void setFilled(boolean boolValue){

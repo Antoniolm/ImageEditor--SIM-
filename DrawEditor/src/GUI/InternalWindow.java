@@ -79,6 +79,10 @@ public class InternalWindow extends javax.swing.JInternalFrame {
         canvasPanel.setFilled(value);
     }
     
+    public void setColor(Paint value){
+        canvasPanel.setColor(value);
+    }
+    
     void setThickness(int value){
         canvasPanel.setThick(new BasicStroke(value));
     }

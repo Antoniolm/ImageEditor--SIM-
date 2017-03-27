@@ -411,27 +411,27 @@ public class MainWindow extends javax.swing.JFrame {
     // Color buttons
     //////////////////////////////////////////////////////////////////////////
     private void BlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackButtonActionPerformed
-        //canvasPanel.setColor(Color.BLACK);
+        currentIntWind.setColor(Color.BLACK);
     }//GEN-LAST:event_BlackButtonActionPerformed
 
     private void RedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedButtonActionPerformed
-        //canvasPanel.setColor(Color.RED);
+        currentIntWind.setColor(Color.RED);
     }//GEN-LAST:event_RedButtonActionPerformed
 
     private void BlueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlueButtonActionPerformed
-        //canvasPanel.setColor(Color.BLUE);
+        currentIntWind.setColor(Color.BLUE);
     }//GEN-LAST:event_BlueButtonActionPerformed
 
     private void WhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WhiteButtonActionPerformed
-        //canvasPanel.setColor(Color.WHITE);
+        currentIntWind.setColor(Color.WHITE);
     }//GEN-LAST:event_WhiteButtonActionPerformed
 
     private void YellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YellowButtonActionPerformed
-        //canvasPanel.setColor(Color.YELLOW);
+        currentIntWind.setColor(Color.YELLOW);
     }//GEN-LAST:event_YellowButtonActionPerformed
 
     private void GreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GreenButtonActionPerformed
-        //canvasPanel.setColor(Color.GREEN);
+        currentIntWind.setColor(Color.GREEN);
     }//GEN-LAST:event_GreenButtonActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
