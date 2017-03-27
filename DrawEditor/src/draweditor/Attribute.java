@@ -18,6 +18,7 @@
 // *********************************************************************
 package draweditor;
 
+import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -26,12 +27,14 @@ import java.awt.Stroke;
 
 public class Attribute {
     Stroke stroke;
-    Paint filled;
+    Paint colorPaint;
+    boolean filled;
     Composite comp;
     RenderingHints render;   
     public Attribute(){
         stroke=null;
-        filled=null;
+        colorPaint=new Color(0,0,0);
+        filled=false;
         comp=null;
         render=null;
     }
@@ -40,8 +43,7 @@ public class Attribute {
         if(stroke!=null)
             g2d.setStroke(stroke);
         
-        if(filled!=null)
-            g2d.setPaint(filled);
+        g2d.setPaint(colorPaint);
         
         if(comp!=null)
             g2d.setComposite(comp);
@@ -59,11 +61,11 @@ public class Attribute {
     }
 
     public Paint getFilled() {
-        return filled;
+        return colorPaint;
     }
 
-    public void setFilled(Paint filled) {
-        this.filled = filled;
+    public void setFilled(Paint aPaint) {
+        this.colorPaint = aPaint;
     }
 
     public Composite getComp() {

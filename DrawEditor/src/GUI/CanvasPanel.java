@@ -52,7 +52,7 @@ public class CanvasPanel extends javax.swing.JPanel {
     public Point initPos;
     Shape currentShape;
     List<Shape> vShape;
-    boolean editMode;
+    boolean editMode,isFilled;
     Attribute attribute;
     
     public CanvasPanel() {
@@ -60,6 +60,7 @@ public class CanvasPanel extends javax.swing.JPanel {
         initPos=new Point(0,0);
         vShape = new ArrayList();
         editMode=false;
+        isFilled=false;
         attribute=new Attribute();
         setBackground(Color.white);
         
@@ -99,7 +100,10 @@ public class CanvasPanel extends javax.swing.JPanel {
         
         attribute.apply(g2d);
         
-        for(Shape s:vShape) g2d.draw(s);
+        if(!isFilled)
+            for(Shape s:vShape) g2d.draw(s);
+        else
+            for(Shape s:vShape) g2d.fill(s);
     }
     
      private Shape getSelectedShape(Point2D p){
@@ -112,8 +116,12 @@ public class CanvasPanel extends javax.swing.JPanel {
         geometry=aType;
     }
     
-    public void setFilled(Paint value){
+    public void setColor(Paint value){
         attribute.setFilled(value);
+    }
+    
+    public void setFilled(boolean boolValue){
+        isFilled=boolValue;
         repaint();
     }
     
