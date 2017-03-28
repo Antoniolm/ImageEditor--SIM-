@@ -45,7 +45,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public Point initPos;
     Shape currentShape;
     List<Shape> vShape;
-    boolean editMode,isFilled;
+    boolean editMode;
     Attribute attribute;
     
     public Canvas2DPanel() {
@@ -53,7 +53,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         initPos=new Point(0,0);
         vShape = new ArrayList();
         editMode=false;
-        isFilled=false;
         attribute=new Attribute();
         setBackground(Color.white);
         
@@ -93,7 +92,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         
         attribute.apply(g2d);
         
-        if(!isFilled)
+        if(!attribute.getFilled())
             for(Shape s:vShape)
                 g2d.draw(s);
         else
@@ -122,12 +121,12 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
         
     public void setFilled(boolean boolValue){
-        isFilled=boolValue;
+        attribute.filled=boolValue;
         repaint();
     }
     
     public boolean getFilled(){            
-        return isFilled;
+        return attribute.getFilled();
     }
     
     public void setThick(Stroke value){
