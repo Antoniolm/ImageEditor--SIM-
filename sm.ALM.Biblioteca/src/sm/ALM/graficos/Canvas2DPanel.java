@@ -94,9 +94,16 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         attribute.apply(g2d);
         
         if(!isFilled)
-            for(Shape s:vShape) g2d.draw(s);
+            for(Shape s:vShape)
+                g2d.draw(s);
         else
-            for(Shape s:vShape) g2d.fill(s);
+            for(Shape s:vShape){
+                if(s instanceof Line2D)
+                    g2d.draw(s);
+                else g2d.fill(s);
+            }
+        
+        
     }
     
      private Shape getSelectedShape(Point2D p){
@@ -141,7 +148,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         Shape result=null;
         switch(geometry){
             case POINT: //Case point geoometry
-                result=new Rectangle(initPos);
+                result=new Line2D.Float(initPos,initPos);
                 break;
             case LINE: //Case line geoometry
                 result=new Line2D.Float();

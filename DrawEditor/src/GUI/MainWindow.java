@@ -375,7 +375,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SeeSBMenuActionPerformed
 
     public void changeCurrentIntWind(InternalWindow vi){
-       currentIntWind=vi;        
+       currentIntWind=vi;
+       
     }
     //////////////////////////////////////////////////////////////////////////
     // Geometry buttons
