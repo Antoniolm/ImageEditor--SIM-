@@ -269,6 +269,11 @@ public class MainWindow extends javax.swing.JFrame {
         AttributePanel2.add(smoothCB);
 
         editCheckBox.setText("Edit");
+        editCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCheckBoxActionPerformed(evt);
+            }
+        });
         AttributePanel2.add(editCheckBox);
 
         AttributeToolBar.add(AttributePanel2);
@@ -487,6 +492,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void mainDesktopComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainDesktopComponentShown
 
     }//GEN-LAST:event_mainDesktopComponentShown
+
+    private void editCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCheckBoxActionPerformed
+        currentIntWind.canvasPanel.setEdit(editCheckBox.isSelected());
+    }//GEN-LAST:event_editCheckBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;

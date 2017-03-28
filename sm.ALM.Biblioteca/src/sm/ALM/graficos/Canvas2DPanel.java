@@ -35,6 +35,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import java.util.List;
 import static sm.ALM.graficos.GeometryType.*;
@@ -45,7 +46,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public Point initPos;
     Shape currentShape;
     List<Shape> vShape;
-    boolean editMode;
+    static boolean editMode=false;
     Attribute attribute;
     
     public Canvas2DPanel() {
@@ -74,10 +75,15 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e){
-                if(editMode){
-                    if(currentShape!=null)
-                        ((Rectangle)currentShape).setLocation(e.getPoint());
-                    }
+                    if(editMode){
+                        if(currentShape!=null)
+                            if(currentShape instanceof Rectangle)
+                                ((Rectangle)currentShape).setLocation(e.getPoint());
+                            //if(currentShape instanceof Ellipse2D)
+                                //((Ellipse2D)currentShape). setLocation(e.getPoint());
+                            //if(currentShape instanceof Line2D)
+                              //  ((Line2D)currentShape).setLine(e.getPoint());
+                        }
                     else{
                         updateShape(e.getPoint());
                     }
@@ -159,6 +165,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
             result=true;
         
         return result;
+    }
+    
+    public void setEdit(boolean value){
+        editMode=value;
     }
     
     private Shape createShape(){
