@@ -21,7 +21,6 @@ package GUI;
 
 import sm.ALM.graficos.Canvas2DPanel;
 import sm.ALM.graficos.*;
-import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
@@ -376,6 +375,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void changeCurrentIntWind(InternalWindow vi){
        currentIntWind=vi;
+       filledCheckBox.setSelected(currentIntWind.canvasPanel.getFilled());
+       transparencyCB.setSelected(currentIntWind.canvasPanel.getTransparency());
+       smoothCB.setSelected(currentIntWind.canvasPanel.getRender());
        
     }
     //////////////////////////////////////////////////////////////////////////

@@ -30,7 +30,8 @@ public class Attribute {
     Paint colorPaint;
     boolean filled;
     Composite comp;
-    RenderingHints render;   
+    RenderingHints render;
+    
     public Attribute(){
         stroke=null;
         colorPaint=new Color(0,0,0);
@@ -60,8 +61,12 @@ public class Attribute {
         this.stroke = stroke;
     }
 
-    public Paint getFilled() {
+    public Paint getColor() {
         return colorPaint;
+    }
+    
+    public boolean getFilled() {
+        return filled;
     }
 
     public void setFilled(Paint aPaint) {

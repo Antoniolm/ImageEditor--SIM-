@@ -120,10 +120,14 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         attribute.setFilled(value);
         repaint();
     }
-    
+        
     public void setFilled(boolean boolValue){
         isFilled=boolValue;
         repaint();
+    }
+    
+    public boolean getFilled(){            
+        return attribute.getFilled();
     }
     
     public void setThick(Stroke value){
@@ -136,12 +140,26 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         repaint();
     }
     
+    public boolean getTransparency(){
+        boolean result=false;
+        
+        if(attribute.getComp()!=null)
+            result=true;
+            
+        return result;
+    }
+    
     public void setRender(RenderingHints value){
         attribute.setRender(value);
         repaint();
     }
     
-    public void setColor(Color value){
+    public boolean getRender(){
+        boolean result=false;
+        if(attribute.getRender()!=null)
+            result=true;
+        
+        return result;
     }
     
     private Shape createShape(){
