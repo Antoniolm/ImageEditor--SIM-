@@ -18,7 +18,7 @@
 // *********************************************************************
 package GUI;
 
-import draweditor.Attribute;
+import sm.ALM.graficos.*;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -35,14 +35,15 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalWindow
      */
+    MainWindow parent=null;
     
-    
-    public InternalWindow() {
+    public InternalWindow(MainWindow window) {
         initComponents();
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        parent=window;
     }
 
     /**
@@ -54,7 +55,25 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        canvasPanel = new GUI.CanvasPanel();
+        canvasPanel = new sm.ALM.graficos.Canvas2DPanel();
+
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout canvasPanelLayout = new javax.swing.GroupLayout(canvasPanel);
         canvasPanel.setLayout(canvasPanelLayout);
@@ -71,6 +90,10 @@ public class InternalWindow extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        parent.changeCurrentIntWind(this);
+    }//GEN-LAST:event_formInternalFrameActivated
 
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
@@ -101,6 +124,6 @@ public class InternalWindow extends javax.swing.JInternalFrame {
             canvasPanel.setRender(null);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private GUI.CanvasPanel canvasPanel;
+    public sm.ALM.graficos.Canvas2DPanel canvasPanel;
     // End of variables declaration//GEN-END:variables
 }

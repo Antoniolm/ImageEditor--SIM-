@@ -17,10 +17,9 @@
 // **
 // *********************************************************************
 
-package GUI;
+package sm.ALM.graficos;
 
-import static GUI.GeometryType.*;
-import draweditor.Attribute;
+import static sm.ALM.graficos.Canvas2DPanel.*;
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics;
@@ -38,16 +37,10 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
-
-enum GeometryType{
-    POINT,
-    LINE,
-    RECTANGLE,
-    CIRCLE
-}
+import static sm.ALM.graficos.GeometryType.*;
 
 
-public class CanvasPanel extends javax.swing.JPanel {
+public class Canvas2DPanel extends javax.swing.JPanel {
     static GeometryType geometry=POINT;
     public Point initPos;
     Shape currentShape;
@@ -55,7 +48,7 @@ public class CanvasPanel extends javax.swing.JPanel {
     boolean editMode,isFilled;
     Attribute attribute;
     
-    public CanvasPanel() {
+    public Canvas2DPanel() {
         initComponents();
         initPos=new Point(0,0);
         vShape = new ArrayList();
@@ -144,10 +137,6 @@ public class CanvasPanel extends javax.swing.JPanel {
     public void setColor(Color value){
     }
     
-    public void resetCanvas(){
-        repaint();
-    }
-    
     private Shape createShape(){
         Shape result=null;
         switch(geometry){
@@ -169,6 +158,7 @@ public class CanvasPanel extends javax.swing.JPanel {
     }
     
     private void updateShape(Point2D point){
+        getSelectedShape();
         switch (geometry) {
             case POINT: //Case point geoometry
                 break;
@@ -182,6 +172,10 @@ public class CanvasPanel extends javax.swing.JPanel {
                 ((Ellipse2D.Float) currentShape).setFrameFromDiagonal(initPos, point);
                 break;
         }
+    }
+    
+    private Shape getSelectedShape(){
+        return null;
     }
     /**
      * This method is called from within the constructor to initialize the form.

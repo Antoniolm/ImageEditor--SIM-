@@ -19,6 +19,8 @@
 
 package GUI;
 
+import sm.ALM.graficos.Canvas2DPanel;
+import sm.ALM.graficos.*;
 import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,7 +38,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         setMinimumSize(new Dimension(800,700));
         initComponents();
-        currentIntWind = new InternalWindow();
+        currentIntWind = new InternalWindow(this);
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
                 
@@ -228,6 +230,7 @@ public class MainWindow extends javax.swing.JFrame {
         thicknessPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Thickness"));
         thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
 
+        thickSpinner.setPreferredSize(new java.awt.Dimension(40, 22));
         thickSpinner.setValue(1);
         thickSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -239,7 +242,8 @@ public class MainWindow extends javax.swing.JFrame {
         AttributeToolBar.add(thicknessPanel);
 
         AttributePanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " ", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        AttributePanel2.setPreferredSize(new java.awt.Dimension(200, 110));
+        AttributePanel2.setPreferredSize(new java.awt.Dimension(230, 110));
+        AttributePanel2.setLayout(new java.awt.GridLayout(2, 2));
 
         filledCheckBox.setText("Filled");
         filledCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -279,12 +283,17 @@ public class MainWindow extends javax.swing.JFrame {
                 mainDesktopFocusGained(evt);
             }
         });
+        mainDesktop.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                mainDesktopComponentShown(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainDesktopLayout = new javax.swing.GroupLayout(mainDesktop);
         mainDesktop.setLayout(mainDesktopLayout);
         mainDesktopLayout.setHorizontalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
+            .addGap(0, 742, Short.MAX_VALUE)
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,6 +374,9 @@ public class MainWindow extends javax.swing.JFrame {
       StateBarPanel.setVisible(SeeSBMenu.isSelected());
     }//GEN-LAST:event_SeeSBMenuActionPerformed
 
+    public void changeCurrentIntWind(InternalWindow vi){
+       currentIntWind=vi;        
+    }
     //////////////////////////////////////////////////////////////////////////
     // Geometry buttons
     //////////////////////////////////////////////////////////////////////////
@@ -435,7 +447,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_GreenButtonActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
-        currentIntWind = new InternalWindow();
+        currentIntWind = new InternalWindow(this);
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
 
@@ -450,7 +462,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SeeAttMenuActionPerformed
 
     private void mainDesktopFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainDesktopFocusGained
-        currentIntWind = (InternalWindow)mainDesktop.getSelectedFrame();
+
     }//GEN-LAST:event_mainDesktopFocusGained
 
     private void filledCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filledCheckBoxActionPerformed
@@ -468,6 +480,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void thickSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_thickSpinnerStateChanged
         currentIntWind.setThickness((int)thickSpinner.getValue());
     }//GEN-LAST:event_thickSpinnerStateChanged
+
+    private void mainDesktopComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainDesktopComponentShown
+
+    }//GEN-LAST:event_mainDesktopComponentShown
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
