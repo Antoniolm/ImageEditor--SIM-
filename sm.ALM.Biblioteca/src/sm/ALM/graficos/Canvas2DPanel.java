@@ -127,7 +127,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     public boolean getFilled(){            
-        return attribute.getFilled();
+        return isFilled;
     }
     
     public void setThick(Stroke value){
