@@ -27,6 +27,7 @@ import java.awt.Stroke;
 
 public class Attribute {
     Stroke stroke;
+    Integer strokeValue;
     Paint colorPaint;
     boolean filled;
     Composite comp;
@@ -38,6 +39,7 @@ public class Attribute {
         filled=false;
         comp=null;
         render=null;
+        strokeValue=1;
     }
    
     public void apply(Graphics2D g2d){
@@ -57,8 +59,13 @@ public class Attribute {
         return stroke;
     }
 
-    public void setStroke(Stroke stroke) {
+    public Integer getThickness(){
+        return strokeValue;
+    }
+    
+    public void setStroke(Stroke stroke,Integer value) {
         this.stroke = stroke;
+        strokeValue=value;
     }
 
     public Paint getColor() {

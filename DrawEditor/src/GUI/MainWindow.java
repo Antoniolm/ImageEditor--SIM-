@@ -19,6 +19,7 @@
 
 package GUI;
 
+import java.awt.BasicStroke;
 import sm.ALM.graficos.Canvas2DPanel;
 import sm.ALM.graficos.*;
 import java.awt.Color;
@@ -230,7 +231,6 @@ public class MainWindow extends javax.swing.JFrame {
         thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
 
         thickSpinner.setPreferredSize(new java.awt.Dimension(40, 22));
-        thickSpinner.setValue(1);
         thickSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 thickSpinnerStateChanged(evt);
@@ -383,6 +383,7 @@ public class MainWindow extends javax.swing.JFrame {
        filledCheckBox.setSelected(currentIntWind.canvasPanel.getFilled());
        transparencyCB.setSelected(currentIntWind.canvasPanel.getTransparency());
        smoothCB.setSelected(currentIntWind.canvasPanel.getRender());
+       thickSpinner.setValue((Integer)currentIntWind.canvasPanel.getThick());
        
     }
     //////////////////////////////////////////////////////////////////////////
@@ -431,27 +432,27 @@ public class MainWindow extends javax.swing.JFrame {
     // Color buttons
     //////////////////////////////////////////////////////////////////////////
     private void BlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackButtonActionPerformed
-        currentIntWind.setColor(Color.BLACK);
+        currentIntWind.canvasPanel.setColor(Color.BLACK);
     }//GEN-LAST:event_BlackButtonActionPerformed
 
     private void RedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedButtonActionPerformed
-        currentIntWind.setColor(Color.RED);
+        currentIntWind.canvasPanel.setColor(Color.RED);
     }//GEN-LAST:event_RedButtonActionPerformed
 
     private void BlueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlueButtonActionPerformed
-        currentIntWind.setColor(Color.BLUE);
+        currentIntWind.canvasPanel.setColor(Color.BLUE);
     }//GEN-LAST:event_BlueButtonActionPerformed
 
     private void WhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WhiteButtonActionPerformed
-        currentIntWind.setColor(Color.WHITE);
+        currentIntWind.canvasPanel.setColor(Color.WHITE);
     }//GEN-LAST:event_WhiteButtonActionPerformed
 
     private void YellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YellowButtonActionPerformed
-        currentIntWind.setColor(Color.YELLOW);
+        currentIntWind.canvasPanel.setColor(Color.YELLOW);
     }//GEN-LAST:event_YellowButtonActionPerformed
 
     private void GreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GreenButtonActionPerformed
-        currentIntWind.setColor(Color.GREEN);
+        currentIntWind.canvasPanel.setColor(Color.GREEN);
     }//GEN-LAST:event_GreenButtonActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
@@ -474,7 +475,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_mainDesktopFocusGained
 
     private void filledCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filledCheckBoxActionPerformed
-        currentIntWind.setFilled(filledCheckBox.isSelected());
+        currentIntWind.canvasPanel.setFilled(filledCheckBox.isSelected());
     }//GEN-LAST:event_filledCheckBoxActionPerformed
 
     private void transparencyCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transparencyCBActionPerformed
@@ -486,7 +487,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_smoothCBActionPerformed
 
     private void thickSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_thickSpinnerStateChanged
-        currentIntWind.setThickness((int)thickSpinner.getValue());
+        Integer value=(int)thickSpinner.getValue();
+        currentIntWind.canvasPanel.setThick(new BasicStroke(value),value);
     }//GEN-LAST:event_thickSpinnerStateChanged
 
     private void mainDesktopComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainDesktopComponentShown

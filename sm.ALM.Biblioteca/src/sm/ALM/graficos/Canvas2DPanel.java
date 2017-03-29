@@ -76,13 +76,19 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 @Override
                 public void mouseDragged(MouseEvent e){
                     if(editMode){
-                        if(currentShape!=null)
-                            if(currentShape instanceof Rectangle)
-                                ((Rectangle)currentShape).setLocation(e.getPoint());
-                            //if(currentShape instanceof Ellipse2D)
-                                //((Ellipse2D)currentShape). setLocation(e.getPoint());
-                            //if(currentShape instanceof Line2D)
-                              //  ((Line2D)currentShape).setLine(e.getPoint());
+                            if(currentShape!=null){
+                                if(currentShape instanceof Rectangle)
+                                    ((Rectangle)currentShape).setLocation(e.getPoint());
+                                //if(currentShape instanceof Ellipse2D.Float)
+                                    //((Ellipse2D.Float)currentShape).setFrameFromDiagonal(e.getPoint(), );
+                                if(currentShape instanceof Line2D.Float){
+                                    Point2D point1=((Line2D)currentShape).getP1();
+                                    //point1.setLocation(point1.getX()+(e.getX()-point1.getX()), point1.getY()+(e.getY()-point1.getY()));
+                                    Point2D point2=((Line2D)currentShape).getP2();
+                                    //point2.setLocation(point2.getX()+(e.getX()-point2.getX()), point2.getY()+(e.getY()-point2.getY()));
+                                    ((Line2D)currentShape).setLine(point1,point2);
+                                }
+                            }
                         }
                     else{
                         updateShape(e.getPoint());
@@ -112,8 +118,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
      private Shape getSelectedShape(Point2D p){
-        for(Shape s:vShape)
-            if(s.contains(p)) return s;
+        for(Shape s:vShape){
+            if(s instanceof Rectangle)
+                if(s.contains(p)) return s;
+            if(s instanceof Line2D)
+                if(s.intersects(p.getX(), p.getY(), 3, 3)) return s;
+            
+        }
         return null;
     }
      
@@ -135,11 +146,14 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return attribute.getFilled();
     }
     
-    public void setThick(Stroke value){
-        attribute.setStroke(value);
+    public void setThick(Stroke stroke,Integer value){
+        attribute.setStroke(stroke,value);
         repaint();
     }
     
+    public Integer getThick(){
+        return attribute.getThickness();
+    }
     public void setTransparency(Composite value){
         attribute.setComp(value);
         repaint();

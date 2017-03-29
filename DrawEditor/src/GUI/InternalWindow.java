@@ -98,17 +98,6 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
     }
-    void setFilled(boolean value){
-        canvasPanel.setFilled(value);
-    }
-    
-    public void setColor(Paint value){
-        canvasPanel.setColor(value);
-    }
-    
-    void setThickness(int value){
-        canvasPanel.setThick(new BasicStroke(value));
-    }
     
     void setTransparency(boolean value){
         if(value)
