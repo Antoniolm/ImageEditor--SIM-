@@ -19,11 +19,13 @@
 
 package GUI;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import sm.ALM.graficos.Canvas2DPanel;
 import sm.ALM.graficos.*;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.RenderingHints;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
@@ -479,11 +481,17 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_filledCheckBoxActionPerformed
 
     private void transparencyCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transparencyCBActionPerformed
-        currentIntWind.setTransparency(transparencyCB.isSelected());
+        if(transparencyCB.isSelected())
+            currentIntWind.canvasPanel.setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        else
+            currentIntWind.canvasPanel.setTransparency(null);
     }//GEN-LAST:event_transparencyCBActionPerformed
 
     private void smoothCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothCBActionPerformed
-        currentIntWind.setRender(smoothCB.isSelected());
+        if(smoothCB.isSelected())
+            currentIntWind.canvasPanel.setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
+        else
+            currentIntWind.canvasPanel.setRender(null);
     }//GEN-LAST:event_smoothCBActionPerformed
 
     private void thickSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_thickSpinnerStateChanged

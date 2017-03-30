@@ -27,10 +27,6 @@ import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 
-/**
- *
- * @author LENOVO
- */
 public class InternalWindow extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalWindow
@@ -97,20 +93,6 @@ public class InternalWindow extends javax.swing.JInternalFrame {
 
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
-    }
-    
-    void setTransparency(boolean value){
-        if(value)
-            canvasPanel.setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
-        else
-            canvasPanel.setTransparency(null);
-    }
-    
-    void setRender(boolean value){
-        if(value)
-            canvasPanel.setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
-        else
-            canvasPanel.setRender(null);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public sm.ALM.graficos.Canvas2DPanel canvasPanel;
