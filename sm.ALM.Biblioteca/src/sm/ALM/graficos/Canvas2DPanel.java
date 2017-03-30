@@ -162,6 +162,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         editMode=value;
     }
     
+    /**
+     * It will create a new shape 
+     * @return 
+     */
     private Shape createShape(){
         Shape result=null;
         switch(geometry){
@@ -182,6 +186,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return result;
     }
     
+    /**
+     * It will update the currentShape
+     * @param point 
+     */
     private void updateShape(Point2D point){
         switch (geometry) {
             case POINT: //Case point geoometry
@@ -198,6 +206,12 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * It will return the shape that contain the point p
+     * if point p is not in any shape then return null
+     * @param p
+     * @return shape 
+     */
     private Shape getSelectedShape(Point2D p){
         for(Shape s:vShape){
             if(s instanceof RectangularShape)
@@ -208,6 +222,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return null;
     }
     
+    /**
+     * it will change the location of our current shape
+     * @param pos 
+     */
     private void setLocationShape(Point2D pos){
         if(currentShape!=null){
             if(currentShape instanceof Rectangle)
@@ -222,14 +240,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 Point2D point1 = ((Line2D) currentShape).getP1();
                 Point2D point2 = ((Line2D) currentShape).getP2();
                 Point2D diff= new Point2D.Double((pos.getX() - point1.getX()),(pos.getY() - point1.getY()));
-                /*System.out.println("-Start point-");
-                System.out.println("P1("+point1.getX()+","+point1.getY()+")");
-                System.out.println("P2("+point2.getX()+","+point2.getY()+")");
-                System.out.println("diff("+diff.getX()+","+diff.getY()+")");*/
                 point2.setLocation(point2.getX() + diff.getX(), point2.getY() + diff.getY());
-                /*System.out.println("-Final Point-");
-                System.out.println("pos("+pos.getX()+","+pos.getY()+")");
-                System.out.println("point2("+point2.getX()+","+point2.getY()+")");*/
                 ((Line2D) currentShape).setLine(pos, point2);
             }
         }
