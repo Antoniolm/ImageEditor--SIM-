@@ -33,6 +33,9 @@ public class Attribute {
     Composite comp;
     RenderingHints render;
     
+    /**
+     * Constructor
+     */
     public Attribute(){
         stroke=null;
         colorPaint=new Color(0,0,0);
@@ -42,6 +45,10 @@ public class Attribute {
         strokeValue=1;
     }
    
+    /**
+     * It will apply the current attribue to a graphics2D object
+     * @param g2d 
+     */
     public void apply(Graphics2D g2d){
         if(stroke!=null)
             g2d.setStroke(stroke);

@@ -76,26 +76,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 @Override
                 public void mouseDragged(MouseEvent e){
                     if(editMode){
-                            if(currentShape!=null){
-                                if(currentShape instanceof Rectangle)
-                                    ((Rectangle)currentShape).setLocation(e.getPoint());
-                                if(currentShape instanceof Ellipse2D){
-                                    Point2D.Double point1=new Point2D.Double(((Ellipse2D)currentShape).getX(),((Ellipse2D)currentShape).getY());
-                                    Point2D.Double point2=new Point2D.Double(((Ellipse2D)currentShape).getCenterX(),((Ellipse2D)currentShape).getCenterY());
-                                    //((Ellipse2D)currentShape).getBounds().setLocation(e.getPoint());
-                                    point2.setLocation(e.getX()+Math.abs((point1.getX()-point2.getX())), e.getY()+Math.abs((point1.getY()-point2.getY())));
-                                    ((Ellipse2D.Float)currentShape).setFrameFromCenter(e.getPoint(),point2 );
-                                }
-                                if(currentShape instanceof Line2D.Float){
-                                    Point2D point1=((Line2D)currentShape).getP1();
-                                    //point1.setLocation(point1.getX()+(e.getX()-point1.getX()), point1.getY()+(e.getY()-point1.getY()));
-                                    //point1.
-                                    Point2D point2=((Line2D)currentShape).getP2();
-                                    point2.setLocation(e.getX()+Math.abs((point1.getX()-point2.getX())), e.getY()+Math.abs((point1.getY()-point2.getY())));
-                                    ((Line2D)currentShape).setLine(e.getPoint(),point2);
-                                }
-                            }
-                        }
+                        setLocationShape(e.getPoint());
+                    }
                     else{
                         updateShape(e.getPoint());
                     }
@@ -123,16 +105,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         
     }
     
-     private Shape getSelectedShape(Point2D p){
-        for(Shape s:vShape){
-            if(s instanceof RectangularShape)
-                if(s.contains(p)) return s;
-            if(s instanceof Line2D)
-                if(s.intersects(p.getX(), p.getY(), 6, 6)) return s;  
-        }
-        return null;
-    }
-     
     public void setGeometry(GeometryType aType){
         geometry=aType;
     }
@@ -223,6 +195,43 @@ public class Canvas2DPanel extends javax.swing.JPanel {
             case CIRCLE: //Case circle geoometry
                 ((Ellipse2D.Float) currentShape).setFrameFromDiagonal(initPos, point);
                 break;
+        }
+    }
+    
+    private Shape getSelectedShape(Point2D p){
+        for(Shape s:vShape){
+            if(s instanceof RectangularShape)
+                if(s.contains(p)) return s;
+            if(s instanceof Line2D)
+                if(s.intersects(p.getX(), p.getY(), 6, 6)) return s;  
+        }
+        return null;
+    }
+    
+    private void setLocationShape(Point2D pos){
+        if(currentShape!=null){
+            if(currentShape instanceof Rectangle)
+                ((Rectangle)currentShape).setLocation((Point)pos);
+            if (currentShape instanceof Ellipse2D) {
+                Point2D.Double point1 = new Point2D.Double(((Ellipse2D) currentShape).getX(), ((Ellipse2D) currentShape).getY());
+                Point2D.Double point2 = new Point2D.Double(((Ellipse2D) currentShape).getCenterX(), ((Ellipse2D) currentShape).getCenterY());
+                point2.setLocation(pos.getX() + Math.abs((point1.getX() - point2.getX())), pos.getY() + Math.abs((point1.getY() - point2.getY())));
+                ((Ellipse2D.Float) currentShape).setFrameFromCenter(pos, point2);
+            }
+            if (currentShape instanceof Line2D.Float) {
+                Point2D point1 = ((Line2D) currentShape).getP1();
+                Point2D point2 = ((Line2D) currentShape).getP2();
+                Point2D diff= new Point2D.Double((pos.getX() - point1.getX()),(pos.getY() - point1.getY()));
+                /*System.out.println("-Start point-");
+                System.out.println("P1("+point1.getX()+","+point1.getY()+")");
+                System.out.println("P2("+point2.getX()+","+point2.getY()+")");
+                System.out.println("diff("+diff.getX()+","+diff.getY()+")");*/
+                point2.setLocation(point2.getX() + diff.getX(), point2.getY() + diff.getY());
+                /*System.out.println("-Final Point-");
+                System.out.println("pos("+pos.getX()+","+pos.getY()+")");
+                System.out.println("point2("+point2.getX()+","+point2.getY()+")");*/
+                ((Line2D) currentShape).setLine(pos, point2);
+            }
         }
     }
     /**
