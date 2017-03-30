@@ -25,7 +25,9 @@ import sm.ALM.graficos.Canvas2DPanel;
 import sm.ALM.graficos.*;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.geom.Point2D;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
@@ -458,7 +460,13 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_GreenButtonActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
-        currentIntWind = new InternalWindow(this);
+        InternalWindow newIntWind = new InternalWindow(this);
+        
+        Point2D currentPositionWind=currentIntWind.getLocation();
+        currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
+        newIntWind.setLocation((Point) currentPositionWind);
+        
+        currentIntWind=newIntWind;
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
 
