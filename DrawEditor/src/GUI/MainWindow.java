@@ -45,6 +45,7 @@ public class MainWindow extends javax.swing.JFrame {
         currentIntWind = new InternalWindow(this);
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
+        thickSpinner.setValue(1);
                 
     }
 
@@ -504,6 +505,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void thickSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_thickSpinnerStateChanged
         Integer value=(int)thickSpinner.getValue();
+        if(value==0) thickSpinner.setValue(1);
+        
         currentIntWind.canvasPanel.setThick(new BasicStroke(value),value);
     }//GEN-LAST:event_thickSpinnerStateChanged
 
