@@ -25,6 +25,7 @@ import sm.ALM.graficos.Canvas2DPanel;
 import sm.ALM.graficos.*;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.Point2D;
@@ -495,9 +496,15 @@ public class MainWindow extends javax.swing.JFrame {
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
         
-         /*BufferedImage img;
+         BufferedImage img;
          img = new BufferedImage(300,300,BufferedImage.TYPE_INT_RGB);
-         currentIntWind.canvasPanel.setImage(img);*/
+         currentIntWind.getCanvas().setImage(img);
+         currentIntWind.getCanvas().setColor(new Color(255,255,255));
+         
+         Graphics2D g2d =img.createGraphics();
+         g2d.fillRect(0,0,img.getWidth(),img.getHeight());
+         
+         currentIntWind.getCanvas().setColor(new Color(0,0,0));
 
     }//GEN-LAST:event_newMenuActionPerformed
 

@@ -37,7 +37,8 @@ public class canvas2DImagePanel extends Canvas2DPanel {
     public BufferedImage getImage(boolean drawVector){
         if (drawVector) {
             Graphics2D g2d=image.createGraphics();
-            paintComponent(g2d);
+            paint(g2d);
+            if(image!=null) g2d.drawImage(image,0,0,this);
             
             return image;
         }
