@@ -5,6 +5,7 @@
  */
 package sm.ALM.graficos;
 
+import com.sun.javafx.iio.ImageStorage;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -36,11 +37,10 @@ public class canvas2DImagePanel extends Canvas2DPanel {
     
     public BufferedImage getImage(boolean drawVector){
         if (drawVector) {
-            Graphics2D g2d=image.createGraphics();
-            paint(g2d);
-            if(image!=null) g2d.drawImage(image,0,0,this);
+            BufferedImage newImage=new BufferedImage(image.getWidth(),image.getHeight(),image.getType());
+            paint(newImage.createGraphics());
             
-            return image;
+            return newImage;
         }
         else
             return getImage();
