@@ -389,10 +389,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void changeCurrentIntWind(InternalWindow vi){
        currentIntWind=vi;
-       filledCheckBox.setSelected(currentIntWind.canvasPanel.getFilled());
-       transparencyCB.setSelected(currentIntWind.canvasPanel.getTransparency());
-       smoothCB.setSelected(currentIntWind.canvasPanel.getRender());
-       thickSpinner.setValue((Integer)currentIntWind.canvasPanel.getThick());
+       filledCheckBox.setSelected(currentIntWind.getCanvas().getFilled());
+       transparencyCB.setSelected(currentIntWind.getCanvas().getTransparency());
+       smoothCB.setSelected(currentIntWind.getCanvas().getRender());
+       thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
        
     }
     //////////////////////////////////////////////////////////////////////////
@@ -429,10 +429,11 @@ public class MainWindow extends javax.swing.JFrame {
                 File f = dlg.getSelectedFile();
                 BufferedImage img = ImageIO.read(f);
                 currentIntWind = new InternalWindow(this);
-                currentIntWind.canvasPanel.setImage(img);
+                currentIntWind.getCanvas().setImage(img);
                 mainDesktop.add(currentIntWind);
                 currentIntWind.setTitle(f.getName());
                 currentIntWind.setVisible(true);
+                currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
             }catch(Exception ex){
                 System.err.println("Error al leer la imagen");
             }
@@ -443,7 +444,16 @@ public class MainWindow extends javax.swing.JFrame {
         JFileChooser dlg = new JFileChooser();
         int resp = dlg.showSaveDialog(this);
         if( resp == JFileChooser.APPROVE_OPTION) {
+            try {
+            BufferedImage img = currentIntWind.getCanvas().getImage(true);
+            if (img != null) {
             File f = dlg.getSelectedFile();
+            ImageIO.write(img, "jpg", f);
+            currentIntWind.setTitle(f.getName());
+            }
+            }catch (Exception ex) {
+            System.err.println("Error al guardar la imagen");
+            }
         }
     }//GEN-LAST:event_SaveMenuActionPerformed
 
@@ -451,27 +461,27 @@ public class MainWindow extends javax.swing.JFrame {
     // Color buttons
     //////////////////////////////////////////////////////////////////////////
     private void BlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackButtonActionPerformed
-        currentIntWind.canvasPanel.setColor(Color.BLACK);
+        currentIntWind.getCanvas().setColor(Color.BLACK);
     }//GEN-LAST:event_BlackButtonActionPerformed
 
     private void RedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedButtonActionPerformed
-        currentIntWind.canvasPanel.setColor(Color.RED);
+        currentIntWind.getCanvas().setColor(Color.RED);
     }//GEN-LAST:event_RedButtonActionPerformed
 
     private void BlueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlueButtonActionPerformed
-        currentIntWind.canvasPanel.setColor(Color.BLUE);
+        currentIntWind.getCanvas().setColor(Color.BLUE);
     }//GEN-LAST:event_BlueButtonActionPerformed
 
     private void WhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WhiteButtonActionPerformed
-        currentIntWind.canvasPanel.setColor(Color.WHITE);
+        currentIntWind.getCanvas().setColor(Color.WHITE);
     }//GEN-LAST:event_WhiteButtonActionPerformed
 
     private void YellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YellowButtonActionPerformed
-        currentIntWind.canvasPanel.setColor(Color.YELLOW);
+        currentIntWind.getCanvas().setColor(Color.YELLOW);
     }//GEN-LAST:event_YellowButtonActionPerformed
 
     private void GreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GreenButtonActionPerformed
-        currentIntWind.canvasPanel.setColor(Color.GREEN);
+        currentIntWind.getCanvas().setColor(Color.GREEN);
     }//GEN-LAST:event_GreenButtonActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
@@ -485,9 +495,9 @@ public class MainWindow extends javax.swing.JFrame {
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
         
-         BufferedImage img;
+         /*BufferedImage img;
          img = new BufferedImage(300,300,BufferedImage.TYPE_INT_RGB);
-         currentIntWind.canvasPanel.setImage(img);
+         currentIntWind.canvasPanel.setImage(img);*/
 
     }//GEN-LAST:event_newMenuActionPerformed
 
@@ -504,28 +514,28 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_mainDesktopFocusGained
 
     private void filledCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filledCheckBoxActionPerformed
-        currentIntWind.canvasPanel.setFilled(filledCheckBox.isSelected());
+        currentIntWind.getCanvas().setFilled(filledCheckBox.isSelected());
     }//GEN-LAST:event_filledCheckBoxActionPerformed
 
     private void transparencyCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transparencyCBActionPerformed
         if(transparencyCB.isSelected())
-            currentIntWind.canvasPanel.setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+            currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
         else
-            currentIntWind.canvasPanel.setTransparency(null);
+            currentIntWind.getCanvas().setTransparency(null);
     }//GEN-LAST:event_transparencyCBActionPerformed
 
     private void smoothCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothCBActionPerformed
         if(smoothCB.isSelected())
-            currentIntWind.canvasPanel.setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
+            currentIntWind.getCanvas().setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
         else
-            currentIntWind.canvasPanel.setRender(null);
+            currentIntWind.getCanvas().setRender(null);
     }//GEN-LAST:event_smoothCBActionPerformed
 
     private void thickSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_thickSpinnerStateChanged
         Integer value=(int)thickSpinner.getValue();
         if(value==0) thickSpinner.setValue(1);
         
-        currentIntWind.canvasPanel.setThick(new BasicStroke(value),value);
+        currentIntWind.getCanvas().setThick(new BasicStroke(value),value);
     }//GEN-LAST:event_thickSpinnerStateChanged
 
     private void mainDesktopComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainDesktopComponentShown
@@ -533,7 +543,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_mainDesktopComponentShown
 
     private void editCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCheckBoxActionPerformed
-        currentIntWind.canvasPanel.setEdit(editCheckBox.isSelected());
+        currentIntWind.getCanvas().setEdit(editCheckBox.isSelected());
     }//GEN-LAST:event_editCheckBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

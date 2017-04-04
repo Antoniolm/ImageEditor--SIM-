@@ -7,6 +7,7 @@ package sm.ALM.graficos;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -25,11 +26,23 @@ public class canvas2DImagePanel extends Canvas2DPanel {
 
     
     public void setImage(BufferedImage img){
-        this.image = img;
+        image = img;
         setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
     }
+    
     public BufferedImage getImage(){
         return image;
+    }
+    
+    public BufferedImage getImage(boolean drawVector){
+        if (drawVector) {
+            Graphics2D g2d=image.createGraphics();
+            paintComponent(g2d);
+            
+            return image;
+        }
+        else
+            return getImage();
     }
     
     public void paintComponent(Graphics g){

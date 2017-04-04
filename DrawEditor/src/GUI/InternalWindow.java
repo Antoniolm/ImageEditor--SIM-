@@ -97,8 +97,11 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
     }
+    canvas2DImagePanel getCanvas(){
+        return canvasPanel;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public sm.ALM.graficos.canvas2DImagePanel canvasPanel;
+    private sm.ALM.graficos.canvas2DImagePanel canvasPanel;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
