@@ -28,7 +28,9 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
@@ -233,9 +235,11 @@ public class MainWindow extends javax.swing.JFrame {
         AttributeToolBar.add(ColorPanel);
 
         thicknessPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Thickness"));
+        thicknessPanel.setMinimumSize(new java.awt.Dimension(75, 57));
         thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
 
-        thickSpinner.setPreferredSize(new java.awt.Dimension(40, 22));
+        thickSpinner.setMinimumSize(new java.awt.Dimension(50, 22));
+        thickSpinner.setPreferredSize(new java.awt.Dimension(50, 22));
         thickSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 thickSpinnerStateChanged(evt);
@@ -421,7 +425,17 @@ public class MainWindow extends javax.swing.JFrame {
         JFileChooser dlg = new JFileChooser();
         int resp = dlg.showOpenDialog(this);
         if( resp == JFileChooser.APPROVE_OPTION) {
-            File f = dlg.getSelectedFile();
+             try{
+                File f = dlg.getSelectedFile();
+                BufferedImage img = ImageIO.read(f);
+                currentIntWind = new InternalWindow(this);
+                currentIntWind.canvasPanel.setImage(img);
+                mainDesktop.add(currentIntWind);
+                currentIntWind.setTitle(f.getName());
+                currentIntWind.setVisible(true);
+            }catch(Exception ex){
+                System.err.println("Error al leer la imagen");
+            }
         }
     }//GEN-LAST:event_OpenMenuActionPerformed
 
@@ -470,6 +484,10 @@ public class MainWindow extends javax.swing.JFrame {
         currentIntWind=newIntWind;
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
+        
+         BufferedImage img;
+         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_RGB);
+         currentIntWind.canvasPanel.setImage(img);
 
     }//GEN-LAST:event_newMenuActionPerformed
 

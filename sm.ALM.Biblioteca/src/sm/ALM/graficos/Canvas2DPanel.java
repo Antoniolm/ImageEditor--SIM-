@@ -214,9 +214,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     private Shape getSelectedShape(Point2D p){
         for(Shape s:vShape){
-            if(s instanceof RectangularShape)
+            if(s instanceof RectangularShape) //If is a rectangularShape
                 if(s.contains(p)) return s;
-            if(s instanceof Line2D)
+            if(s instanceof Line2D) //If is a line
                 if(s.intersects(p.getX(), p.getY(), 6, 6)) return s;  
         }
         return null;
@@ -228,15 +228,15 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     private void setLocationShape(Point2D pos){
         if(currentShape!=null){
-            if(currentShape instanceof Rectangle)
+            if(currentShape instanceof Rectangle) //If is a rectangle or a point
                 ((Rectangle)currentShape).setLocation((Point)pos);
-            if (currentShape instanceof Ellipse2D) {
+            if (currentShape instanceof Ellipse2D) { //If is a circle
                 Point2D.Double point1 = new Point2D.Double(((Ellipse2D) currentShape).getX(), ((Ellipse2D) currentShape).getY());
                 Point2D.Double point2 = new Point2D.Double(((Ellipse2D) currentShape).getCenterX(), ((Ellipse2D) currentShape).getCenterY());
                 point2.setLocation(pos.getX() + Math.abs((point1.getX() - point2.getX())), pos.getY() + Math.abs((point1.getY() - point2.getY())));
                 ((Ellipse2D.Float) currentShape).setFrameFromCenter(pos, point2);
             }
-            if (currentShape instanceof Line2D.Float) {
+            if (currentShape instanceof Line2D.Float) { //If is a line
                 Point2D point1 = ((Line2D) currentShape).getP1();
                 Point2D point2 = ((Line2D) currentShape).getP2();
                 Point2D diff= new Point2D.Double((pos.getX() - point1.getX()),(pos.getY() - point1.getY()));

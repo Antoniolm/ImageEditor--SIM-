@@ -51,7 +51,8 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        canvasPanel = new sm.ALM.graficos.Canvas2DPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        canvasPanel = new sm.ALM.graficos.canvas2DImagePanel();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -75,14 +76,16 @@ public class InternalWindow extends javax.swing.JInternalFrame {
         canvasPanel.setLayout(canvasPanelLayout);
         canvasPanelLayout.setHorizontalGroup(
             canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 382, Short.MAX_VALUE)
         );
         canvasPanelLayout.setVerticalGroup(
             canvasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
-        getContentPane().add(canvasPanel, java.awt.BorderLayout.CENTER);
+        jScrollPane1.setViewportView(canvasPanel);
+
+        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -95,6 +98,7 @@ public class InternalWindow extends javax.swing.JInternalFrame {
         canvasPanel.setGeometry(geom);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public sm.ALM.graficos.Canvas2DPanel canvasPanel;
+    public sm.ALM.graficos.canvas2DImagePanel canvasPanel;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
