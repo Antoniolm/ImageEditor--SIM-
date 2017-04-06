@@ -24,6 +24,7 @@ import java.awt.BasicStroke;
 import sm.ALM.graficos.Canvas2DPanel;
 import sm.ALM.graficos.*;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -71,6 +72,11 @@ public class MainWindow extends javax.swing.JFrame {
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
         CircleButton = new javax.swing.JToggleButton();
+        EditButton = new javax.swing.JToggleButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jComboBox1 = new javax.swing.JComboBox();
+        thickSpinner = new javax.swing.JSpinner();
+        jButton1 = new javax.swing.JButton();
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
@@ -83,12 +89,10 @@ public class MainWindow extends javax.swing.JFrame {
         YellowButton = new javax.swing.JButton();
         GreenButton = new javax.swing.JButton();
         thicknessPanel = new javax.swing.JPanel();
-        thickSpinner = new javax.swing.JSpinner();
         AttributePanel2 = new javax.swing.JPanel();
         filledCheckBox = new javax.swing.JCheckBox();
         transparencyCB = new javax.swing.JCheckBox();
         smoothCB = new javax.swing.JCheckBox();
-        editCheckBox = new javax.swing.JCheckBox();
         mainDesktop = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -107,6 +111,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(PointButton);
         PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/punto.png"))); // NOI18N
+        PointButton.setSelected(true);
+        PointButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PointButton.setFocusable(false);
         PointButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         PointButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -119,6 +125,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(LineButton);
         LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/linea.png"))); // NOI18N
+        LineButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LineButton.setFocusable(false);
         LineButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LineButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -131,7 +138,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(RtgleButton);
         RtgleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rectangulo.png"))); // NOI18N
-        RtgleButton.setSelected(true);
+        RtgleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RtgleButton.setFocusable(false);
         RtgleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         RtgleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -144,6 +151,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(CircleButton);
         CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/elipse.png"))); // NOI18N
+        CircleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CircleButton.setFocusable(false);
         CircleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CircleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -153,6 +161,34 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(CircleButton);
+
+        buttonGroup1.add(EditButton);
+        EditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/seleccion.png"))); // NOI18N
+        EditButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        EditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(EditButton);
+        toolBarPanel.add(jSeparator1);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setToolTipText("");
+        toolBarPanel.add(jComboBox1);
+
+        thickSpinner.setMinimumSize(new java.awt.Dimension(50, 22));
+        thickSpinner.setPreferredSize(new java.awt.Dimension(50, 22));
+        thickSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                thickSpinnerStateChanged(evt);
+            }
+        });
+        toolBarPanel.add(thickSpinner);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rellenar.png"))); // NOI18N
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        toolBarPanel.add(jButton1);
 
         DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
 
@@ -237,16 +273,6 @@ public class MainWindow extends javax.swing.JFrame {
         thicknessPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Thickness"));
         thicknessPanel.setMinimumSize(new java.awt.Dimension(75, 57));
         thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
-
-        thickSpinner.setMinimumSize(new java.awt.Dimension(50, 22));
-        thickSpinner.setPreferredSize(new java.awt.Dimension(50, 22));
-        thickSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                thickSpinnerStateChanged(evt);
-            }
-        });
-        thicknessPanel.add(thickSpinner);
-
         AttributeToolBar.add(thicknessPanel);
 
         AttributePanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " ", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -277,14 +303,6 @@ public class MainWindow extends javax.swing.JFrame {
         });
         AttributePanel2.add(smoothCB);
 
-        editCheckBox.setText("Edit");
-        editCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCheckBoxActionPerformed(evt);
-            }
-        });
-        AttributePanel2.add(editCheckBox);
-
         AttributeToolBar.add(AttributePanel2);
 
         AttributePanel.add(AttributeToolBar, java.awt.BorderLayout.LINE_START);
@@ -310,7 +328,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 191, Short.MAX_VALUE)
+            .addGap(0, 193, Short.MAX_VALUE)
         );
 
         getContentPane().add(mainDesktop, java.awt.BorderLayout.CENTER);
@@ -525,23 +543,25 @@ public class MainWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mainDesktopComponentShown
 
-    private void editCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCheckBoxActionPerformed
-        currentIntWind.getCanvas().setEdit(editCheckBox.isSelected());
-    }//GEN-LAST:event_editCheckBoxActionPerformed
-
     private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
         StateBarLabel.setText("Circle");
         currentIntWind.setGeometry(GeometryType.CIRCLE);
+        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_CircleButtonActionPerformed
 
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
         currentIntWind.setGeometry(GeometryType.RECTANGLE);
+        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_RtgleButtonActionPerformed
 
     private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
         StateBarLabel.setText("Line");
         currentIntWind.setGeometry(GeometryType.LINE);
+        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_LineButtonActionPerformed
 
     //////////////////////////////////////////////////////////////////////////
@@ -550,7 +570,14 @@ public class MainWindow extends javax.swing.JFrame {
     private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
         StateBarLabel.setText("Point");
         currentIntWind.setGeometry(GeometryType.POINT);
+        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_PointButtonActionPerformed
+
+    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
+        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_EditButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
@@ -561,6 +588,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JPanel ColorPanel;
     private javax.swing.JPanel DrawPanel;
+    private javax.swing.JToggleButton EditButton;
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JButton GreenButton;
@@ -582,8 +610,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JCheckBox editCheckBox;
     private javax.swing.JCheckBox filledCheckBox;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JCheckBox smoothCB;

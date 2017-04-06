@@ -55,6 +55,7 @@ public class InternalWindow extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         canvasPanel = new sm.ALM.graficos.canvas2DImagePanel();
 
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -102,9 +103,9 @@ public class InternalWindow extends javax.swing.JInternalFrame {
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         if(!canvasPanel.getEdit())
-            setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+            canvasPanel.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         else
-            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            canvasPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_formMouseEntered
 
     void setGeometry(GeometryType geom){
@@ -113,6 +114,7 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     canvas2DImagePanel getCanvas(){
         return canvasPanel;
     }
+            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sm.ALM.graficos.canvas2DImagePanel canvasPanel;
     private javax.swing.JScrollPane jScrollPane1;
