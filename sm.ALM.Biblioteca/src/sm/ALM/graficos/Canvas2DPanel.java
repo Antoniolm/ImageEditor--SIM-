@@ -162,6 +162,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         editMode=value;
     }
     
+    public boolean getEdit(){
+        return editMode;
+    }
     /**
      * It will create a new shape 
      * @return 

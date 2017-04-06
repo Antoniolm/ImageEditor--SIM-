@@ -23,6 +23,7 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Composite;
+import java.awt.Cursor;
 import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
@@ -71,6 +72,11 @@ public class InternalWindow extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
 
         javax.swing.GroupLayout canvasPanelLayout = new javax.swing.GroupLayout(canvasPanel);
         canvasPanel.setLayout(canvasPanelLayout);
@@ -93,6 +99,13 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         parent.changeCurrentIntWind(this);
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        if(!canvasPanel.getEdit())
+            setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+        else
+            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_formMouseEntered
 
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
