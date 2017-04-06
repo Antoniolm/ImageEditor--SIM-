@@ -29,10 +29,12 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.color.ColorSpace;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
@@ -50,7 +52,10 @@ public class MainWindow extends javax.swing.JFrame {
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
         thickSpinner.setValue(1);
-                
+        
+        Object item= new Color(255,0,0);
+        ColorCombo.addItem(item);
+        
     }
 
     /**
@@ -74,7 +79,7 @@ public class MainWindow extends javax.swing.JFrame {
         CircleButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jComboBox1 = new javax.swing.JComboBox();
+        ColorCombo = new javax.swing.JComboBox();
         thickSpinner = new javax.swing.JSpinner();
         FilledButton = new javax.swing.JToggleButton();
         TransButton = new javax.swing.JToggleButton();
@@ -170,9 +175,9 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(EditButton);
         toolBarPanel.add(jSeparator1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setToolTipText("");
-        toolBarPanel.add(jComboBox1);
+        ColorCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "", "" }));
+        ColorCombo.setToolTipText("");
+        toolBarPanel.add(ColorCombo);
 
         thickSpinner.setMinimumSize(new java.awt.Dimension(50, 22));
         thickSpinner.setPreferredSize(new java.awt.Dimension(50, 22));
@@ -570,6 +575,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton BlackButton;
     private javax.swing.JButton BlueButton;
     private javax.swing.JToggleButton CircleButton;
+    private javax.swing.JComboBox ColorCombo;
     private javax.swing.JPanel ColorPanel;
     private javax.swing.JPanel DrawPanel;
     private javax.swing.JToggleButton EditButton;
@@ -597,7 +603,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
