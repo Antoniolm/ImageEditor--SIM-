@@ -77,6 +77,8 @@ public class MainWindow extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         thickSpinner = new javax.swing.JSpinner();
         FilledButton = new javax.swing.JToggleButton();
+        TransButton = new javax.swing.JToggleButton();
+        SmoothButton = new javax.swing.JToggleButton();
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
@@ -88,11 +90,6 @@ public class MainWindow extends javax.swing.JFrame {
         WhiteButton = new javax.swing.JButton();
         YellowButton = new javax.swing.JButton();
         GreenButton = new javax.swing.JButton();
-        thicknessPanel = new javax.swing.JPanel();
-        AttributePanel2 = new javax.swing.JPanel();
-        filledCheckBox = new javax.swing.JCheckBox();
-        transparencyCB = new javax.swing.JCheckBox();
-        smoothCB = new javax.swing.JCheckBox();
         mainDesktop = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -195,6 +192,24 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(FilledButton);
 
+        TransButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/transparencia.png"))); // NOI18N
+        TransButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TransButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TransButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(TransButton);
+
+        SmoothButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/alisar.png"))); // NOI18N
+        SmoothButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SmoothButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SmoothButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(SmoothButton);
+
         DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
 
         getContentPane().add(DrawPanel, java.awt.BorderLayout.NORTH);
@@ -275,41 +290,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         AttributeToolBar.add(ColorPanel);
 
-        thicknessPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Thickness"));
-        thicknessPanel.setMinimumSize(new java.awt.Dimension(75, 57));
-        thicknessPanel.setPreferredSize(new java.awt.Dimension(80, 110));
-        AttributeToolBar.add(thicknessPanel);
-
-        AttributePanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " ", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        AttributePanel2.setPreferredSize(new java.awt.Dimension(230, 110));
-        AttributePanel2.setLayout(new java.awt.GridLayout(2, 2));
-
-        filledCheckBox.setText("Filled");
-        filledCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filledCheckBoxActionPerformed(evt);
-            }
-        });
-        AttributePanel2.add(filledCheckBox);
-
-        transparencyCB.setText("Transparency");
-        transparencyCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transparencyCBActionPerformed(evt);
-            }
-        });
-        AttributePanel2.add(transparencyCB);
-
-        smoothCB.setText("Smooth");
-        smoothCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                smoothCBActionPerformed(evt);
-            }
-        });
-        AttributePanel2.add(smoothCB);
-
-        AttributeToolBar.add(AttributePanel2);
-
         AttributePanel.add(AttributeToolBar, java.awt.BorderLayout.LINE_START);
 
         getContentPane().add(AttributePanel, java.awt.BorderLayout.SOUTH);
@@ -333,7 +313,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 193, Short.MAX_VALUE)
+            .addGap(0, 191, Short.MAX_VALUE)
         );
 
         getContentPane().add(mainDesktop, java.awt.BorderLayout.CENTER);
@@ -412,9 +392,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void changeCurrentIntWind(InternalWindow vi){
        currentIntWind=vi;
-       filledCheckBox.setSelected(currentIntWind.getCanvas().getFilled());
-       transparencyCB.setSelected(currentIntWind.getCanvas().getTransparency());
-       smoothCB.setSelected(currentIntWind.getCanvas().getRender());
+       FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
+       TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
+       SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
        thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
        
     }
@@ -519,24 +499,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mainDesktopFocusGained
 
-    private void filledCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filledCheckBoxActionPerformed
-        currentIntWind.getCanvas().setFilled(filledCheckBox.isSelected());
-    }//GEN-LAST:event_filledCheckBoxActionPerformed
-
-    private void transparencyCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transparencyCBActionPerformed
-        if(transparencyCB.isSelected())
-            currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
-        else
-            currentIntWind.getCanvas().setTransparency(null);
-    }//GEN-LAST:event_transparencyCBActionPerformed
-
-    private void smoothCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothCBActionPerformed
-        if(smoothCB.isSelected())
-            currentIntWind.getCanvas().setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
-        else
-            currentIntWind.getCanvas().setRender(null);
-    }//GEN-LAST:event_smoothCBActionPerformed
-
     private void thickSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_thickSpinnerStateChanged
         Integer value=(int)thickSpinner.getValue();
         if(value==0) thickSpinner.setValue(1);
@@ -588,9 +550,22 @@ public class MainWindow extends javax.swing.JFrame {
         currentIntWind.getCanvas().setFilled(FilledButton.isSelected());
     }//GEN-LAST:event_FilledButtonActionPerformed
 
+    private void TransButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransButtonActionPerformed
+        if(TransButton.isSelected())
+            currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        else
+            currentIntWind.getCanvas().setTransparency(null);
+    }//GEN-LAST:event_TransButtonActionPerformed
+
+    private void SmoothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SmoothButtonActionPerformed
+        if(SmoothButton.isSelected())
+            currentIntWind.getCanvas().setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
+        else
+            currentIntWind.getCanvas().setRender(null);
+    }//GEN-LAST:event_SmoothButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
-    private javax.swing.JPanel AttributePanel2;
     private javax.swing.JToolBar AttributeToolBar;
     private javax.swing.JButton BlackButton;
     private javax.swing.JButton BlueButton;
@@ -612,23 +587,21 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem SeeAttMenu;
     private javax.swing.JCheckBoxMenuItem SeeGeoMenu;
     private javax.swing.JCheckBoxMenuItem SeeSBMenu;
+    private javax.swing.JToggleButton SmoothButton;
     private javax.swing.JLabel StateBarLabel;
     private javax.swing.JPanel StateBarPanel;
+    private javax.swing.JToggleButton TransButton;
     private javax.swing.JButton WhiteButton;
     private javax.swing.JButton YellowButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JCheckBox filledCheckBox;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
-    private javax.swing.JCheckBox smoothCB;
     private javax.swing.JSpinner thickSpinner;
-    private javax.swing.JPanel thicknessPanel;
     private javax.swing.JPanel toolBarPanel;
-    private javax.swing.JCheckBox transparencyCB;
     // End of variables declaration//GEN-END:variables
 }
