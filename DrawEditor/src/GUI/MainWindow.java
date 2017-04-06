@@ -66,7 +66,7 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
         DrawPanel = new javax.swing.JPanel();
-        GeomToolBar = new javax.swing.JToolBar();
+        toolBarPanel = new javax.swing.JPanel();
         PointButton = new javax.swing.JToggleButton();
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
@@ -105,10 +105,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         DrawPanel.setLayout(new java.awt.BorderLayout());
 
-        GeomToolBar.setRollover(true);
-
         buttonGroup1.add(PointButton);
-        PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Lapiz.gif"))); // NOI18N
+        PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/punto.png"))); // NOI18N
         PointButton.setFocusable(false);
         PointButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         PointButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -117,10 +115,10 @@ public class MainWindow extends javax.swing.JFrame {
                 PointButtonActionPerformed(evt);
             }
         });
-        GeomToolBar.add(PointButton);
+        toolBarPanel.add(PointButton);
 
         buttonGroup1.add(LineButton);
-        LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Linea.gif"))); // NOI18N
+        LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/linea.png"))); // NOI18N
         LineButton.setFocusable(false);
         LineButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LineButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -129,10 +127,11 @@ public class MainWindow extends javax.swing.JFrame {
                 LineButtonActionPerformed(evt);
             }
         });
-        GeomToolBar.add(LineButton);
+        toolBarPanel.add(LineButton);
 
         buttonGroup1.add(RtgleButton);
-        RtgleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Rectangulo.gif"))); // NOI18N
+        RtgleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rectangulo.png"))); // NOI18N
+        RtgleButton.setSelected(true);
         RtgleButton.setFocusable(false);
         RtgleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         RtgleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -141,10 +140,10 @@ public class MainWindow extends javax.swing.JFrame {
                 RtgleButtonActionPerformed(evt);
             }
         });
-        GeomToolBar.add(RtgleButton);
+        toolBarPanel.add(RtgleButton);
 
         buttonGroup1.add(CircleButton);
-        CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ovalo.gif"))); // NOI18N
+        CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/elipse.png"))); // NOI18N
         CircleButton.setFocusable(false);
         CircleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CircleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -153,9 +152,9 @@ public class MainWindow extends javax.swing.JFrame {
                 CircleButtonActionPerformed(evt);
             }
         });
-        GeomToolBar.add(CircleButton);
+        toolBarPanel.add(CircleButton);
 
-        DrawPanel.add(GeomToolBar, java.awt.BorderLayout.CENTER);
+        DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
 
         getContentPane().add(DrawPanel, java.awt.BorderLayout.NORTH);
 
@@ -307,11 +306,11 @@ public class MainWindow extends javax.swing.JFrame {
         mainDesktop.setLayout(mainDesktopLayout);
         mainDesktopLayout.setHorizontalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 742, Short.MAX_VALUE)
+            .addGap(0, 962, Short.MAX_VALUE)
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 191, Short.MAX_VALUE)
         );
 
         getContentPane().add(mainDesktop, java.awt.BorderLayout.CENTER);
@@ -396,29 +395,6 @@ public class MainWindow extends javax.swing.JFrame {
        thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
        
     }
-    //////////////////////////////////////////////////////////////////////////
-    // Geometry buttons
-    //////////////////////////////////////////////////////////////////////////
-    private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
-        StateBarLabel.setText("Point");
-        currentIntWind.setGeometry(GeometryType.POINT);
-    }//GEN-LAST:event_PointButtonActionPerformed
-
-    private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
-        StateBarLabel.setText("Line");
-        currentIntWind.setGeometry(GeometryType.LINE);
-    }//GEN-LAST:event_LineButtonActionPerformed
-
-    private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
-        StateBarLabel.setText("Rectangle");
-        currentIntWind.setGeometry(GeometryType.RECTANGLE);
-    }//GEN-LAST:event_RtgleButtonActionPerformed
-
-    private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
-        StateBarLabel.setText("Circle");
-        currentIntWind.setGeometry(GeometryType.CIRCLE);
-    }//GEN-LAST:event_CircleButtonActionPerformed
-
     //////////////////////////////////////////////////////////////////////////
     //  Menu events
     //////////////////////////////////////////////////////////////////////////
@@ -509,7 +485,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_newMenuActionPerformed
 
     private void SeeGeoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeGeoMenuActionPerformed
-        GeomToolBar.setVisible(SeeGeoMenu.isSelected());
+        //GeomToolBar.setVisible(SeeGeoMenu.isSelected());
     }//GEN-LAST:event_SeeGeoMenuActionPerformed
 
     private void SeeAttMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeAttMenuActionPerformed
@@ -553,6 +529,29 @@ public class MainWindow extends javax.swing.JFrame {
         currentIntWind.getCanvas().setEdit(editCheckBox.isSelected());
     }//GEN-LAST:event_editCheckBoxActionPerformed
 
+    private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
+        StateBarLabel.setText("Circle");
+        currentIntWind.setGeometry(GeometryType.CIRCLE);
+    }//GEN-LAST:event_CircleButtonActionPerformed
+
+    private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
+        StateBarLabel.setText("Rectangle");
+        currentIntWind.setGeometry(GeometryType.RECTANGLE);
+    }//GEN-LAST:event_RtgleButtonActionPerformed
+
+    private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
+        StateBarLabel.setText("Line");
+        currentIntWind.setGeometry(GeometryType.LINE);
+    }//GEN-LAST:event_LineButtonActionPerformed
+
+    //////////////////////////////////////////////////////////////////////////
+    // Geometry buttons
+    //////////////////////////////////////////////////////////////////////////
+    private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
+        StateBarLabel.setText("Point");
+        currentIntWind.setGeometry(GeometryType.POINT);
+    }//GEN-LAST:event_PointButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
     private javax.swing.JPanel AttributePanel2;
@@ -564,7 +563,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel DrawPanel;
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
-    private javax.swing.JToolBar GeomToolBar;
     private javax.swing.JButton GreenButton;
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuBar MenuBar;
@@ -591,6 +589,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JCheckBox smoothCB;
     private javax.swing.JSpinner thickSpinner;
     private javax.swing.JPanel thicknessPanel;
+    private javax.swing.JPanel toolBarPanel;
     private javax.swing.JCheckBox transparencyCB;
     // End of variables declaration//GEN-END:variables
 }
