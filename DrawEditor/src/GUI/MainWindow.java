@@ -76,7 +76,7 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jComboBox1 = new javax.swing.JComboBox();
         thickSpinner = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        FilledButton = new javax.swing.JToggleButton();
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
@@ -186,9 +186,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(thickSpinner);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rellenar.png"))); // NOI18N
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        toolBarPanel.add(jButton1);
+        FilledButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rellenar.png"))); // NOI18N
+        FilledButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        FilledButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FilledButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(FilledButton);
 
         DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
 
@@ -579,6 +584,10 @@ public class MainWindow extends javax.swing.JFrame {
         //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_EditButtonActionPerformed
 
+    private void FilledButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledButtonActionPerformed
+        currentIntWind.getCanvas().setFilled(FilledButton.isSelected());
+    }//GEN-LAST:event_FilledButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
     private javax.swing.JPanel AttributePanel2;
@@ -591,6 +600,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton EditButton;
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
+    private javax.swing.JToggleButton FilledButton;
     private javax.swing.JButton GreenButton;
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuBar MenuBar;
@@ -611,7 +621,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JCheckBox filledCheckBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
