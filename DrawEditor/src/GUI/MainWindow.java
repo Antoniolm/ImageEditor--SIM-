@@ -435,7 +435,13 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenMenuActionPerformed
 
     private void SaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveMenuActionPerformed
+        String[] filterList=ImageIO.getWriterFormatNames();
         JFileChooser dlg = new JFileChooser();
+        
+        for(int i=0;i<filterList.length;i=i+2){
+            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i+1]));
+        }
+        
         int resp = dlg.showSaveDialog(this);
         if( resp == JFileChooser.APPROVE_OPTION) {
             try {
