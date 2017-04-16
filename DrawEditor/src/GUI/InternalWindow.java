@@ -56,6 +56,11 @@ public class InternalWindow extends javax.swing.JInternalFrame {
         canvasPanel = new sm.ALM.graficos.canvas2DImagePanel();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -106,7 +111,12 @@ public class InternalWindow extends javax.swing.JInternalFrame {
             canvasPanel.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         else
             canvasPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
     }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        parent.setCursorState("("+evt.getX()+","+evt.getY()+")");
+    }//GEN-LAST:event_formMouseMoved
 
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
