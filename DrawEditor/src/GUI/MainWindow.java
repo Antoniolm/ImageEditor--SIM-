@@ -37,6 +37,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainWindow extends javax.swing.JFrame {
     /**
@@ -87,6 +88,7 @@ public class MainWindow extends javax.swing.JFrame {
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
+        CursorPosLabel = new javax.swing.JLabel();
         AttributeToolBar = new javax.swing.JToolBar();
         ColorPanel = new javax.swing.JPanel();
         BlackButton = new javax.swing.JButton();
@@ -226,6 +228,7 @@ public class MainWindow extends javax.swing.JFrame {
         StateBarLabel.setText("State bar");
         StateBarLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         StateBarPanel.add(StateBarLabel, java.awt.BorderLayout.CENTER);
+        StateBarPanel.add(CursorPosLabel, java.awt.BorderLayout.LINE_END);
 
         AttributePanel.add(StateBarPanel, java.awt.BorderLayout.SOUTH);
 
@@ -407,7 +410,13 @@ public class MainWindow extends javax.swing.JFrame {
     //  Menu events
     //////////////////////////////////////////////////////////////////////////
     private void OpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuActionPerformed
+        String[] filterList=ImageIO.getReaderFormatNames();
         JFileChooser dlg = new JFileChooser();
+        
+        for(int i=0;i<filterList.length;i=i+2){
+            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i+1]));
+        }
+        
         int resp = dlg.showOpenDialog(this);
         if( resp == JFileChooser.APPROVE_OPTION) {
              try{
@@ -569,6 +578,14 @@ public class MainWindow extends javax.swing.JFrame {
             currentIntWind.getCanvas().setRender(null);
     }//GEN-LAST:event_SmoothButtonActionPerformed
 
+    
+    
+    
+    //Methods 
+    public void setCursorState(String message){
+        CursorPosLabel.setText(message);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
     private javax.swing.JToolBar AttributeToolBar;
@@ -577,6 +594,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JComboBox ColorCombo;
     private javax.swing.JPanel ColorPanel;
+    private javax.swing.JLabel CursorPosLabel;
     private javax.swing.JPanel DrawPanel;
     private javax.swing.JToggleButton EditButton;
     private javax.swing.JMenu EditMenu;
