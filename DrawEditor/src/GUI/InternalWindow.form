@@ -39,6 +39,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Container class="sm.ALM.graficos.canvas2DImagePanel" name="canvasPanel">
+          <Events>
+            <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="canvasPanelMouseMoved"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">

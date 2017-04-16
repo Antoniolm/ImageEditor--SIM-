@@ -228,6 +228,8 @@ public class MainWindow extends javax.swing.JFrame {
         StateBarLabel.setText("State bar");
         StateBarLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         StateBarPanel.add(StateBarLabel, java.awt.BorderLayout.CENTER);
+
+        CursorPosLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         StateBarPanel.add(CursorPosLabel, java.awt.BorderLayout.LINE_END);
 
         AttributePanel.add(StateBarPanel, java.awt.BorderLayout.SOUTH);

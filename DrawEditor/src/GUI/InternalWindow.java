@@ -84,6 +84,12 @@ public class InternalWindow extends javax.swing.JInternalFrame {
             }
         });
 
+        canvasPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                canvasPanelMouseMoved(evt);
+            }
+        });
+
         javax.swing.GroupLayout canvasPanelLayout = new javax.swing.GroupLayout(canvasPanel);
         canvasPanel.setLayout(canvasPanelLayout);
         canvasPanelLayout.setHorizontalGroup(
@@ -107,16 +113,20 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        if(!canvasPanel.getEdit())
+        //if(!canvasPanel.getEdit())
             canvasPanel.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        else
-            canvasPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        //else
+          //  canvasPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         
     }//GEN-LAST:event_formMouseEntered
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-        parent.setCursorState("("+evt.getX()+","+evt.getY()+")");
+        
     }//GEN-LAST:event_formMouseMoved
+
+    private void canvasPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvasPanelMouseMoved
+        parent.setCursorState("("+evt.getX()+","+evt.getY()+")");
+    }//GEN-LAST:event_canvasPanelMouseMoved
 
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
