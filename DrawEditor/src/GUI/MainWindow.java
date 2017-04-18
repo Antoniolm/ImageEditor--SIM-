@@ -424,6 +424,11 @@ public class MainWindow extends javax.swing.JFrame {
         LessScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/disminuir.png"))); // NOI18N
         LessScaleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LessScaleButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        LessScaleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LessScaleButtonActionPerformed(evt);
+            }
+        });
         ScalePanel.add(LessScaleButton);
 
         AttributeToolBar.add(ScalePanel);
@@ -791,6 +796,22 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_MoreScaleButtonActionPerformed
+
+    private void LessScaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LessScaleButtonActionPerformed
+        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                AffineTransform at = AffineTransform.getScaleInstance(0.9,0.9);
+
+            try{
+               AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
+               BufferedImage imgDest = atop.filter( imgSrce, null);
+               currentIntWind.getCanvas().setImage(imgDest);
+               currentIntWind.getCanvas().repaint();
+            }catch(Exception e){ 
+                System.err.println("Error"); 
+            }
+        }
+    }//GEN-LAST:event_LessScaleButtonActionPerformed
 
     
     
