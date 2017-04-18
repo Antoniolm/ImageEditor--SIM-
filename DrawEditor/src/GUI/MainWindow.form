@@ -647,6 +647,9 @@
                       <Dimension value="[31, 31]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rot180ButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="rot270Button">
                   <Properties>
@@ -662,6 +665,9 @@
                       <Dimension value="[31, 31]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rot270ButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

@@ -404,11 +404,21 @@ public class MainWindow extends javax.swing.JFrame {
         rot180Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion180.png"))); // NOI18N
         rot180Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot180Button.setPreferredSize(new java.awt.Dimension(31, 31));
+        rot180Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rot180ButtonActionPerformed(evt);
+            }
+        });
         RotationPanel.add(rot180Button);
 
         rot270Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion270.png"))); // NOI18N
         rot270Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot270Button.setPreferredSize(new java.awt.Dimension(31, 31));
+        rot270Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rot270ButtonActionPerformed(evt);
+            }
+        });
         RotationPanel.add(rot270Button);
 
         AttributeToolBar.add(RotationPanel);
@@ -821,7 +831,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void rot90ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot90ButtonActionPerformed
         BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
-                AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(180.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
+                AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(90.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
             try{
                AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                BufferedImage imgDest = atop.filter(imgSrce, null);
@@ -832,6 +842,36 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_rot90ButtonActionPerformed
+
+    private void rot180ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot180ButtonActionPerformed
+        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(180.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
+            try{
+               AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
+               BufferedImage imgDest = atop.filter(imgSrce, null);
+               currentIntWind.getCanvas().setImage(imgDest);
+               currentIntWind.getCanvas().repaint();
+            }catch(Exception e){ 
+                System.err.println("Error"); 
+            }
+        }
+    }//GEN-LAST:event_rot180ButtonActionPerformed
+
+    private void rot270ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot270ButtonActionPerformed
+        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(270.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
+            try{
+               AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
+               BufferedImage imgDest = atop.filter(imgSrce, null);
+               currentIntWind.getCanvas().setImage(imgDest);
+               currentIntWind.getCanvas().repaint();
+            }catch(Exception e){ 
+                System.err.println("Error"); 
+            }
+        }
+    }//GEN-LAST:event_rot270ButtonActionPerformed
 
     
     
