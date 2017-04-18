@@ -36,6 +36,8 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
+import java.awt.image.LookupOp;
+import java.awt.image.LookupTable;
 import java.awt.image.RescaleOp;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -44,6 +46,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import sm.image.KernelProducer;
+import sm.image.LookupTableProducer;
 
 public class MainWindow extends javax.swing.JFrame {
     /**
@@ -60,6 +63,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
         thickSpinner.setValue(1);        
+        
     }
 
     /**
@@ -83,8 +87,7 @@ public class MainWindow extends javax.swing.JFrame {
         CircleButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
-        Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
-        ColorCombo = new javax.swing.JComboBox(colors);
+        ColorCombo = new javax.swing.JComboBox();
         thickSpinner = new javax.swing.JSpinner();
         FilledButton = new javax.swing.JToggleButton();
         TransButton = new javax.swing.JToggleButton();
@@ -301,6 +304,11 @@ public class MainWindow extends javax.swing.JFrame {
         contrastButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/contraste.png"))); // NOI18N
         contrastButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         contrastButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        contrastButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contrastButtonActionPerformed(evt);
+            }
+        });
         ContrastPanel.add(contrastButton);
 
         LightUpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/iluminar.png"))); // NOI18N
@@ -819,7 +827,27 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
         currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+        /*Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
+        ColorCombo = new javax.swing.JComboBox(colors);*/
     }//GEN-LAST:event_ColorComboActionPerformed
+
+    private void contrastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrastButtonActionPerformed
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    int type = LookupTableProducer.TYPE_SFUNCION;
+                    LookupTable lt = LookupTableProducer.createLookupTable(type);
+                    LookupOp lop = new LookupOp(lt, null);
+                    // Imagen origen y destino iguales
+                    lop.filter( imgSrce , imgSrce);
+                    currentIntWind.getCanvas().repaint();
+                } catch(Exception e){
+                    System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_contrastButtonActionPerformed
 
     
     
