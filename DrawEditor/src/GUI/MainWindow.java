@@ -110,6 +110,7 @@ public class MainWindow extends javax.swing.JFrame {
         jSlider1 = new javax.swing.JSlider();
         rot90Button = new javax.swing.JButton();
         rot180Button = new javax.swing.JButton();
+        rot270Button = new javax.swing.JButton();
         ScalePanel = new javax.swing.JPanel();
         MoreScaleButton = new javax.swing.JButton();
         LessScaleButton = new javax.swing.JButton();
@@ -387,6 +388,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         rot180Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion180.png"))); // NOI18N
         RotationPanel.add(rot180Button);
+
+        rot270Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion270.png"))); // NOI18N
+        RotationPanel.add(rot270Button);
 
         AttributeToolBar.add(RotationPanel);
 
@@ -809,6 +813,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JButton rot180Button;
+    private javax.swing.JButton rot270Button;
     private javax.swing.JButton rot90Button;
     private javax.swing.JSpinner thickSpinner;
     private javax.swing.JPanel toolBarPanel;
