@@ -107,7 +107,12 @@ public class MainWindow extends javax.swing.JFrame {
         LightUpButton = new javax.swing.JButton();
         GetDarkButton = new javax.swing.JButton();
         RotationPanel = new javax.swing.JPanel();
+        jSlider1 = new javax.swing.JSlider();
+        rot90Button = new javax.swing.JButton();
+        rot180Button = new javax.swing.JButton();
         ScalePanel = new javax.swing.JPanel();
+        MoreScaleButton = new javax.swing.JButton();
+        LessScaleButton = new javax.swing.JButton();
         mainDesktop = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -370,10 +375,30 @@ public class MainWindow extends javax.swing.JFrame {
         RotationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Rotation"));
         RotationPanel.setMinimumSize(new java.awt.Dimension(140, 100));
         RotationPanel.setPreferredSize(new java.awt.Dimension(140, 110));
+
+        jSlider1.setMaximum(360);
+        jSlider1.setToolTipText("");
+        jSlider1.setValue(180);
+        jSlider1.setPreferredSize(new java.awt.Dimension(120, 26));
+        RotationPanel.add(jSlider1);
+
+        rot90Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion90.png"))); // NOI18N
+        RotationPanel.add(rot90Button);
+
+        rot180Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion180.png"))); // NOI18N
+        RotationPanel.add(rot180Button);
+
         AttributeToolBar.add(RotationPanel);
 
         ScalePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Scale"));
         ScalePanel.setPreferredSize(new java.awt.Dimension(140, 110));
+
+        MoreScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/aumentar.png"))); // NOI18N
+        ScalePanel.add(MoreScaleButton);
+
+        LessScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/disminuir.png"))); // NOI18N
+        ScalePanel.add(LessScaleButton);
+
         AttributeToolBar.add(ScalePanel);
 
         AttributePanel.add(AttributeToolBar, java.awt.BorderLayout.LINE_START);
@@ -750,9 +775,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox FilterCombo;
     private javax.swing.JButton GetDarkButton;
     private javax.swing.JButton GreenButton;
+    private javax.swing.JButton LessScaleButton;
     private javax.swing.JButton LightUpButton;
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JButton MoreScaleButton;
     private javax.swing.JMenuItem OpenMenu;
     private javax.swing.JToggleButton PointButton;
     private javax.swing.JButton RedButton;
@@ -778,8 +805,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton contrastButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSlider jSlider1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
+    private javax.swing.JButton rot180Button;
+    private javax.swing.JButton rot90Button;
     private javax.swing.JSpinner thickSpinner;
     private javax.swing.JPanel toolBarPanel;
     // End of variables declaration//GEN-END:variables
