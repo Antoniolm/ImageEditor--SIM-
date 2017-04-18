@@ -33,6 +33,7 @@ import java.awt.color.ColorSpace;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.awt.image.RescaleOp;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -40,13 +41,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sm.image.KernelProducer;
 
 public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form MainWindow
      */
     
-    InternalWindow currentIntWind;    
+    InternalWindow currentIntWind; 
+    BufferedImage imgSource;
     
     public MainWindow() {
         setMinimumSize(new Dimension(800,700));
@@ -307,10 +310,19 @@ public class MainWindow extends javax.swing.JFrame {
 
         ShineSlider.setMaximum(255);
         ShineSlider.setMinimum(-255);
+        ShineSlider.setValue(0);
         ShineSlider.setPreferredSize(new java.awt.Dimension(100, 26));
         ShineSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 ShineSliderStateChanged(evt);
+            }
+        });
+        ShineSlider.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ShineSliderFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ShineSliderFocusLost(evt);
             }
         });
         ShinePanel.add(ShineSlider);
@@ -320,7 +332,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filter"));
         jPanel1.setPreferredSize(new java.awt.Dimension(140, 110));
 
-        FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaicano" }));
+        FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaciano" }));
         FilterCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 FilterComboItemStateChanged(evt);
@@ -617,30 +629,58 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SmoothButtonActionPerformed
 
     private void ShineSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ShineSliderStateChanged
-        BufferedImage imgSource=currentIntWind.getCanvas().getImage();
-        if(imgSource!=null){
-            try{
-                RescaleOp rop = new RescaleOp(1.0F, ShineSlider.getValue()%100, null);
-                rop.filter(imgSource, imgSource);
-                currentIntWind.getCanvas().repaint();
-            } catch(IllegalArgumentException e){
-                    System.err.println(e.getLocalizedMessage());
+        if(currentIntWind!=null) {
+            if(imgSource!=null){
+                try{
+                    RescaleOp rop = new RescaleOp(1.0F, ShineSlider.getValue(), null);
+                    BufferedImage imgDest = rop.filter(imgSource, null);
+                    currentIntWind.getCanvas().setImage(imgDest);
+                    currentIntWind.getCanvas().repaint();
+                } catch(IllegalArgumentException e){
+                        System.err.println(e.getLocalizedMessage());
+                }
             }
         }
     }//GEN-LAST:event_ShineSliderStateChanged
 
     private void FilterComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_FilterComboItemStateChanged
         BufferedImage imgSource=currentIntWind.getCanvas().getImage();
+        Kernel k=null;
         
         if(FilterCombo.getSelectedItem()=="Media"){
             System.out.println("-"+FilterCombo.getSelectedItem());
-            Kernel k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
-            ConvolveOp cop = new ConvolveOp(k,ConvolveOp.EDGE_NO_OP,null);
-            BufferedImage imgDest=cop.filter(imgSource,null);
-            currentIntWind.getCanvas().setImage(imgDest);
-            currentIntWind.getCanvas().repaint();
+            k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
         }
+        if(FilterCombo.getSelectedItem()=="Enfoque"){
+            System.out.println("-"+FilterCombo.getSelectedItem());
+            k = KernelProducer.createKernel(KernelProducer.TYPE_ENFOQUE_3x3);
+        }
+        if(FilterCombo.getSelectedItem()=="Binomial"){
+            System.out.println("-"+FilterCombo.getSelectedItem());
+            k = KernelProducer.createKernel(KernelProducer.TYPE_BINOMIAL_3x3);
+        }
+        if(FilterCombo.getSelectedItem()=="Relieve"){
+            System.out.println("-"+FilterCombo.getSelectedItem());
+            k = KernelProducer.createKernel(KernelProducer.TYPE_RELIEVE_3x3);
+        }
+        if(FilterCombo.getSelectedItem()=="Laplaciano"){
+            System.out.println("-"+FilterCombo.getSelectedItem());
+            k = KernelProducer.createKernel(KernelProducer.TYPE_LAPLACIANA_3x3);
+        }
+            
+        ConvolveOp cop = new ConvolveOp(k,ConvolveOp.EDGE_NO_OP,null);
+        BufferedImage imgDest=cop.filter(imgSource,null);
+        currentIntWind.getCanvas().setImage(imgDest);
+        currentIntWind.getCanvas().repaint();
     }//GEN-LAST:event_FilterComboItemStateChanged
+
+    private void ShineSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ShineSliderFocusGained
+        imgSource=currentIntWind.getCanvas().getImage();
+    }//GEN-LAST:event_ShineSliderFocusGained
+
+    private void ShineSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ShineSliderFocusLost
+        imgSource=null;
+    }//GEN-LAST:event_ShineSliderFocusLost
 
     
     
