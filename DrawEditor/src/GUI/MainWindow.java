@@ -32,6 +32,8 @@ import java.awt.RenderingHints;
 import java.awt.color.ColorSpace;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.RescaleOp;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -52,11 +54,7 @@ public class MainWindow extends javax.swing.JFrame {
         currentIntWind = new InternalWindow(this);
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
-        thickSpinner.setValue(1);
-        
-        Object item= new Color(255,0,0);
-        ColorCombo.addItem(item);
-        
+        thickSpinner.setValue(1);        
     }
 
     /**
@@ -97,6 +95,10 @@ public class MainWindow extends javax.swing.JFrame {
         WhiteButton = new javax.swing.JButton();
         YellowButton = new javax.swing.JButton();
         GreenButton = new javax.swing.JButton();
+        ShinePanel = new javax.swing.JPanel();
+        ShineSlider = new javax.swing.JSlider();
+        jPanel1 = new javax.swing.JPanel();
+        FilterCombo = new javax.swing.JComboBox();
         mainDesktop = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -299,6 +301,34 @@ public class MainWindow extends javax.swing.JFrame {
         ColorPanel.add(GreenButton);
 
         AttributeToolBar.add(ColorPanel);
+
+        ShinePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Shine"));
+        ShinePanel.setPreferredSize(new java.awt.Dimension(140, 110));
+
+        ShineSlider.setMaximum(255);
+        ShineSlider.setMinimum(-255);
+        ShineSlider.setPreferredSize(new java.awt.Dimension(100, 26));
+        ShineSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ShineSliderStateChanged(evt);
+            }
+        });
+        ShinePanel.add(ShineSlider);
+
+        AttributeToolBar.add(ShinePanel);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filter"));
+        jPanel1.setPreferredSize(new java.awt.Dimension(140, 110));
+
+        FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaicano" }));
+        FilterCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                FilterComboItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(FilterCombo);
+
+        AttributeToolBar.add(jPanel1);
 
         AttributePanel.add(AttributeToolBar, java.awt.BorderLayout.LINE_START);
 
@@ -586,6 +616,32 @@ public class MainWindow extends javax.swing.JFrame {
             currentIntWind.getCanvas().setRender(null);
     }//GEN-LAST:event_SmoothButtonActionPerformed
 
+    private void ShineSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ShineSliderStateChanged
+        BufferedImage imgSource=currentIntWind.getCanvas().getImage();
+        if(imgSource!=null){
+            try{
+                RescaleOp rop = new RescaleOp(1.0F, ShineSlider.getValue()%100, null);
+                rop.filter(imgSource, imgSource);
+                currentIntWind.getCanvas().repaint();
+            } catch(IllegalArgumentException e){
+                    System.err.println(e.getLocalizedMessage());
+            }
+        }
+    }//GEN-LAST:event_ShineSliderStateChanged
+
+    private void FilterComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_FilterComboItemStateChanged
+        BufferedImage imgSource=currentIntWind.getCanvas().getImage();
+        
+        if(FilterCombo.getSelectedItem()=="Media"){
+            System.out.println("-"+FilterCombo.getSelectedItem());
+            Kernel k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
+            ConvolveOp cop = new ConvolveOp(k,ConvolveOp.EDGE_NO_OP,null);
+            BufferedImage imgDest=cop.filter(imgSource,null);
+            currentIntWind.getCanvas().setImage(imgDest);
+            currentIntWind.getCanvas().repaint();
+        }
+    }//GEN-LAST:event_FilterComboItemStateChanged
+
     
     
     
@@ -608,6 +664,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JToggleButton FilledButton;
+    private javax.swing.JComboBox FilterCombo;
     private javax.swing.JButton GreenButton;
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuBar MenuBar;
@@ -619,6 +676,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem SeeAttMenu;
     private javax.swing.JCheckBoxMenuItem SeeGeoMenu;
     private javax.swing.JCheckBoxMenuItem SeeSBMenu;
+    private javax.swing.JPanel ShinePanel;
+    private javax.swing.JSlider ShineSlider;
     private javax.swing.JToggleButton SmoothButton;
     private javax.swing.JLabel StateBarLabel;
     private javax.swing.JPanel StateBarPanel;
@@ -629,6 +688,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
