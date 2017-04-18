@@ -30,7 +30,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.color.ColorSpace;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
@@ -412,6 +414,11 @@ public class MainWindow extends javax.swing.JFrame {
         MoreScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/aumentar.png"))); // NOI18N
         MoreScaleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         MoreScaleButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        MoreScaleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MoreScaleButtonActionPerformed(evt);
+            }
+        });
         ScalePanel.add(MoreScaleButton);
 
         LessScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/disminuir.png"))); // NOI18N
@@ -735,8 +742,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ShineSliderFocusLost
 
     private void FilterComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterComboActionPerformed
-         BufferedImage imgSource=currentIntWind.getCanvas().getImage();
-        if(imgSource!=null){
+         BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+        if(imgSrce!=null){
             Kernel k=null;
 
             switch((String)FilterCombo.getSelectedItem()){
@@ -763,11 +770,27 @@ public class MainWindow extends javax.swing.JFrame {
             }
 
             ConvolveOp cop = new ConvolveOp(k,ConvolveOp.EDGE_NO_OP,null);
-            BufferedImage imgDest=cop.filter(imgSource,null);
+            BufferedImage imgDest=cop.filter(imgSrce,null);
             currentIntWind.getCanvas().setImage(imgDest);
             currentIntWind.getCanvas().repaint();
         }
     }//GEN-LAST:event_FilterComboActionPerformed
+
+    private void MoreScaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoreScaleButtonActionPerformed
+        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                AffineTransform at = AffineTransform.getScaleInstance(1.1,1.1);
+
+            try{
+               AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
+               BufferedImage imgDest = atop.filter( imgSrce, null);
+               currentIntWind.getCanvas().setImage(imgDest);
+               currentIntWind.getCanvas().repaint();
+            }catch(Exception e){ 
+                System.err.println("Error"); 
+            }
+        }
+    }//GEN-LAST:event_MoreScaleButtonActionPerformed
 
     
     
