@@ -394,6 +394,11 @@ public class MainWindow extends javax.swing.JFrame {
         rot90Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion90.png"))); // NOI18N
         rot90Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot90Button.setPreferredSize(new java.awt.Dimension(31, 31));
+        rot90Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rot90ButtonActionPerformed(evt);
+            }
+        });
         RotationPanel.add(rot90Button);
 
         rot180Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion180.png"))); // NOI18N
@@ -812,6 +817,21 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_LessScaleButtonActionPerformed
+
+    private void rot90ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot90ButtonActionPerformed
+        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(180.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
+            try{
+               AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
+               BufferedImage imgDest = atop.filter(imgSrce, null);
+               currentIntWind.getCanvas().setImage(imgDest);
+               currentIntWind.getCanvas().repaint();
+            }catch(Exception e){ 
+                System.err.println("Error"); 
+            }
+        }
+    }//GEN-LAST:event_rot90ButtonActionPerformed
 
     
     
