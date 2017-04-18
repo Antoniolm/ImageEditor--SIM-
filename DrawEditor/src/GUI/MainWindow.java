@@ -314,11 +314,21 @@ public class MainWindow extends javax.swing.JFrame {
         LightUpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/iluminar.png"))); // NOI18N
         LightUpButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LightUpButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        LightUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LightUpButtonActionPerformed(evt);
+            }
+        });
         ContrastPanel.add(LightUpButton);
 
         GetDarkButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/oscurecer.png"))); // NOI18N
         GetDarkButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         GetDarkButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        GetDarkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GetDarkButtonActionPerformed(evt);
+            }
+        });
         ContrastPanel.add(GetDarkButton);
 
         AttributeToolBar.add(ContrastPanel);
@@ -848,6 +858,42 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_contrastButtonActionPerformed
+
+    private void LightUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LightUpButtonActionPerformed
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    int type = LookupTableProducer.TYPE_LOGARITHM;
+                    LookupTable lt = LookupTableProducer.createLookupTable(type);
+                    LookupOp lop = new LookupOp(lt, null);
+                    // Imagen origen y destino iguales
+                    lop.filter( imgSrce , imgSrce);
+                    currentIntWind.getCanvas().repaint();
+                } catch(Exception e){
+                    System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_LightUpButtonActionPerformed
+
+    private void GetDarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetDarkButtonActionPerformed
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    int type = LookupTableProducer.TYPE_POWER;
+                    LookupTable lt = LookupTableProducer.createLookupTable(type);
+                    LookupOp lop = new LookupOp(lt, null);
+                    // Imagen origen y destino iguales
+                    lop.filter( imgSrce , imgSrce);
+                    currentIntWind.getCanvas().repaint();
+                } catch(Exception e){
+                    System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_GetDarkButtonActionPerformed
 
     
     
