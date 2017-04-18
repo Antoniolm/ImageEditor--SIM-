@@ -605,15 +605,20 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JSlider" name="jSlider1">
+                <Component class="javax.swing.JSlider" name="RotationSlider">
                   <Properties>
                     <Property name="maximum" type="int" value="360"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
-                    <Property name="value" type="int" value="180"/>
+                    <Property name="value" type="int" value="0"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[120, 26]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="RotationSliderStateChanged"/>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="RotationSliderFocusGained"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="RotationSliderFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="rot90Button">
                   <Properties>

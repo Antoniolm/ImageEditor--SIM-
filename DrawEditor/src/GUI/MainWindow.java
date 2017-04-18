@@ -109,7 +109,7 @@ public class MainWindow extends javax.swing.JFrame {
         LightUpButton = new javax.swing.JButton();
         GetDarkButton = new javax.swing.JButton();
         RotationPanel = new javax.swing.JPanel();
-        jSlider1 = new javax.swing.JSlider();
+        RotationSlider = new javax.swing.JSlider();
         rot90Button = new javax.swing.JButton();
         rot180Button = new javax.swing.JButton();
         rot270Button = new javax.swing.JButton();
@@ -385,11 +385,24 @@ public class MainWindow extends javax.swing.JFrame {
         RotationPanel.setMinimumSize(new java.awt.Dimension(140, 100));
         RotationPanel.setPreferredSize(new java.awt.Dimension(280, 110));
 
-        jSlider1.setMaximum(360);
-        jSlider1.setToolTipText("");
-        jSlider1.setValue(180);
-        jSlider1.setPreferredSize(new java.awt.Dimension(120, 26));
-        RotationPanel.add(jSlider1);
+        RotationSlider.setMaximum(360);
+        RotationSlider.setToolTipText("");
+        RotationSlider.setValue(0);
+        RotationSlider.setPreferredSize(new java.awt.Dimension(120, 26));
+        RotationSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                RotationSliderStateChanged(evt);
+            }
+        });
+        RotationSlider.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                RotationSliderFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                RotationSliderFocusLost(evt);
+            }
+        });
+        RotationPanel.add(RotationSlider);
 
         rot90Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion90.png"))); // NOI18N
         rot90Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -873,6 +886,30 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rot270ButtonActionPerformed
 
+    private void RotationSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RotationSliderFocusGained
+        imgSource=currentIntWind.getCanvas().getImage();
+    }//GEN-LAST:event_RotationSliderFocusGained
+
+    private void RotationSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RotationSliderFocusLost
+        imgSource=null;
+    }//GEN-LAST:event_RotationSliderFocusLost
+
+    private void RotationSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RotationSliderStateChanged
+        if(currentIntWind!=null) {
+            if(imgSource!=null){
+                try{
+                    AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(RotationSlider.getValue()),imgSource.getWidth()/2,imgSource.getHeight()/2);
+                    AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
+                    BufferedImage imgDest = atop.filter(imgSource, null);
+                    currentIntWind.getCanvas().setImage(imgDest);
+                    currentIntWind.getCanvas().repaint();
+                } catch(IllegalArgumentException e){
+                        System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_RotationSliderStateChanged
+
     
     
     
@@ -908,6 +945,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton PointButton;
     private javax.swing.JButton RedButton;
     private javax.swing.JPanel RotationPanel;
+    private javax.swing.JSlider RotationSlider;
     private javax.swing.JToggleButton RtgleButton;
     private javax.swing.JMenuItem SaveMenu;
     private javax.swing.JPanel ScalePanel;
@@ -929,7 +967,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton contrastButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSlider jSlider1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JButton rot180Button;
