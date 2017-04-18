@@ -363,19 +363,25 @@ public class MainWindow extends javax.swing.JFrame {
         ContrastPanel.setPreferredSize(new java.awt.Dimension(140, 110));
 
         contrastButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/contraste.png"))); // NOI18N
+        contrastButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        contrastButton.setPreferredSize(new java.awt.Dimension(31, 31));
         ContrastPanel.add(contrastButton);
 
         LightUpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/iluminar.png"))); // NOI18N
+        LightUpButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        LightUpButton.setPreferredSize(new java.awt.Dimension(31, 31));
         ContrastPanel.add(LightUpButton);
 
         GetDarkButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/oscurecer.png"))); // NOI18N
+        GetDarkButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        GetDarkButton.setPreferredSize(new java.awt.Dimension(31, 31));
         ContrastPanel.add(GetDarkButton);
 
         AttributeToolBar.add(ContrastPanel);
 
         RotationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Rotation"));
         RotationPanel.setMinimumSize(new java.awt.Dimension(140, 100));
-        RotationPanel.setPreferredSize(new java.awt.Dimension(140, 110));
+        RotationPanel.setPreferredSize(new java.awt.Dimension(280, 110));
 
         jSlider1.setMaximum(360);
         jSlider1.setToolTipText("");
@@ -384,23 +390,33 @@ public class MainWindow extends javax.swing.JFrame {
         RotationPanel.add(jSlider1);
 
         rot90Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion90.png"))); // NOI18N
+        rot90Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rot90Button.setPreferredSize(new java.awt.Dimension(31, 31));
         RotationPanel.add(rot90Button);
 
         rot180Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion180.png"))); // NOI18N
+        rot180Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rot180Button.setPreferredSize(new java.awt.Dimension(31, 31));
         RotationPanel.add(rot180Button);
 
         rot270Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion270.png"))); // NOI18N
+        rot270Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rot270Button.setPreferredSize(new java.awt.Dimension(31, 31));
         RotationPanel.add(rot270Button);
 
         AttributeToolBar.add(RotationPanel);
 
         ScalePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Scale"));
-        ScalePanel.setPreferredSize(new java.awt.Dimension(140, 110));
+        ScalePanel.setPreferredSize(new java.awt.Dimension(100, 110));
 
         MoreScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/aumentar.png"))); // NOI18N
+        MoreScaleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MoreScaleButton.setPreferredSize(new java.awt.Dimension(31, 31));
         ScalePanel.add(MoreScaleButton);
 
         LessScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/disminuir.png"))); // NOI18N
+        LessScaleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        LessScaleButton.setPreferredSize(new java.awt.Dimension(31, 31));
         ScalePanel.add(LessScaleButton);
 
         AttributeToolBar.add(ScalePanel);
