@@ -338,6 +338,11 @@ public class MainWindow extends javax.swing.JFrame {
                 FilterComboItemStateChanged(evt);
             }
         });
+        FilterCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FilterComboActionPerformed(evt);
+            }
+        });
         jPanel1.add(FilterCombo);
 
         AttributeToolBar.add(jPanel1);
@@ -644,34 +649,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ShineSliderStateChanged
 
     private void FilterComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_FilterComboItemStateChanged
-        BufferedImage imgSource=currentIntWind.getCanvas().getImage();
-        Kernel k=null;
-        
-        if(FilterCombo.getSelectedItem()=="Media"){
-            System.out.println("-"+FilterCombo.getSelectedItem());
-            k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
-        }
-        if(FilterCombo.getSelectedItem()=="Enfoque"){
-            System.out.println("-"+FilterCombo.getSelectedItem());
-            k = KernelProducer.createKernel(KernelProducer.TYPE_ENFOQUE_3x3);
-        }
-        if(FilterCombo.getSelectedItem()=="Binomial"){
-            System.out.println("-"+FilterCombo.getSelectedItem());
-            k = KernelProducer.createKernel(KernelProducer.TYPE_BINOMIAL_3x3);
-        }
-        if(FilterCombo.getSelectedItem()=="Relieve"){
-            System.out.println("-"+FilterCombo.getSelectedItem());
-            k = KernelProducer.createKernel(KernelProducer.TYPE_RELIEVE_3x3);
-        }
-        if(FilterCombo.getSelectedItem()=="Laplaciano"){
-            System.out.println("-"+FilterCombo.getSelectedItem());
-            k = KernelProducer.createKernel(KernelProducer.TYPE_LAPLACIANA_3x3);
-        }
-            
-        ConvolveOp cop = new ConvolveOp(k,ConvolveOp.EDGE_NO_OP,null);
-        BufferedImage imgDest=cop.filter(imgSource,null);
-        currentIntWind.getCanvas().setImage(imgDest);
-        currentIntWind.getCanvas().repaint();
+       
     }//GEN-LAST:event_FilterComboItemStateChanged
 
     private void ShineSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ShineSliderFocusGained
@@ -681,6 +659,41 @@ public class MainWindow extends javax.swing.JFrame {
     private void ShineSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ShineSliderFocusLost
         imgSource=null;
     }//GEN-LAST:event_ShineSliderFocusLost
+
+    private void FilterComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterComboActionPerformed
+         BufferedImage imgSource=currentIntWind.getCanvas().getImage();
+        if(imgSource!=null){
+            Kernel k=null;
+
+            switch((String)FilterCombo.getSelectedItem()){
+                case "Media":
+                    System.out.println("-"+FilterCombo.getSelectedItem());
+                    k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
+                break;
+                case "Enfoque":
+                    System.out.println("-"+FilterCombo.getSelectedItem());
+                    k = KernelProducer.createKernel(KernelProducer.TYPE_ENFOQUE_3x3);
+                break;
+                case "Binomial":
+                    System.out.println("-"+FilterCombo.getSelectedItem());
+                    k = KernelProducer.createKernel(KernelProducer.TYPE_BINOMIAL_3x3);
+                break;    
+                case "Relieve":
+                    System.out.println("-"+FilterCombo.getSelectedItem());
+                    k = KernelProducer.createKernel(KernelProducer.TYPE_RELIEVE_3x3);
+                break;
+                case "Laplaciano":
+                    System.out.println("-"+FilterCombo.getSelectedItem());
+                    k = KernelProducer.createKernel(KernelProducer.TYPE_LAPLACIANA_3x3);
+                break;
+            }
+
+            ConvolveOp cop = new ConvolveOp(k,ConvolveOp.EDGE_NO_OP,null);
+            BufferedImage imgDest=cop.filter(imgSource,null);
+            currentIntWind.getCanvas().setImage(imgDest);
+            currentIntWind.getCanvas().repaint();
+        }
+    }//GEN-LAST:event_FilterComboActionPerformed
 
     
     
