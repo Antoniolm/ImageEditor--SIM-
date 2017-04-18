@@ -83,7 +83,8 @@ public class MainWindow extends javax.swing.JFrame {
         CircleButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
-        ColorCombo = new javax.swing.JComboBox();
+        Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
+        ColorCombo = new javax.swing.JComboBox(colors);
         thickSpinner = new javax.swing.JSpinner();
         FilledButton = new javax.swing.JToggleButton();
         TransButton = new javax.swing.JToggleButton();
@@ -93,13 +94,6 @@ public class MainWindow extends javax.swing.JFrame {
         StateBarLabel = new javax.swing.JLabel();
         CursorPosLabel = new javax.swing.JLabel();
         AttributeToolBar = new javax.swing.JToolBar();
-        ColorPanel = new javax.swing.JPanel();
-        BlackButton = new javax.swing.JButton();
-        RedButton = new javax.swing.JButton();
-        BlueButton = new javax.swing.JButton();
-        WhiteButton = new javax.swing.JButton();
-        YellowButton = new javax.swing.JButton();
-        GreenButton = new javax.swing.JButton();
         ShinePanel = new javax.swing.JPanel();
         ShineSlider = new javax.swing.JSlider();
         jPanel1 = new javax.swing.JPanel();
@@ -196,8 +190,12 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(EditButton);
         toolBarPanel.add(jSeparator1);
 
-        ColorCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "", "" }));
         ColorCombo.setToolTipText("");
+        ColorCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ColorComboActionPerformed(evt);
+            }
+        });
         toolBarPanel.add(ColorCombo);
 
         thickSpinner.setMinimumSize(new java.awt.Dimension(50, 22));
@@ -254,70 +252,6 @@ public class MainWindow extends javax.swing.JFrame {
         AttributePanel.add(StateBarPanel, java.awt.BorderLayout.SOUTH);
 
         AttributeToolBar.setRollover(true);
-
-        ColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Color"));
-        ColorPanel.setMaximumSize(new java.awt.Dimension(1000, 1000));
-        ColorPanel.setMinimumSize(new java.awt.Dimension(237, 35));
-        ColorPanel.setPreferredSize(new java.awt.Dimension(140, 110));
-        ColorPanel.setRequestFocusEnabled(false);
-
-        BlackButton.setBackground(new java.awt.Color(0, 0, 0));
-        BlackButton.setText(" ");
-        BlackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BlackButtonActionPerformed(evt);
-            }
-        });
-        ColorPanel.add(BlackButton);
-
-        RedButton.setBackground(new java.awt.Color(204, 0, 0));
-        RedButton.setText(" ");
-        RedButton.setAlignmentY(0.0F);
-        RedButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RedButtonActionPerformed(evt);
-            }
-        });
-        ColorPanel.add(RedButton);
-
-        BlueButton.setBackground(new java.awt.Color(0, 0, 204));
-        BlueButton.setText(" ");
-        BlueButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BlueButtonActionPerformed(evt);
-            }
-        });
-        ColorPanel.add(BlueButton);
-
-        WhiteButton.setBackground(new java.awt.Color(255, 255, 255));
-        WhiteButton.setText(" ");
-        WhiteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WhiteButtonActionPerformed(evt);
-            }
-        });
-        ColorPanel.add(WhiteButton);
-
-        YellowButton.setBackground(new java.awt.Color(255, 255, 51));
-        YellowButton.setText(" ");
-        YellowButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                YellowButtonActionPerformed(evt);
-            }
-        });
-        ColorPanel.add(YellowButton);
-
-        GreenButton.setBackground(new java.awt.Color(0, 204, 0));
-        GreenButton.setText(" ");
-        GreenButton.setToolTipText("");
-        GreenButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GreenButtonActionPerformed(evt);
-            }
-        });
-        ColorPanel.add(GreenButton);
-
-        AttributeToolBar.add(ColorPanel);
 
         ShinePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Shine"));
         ShinePanel.setPreferredSize(new java.awt.Dimension(140, 110));
@@ -620,33 +554,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SaveMenuActionPerformed
 
-    //////////////////////////////////////////////////////////////////////////
-    // Color buttons
-    //////////////////////////////////////////////////////////////////////////
-    private void BlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackButtonActionPerformed
-        currentIntWind.getCanvas().setColor(Color.BLACK);
-    }//GEN-LAST:event_BlackButtonActionPerformed
-
-    private void RedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedButtonActionPerformed
-        currentIntWind.getCanvas().setColor(Color.RED);
-    }//GEN-LAST:event_RedButtonActionPerformed
-
-    private void BlueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlueButtonActionPerformed
-        currentIntWind.getCanvas().setColor(Color.BLUE);
-    }//GEN-LAST:event_BlueButtonActionPerformed
-
-    private void WhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WhiteButtonActionPerformed
-        currentIntWind.getCanvas().setColor(Color.WHITE);
-    }//GEN-LAST:event_WhiteButtonActionPerformed
-
-    private void YellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YellowButtonActionPerformed
-        currentIntWind.getCanvas().setColor(Color.YELLOW);
-    }//GEN-LAST:event_YellowButtonActionPerformed
-
-    private void GreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GreenButtonActionPerformed
-        currentIntWind.getCanvas().setColor(Color.GREEN);
-    }//GEN-LAST:event_GreenButtonActionPerformed
-
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
         InternalWindow newIntWind = new InternalWindow(this);
         
@@ -910,6 +817,10 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RotationSliderStateChanged
 
+    private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
+        currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+    }//GEN-LAST:event_ColorComboActionPerformed
+
     
     
     
@@ -921,11 +832,8 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
     private javax.swing.JToolBar AttributeToolBar;
-    private javax.swing.JButton BlackButton;
-    private javax.swing.JButton BlueButton;
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JComboBox ColorCombo;
-    private javax.swing.JPanel ColorPanel;
     private javax.swing.JPanel ContrastPanel;
     private javax.swing.JLabel CursorPosLabel;
     private javax.swing.JPanel DrawPanel;
@@ -935,7 +843,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton FilledButton;
     private javax.swing.JComboBox FilterCombo;
     private javax.swing.JButton GetDarkButton;
-    private javax.swing.JButton GreenButton;
     private javax.swing.JButton LessScaleButton;
     private javax.swing.JButton LightUpButton;
     private javax.swing.JToggleButton LineButton;
@@ -943,7 +850,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton MoreScaleButton;
     private javax.swing.JMenuItem OpenMenu;
     private javax.swing.JToggleButton PointButton;
-    private javax.swing.JButton RedButton;
     private javax.swing.JPanel RotationPanel;
     private javax.swing.JSlider RotationSlider;
     private javax.swing.JToggleButton RtgleButton;
@@ -958,8 +864,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel StateBarLabel;
     private javax.swing.JPanel StateBarPanel;
     private javax.swing.JToggleButton TransButton;
-    private javax.swing.JButton WhiteButton;
-    private javax.swing.JButton YellowButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
