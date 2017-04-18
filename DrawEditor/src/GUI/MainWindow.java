@@ -102,9 +102,12 @@ public class MainWindow extends javax.swing.JFrame {
         ShineSlider = new javax.swing.JSlider();
         jPanel1 = new javax.swing.JPanel();
         FilterCombo = new javax.swing.JComboBox();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        ContrastPanel = new javax.swing.JPanel();
+        contrastButton = new javax.swing.JButton();
+        LightUpButton = new javax.swing.JButton();
+        GetDarkButton = new javax.swing.JButton();
+        RotationPanel = new javax.swing.JPanel();
+        ScalePanel = new javax.swing.JPanel();
         mainDesktop = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -350,54 +353,28 @@ public class MainWindow extends javax.swing.JFrame {
 
         AttributeToolBar.add(jPanel1);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Contrast"));
-        jPanel2.setPreferredSize(new java.awt.Dimension(140, 110));
+        ContrastPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Contrast"));
+        ContrastPanel.setPreferredSize(new java.awt.Dimension(140, 110));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
-        );
+        contrastButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/contraste.png"))); // NOI18N
+        ContrastPanel.add(contrastButton);
 
-        AttributeToolBar.add(jPanel2);
+        LightUpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/iluminar.png"))); // NOI18N
+        ContrastPanel.add(LightUpButton);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Rotation"));
-        jPanel3.setMinimumSize(new java.awt.Dimension(140, 100));
-        jPanel3.setPreferredSize(new java.awt.Dimension(140, 110));
+        GetDarkButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/oscurecer.png"))); // NOI18N
+        ContrastPanel.add(GetDarkButton);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
-        );
+        AttributeToolBar.add(ContrastPanel);
 
-        AttributeToolBar.add(jPanel3);
+        RotationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Rotation"));
+        RotationPanel.setMinimumSize(new java.awt.Dimension(140, 100));
+        RotationPanel.setPreferredSize(new java.awt.Dimension(140, 110));
+        AttributeToolBar.add(RotationPanel);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Scale"));
-        jPanel4.setPreferredSize(new java.awt.Dimension(140, 110));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
-        );
-
-        AttributeToolBar.add(jPanel4);
+        ScalePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Scale"));
+        ScalePanel.setPreferredSize(new java.awt.Dimension(140, 110));
+        AttributeToolBar.add(ScalePanel);
 
         AttributePanel.add(AttributeToolBar, java.awt.BorderLayout.LINE_START);
 
@@ -763,6 +740,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JComboBox ColorCombo;
     private javax.swing.JPanel ColorPanel;
+    private javax.swing.JPanel ContrastPanel;
     private javax.swing.JLabel CursorPosLabel;
     private javax.swing.JPanel DrawPanel;
     private javax.swing.JToggleButton EditButton;
@@ -770,14 +748,18 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu FileMenu;
     private javax.swing.JToggleButton FilledButton;
     private javax.swing.JComboBox FilterCombo;
+    private javax.swing.JButton GetDarkButton;
     private javax.swing.JButton GreenButton;
+    private javax.swing.JButton LightUpButton;
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenuItem OpenMenu;
     private javax.swing.JToggleButton PointButton;
     private javax.swing.JButton RedButton;
+    private javax.swing.JPanel RotationPanel;
     private javax.swing.JToggleButton RtgleButton;
     private javax.swing.JMenuItem SaveMenu;
+    private javax.swing.JPanel ScalePanel;
     private javax.swing.JCheckBoxMenuItem SeeAttMenu;
     private javax.swing.JCheckBoxMenuItem SeeGeoMenu;
     private javax.swing.JCheckBoxMenuItem SeeSBMenu;
@@ -793,10 +775,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JButton contrastButton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
