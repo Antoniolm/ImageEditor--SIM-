@@ -329,7 +329,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.setToolTipText("Filter");
         jPanel1.setPreferredSize(new java.awt.Dimension(140, 110));
 
-        FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaciano" }));
+        FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaciano", "Negativo" }));
         FilterCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 FilterComboItemStateChanged(evt);
@@ -667,7 +667,7 @@ public class MainWindow extends javax.swing.JFrame {
         currentIntWind.setVisible(true);
         
          BufferedImage img;
-         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_RGB);
+         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
          currentIntWind.getCanvas().setImage(img);
          currentIntWind.getCanvas().setColor(new Color(255,255,255));
          
@@ -785,23 +785,21 @@ public class MainWindow extends javax.swing.JFrame {
 
             switch((String)FilterCombo.getSelectedItem()){
                 case "Media":
-                    System.out.println("-"+FilterCombo.getSelectedItem());
                     k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
                 break;
                 case "Enfoque":
-                    System.out.println("-"+FilterCombo.getSelectedItem());
                     k = KernelProducer.createKernel(KernelProducer.TYPE_ENFOQUE_3x3);
                 break;
                 case "Binomial":
-                    System.out.println("-"+FilterCombo.getSelectedItem());
                     k = KernelProducer.createKernel(KernelProducer.TYPE_BINOMIAL_3x3);
                 break;    
                 case "Relieve":
-                    System.out.println("-"+FilterCombo.getSelectedItem());
                     k = KernelProducer.createKernel(KernelProducer.TYPE_RELIEVE_3x3);
                 break;
                 case "Laplaciano":
-                    System.out.println("-"+FilterCombo.getSelectedItem());
+                    k = KernelProducer.createKernel(KernelProducer.TYPE_LAPLACIANA_3x3);
+                break;
+                case "Negativo":                    
                     k = KernelProducer.createKernel(KernelProducer.TYPE_LAPLACIANA_3x3);
                 break;
             }
@@ -1048,7 +1046,7 @@ public class MainWindow extends javax.swing.JFrame {
         currentIntWind.setVisible(true);
         
          BufferedImage img;
-         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_RGB);
+         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
          currentIntWind.getCanvas().setImage(img);
          currentIntWind.getCanvas().setColor(new Color(255,255,255));
          
