@@ -1013,6 +1013,8 @@ public class MainWindow extends javax.swing.JFrame {
                 currentIntWind.setTitle(f.getName());
                 currentIntWind.setVisible(true);
                 currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+                
+                currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
             }catch(Exception ex){
                 System.err.println("Error al leer la imagen");
             }

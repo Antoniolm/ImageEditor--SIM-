@@ -28,7 +28,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
      */
     public canvas2DImagePanel() {
         initComponents();
-        clip =new Rectangle2D.Float(0,0,300,300);
+        clip =new Rectangle2D.Float(1,1,299,299);
     }
 
     
