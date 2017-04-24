@@ -29,9 +29,11 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.color.ColorSpace;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
@@ -59,9 +61,6 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         setMinimumSize(new Dimension(800,700));
         initComponents();
-        currentIntWind = new InternalWindow(this);
-        mainDesktop.add(currentIntWind);
-        currentIntWind.setVisible(true);
         thickSpinner.setValue(1);        
         
     }
@@ -639,9 +638,11 @@ public class MainWindow extends javax.swing.JFrame {
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
         InternalWindow newIntWind = new InternalWindow(this);
         
-        Point2D currentPositionWind=currentIntWind.getLocation();
-        currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-        newIntWind.setLocation((Point) currentPositionWind);
+        if(currentIntWind!= null){
+            Point2D currentPositionWind=currentIntWind.getLocation();
+            currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
+            newIntWind.setLocation((Point) currentPositionWind);
+        }
         
         currentIntWind=newIntWind;
         mainDesktop.add(currentIntWind);
@@ -675,7 +676,8 @@ public class MainWindow extends javax.swing.JFrame {
         Integer value=(int)thickSpinner.getValue();
         if(value==0) thickSpinner.setValue(1);
         
-        currentIntWind.getCanvas().setThick(new BasicStroke(value),value);
+        if(currentIntWind != null)
+            currentIntWind.getCanvas().setThick(new BasicStroke(value),value);
     }//GEN-LAST:event_thickSpinnerStateChanged
 
     private void mainDesktopComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainDesktopComponentShown
@@ -1020,9 +1022,11 @@ public class MainWindow extends javax.swing.JFrame {
     private void NewFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileButtonActionPerformed
         InternalWindow newIntWind = new InternalWindow(this);
         
-        Point2D currentPositionWind=currentIntWind.getLocation();
-        currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-        newIntWind.setLocation((Point) currentPositionWind);
+        if(currentIntWind!= null){
+            Point2D currentPositionWind=currentIntWind.getLocation();
+            currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
+            newIntWind.setLocation((Point) currentPositionWind);
+        }
         
         currentIntWind=newIntWind;
         mainDesktop.add(currentIntWind);

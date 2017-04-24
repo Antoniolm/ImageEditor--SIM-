@@ -41,6 +41,7 @@ public class InternalWindow extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         parent=window;
+        setSize(300, 300);
     }
 
     /**
