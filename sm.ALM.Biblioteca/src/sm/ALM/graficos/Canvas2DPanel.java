@@ -42,12 +42,12 @@ import static sm.ALM.graficos.GeometryType.*;
 
 
 public class Canvas2DPanel extends javax.swing.JPanel {
-    static GeometryType geometry=POINT;
+    GeometryType geometry;
     public Point initPos;
     Shape currentShape;
     List<Shape> vShape;
     Shape clip;
-    static boolean editMode=false;
+    boolean editMode;
     Attribute attribute;
     
     public Canvas2DPanel() {
@@ -56,6 +56,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         vShape = new ArrayList();
         editMode=false;
         attribute=new Attribute();
+        geometry=POINT;
         setBackground(Color.white);
         
         //Added our mouseListener 
@@ -105,6 +106,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
             }
         
         
+    }
+    
+    public GeometryType getGeometry(){
+        return geometry;
     }
     
     public void setGeometry(GeometryType aType){

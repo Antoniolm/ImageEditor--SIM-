@@ -583,6 +583,24 @@ public class MainWindow extends javax.swing.JFrame {
        SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
        thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
        
+       switch(currentIntWind.getCanvas().getGeometry()){
+           case POINT:
+               PointButton.setSelected(true);
+           break;
+           case LINE:
+               LineButton.setSelected(true);
+           break;
+           case RECTANGLE:
+               RtgleButton.setSelected(true);
+           break;
+           case CIRCLE:
+               CircleButton.setSelected(true);
+           break;    
+       }
+       
+      if(currentIntWind.getCanvas().getEdit())
+          EditButton.setSelected(true);
+       
     }
     //////////////////////////////////////////////////////////////////////////
     //  Menu events
