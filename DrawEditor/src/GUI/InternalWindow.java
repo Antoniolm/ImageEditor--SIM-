@@ -90,6 +90,11 @@ public class InternalWindow extends javax.swing.JInternalFrame {
                 canvasPanelMouseMoved(evt);
             }
         });
+        canvasPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                canvasPanelMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout canvasPanelLayout = new javax.swing.GroupLayout(canvasPanel);
         canvasPanel.setLayout(canvasPanelLayout);
@@ -128,6 +133,10 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     private void canvasPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvasPanelMouseMoved
         parent.setCursorState("("+evt.getX()+","+evt.getY()+")");
     }//GEN-LAST:event_canvasPanelMouseMoved
+
+    private void canvasPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvasPanelMouseExited
+        parent.setCursorState("");
+    }//GEN-LAST:event_canvasPanelMouseExited
 
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);

@@ -41,6 +41,7 @@
         <Container class="sm.ALM.graficos.canvas2DImagePanel" name="canvasPanel">
           <Events>
             <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="canvasPanelMouseMoved"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="canvasPanelMouseExited"/>
           </Events>
 
           <Layout>
