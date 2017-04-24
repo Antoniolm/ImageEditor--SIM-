@@ -91,7 +91,10 @@ public class canvas2DImagePanel extends Canvas2DPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-
+        if(!editMode)
+            setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+        else
+            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_formMouseEntered
 
 

@@ -706,21 +706,18 @@ public class MainWindow extends javax.swing.JFrame {
         StateBarLabel.setText("Circle");
         currentIntWind.setGeometry(GeometryType.CIRCLE);
         currentIntWind.getCanvas().setEdit(EditButton.isSelected());
-        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_CircleButtonActionPerformed
 
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
         currentIntWind.setGeometry(GeometryType.RECTANGLE);
         currentIntWind.getCanvas().setEdit(EditButton.isSelected());
-        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_RtgleButtonActionPerformed
 
     private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
         StateBarLabel.setText("Line");
         currentIntWind.setGeometry(GeometryType.LINE);
         currentIntWind.getCanvas().setEdit(EditButton.isSelected());
-        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_LineButtonActionPerformed
 
     //////////////////////////////////////////////////////////////////////////
@@ -730,12 +727,10 @@ public class MainWindow extends javax.swing.JFrame {
         StateBarLabel.setText("Point");
         currentIntWind.setGeometry(GeometryType.POINT);
         currentIntWind.getCanvas().setEdit(EditButton.isSelected());
-        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_PointButtonActionPerformed
 
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
         currentIntWind.getCanvas().setEdit(EditButton.isSelected());
-        //currentIntWind.getCanvas().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_EditButtonActionPerformed
 
     private void FilledButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledButtonActionPerformed

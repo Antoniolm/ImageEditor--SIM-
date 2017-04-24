@@ -119,11 +119,7 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        //if(!canvasPanel.getEdit())
-            canvasPanel.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        //else
-          //  canvasPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        
+               
     }//GEN-LAST:event_formMouseEntered
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
