@@ -6,10 +6,14 @@
 package sm.ALM.graficos;
 
 import com.sun.javafx.iio.ImageStorage;
+import java.awt.BasicStroke;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -24,6 +28,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
      */
     public canvas2DImagePanel() {
         initComponents();
+        clip =new Rectangle2D.Float(0,0,300,300);
     }
 
     
@@ -50,6 +55,12 @@ public class canvas2DImagePanel extends Canvas2DPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         if(image!=null) g.drawImage(image,0,0,this);
+        
+        Graphics2D g2d = (Graphics2D)g;
+        float[] patternLine = { 5.0F, 5.0F };
+        g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, 1.0F, patternLine, 0.0F));
+        g2d.draw(clip);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +71,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setBackground(new java.awt.Color(204, 204, 204));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 formMouseEntered(evt);

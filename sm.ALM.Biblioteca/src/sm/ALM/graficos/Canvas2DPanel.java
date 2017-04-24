@@ -46,6 +46,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public Point initPos;
     Shape currentShape;
     List<Shape> vShape;
+    Shape clip;
     static boolean editMode=false;
     Attribute attribute;
     
@@ -91,6 +92,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D)g;
         
         attribute.apply(g2d);
+        g2d.clip(clip);
         
         if(!attribute.getFilled())
             for(Shape s:vShape)
