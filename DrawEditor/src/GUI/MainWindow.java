@@ -81,6 +81,9 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup4 = new javax.swing.ButtonGroup();
         DrawPanel = new javax.swing.JPanel();
         toolBarPanel = new javax.swing.JPanel();
+        NewFileButton = new javax.swing.JButton();
+        OpenButton = new javax.swing.JButton();
+        SaveButton = new javax.swing.JButton();
         PointButton = new javax.swing.JToggleButton();
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
@@ -105,6 +108,8 @@ public class MainWindow extends javax.swing.JFrame {
         contrastButton = new javax.swing.JButton();
         LightUpButton = new javax.swing.JButton();
         GetDarkButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        SenButton = new javax.swing.JButton();
         RotationPanel = new javax.swing.JPanel();
         RotationSlider = new javax.swing.JSlider();
         rot90Button = new javax.swing.JButton();
@@ -129,9 +134,40 @@ public class MainWindow extends javax.swing.JFrame {
 
         DrawPanel.setLayout(new java.awt.BorderLayout());
 
+        NewFileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo.png"))); // NOI18N
+        NewFileButton.setToolTipText("New file");
+        NewFileButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        NewFileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewFileButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(NewFileButton);
+
+        OpenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/abrir.png"))); // NOI18N
+        OpenButton.setToolTipText("Open file");
+        OpenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        OpenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(OpenButton);
+
+        SaveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Guardar.gif"))); // NOI18N
+        SaveButton.setToolTipText("Save file");
+        SaveButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(SaveButton);
+
         buttonGroup1.add(PointButton);
         PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/punto.png"))); // NOI18N
         PointButton.setSelected(true);
+        PointButton.setToolTipText("Point");
         PointButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PointButton.setFocusable(false);
         PointButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -145,6 +181,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(LineButton);
         LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/linea.png"))); // NOI18N
+        LineButton.setToolTipText("Line");
         LineButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LineButton.setFocusable(false);
         LineButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -158,6 +195,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(RtgleButton);
         RtgleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rectangulo.png"))); // NOI18N
+        RtgleButton.setToolTipText("Rectangle");
         RtgleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RtgleButton.setFocusable(false);
         RtgleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -171,6 +209,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(CircleButton);
         CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/elipse.png"))); // NOI18N
+        CircleButton.setToolTipText("Ellipse");
         CircleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CircleButton.setFocusable(false);
         CircleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -184,6 +223,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup1.add(EditButton);
         EditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/seleccion.png"))); // NOI18N
+        EditButton.setToolTipText("Edit mode");
         EditButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +233,7 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(EditButton);
         toolBarPanel.add(jSeparator1);
 
-        ColorCombo.setToolTipText("");
+        ColorCombo.setToolTipText("Color");
         ColorCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ColorComboActionPerformed(evt);
@@ -201,6 +241,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(ColorCombo);
 
+        thickSpinner.setToolTipText("Thickness");
         thickSpinner.setMinimumSize(new java.awt.Dimension(50, 22));
         thickSpinner.setPreferredSize(new java.awt.Dimension(50, 22));
         thickSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -211,6 +252,7 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(thickSpinner);
 
         FilledButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rellenar.png"))); // NOI18N
+        FilledButton.setToolTipText("Filled");
         FilledButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         FilledButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +262,7 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(FilledButton);
 
         TransButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/transparencia.png"))); // NOI18N
+        TransButton.setToolTipText("Transparency");
         TransButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         TransButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,6 +272,7 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(TransButton);
 
         SmoothButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/alisar.png"))); // NOI18N
+        SmoothButton.setToolTipText("Smooth");
         SmoothButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SmoothButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,9 +299,11 @@ public class MainWindow extends javax.swing.JFrame {
         AttributePanel.add(StateBarPanel, java.awt.BorderLayout.SOUTH);
 
         AttributeToolBar.setRollover(true);
+        AttributeToolBar.setPreferredSize(new java.awt.Dimension(953, 85));
 
         ShinePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Shine"));
-        ShinePanel.setPreferredSize(new java.awt.Dimension(140, 110));
+        ShinePanel.setToolTipText("Shine");
+        ShinePanel.setPreferredSize(new java.awt.Dimension(140, 90));
 
         ShineSlider.setMaximum(255);
         ShineSlider.setMinimum(-255);
@@ -281,6 +327,7 @@ public class MainWindow extends javax.swing.JFrame {
         AttributeToolBar.add(ShinePanel);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filter"));
+        jPanel1.setToolTipText("Filter");
         jPanel1.setPreferredSize(new java.awt.Dimension(140, 110));
 
         FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaciano" }));
@@ -299,6 +346,7 @@ public class MainWindow extends javax.swing.JFrame {
         AttributeToolBar.add(jPanel1);
 
         ContrastPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Contrast"));
+        ContrastPanel.setToolTipText("Contrast");
         ContrastPanel.setPreferredSize(new java.awt.Dimension(140, 110));
 
         contrastButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/contraste.png"))); // NOI18N
@@ -333,7 +381,22 @@ public class MainWindow extends javax.swing.JFrame {
 
         AttributeToolBar.add(ContrastPanel);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
+        jPanel2.setToolTipText("SenFilter");
+        jPanel2.setPreferredSize(new java.awt.Dimension(140, 110));
+
+        SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
+        SenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SenButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(SenButton);
+
+        AttributeToolBar.add(jPanel2);
+
         RotationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Rotation"));
+        RotationPanel.setToolTipText("Rotation");
         RotationPanel.setMinimumSize(new java.awt.Dimension(140, 100));
         RotationPanel.setPreferredSize(new java.awt.Dimension(280, 110));
 
@@ -389,6 +452,7 @@ public class MainWindow extends javax.swing.JFrame {
         AttributeToolBar.add(RotationPanel);
 
         ScalePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Scale"));
+        ScalePanel.setToolTipText("Scale");
         ScalePanel.setPreferredSize(new java.awt.Dimension(100, 110));
 
         MoreScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/aumentar.png"))); // NOI18N
@@ -436,7 +500,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 191, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
 
         getContentPane().add(mainDesktop, java.awt.BorderLayout.CENTER);
@@ -895,6 +959,86 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_GetDarkButtonActionPerformed
 
+    private void SenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenButtonActionPerformed
+        /*double K = 255.0D / Math.sin(Math.toRadians(90.0D));
+        byte[] lt = new byte['?'];
+        for (int l = 0; l <= 255; l++) {
+            lt[l] = ((byte)(int)(K * Math.abs(Math.sin(Math.toRadians(l * w)))));
+        }
+        ByteLookupTable slt = new ByteLookupTable(0, lt);
+        return slt;*/
+    }//GEN-LAST:event_SenButtonActionPerformed
+
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+        String[] filterList=ImageIO.getWriterFormatNames();
+        JFileChooser dlg = new JFileChooser();
+        
+        for(int i=0;i<filterList.length;i=i+2){
+            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i+1]));
+        }
+        
+        int resp = dlg.showSaveDialog(this);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+            try {
+            BufferedImage img = currentIntWind.getCanvas().getImage(true);
+            if (img != null) {
+            File f = dlg.getSelectedFile();
+            ImageIO.write(img, "jpg", f);
+            currentIntWind.setTitle(f.getName());
+            }
+            }catch (Exception ex) {
+            System.err.println("Error al guardar la imagen");
+            }
+        }
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
+        String[] filterList=ImageIO.getReaderFormatNames();
+        JFileChooser dlg = new JFileChooser();
+        
+        for(int i=0;i<filterList.length;i=i+2){
+            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i+1]));
+        }
+        
+        int resp = dlg.showOpenDialog(this);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+             try{
+                File f = dlg.getSelectedFile();
+                BufferedImage img = ImageIO.read(f);
+                currentIntWind = new InternalWindow(this);
+                currentIntWind.getCanvas().setImage(img);
+                mainDesktop.add(currentIntWind);
+                currentIntWind.setTitle(f.getName());
+                currentIntWind.setVisible(true);
+                currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+            }catch(Exception ex){
+                System.err.println("Error al leer la imagen");
+            }
+        }
+    }//GEN-LAST:event_OpenButtonActionPerformed
+
+    private void NewFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileButtonActionPerformed
+        InternalWindow newIntWind = new InternalWindow(this);
+        
+        Point2D currentPositionWind=currentIntWind.getLocation();
+        currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
+        newIntWind.setLocation((Point) currentPositionWind);
+        
+        currentIntWind=newIntWind;
+        mainDesktop.add(currentIntWind);
+        currentIntWind.setVisible(true);
+        
+         BufferedImage img;
+         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_RGB);
+         currentIntWind.getCanvas().setImage(img);
+         currentIntWind.getCanvas().setColor(new Color(255,255,255));
+         
+         Graphics2D g2d =img.createGraphics();
+         g2d.fillRect(0,0,img.getWidth(),img.getHeight());
+         
+         currentIntWind.getCanvas().setColor(new Color(0,0,0));
+    }//GEN-LAST:event_NewFileButtonActionPerformed
+
     
     
     
@@ -922,16 +1066,20 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JButton MoreScaleButton;
+    private javax.swing.JButton NewFileButton;
+    private javax.swing.JButton OpenButton;
     private javax.swing.JMenuItem OpenMenu;
     private javax.swing.JToggleButton PointButton;
     private javax.swing.JPanel RotationPanel;
     private javax.swing.JSlider RotationSlider;
     private javax.swing.JToggleButton RtgleButton;
+    private javax.swing.JButton SaveButton;
     private javax.swing.JMenuItem SaveMenu;
     private javax.swing.JPanel ScalePanel;
     private javax.swing.JCheckBoxMenuItem SeeAttMenu;
     private javax.swing.JCheckBoxMenuItem SeeGeoMenu;
     private javax.swing.JCheckBoxMenuItem SeeSBMenu;
+    private javax.swing.JButton SenButton;
     private javax.swing.JPanel ShinePanel;
     private javax.swing.JSlider ShineSlider;
     private javax.swing.JToggleButton SmoothButton;
@@ -944,6 +1092,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton contrastButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
