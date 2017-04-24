@@ -22,6 +22,7 @@ package sm.ALM.graficos;
 import static sm.ALM.graficos.Canvas2DPanel.*;
 import java.awt.Color;
 import java.awt.Composite;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -71,6 +72,14 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                     }
                 repaint();                  
                 }
+                @Override
+                public void mouseReleased(MouseEvent e){
+                    if(editMode)
+                        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    else
+                        setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+                    repaint();
+                }
         });
         
         //Added our mouseMotionListener 
@@ -79,12 +88,14 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 public void mouseDragged(MouseEvent e){
                     if(editMode){
                         setLocationShape(e.getPoint());
+                        setCursor(new Cursor(Cursor.MOVE_CURSOR));
                     }
                     else{
                         updateShape(e.getPoint());
                     }
                 repaint();                  
-                } 
+                }
+                
         }); 
     }
     
