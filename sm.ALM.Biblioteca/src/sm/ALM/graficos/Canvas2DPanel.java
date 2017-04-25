@@ -50,12 +50,16 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     Shape clip;
     boolean editMode;
     Attribute attribute;
+    int currentShine;
+    int currentRotation;
     
     public Canvas2DPanel() {
         initComponents();
         initPos=new Point(0,0);
         vShape = new ArrayList();
         editMode=false;
+        currentShine=0;
+        currentRotation=0;
         attribute=new Attribute();
         geometry=POINT;
         setBackground(Color.white);
@@ -191,6 +195,21 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return clip;
     }
     
+    public int  getShine(){
+        return currentShine;
+    }
+    
+    public int  getRotation(){
+        return currentRotation;
+    }
+    
+    public void setRotation(int newRot){
+        currentRotation=newRot;
+    }
+    
+    public void setShine(int newShine){
+        currentShine=newShine;
+    }
     /**
      * It will create a new shape 
      * @return 

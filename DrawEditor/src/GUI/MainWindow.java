@@ -592,6 +592,8 @@ public class MainWindow extends javax.swing.JFrame {
        TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
        SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
        thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
+       ShineSlider.setValue(currentIntWind.getCanvas().getShine());
+       RotationSlider.setValue(currentIntWind.getCanvas().getRotation());
        
        switch(currentIntWind.getCanvas().getGeometry()){
            case POINT:
@@ -769,6 +771,7 @@ public class MainWindow extends javax.swing.JFrame {
                     BufferedImage imgDest = rop.filter(imgSource, null);
                     currentIntWind.getCanvas().setImage(imgDest);
                     currentIntWind.getCanvas().repaint();
+                    currentIntWind.getCanvas().setShine(ShineSlider.getValue());
                 } catch(IllegalArgumentException e){
                         System.err.println(e.getLocalizedMessage());
                 }
@@ -916,13 +919,13 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentIntWind!=null) {
             if(imgSource!=null){
                 try{
-                    System.out.println(RotationSlider.getValue());
                     AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(RotationSlider.getValue()),imgSource.getWidth()/2,imgSource.getHeight()/2);
                     AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                     BufferedImage imgDest = atop.filter(imgSource, null);
                     ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
                     currentIntWind.getCanvas().setImage(imgDest);
                     currentIntWind.getCanvas().repaint();
+                    currentIntWind.getCanvas().setRotation(RotationSlider.getValue());
                 } catch(IllegalArgumentException e){
                         System.err.println(e.getLocalizedMessage());
                 }
