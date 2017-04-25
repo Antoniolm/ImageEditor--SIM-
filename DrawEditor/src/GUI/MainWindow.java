@@ -645,7 +645,7 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage img = currentIntWind.getCanvas().getImage(true);
             if (img != null) {
             File f = dlg.getSelectedFile();
-            ImageIO.write(img, "jpg", f);
+            ImageIO.write(img, "png", f);
             currentIntWind.setTitle(f.getName());
             }
             }catch (Exception ex) {
@@ -930,8 +930,7 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
-                    int type = LookupTableProducer.TYPE_SFUNCION;
-                    LookupTable lt = LookupTableProducer.createLookupTable(type);
+                    LookupTable lt = LookupTableProducer.createLookupTable(LookupTableProducer.TYPE_SFUNCION);
                     LookupOp lop = new LookupOp(lt, null);
                     // Imagen origen y destino iguales
                     lop.filter( imgSrce , imgSrce);
@@ -948,8 +947,7 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
-                    int type = LookupTableProducer.TYPE_LOGARITHM;
-                    LookupTable lt = LookupTableProducer.createLookupTable(type);
+                    LookupTable lt = LookupTableProducer.createLookupTable(LookupTableProducer.TYPE_LOGARITHM);
                     LookupOp lop = new LookupOp(lt, null);
                     // Imagen origen y destino iguales
                     lop.filter( imgSrce , imgSrce);
@@ -966,8 +964,7 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
-                    int type = LookupTableProducer.TYPE_POWER;
-                    LookupTable lt = LookupTableProducer.createLookupTable(type);
+                    LookupTable lt = LookupTableProducer.createLookupTable(LookupTableProducer.TYPE_POWER);
                     LookupOp lop = new LookupOp(lt, null);
                     // Imagen origen y destino iguales
                     lop.filter( imgSrce , imgSrce);
@@ -1018,7 +1015,7 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage img = currentIntWind.getCanvas().getImage(true);
             if (img != null) {
             File f = dlg.getSelectedFile();
-            ImageIO.write(img, "jpg", f);
+            ImageIO.write(img, "png", f);
             currentIntWind.setTitle(f.getName());
             }
             }catch (Exception ex) {
