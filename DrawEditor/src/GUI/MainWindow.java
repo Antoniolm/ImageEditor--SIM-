@@ -36,6 +36,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.ByteLookupTable;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.awt.image.LookupOp;
@@ -979,13 +980,28 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_GetDarkButtonActionPerformed
 
     private void SenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenButtonActionPerformed
-        /*double K = 255.0D / Math.sin(Math.toRadians(90.0D));
-        byte[] lt = new byte['?'];
-        for (int l = 0; l <= 255; l++) {
-            lt[l] = ((byte)(int)(K * Math.abs(Math.sin(Math.toRadians(l * w)))));
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    double K = 255.0/ Math.sin(Math.PI/2.0);
+                    byte[] lt = new byte[256];
+                    for (int x = 0; x <= 255; x++) {
+                        lt[x] = ((byte)(K * Math.abs(Math.sin(Math.toRadians((x * 1.0) * (180.0/255.0))))));
+                    }
+                    ByteLookupTable bLookUpTable = new ByteLookupTable(0, lt);
+                    // Imagen origen y destino iguales
+                    LookupOp lop = new LookupOp(bLookUpTable, null);
+                    lop.filter( imgSrce , imgSrce);
+                    currentIntWind.getCanvas().repaint();
+                } catch(Exception e){
+                    System.err.println(e.getLocalizedMessage());
+                }
+            }
         }
-        ByteLookupTable slt = new ByteLookupTable(0, lt);
-        return slt;*/
+        
+        
+        
     }//GEN-LAST:event_SenButtonActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
