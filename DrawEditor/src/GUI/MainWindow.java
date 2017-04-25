@@ -84,6 +84,7 @@ public class MainWindow extends javax.swing.JFrame {
         NewFileButton = new javax.swing.JButton();
         OpenButton = new javax.swing.JButton();
         SaveButton = new javax.swing.JButton();
+        CopyButton = new javax.swing.JButton();
         PointButton = new javax.swing.JToggleButton();
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
@@ -163,6 +164,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(SaveButton);
+
+        CopyButton.setText("jButton1");
+        CopyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopyButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(CopyButton);
 
         buttonGroup1.add(PointButton);
         PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/punto.png"))); // NOI18N
@@ -1075,6 +1084,33 @@ public class MainWindow extends javax.swing.JFrame {
          currentIntWind.getCanvas().setColor(new Color(0,0,0));
     }//GEN-LAST:event_NewFileButtonActionPerformed
 
+    private void CopyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyButtonActionPerformed
+        InternalWindow newIntWind = new InternalWindow(this);
+        
+        if(currentIntWind!= null){
+            Point2D currentPositionWind=currentIntWind.getLocation();
+            currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
+            newIntWind.setLocation((Point) currentPositionWind);
+        
+            
+            newIntWind.getCanvas().setImage(currentIntWind.getCanvas().getImage());
+            newIntWind.getCanvas().setClip(currentIntWind.getCanvas().getClip());
+            currentIntWind=newIntWind;
+            mainDesktop.add(currentIntWind);
+            currentIntWind.setVisible(true);
+        
+            //BufferedImage img;
+            //img = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
+            //currentIntWind.getCanvas().setImage(img);
+            //currentIntWind.getCanvas().setColor(new Color(255,255,255));
+         
+            //Graphics2D g2d =currentIntWind.getCanvas().getImage().createGraphics();
+            //g2d.fillRect(0,0,img.getWidth(),img.getHeight());
+         
+            //currentIntWind.getCanvas().setColor(new Color(0,0,0));   
+        }
+    }//GEN-LAST:event_CopyButtonActionPerformed
+
     
     
     
@@ -1089,6 +1125,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JComboBox ColorCombo;
     private javax.swing.JPanel ContrastPanel;
+    private javax.swing.JButton CopyButton;
     private javax.swing.JLabel CursorPosLabel;
     private javax.swing.JPanel DrawPanel;
     private javax.swing.JToggleButton EditButton;
