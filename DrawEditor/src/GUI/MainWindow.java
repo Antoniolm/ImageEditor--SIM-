@@ -764,10 +764,16 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SmoothButtonActionPerformed
 
     private void ShineSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ShineSliderStateChanged
+        RescaleOp rop=null;
         if(currentIntWind!=null) {
             if(imgSource!=null){
                 try{
-                    RescaleOp rop = new RescaleOp(1.0F, ShineSlider.getValue(), null);
+                    if(currentIntWind.getCanvas().getImage().getColorModel().hasAlpha()){
+                       rop = new RescaleOp(new float[]{1.0f,1.0f,1.0f,1.0f},new float[]{ShineSlider.getValue(),ShineSlider.getValue(),ShineSlider.getValue(),0.0f},null); 
+                    }
+                    else{
+                        rop = new RescaleOp(1.0F, ShineSlider.getValue(), null);
+                    }
                     BufferedImage imgDest = rop.filter(imgSource, null);
                     currentIntWind.getCanvas().setImage(imgDest);
                     currentIntWind.getCanvas().repaint();
