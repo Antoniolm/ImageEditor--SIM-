@@ -819,6 +819,7 @@ public class MainWindow extends javax.swing.JFrame {
             try{
                AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                BufferedImage imgDest = atop.filter( imgSrce, null);
+               ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
                currentIntWind.getCanvas().setImage(imgDest);
                currentIntWind.getCanvas().repaint();
             }catch(Exception e){ 
@@ -835,6 +836,7 @@ public class MainWindow extends javax.swing.JFrame {
             try{
                AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                BufferedImage imgDest = atop.filter( imgSrce, null);
+               ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
                currentIntWind.getCanvas().setImage(imgDest);
                currentIntWind.getCanvas().repaint();
             }catch(Exception e){ 
