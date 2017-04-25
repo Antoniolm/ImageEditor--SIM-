@@ -904,7 +904,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_rot270ButtonActionPerformed
 
     private void RotationSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RotationSliderFocusGained
-        imgSource=currentIntWind.getCanvas().getImage();
+        if(currentIntWind!=null)
+            imgSource=currentIntWind.getCanvas().getImage();
     }//GEN-LAST:event_RotationSliderFocusGained
 
     private void RotationSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RotationSliderFocusLost
@@ -915,6 +916,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentIntWind!=null) {
             if(imgSource!=null){
                 try{
+                    System.out.println(RotationSlider.getValue());
                     AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(RotationSlider.getValue()),imgSource.getWidth()/2,imgSource.getHeight()/2);
                     AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                     BufferedImage imgDest = atop.filter(imgSource, null);
@@ -1091,23 +1093,12 @@ public class MainWindow extends javax.swing.JFrame {
             Point2D currentPositionWind=currentIntWind.getLocation();
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
             newIntWind.setLocation((Point) currentPositionWind);
-        
-            
+                    
             newIntWind.getCanvas().setImage(currentIntWind.getCanvas().getImage());
             newIntWind.getCanvas().setClip(currentIntWind.getCanvas().getClip());
             currentIntWind=newIntWind;
             mainDesktop.add(currentIntWind);
             currentIntWind.setVisible(true);
-        
-            //BufferedImage img;
-            //img = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
-            //currentIntWind.getCanvas().setImage(img);
-            //currentIntWind.getCanvas().setColor(new Color(255,255,255));
-         
-            //Graphics2D g2d =currentIntWind.getCanvas().getImage().createGraphics();
-            //g2d.fillRect(0,0,img.getWidth(),img.getHeight());
-         
-            //currentIntWind.getCanvas().setColor(new Color(0,0,0));   
         }
     }//GEN-LAST:event_CopyButtonActionPerformed
 
