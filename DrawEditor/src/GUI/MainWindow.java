@@ -53,6 +53,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sm.ALM.imagen.SepiaOp;
 import sm.image.KernelProducer;
 import sm.image.LookupTableProducer;
 
@@ -116,7 +117,7 @@ public class MainWindow extends javax.swing.JFrame {
         GetDarkButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         SenButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        sepiaButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         ColorSpaceCombo = new javax.swing.JComboBox();
@@ -402,10 +403,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
         jPanel2.setToolTipText("SenFilter");
-        jPanel2.setPreferredSize(new java.awt.Dimension(90, 110));
+        jPanel2.setPreferredSize(new java.awt.Dimension(100, 110));
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
-        SenButton.setPreferredSize(new java.awt.Dimension(45, 33));
+        SenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SenButton.setPreferredSize(new java.awt.Dimension(31, 31));
         SenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SenButtonActionPerformed(evt);
@@ -413,12 +415,15 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel2.add(SenButton);
 
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        sepiaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/transparencia.png"))); // NOI18N
+        sepiaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        sepiaButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        sepiaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                sepiaButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2);
+        jPanel2.add(sepiaButton);
 
         AttributeToolBar.add(jPanel2);
 
@@ -445,7 +450,7 @@ public class MainWindow extends javax.swing.JFrame {
         RotationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Rotation"));
         RotationPanel.setToolTipText("Rotation");
         RotationPanel.setMinimumSize(new java.awt.Dimension(140, 100));
-        RotationPanel.setPreferredSize(new java.awt.Dimension(280, 110));
+        RotationPanel.setPreferredSize(new java.awt.Dimension(270, 110));
 
         RotationSlider.setMaximum(360);
         RotationSlider.setToolTipText("");
@@ -1053,9 +1058,7 @@ public class MainWindow extends javax.swing.JFrame {
                     System.err.println(e.getLocalizedMessage());
                 }
             }
-        }
-        
-        
+        } 
         
     }//GEN-LAST:event_SenButtonActionPerformed
 
@@ -1149,9 +1152,20 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CopyButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void sepiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sepiaButtonActionPerformed
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    SepiaOp lop = new SepiaOp();
+                    lop.filter( imgSrce , imgSrce);
+                    currentIntWind.getCanvas().repaint();
+                } catch(Exception e){
+                    System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_sepiaButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(currentIntWind!=null) {
@@ -1263,7 +1277,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton contrastButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1273,6 +1286,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton rot180Button;
     private javax.swing.JButton rot270Button;
     private javax.swing.JButton rot90Button;
+    private javax.swing.JButton sepiaButton;
     private javax.swing.JSpinner thickSpinner;
     private javax.swing.JPanel toolBarPanel;
     // End of variables declaration//GEN-END:variables
