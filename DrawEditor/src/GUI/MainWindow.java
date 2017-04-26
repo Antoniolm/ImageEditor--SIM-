@@ -30,6 +30,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Shape;
+import java.awt.Transparency;
 import java.awt.color.ColorSpace;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
@@ -37,11 +38,15 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ByteLookupTable;
+import java.awt.image.ColorConvertOp;
+import java.awt.image.ComponentColorModel;
 import java.awt.image.ConvolveOp;
+import java.awt.image.DataBuffer;
 import java.awt.image.Kernel;
 import java.awt.image.LookupOp;
 import java.awt.image.LookupTable;
 import java.awt.image.RescaleOp;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -60,7 +65,7 @@ public class MainWindow extends javax.swing.JFrame {
     BufferedImage imgSource;
     
     public MainWindow() {
-        setMinimumSize(new Dimension(800,700));
+        setMinimumSize(new Dimension(1000,900));
         initComponents();
         thickSpinner.setValue(1);        
         
@@ -111,6 +116,10 @@ public class MainWindow extends javax.swing.JFrame {
         GetDarkButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         SenButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        ColorSpaceCombo = new javax.swing.JComboBox();
         RotationPanel = new javax.swing.JPanel();
         RotationSlider = new javax.swing.JSlider();
         rot90Button = new javax.swing.JButton();
@@ -308,11 +317,11 @@ public class MainWindow extends javax.swing.JFrame {
         AttributePanel.add(StateBarPanel, java.awt.BorderLayout.SOUTH);
 
         AttributeToolBar.setRollover(true);
-        AttributeToolBar.setPreferredSize(new java.awt.Dimension(953, 85));
+        AttributeToolBar.setPreferredSize(new java.awt.Dimension(1000, 85));
 
         ShinePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Shine"));
         ShinePanel.setToolTipText("Shine");
-        ShinePanel.setPreferredSize(new java.awt.Dimension(140, 90));
+        ShinePanel.setPreferredSize(new java.awt.Dimension(120, 90));
 
         ShineSlider.setMaximum(255);
         ShineSlider.setMinimum(-255);
@@ -337,9 +346,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filter"));
         jPanel1.setToolTipText("Filter");
-        jPanel1.setPreferredSize(new java.awt.Dimension(140, 110));
+        jPanel1.setPreferredSize(new java.awt.Dimension(100, 110));
 
         FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaciano", "Negativo" }));
+        FilterCombo.setPreferredSize(new java.awt.Dimension(80, 22));
         FilterCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 FilterComboItemStateChanged(evt);
@@ -392,9 +402,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
         jPanel2.setToolTipText("SenFilter");
-        jPanel2.setPreferredSize(new java.awt.Dimension(140, 110));
+        jPanel2.setPreferredSize(new java.awt.Dimension(90, 110));
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
+        SenButton.setPreferredSize(new java.awt.Dimension(45, 33));
         SenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SenButtonActionPerformed(evt);
@@ -402,7 +413,34 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel2.add(SenButton);
 
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2);
+
         AttributeToolBar.add(jPanel2);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Color"));
+
+        jButton1.setText("C");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1);
+
+        ColorSpaceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RGB", "YCC", "Gray" }));
+        ColorSpaceCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ColorSpaceComboItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(ColorSpaceCombo);
+
+        AttributeToolBar.add(jPanel3);
 
         RotationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Rotation"));
         RotationPanel.setToolTipText("Rotation");
@@ -505,7 +543,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainDesktop.setLayout(mainDesktopLayout);
         mainDesktopLayout.setHorizontalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
+            .addGap(0, 1119, Short.MAX_VALUE)
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -592,7 +630,7 @@ public class MainWindow extends javax.swing.JFrame {
        TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
        SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
        thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
-       ShineSlider.setValue(currentIntWind.getCanvas().getShine());
+       //ShineSlider.setValue(currentIntWind.getCanvas().getShine());
        RotationSlider.setValue(currentIntWind.getCanvas().getRotation());
        
        switch(currentIntWind.getCanvas().getGeometry()){
@@ -1111,8 +1149,67 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CopyButtonActionPerformed
 
-    
-    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                int numBand=imgSrce.getRaster().getNumBands();
+                for(int i=0;i<numBand;i++){
+                    //Creamos el modelo de color de la nueva imagen basado en un espcio de color GRAY
+                    ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
+                    ComponentColorModel cm = new ComponentColorModel(cs, false, false,Transparency.OPAQUE,DataBuffer.TYPE_BYTE);
+                    //Creamos el nuevo raster a partir del raster de la imagen original
+                    int bandList[] = {i};
+                    WritableRaster bandRaster = (WritableRaster)imgSrce.getRaster().createWritableChild(0,0,
+                    imgSrce.getWidth(), imgSrce.getHeight(), 0, 0, bandList);
+                    //Creamos una nueva imagen que contiene como raster el correspondiente a la banda
+                    BufferedImage img = new BufferedImage(cm, bandRaster, false, null);
+
+                    currentIntWind = new InternalWindow(this);
+                    currentIntWind.getCanvas().setImage(img);
+                    mainDesktop.add(currentIntWind);
+                    currentIntWind.setVisible(true);
+                    currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+
+                    currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
+                    
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ColorSpaceComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ColorSpaceComboItemStateChanged
+       if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                if (imgSrce.getColorModel().getColorSpace().isCS_sRGB()) {
+                    ColorSpace cs=ColorSpace.getInstance(ColorSpace.CS_sRGB);;
+                    switch(ColorSpaceCombo.getSelectedItem().toString()){
+                        case "PYCC":
+                            cs =ColorSpace.getInstance(ColorSpace.CS_PYCC);
+                        break;
+                        case "Gray":
+                            cs =ColorSpace.getInstance(ColorSpace.CS_PYCC);
+                        break;
+                    }
+                    ColorConvertOp cop = new ColorConvertOp(cs, null);
+                    BufferedImage img = cop.filter(imgSrce, null);
+                    
+                    currentIntWind = new InternalWindow(this);
+                    currentIntWind.getCanvas().setImage(img);
+                    mainDesktop.add(currentIntWind);
+                    currentIntWind.setVisible(true);
+                    currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+
+                    currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
+                }
+            }
+       }
+    }//GEN-LAST:event_ColorSpaceComboItemStateChanged
     
     //Methods 
     public void setCursorState(String message){
@@ -1124,6 +1221,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToolBar AttributeToolBar;
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JComboBox ColorCombo;
+    private javax.swing.JComboBox ColorSpaceCombo;
     private javax.swing.JPanel ContrastPanel;
     private javax.swing.JButton CopyButton;
     private javax.swing.JLabel CursorPosLabel;
@@ -1164,8 +1262,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton contrastButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
