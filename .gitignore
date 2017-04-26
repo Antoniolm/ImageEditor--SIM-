@@ -5,3 +5,5 @@
 /sm.ALM.Biblioteca/build/
 /sm.ALM.Biblioteca/dist/
 *.zip
+/sm.ALM.image/nbproject/private/
+/sm.ALM.image/build/
