@@ -119,7 +119,7 @@ public class MainWindow extends javax.swing.JFrame {
         SenButton = new javax.swing.JButton();
         sepiaButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        BandButton = new javax.swing.JButton();
         ColorSpaceCombo = new javax.swing.JComboBox();
         RotationPanel = new javax.swing.JPanel();
         RotationSlider = new javax.swing.JSlider();
@@ -415,9 +415,8 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel2.add(SenButton);
 
-        sepiaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/transparencia.png"))); // NOI18N
+        sepiaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sepia.png"))); // NOI18N
         sepiaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        sepiaButton.setPreferredSize(new java.awt.Dimension(31, 31));
         sepiaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sepiaButtonActionPerformed(evt);
@@ -429,18 +428,24 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Color"));
 
-        jButton1.setText("C");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/bandas.png"))); // NOI18N
+        BandButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        BandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BandButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1);
+        jPanel3.add(BandButton);
 
-        ColorSpaceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RGB", "YCC", "Gray" }));
+        ColorSpaceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RGB", "PYCC", "Gray" }));
         ColorSpaceCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 ColorSpaceComboItemStateChanged(evt);
+            }
+        });
+        ColorSpaceCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ColorSpaceComboActionPerformed(evt);
             }
         });
         jPanel3.add(ColorSpaceCombo);
@@ -1167,9 +1172,10 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sepiaButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BandButtonActionPerformed
         if(currentIntWind!=null) {
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            String name=currentIntWind.getTitle();
             if(imgSrce!=null){
                 int numBand=imgSrce.getRaster().getNumBands();
                 for(int i=0;i<numBand;i++){
@@ -1184,6 +1190,7 @@ public class MainWindow extends javax.swing.JFrame {
                     BufferedImage img = new BufferedImage(cm, bandRaster, false, null);
 
                     currentIntWind = new InternalWindow(this);
+                    currentIntWind.setTitle(name+" (banda "+i+")");
                     currentIntWind.getCanvas().setImage(img);
                     mainDesktop.add(currentIntWind);
                     currentIntWind.setVisible(true);
@@ -1194,36 +1201,50 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BandButtonActionPerformed
 
     private void ColorSpaceComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ColorSpaceComboItemStateChanged
-       if(currentIntWind!=null) {
+       
+    }//GEN-LAST:event_ColorSpaceComboItemStateChanged
+
+    private void ColorSpaceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorSpaceComboActionPerformed
+        if(currentIntWind!=null) {
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            String name=currentIntWind.getTitle();
             if(imgSrce!=null){
-                if (imgSrce.getColorModel().getColorSpace().isCS_sRGB()) {
-                    ColorSpace cs=ColorSpace.getInstance(ColorSpace.CS_sRGB);;
+                    ColorSpace cs=null;
                     switch(ColorSpaceCombo.getSelectedItem().toString()){
+                        case "RGB":
+                            if (!imgSrce.getColorModel().getColorSpace().isCS_sRGB()) 
+                                cs=ColorSpace.getInstance(ColorSpace.CS_sRGB);
+                            name+="(RGB)";
+                        break;
                         case "PYCC":
                             cs =ColorSpace.getInstance(ColorSpace.CS_PYCC);
+                            name+="(PYCC)";
                         break;
                         case "Gray":
-                            cs =ColorSpace.getInstance(ColorSpace.CS_PYCC);
+                            cs =ColorSpace.getInstance(ColorSpace.CS_GRAY);
+                            name+="(GRAY)";
                         break;
                     }
-                    ColorConvertOp cop = new ColorConvertOp(cs, null);
-                    BufferedImage img = cop.filter(imgSrce, null);
                     
-                    currentIntWind = new InternalWindow(this);
-                    currentIntWind.getCanvas().setImage(img);
-                    mainDesktop.add(currentIntWind);
-                    currentIntWind.setVisible(true);
-                    currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+                    if(cs!=null ){
+                        ColorConvertOp cop = new ColorConvertOp(cs, null);
+                        BufferedImage img = cop.filter(imgSrce, null);
 
-                    currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
-                }
+                        currentIntWind = new InternalWindow(this);
+                        currentIntWind.setTitle(name);
+                        currentIntWind.getCanvas().setImage(img);
+                        mainDesktop.add(currentIntWind);
+                        currentIntWind.setVisible(true);
+                        currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+
+                        currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
+                    }
             }
        }
-    }//GEN-LAST:event_ColorSpaceComboItemStateChanged
+    }//GEN-LAST:event_ColorSpaceComboActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1233,6 +1254,7 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AttributePanel;
     private javax.swing.JToolBar AttributeToolBar;
+    private javax.swing.JButton BandButton;
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JComboBox ColorCombo;
     private javax.swing.JComboBox ColorSpaceCombo;
@@ -1276,7 +1298,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton contrastButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
