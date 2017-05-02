@@ -40,6 +40,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ByteLookupTable;
 import java.awt.image.ColorConvertOp;
+import java.awt.image.ColorModel;
 import java.awt.image.ComponentColorModel;
 import java.awt.image.ConvolveOp;
 import java.awt.image.DataBuffer;
@@ -54,6 +55,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sm.ALM.imagen.MybufferedImageOp;
 import sm.ALM.imagen.SepiaOp;
 import sm.ALM.imagen.UmbralizacionOp;
 import sm.image.EqualizationOp;
@@ -122,6 +124,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         SenButton = new javax.swing.JButton();
         sepiaButton = new javax.swing.JButton();
+        OwnFilterButton = new javax.swing.JButton();
         dyeButton = new javax.swing.JButton();
         equalizationButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -411,7 +414,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
         jPanel2.setToolTipText("SenFilter");
-        jPanel2.setPreferredSize(new java.awt.Dimension(180, 110));
+        jPanel2.setPreferredSize(new java.awt.Dimension(210, 110));
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
         SenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -431,6 +434,16 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(sepiaButton);
+
+        OwnFilterButton.setText("P");
+        OwnFilterButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        OwnFilterButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        OwnFilterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OwnFilterButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(OwnFilterButton);
 
         dyeButton.setText("T");
         dyeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -873,10 +886,9 @@ public class MainWindow extends javax.swing.JFrame {
                     else{
                         rop = new RescaleOp(1.0F, ShineSlider.getValue(), null);
                     }
-                    BufferedImage imgDest = rop.filter(imgSource, null);
-                    currentIntWind.getCanvas().setImage(imgDest);
-                    currentIntWind.getCanvas().repaint();
-                    currentIntWind.getCanvas().setShine(ShineSlider.getValue());
+                    rop.filter(imgSource, currentIntWind.getCanvas().getImage());
+                    mainDesktop.repaint();
+                    
                 } catch(IllegalArgumentException e){
                         System.err.println(e.getLocalizedMessage());
                 }
@@ -889,7 +901,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_FilterComboItemStateChanged
 
     private void ShineSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ShineSliderFocusGained
-        imgSource=currentIntWind.getCanvas().getImage();
+        if(currentIntWind!=null){
+             ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
+             WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
+             boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
+             imgSource = new BufferedImage(cm,raster,alfaPre,null);
+        }
     }//GEN-LAST:event_ShineSliderFocusGained
 
     private void ShineSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ShineSliderFocusLost
@@ -1355,6 +1372,23 @@ public class MainWindow extends javax.swing.JFrame {
     private void umbraSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusLost
         imgSource=null;
     }//GEN-LAST:event_umbraSliderFocusLost
+
+    private void OwnFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OwnFilterButtonActionPerformed
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    MybufferedImageOp ownFilter=new MybufferedImageOp();
+                    BufferedImage imgDest = ownFilter.filter(imgSrce, null);
+                    ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
+                    currentIntWind.getCanvas().setImage(imgDest);
+                    currentIntWind.getCanvas().repaint();
+                } catch(IllegalArgumentException e){
+                        System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_OwnFilterButtonActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1386,6 +1420,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton NewFileButton;
     private javax.swing.JButton OpenButton;
     private javax.swing.JMenuItem OpenMenu;
+    private javax.swing.JButton OwnFilterButton;
     private javax.swing.JToggleButton PointButton;
     private javax.swing.JPanel RotationPanel;
     private javax.swing.JSlider RotationSlider;
