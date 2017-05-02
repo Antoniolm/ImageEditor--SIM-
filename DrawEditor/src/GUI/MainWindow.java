@@ -19,6 +19,7 @@
 
 package GUI;
 
+import draweditor.FileManager;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import sm.ALM.graficos.Canvas2DPanel;
@@ -1118,11 +1119,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SenButtonActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-        String[] filterList=ImageIO.getWriterFormatNames();
+        String[] filterList=ImageIO.getWriterFileSuffixes();
         JFileChooser dlg = new JFileChooser();
+        FileManager fileManager=FileManager.getSingletonInstance();
         
-        for(int i=0;i<filterList.length;i=i+2){
-            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i+1]));
+        for(int i=0;i<filterList.length;i=i+1){
+            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
         }
         
         int resp = dlg.showSaveDialog(this);
@@ -1131,7 +1133,7 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage img = currentIntWind.getCanvas().getImage(true);
             if (img != null) {
             File f = dlg.getSelectedFile();
-            ImageIO.write(img, "png", f);
+            ImageIO.write(img, fileManager.getExtension(f.getName()), f);
             currentIntWind.setTitle(f.getName());
             }
             }catch (Exception ex) {
@@ -1141,11 +1143,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
-        String[] filterList=ImageIO.getReaderFormatNames();
+        String[] filterList=ImageIO.getWriterFileSuffixes();
         JFileChooser dlg = new JFileChooser();
-        
-        for(int i=0;i<filterList.length;i=i+2){
-            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i+1]));
+                              
+        for(int i=0;i<filterList.length;i=i+1){
+            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
         }
         
         int resp = dlg.showOpenDialog(this);
@@ -1160,6 +1162,8 @@ public class MainWindow extends javax.swing.JFrame {
                 currentIntWind.setVisible(true);
                 currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
                 
+                FileManager.getSingletonInstance().getExtension(f.getName());
+
                 currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
             }catch(Exception ex){
                 System.err.println("Error al leer la imagen");
