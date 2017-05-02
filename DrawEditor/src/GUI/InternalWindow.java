@@ -27,6 +27,7 @@ import java.awt.Cursor;
 import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
+import java.awt.image.BufferedImage;
 
 public class InternalWindow extends javax.swing.JInternalFrame {
     /**
@@ -127,7 +128,20 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formMouseMoved
 
     private void canvasPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvasPanelMouseMoved
-        parent.setCursorState("("+evt.getX()+","+evt.getY()+")");
+        BufferedImage imgSrc=canvasPanel.getImage();
+                
+        if(evt.getX()<imgSrc.getWidth() && evt.getY()<imgSrc.getHeight()){
+            int currentRGB=imgSrc.getRGB(evt.getX(),evt.getY());
+                
+            int A= (currentRGB >> 24) & 0xFF;
+            int R= (currentRGB >> 16) & 0xFF;
+            int G= (currentRGB >> 8 ) & 0xFF;
+            int B= (currentRGB) & 0xFF;
+            
+            parent.setCursorState("("+evt.getX()+","+evt.getY()+") ("+R+","+G+","+B+",["+A+"])");
+        }
+        else
+            parent.setCursorState("("+evt.getX()+","+evt.getY()+")");
     }//GEN-LAST:event_canvasPanelMouseMoved
 
     private void canvasPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvasPanelMouseExited
