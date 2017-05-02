@@ -31,7 +31,29 @@ public class UmbralizacionOp  extends BufferedImageOpAdapter{
     }
     
     public BufferedImage filter(BufferedImage src, BufferedImage dest){
+        if (src == null) {
+            throw new NullPointerException("src image is null");
+        }
+        if (dest == null) {
+            dest = createCompatibleDestImage(src, null);
+        }
 
-
+        for (int x = 0; x < src.getWidth(); x++) {
+            for (int y = 0; y < src.getHeight(); y++) {
+                int currentRGB=src.getRGB(x, y);
+                
+                int R= (currentRGB >> 16) & 0xFF;
+                int G= (currentRGB >> 8 ) & 0xFF;
+                int B= (currentRGB) & 0xFF;
+                
+                if(R>=umbral ||G >=umbral || B>=umbral){
+                    dest.setRGB(x, y, (255 << 16) | (255 << 8) | 255);
+                }
+                else{
+                    dest.setRGB(x, y, (0 << 16) | (0 << 8) | 0);
+                }         
+            }
+        }
+        return dest;
     } 
 }

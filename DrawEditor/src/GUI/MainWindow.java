@@ -54,6 +54,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import sm.ALM.imagen.SepiaOp;
+import sm.ALM.imagen.UmbralizacionOp;
 import sm.image.EqualizationOp;
 import sm.image.KernelProducer;
 import sm.image.LookupTableProducer;
@@ -99,8 +100,7 @@ public class MainWindow extends javax.swing.JFrame {
         CircleButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
-        Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
-        ColorCombo = new javax.swing.JComboBox(colors);
+        ColorCombo = new javax.swing.JComboBox();
         thickSpinner = new javax.swing.JSpinner();
         FilledButton = new javax.swing.JToggleButton();
         TransButton = new javax.swing.JToggleButton();
@@ -564,6 +564,8 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Umbralizacion"));
         jPanel4.setPreferredSize(new java.awt.Dimension(150, 83));
 
+        umbraSlider.setMaximum(255);
+        umbraSlider.setValue(128);
         umbraSlider.setPreferredSize(new java.awt.Dimension(100, 26));
         umbraSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -1325,15 +1327,28 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_equalizationButtonActionPerformed
 
     private void umbraSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_umbraSliderStateChanged
-        // TODO add your handling code here:
+        if(currentIntWind!=null) {
+            if(imgSource!=null){
+                try{
+                    UmbralizacionOp umbral=new UmbralizacionOp(umbraSlider.getValue());
+                    BufferedImage imgDest = umbral.filter(imgSource, null);
+                    ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
+                    currentIntWind.getCanvas().setImage(imgDest);
+                    currentIntWind.getCanvas().repaint();
+                } catch(IllegalArgumentException e){
+                        System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
     }//GEN-LAST:event_umbraSliderStateChanged
 
     private void umbraSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusGained
-        // TODO add your handling code here:
+        if(currentIntWind!=null)
+            imgSource=currentIntWind.getCanvas().getImage();
     }//GEN-LAST:event_umbraSliderFocusGained
 
     private void umbraSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusLost
-        // TODO add your handling code here:
+        imgSource=null;
     }//GEN-LAST:event_umbraSliderFocusLost
     
     //Methods 
