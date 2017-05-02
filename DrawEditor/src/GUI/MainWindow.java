@@ -1201,7 +1201,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentIntWind!= null){
             Point2D currentPositionWind=currentIntWind.getLocation();
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-            newIntWind.setName(currentIntWind.getName());
+            newIntWind.setTitle(currentIntWind.getTitle());
             newIntWind.setLocation((Point) currentPositionWind);
                     
             newIntWind.getCanvas().setImage(currentIntWind.getCanvas().getImage());
