@@ -54,6 +54,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import sm.ALM.imagen.SepiaOp;
+import sm.image.EqualizationOp;
 import sm.image.KernelProducer;
 import sm.image.LookupTableProducer;
 import sm.image.TintOp;
@@ -1309,7 +1310,18 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_dyeButtonActionPerformed
 
     private void equalizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalizationButtonActionPerformed
-        // TODO add your handling code here:
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    EqualizationOp ecualizacion = new EqualizationOp();
+                    ecualizacion.filter(imgSrce, imgSrce);
+                    currentIntWind.getCanvas().repaint();
+                } catch(Exception e){
+                    System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
     }//GEN-LAST:event_equalizationButtonActionPerformed
 
     private void umbraSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_umbraSliderStateChanged
