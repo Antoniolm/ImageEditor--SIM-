@@ -97,7 +97,8 @@ public class MainWindow extends javax.swing.JFrame {
         CircleButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
-        ColorCombo = new javax.swing.JComboBox();
+        Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
+        ColorCombo = new javax.swing.JComboBox(colors);
         thickSpinner = new javax.swing.JSpinner();
         FilledButton = new javax.swing.JToggleButton();
         TransButton = new javax.swing.JToggleButton();
@@ -118,6 +119,8 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         SenButton = new javax.swing.JButton();
         sepiaButton = new javax.swing.JButton();
+        dyeButton = new javax.swing.JButton();
+        equalizationButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         BandButton = new javax.swing.JButton();
         ColorSpaceCombo = new javax.swing.JComboBox();
@@ -129,6 +132,8 @@ public class MainWindow extends javax.swing.JFrame {
         ScalePanel = new javax.swing.JPanel();
         MoreScaleButton = new javax.swing.JButton();
         LessScaleButton = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jSlider1 = new javax.swing.JSlider();
         mainDesktop = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -403,7 +408,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
         jPanel2.setToolTipText("SenFilter");
-        jPanel2.setPreferredSize(new java.awt.Dimension(100, 110));
+        jPanel2.setPreferredSize(new java.awt.Dimension(170, 110));
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
         SenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -423,6 +428,26 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(sepiaButton);
+
+        dyeButton.setText("T");
+        dyeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dyeButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        dyeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dyeButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(dyeButton);
+
+        equalizationButton.setText("E");
+        equalizationButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        equalizationButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        equalizationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                equalizationButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(equalizationButton);
 
         AttributeToolBar.add(jPanel2);
 
@@ -534,7 +559,15 @@ public class MainWindow extends javax.swing.JFrame {
 
         AttributeToolBar.add(ScalePanel);
 
-        AttributePanel.add(AttributeToolBar, java.awt.BorderLayout.LINE_START);
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Umbralizacion"));
+        jPanel4.setPreferredSize(new java.awt.Dimension(150, 83));
+
+        jSlider1.setPreferredSize(new java.awt.Dimension(100, 26));
+        jPanel4.add(jSlider1);
+
+        AttributeToolBar.add(jPanel4);
+
+        AttributePanel.add(AttributeToolBar, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(AttributePanel, java.awt.BorderLayout.SOUTH);
 
@@ -1245,6 +1278,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
        }
     }//GEN-LAST:event_ColorSpaceComboActionPerformed
+
+    private void dyeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dyeButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dyeButtonActionPerformed
+
+    private void equalizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalizationButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_equalizationButtonActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1298,10 +1339,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton contrastButton;
+    private javax.swing.JButton dyeButton;
+    private javax.swing.JButton equalizationButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSlider jSlider1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JButton rot180Button;
