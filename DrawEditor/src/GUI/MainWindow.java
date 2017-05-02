@@ -56,6 +56,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import sm.ALM.imagen.SepiaOp;
 import sm.image.KernelProducer;
 import sm.image.LookupTableProducer;
+import sm.image.TintOp;
 
 public class MainWindow extends javax.swing.JFrame {
     /**
@@ -133,7 +134,7 @@ public class MainWindow extends javax.swing.JFrame {
         MoreScaleButton = new javax.swing.JButton();
         LessScaleButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jSlider1 = new javax.swing.JSlider();
+        umbraSlider = new javax.swing.JSlider();
         mainDesktop = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -408,7 +409,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
         jPanel2.setToolTipText("SenFilter");
-        jPanel2.setPreferredSize(new java.awt.Dimension(170, 110));
+        jPanel2.setPreferredSize(new java.awt.Dimension(180, 110));
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
         SenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -562,8 +563,21 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Umbralizacion"));
         jPanel4.setPreferredSize(new java.awt.Dimension(150, 83));
 
-        jSlider1.setPreferredSize(new java.awt.Dimension(100, 26));
-        jPanel4.add(jSlider1);
+        umbraSlider.setPreferredSize(new java.awt.Dimension(100, 26));
+        umbraSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                umbraSliderStateChanged(evt);
+            }
+        });
+        umbraSlider.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                umbraSliderFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                umbraSliderFocusLost(evt);
+            }
+        });
+        jPanel4.add(umbraSlider);
 
         AttributeToolBar.add(jPanel4);
 
@@ -1280,12 +1294,35 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ColorSpaceComboActionPerformed
 
     private void dyeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dyeButtonActionPerformed
-        // TODO add your handling code here:
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    TintOp tintado = new TintOp((Color)ColorCombo.getSelectedItem(),0.5f);
+                    tintado.filter(imgSrce, imgSrce);
+                    currentIntWind.getCanvas().repaint();
+                } catch(Exception e){
+                    System.err.println(e.getLocalizedMessage());
+                }
+            }
+        }
     }//GEN-LAST:event_dyeButtonActionPerformed
 
     private void equalizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalizationButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_equalizationButtonActionPerformed
+
+    private void umbraSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_umbraSliderStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_umbraSliderStateChanged
+
+    private void umbraSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_umbraSliderFocusGained
+
+    private void umbraSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_umbraSliderFocusLost
     
     //Methods 
     public void setCursorState(String message){
@@ -1346,7 +1383,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSlider jSlider1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JButton rot180Button;
@@ -1355,5 +1391,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton sepiaButton;
     private javax.swing.JSpinner thickSpinner;
     private javax.swing.JPanel toolBarPanel;
+    private javax.swing.JSlider umbraSlider;
     // End of variables declaration//GEN-END:variables
 }
