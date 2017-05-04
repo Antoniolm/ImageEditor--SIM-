@@ -21,7 +21,7 @@ public class ColorComboRenderer extends JPanel implements ListCellRenderer {
   public ColorComboRenderer() {
     super();
     setBorder(new CompoundBorder(
-        new MatteBorder(5,5,5,5, Color.white), new LineBorder(
+        new MatteBorder(5,5,5,20, Color.white), new LineBorder(
             Color.black)));
   }
 

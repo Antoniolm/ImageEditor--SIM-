@@ -75,7 +75,7 @@ public class MainWindow extends javax.swing.JFrame {
     BufferedImage imgSource;
     
     public MainWindow() {
-        setMinimumSize(new Dimension(1000,900));
+        setMinimumSize(new Dimension(1200,900));
         initComponents();
         
         Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
@@ -135,6 +135,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         SenButton = new javax.swing.JButton();
         sepiaButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         OwnFilterButton = new javax.swing.JButton();
         dyeButton = new javax.swing.JButton();
         equalizationButton = new javax.swing.JButton();
@@ -199,7 +200,8 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(SaveButton);
 
-        CopyButton.setText("jButton1");
+        CopyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/copy.png"))); // NOI18N
+        CopyButton.setPreferredSize(new java.awt.Dimension(31, 31));
         CopyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CopyButtonActionPerformed(evt);
@@ -428,7 +430,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
         jPanel2.setToolTipText("SenFilter");
-        jPanel2.setPreferredSize(new java.awt.Dimension(210, 110));
+        jPanel2.setPreferredSize(new java.awt.Dimension(250, 110));
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
         SenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -449,6 +451,12 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel2.add(sepiaButton);
 
+        jButton1.setText("N");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setMinimumSize(new java.awt.Dimension(31, 31));
+        jButton1.setPreferredSize(new java.awt.Dimension(31, 31));
+        jPanel2.add(jButton1);
+
         OwnFilterButton.setText("P");
         OwnFilterButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         OwnFilterButton.setPreferredSize(new java.awt.Dimension(31, 31));
@@ -459,9 +467,8 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel2.add(OwnFilterButton);
 
-        dyeButton.setText("T");
+        dyeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/tintar.png"))); // NOI18N
         dyeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        dyeButton.setPreferredSize(new java.awt.Dimension(31, 31));
         dyeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dyeButtonActionPerformed(evt);
@@ -469,9 +476,8 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel2.add(dyeButton);
 
-        equalizationButton.setText("E");
+        equalizationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ecualizar.png"))); // NOI18N
         equalizationButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        equalizationButton.setPreferredSize(new java.awt.Dimension(31, 31));
         equalizationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equalizationButtonActionPerformed(evt);
@@ -730,8 +736,9 @@ public class MainWindow extends javax.swing.JFrame {
        TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
        SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
        thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
-       //ShineSlider.setValue(currentIntWind.getCanvas().getShine());
-       RotationSlider.setValue(currentIntWind.getCanvas().getRotation());
+       ShineSlider.setValue(0);
+       RotationSlider.setValue(0);
+       umbraSlider.setValue(128);
        
        switch(currentIntWind.getCanvas().getGeometry()){
            case POINT:
@@ -1065,7 +1072,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void RotationSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RotationSliderStateChanged
         if(currentIntWind!=null) {
-            if(imgSource!=null){
+            if(imgSource!=null && RotationSlider.getValue()!=0){
                 try{
                     AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(RotationSlider.getValue()),imgSource.getWidth()/2,imgSource.getHeight()/2);
                     AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
@@ -1073,7 +1080,7 @@ public class MainWindow extends javax.swing.JFrame {
                     ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
                     currentIntWind.getCanvas().setImage(imgDest);
                     currentIntWind.getCanvas().repaint();
-                    currentIntWind.getCanvas().setRotation(RotationSlider.getValue());
+
                 } catch(IllegalArgumentException e){
                         System.err.println(e.getLocalizedMessage());
                 }
@@ -1082,13 +1089,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_RotationSliderStateChanged
 
     private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
-        if(currentIntWind!=null)
+        if(currentIntWind!=null){
             currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
             int currentIndex=ColorCombo.getSelectedIndex();
             ColorCombo.setSelectedIndex(currentIndex);
-        
-        /*Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
-        ColorCombo = new javax.swing.JComboBox(colors);*/
+        }
     }//GEN-LAST:event_ColorComboActionPerformed
 
     private void contrastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrastButtonActionPerformed
@@ -1380,7 +1385,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void umbraSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_umbraSliderStateChanged
         if(currentIntWind!=null) {
-            if(imgSource!=null){
+            if(imgSource!=null && umbraSlider.getValue()!=128){
                 try{
                     UmbralizacionOp umbral=new UmbralizacionOp(umbraSlider.getValue());
                     BufferedImage imgDest = umbral.filter(imgSource, null);
@@ -1431,6 +1436,7 @@ public class MainWindow extends javax.swing.JFrame {
                 });
                 dialog.setVisible(true);
             }
+            Kernel k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
         });
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
@@ -1489,6 +1495,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton contrastButton;
     private javax.swing.JButton dyeButton;
     private javax.swing.JButton equalizationButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

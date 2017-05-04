@@ -46,7 +46,7 @@ public class UmbralizacionOp  extends BufferedImageOpAdapter{
                 int G= (currentRGB >> 8 ) & 0xFF;
                 int B= (currentRGB) & 0xFF;
                 
-                if(R>=umbral ||G >=umbral || B>=umbral){
+                if((R+G+B)/3>=umbral){
                     dest.setRGB(x, y, (255 << 16) | (255 << 8) | 255);
                 }
                 else{

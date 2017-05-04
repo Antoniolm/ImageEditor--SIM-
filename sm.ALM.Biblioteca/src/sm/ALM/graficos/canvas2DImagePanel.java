@@ -41,7 +41,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
      */
     public canvas2DImagePanel() {
         initComponents();
-        clip =new Rectangle2D.Float(1,1,299,299);
+        clipShape =new Rectangle2D.Float(1,1,widthSize-1,heightSize-1);
     }
 
     
@@ -73,7 +73,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
         float[] patternLine = { 5.0F, 5.0F };
         g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
                         BasicStroke.JOIN_MITER, 1.0F, patternLine, 0.0F));
-        g2d.draw(clip);
+        g2d.draw(clipShape);
     }
     /**
      * This method is called from within the constructor to initialize the form.

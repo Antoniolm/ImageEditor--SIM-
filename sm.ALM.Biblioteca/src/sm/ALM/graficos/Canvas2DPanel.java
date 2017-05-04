@@ -46,13 +46,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     GeometryType geometry;
     public Point initPos;
     public Point offSet;
+    static float widthSize=300;
+    static float heightSize=300;
     Shape currentShape;
     List<Shape> vShape;
-    Shape clip;
+    Shape clipShape;
     boolean editMode;
     Attribute attribute;
-    int currentShine;
-    int currentRotation;
     
     public Canvas2DPanel() {
         initComponents();
@@ -60,8 +60,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         offSet=new Point(0,0);
         vShape = new ArrayList();
         editMode=false;
-        currentShine=0;
-        currentRotation=0;
         attribute=new Attribute();
         geometry=POINT;
         setBackground(Color.white);
@@ -110,7 +108,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D)g;
         
         attribute.apply(g2d);
-        g2d.clip(clip);
+        g2d.clip(clipShape);
         
         if(!attribute.getFilled())
             for(Shape s:vShape)
@@ -191,27 +189,24 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     public void setClip(Shape newClip){
-        clip=newClip;
+        clipShape=newClip;
     }
     public Shape getClip(){
-        return clip;
+        return clipShape;
     }
     
-    public int  getShine(){
-        return currentShine;
+    public void setSizeImage(float width,float height){
+        heightSize=height;
+        widthSize=width;
     }
     
-    public int  getRotation(){
-        return currentRotation;
+    public float getHeightImage(float width,float height){
+        return heightSize;
+    }
+    public float getWidthImage(){
+        return widthSize;
     }
     
-    public void setRotation(int newRot){
-        currentRotation=newRot;
-    }
-    
-    public void setShine(int newShine){
-        currentShine=newShine;
-    }
     /**
      * It will create a new shape 
      * @return 
