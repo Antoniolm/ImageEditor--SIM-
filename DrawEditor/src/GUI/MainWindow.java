@@ -55,6 +55,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import sm.ALM.imagen.MybufferedImageOp;
@@ -160,6 +161,8 @@ public class MainWindow extends javax.swing.JFrame {
         SeeSBMenu = new javax.swing.JCheckBoxMenuItem();
         SeeGeoMenu = new javax.swing.JCheckBoxMenuItem();
         SeeAttMenu = new javax.swing.JCheckBoxMenuItem();
+        resizeItem = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DrawEditor");
@@ -700,6 +703,18 @@ public class MainWindow extends javax.swing.JFrame {
 
         MenuBar.add(EditMenu);
 
+        resizeItem.setText("Image");
+
+        jMenuItem1.setText("Resize image");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        resizeItem.add(jMenuItem1);
+
+        MenuBar.add(resizeItem);
+
         setJMenuBar(MenuBar);
 
         pack();
@@ -760,7 +775,7 @@ public class MainWindow extends javax.swing.JFrame {
                 currentIntWind.setVisible(true);
                 currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
             }catch(Exception ex){
-                System.err.println("Error al leer la imagen");
+                JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_OpenMenuActionPerformed
@@ -783,7 +798,7 @@ public class MainWindow extends javax.swing.JFrame {
             currentIntWind.setTitle(f.getName());
             }
             }catch (Exception ex) {
-            System.err.println("Error al guardar la imagen");
+                JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_SaveMenuActionPerformed
@@ -1169,7 +1184,7 @@ public class MainWindow extends javax.swing.JFrame {
             currentIntWind.setTitle(f.getName());
             }
             }catch (Exception ex) {
-            System.err.println("Error al guardar la imagen");
+            JOptionPane.showMessageDialog(this,"Error al abrir la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_SaveButtonActionPerformed
@@ -1198,7 +1213,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
             }catch(Exception ex){
-                System.err.println("Error al leer la imagen");
+                JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_OpenButtonActionPerformed
@@ -1404,6 +1419,20 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_OwnFilterButtonActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ResizePanel dialog = new ResizePanel(new java.awt.Frame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1460,6 +1489,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton contrastButton;
     private javax.swing.JButton dyeButton;
     private javax.swing.JButton equalizationButton;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1467,6 +1497,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
+    private javax.swing.JMenu resizeItem;
     private javax.swing.JButton rot180Button;
     private javax.swing.JButton rot270Button;
     private javax.swing.JButton rot90Button;
