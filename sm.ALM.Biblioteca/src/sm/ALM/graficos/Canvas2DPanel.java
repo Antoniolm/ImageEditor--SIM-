@@ -277,8 +277,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                     return s;
                 }
             }
-            if(s instanceof Line2D) //If is a line
-                if(s.intersects(p.getX(), p.getY(), 6, 6)) return s;  
+            if(s instanceof Line2D){ //If is a line
+                if(s.intersects(p.getX(), p.getY(), 6, 6)){
+                    Point2D.Double point1=new Point2D.Double(((Line2D)s).getX1(),((Line2D)s).getY1());
+                    offSet.setLocation(p.getX()-point1.getX(),p.getY()-point1.getY());
+                    return s;
+                }  
+            }
         }
         return null;
     }
@@ -306,6 +311,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 Point2D point2 = ((Line2D) currentShape).getP2();
                 Point2D diff= new Point2D.Double((pos.getX() - point1.getX()),(pos.getY() - point1.getY()));
                 point2.setLocation(point2.getX() + diff.getX(), point2.getY() + diff.getY());
+                pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());
+                point2.setLocation(point2.getX()-offSet.getX(),point2.getY()-offSet.getY());
                 ((Line2D) currentShape).setLine(pos, point2);
             }
         }
