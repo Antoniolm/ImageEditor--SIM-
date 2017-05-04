@@ -30,10 +30,13 @@ public class ResizePanel extends java.awt.Dialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        ButtonPanel = new javax.swing.JPanel();
         SaveButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         WidthLabel = new javax.swing.JLabel();
         WidthField = new javax.swing.JTextField();
         HeightLabel = new javax.swing.JLabel();
@@ -47,24 +50,27 @@ public class ResizePanel extends java.awt.Dialog {
         });
 
         SaveButton.setText("Save");
-        jPanel1.add(SaveButton);
+        ButtonPanel.add(SaveButton);
 
         CancelButton.setText("Cancel");
-        jPanel1.add(CancelButton);
+        ButtonPanel.add(CancelButton);
 
-        add(jPanel1, java.awt.BorderLayout.SOUTH);
+        add(ButtonPanel, java.awt.BorderLayout.SOUTH);
+        add(jPanel1, java.awt.BorderLayout.EAST);
+        add(jPanel2, java.awt.BorderLayout.WEST);
+        add(jPanel4, java.awt.BorderLayout.NORTH);
 
-        jPanel2.setLayout(new java.awt.GridLayout(3, 3));
+        jPanel3.setLayout(new java.awt.GridLayout(3, 0));
 
         WidthLabel.setText("Width :");
-        jPanel2.add(WidthLabel);
-        jPanel2.add(WidthField);
+        jPanel3.add(WidthLabel);
+        jPanel3.add(WidthField);
 
         HeightLabel.setText("Height :");
-        jPanel2.add(HeightLabel);
-        jPanel2.add(HeightField);
+        jPanel3.add(HeightLabel);
+        jPanel3.add(HeightField);
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        add(jPanel3, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,6 +84,7 @@ public class ResizePanel extends java.awt.Dialog {
     }//GEN-LAST:event_closeDialog
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ButtonPanel;
     private javax.swing.JButton CancelButton;
     private javax.swing.JTextField HeightField;
     private javax.swing.JLabel HeightLabel;
@@ -86,5 +93,7 @@ public class ResizePanel extends java.awt.Dialog {
     private javax.swing.JLabel WidthLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }
