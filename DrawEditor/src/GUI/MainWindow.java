@@ -52,7 +52,9 @@ import java.awt.image.WritableRaster;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import sm.ALM.imagen.MybufferedImageOp;
@@ -74,6 +76,14 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         setMinimumSize(new Dimension(1000,900));
         initComponents();
+        
+        Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
+      
+        for(Color color : colors)
+            ColorCombo.addItem(color);
+        
+        ColorCombo.setRenderer(new ColorComboRenderer());
+        ColorCombo.setSelectedIndex(0);
         thickSpinner.setValue(1);        
         
     }
@@ -321,6 +331,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         StateBarLabel.setText("State bar");
         StateBarLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        StateBarLabel.setPreferredSize(new java.awt.Dimension(53, 30));
         StateBarPanel.add(StateBarLabel, java.awt.BorderLayout.CENTER);
 
         CursorPosLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -621,7 +632,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
+            .addGap(0, 205, Short.MAX_VALUE)
         );
 
         getContentPane().add(mainDesktop, java.awt.BorderLayout.CENTER);
@@ -1056,13 +1067,17 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_RotationSliderStateChanged
 
     private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
-        currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+        if(currentIntWind!=null)
+            currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+            int currentIndex=ColorCombo.getSelectedIndex();
+            ColorCombo.setSelectedIndex(currentIndex);
+        
         /*Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
         ColorCombo = new javax.swing.JComboBox(colors);*/
     }//GEN-LAST:event_ColorComboActionPerformed
 
     private void contrastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrastButtonActionPerformed
-        if(currentIntWind!=null) {
+        if(currentIntWind!=null) { 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{

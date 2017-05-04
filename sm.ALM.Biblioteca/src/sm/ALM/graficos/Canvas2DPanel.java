@@ -45,6 +45,7 @@ import static sm.ALM.graficos.GeometryType.*;
 public class Canvas2DPanel extends javax.swing.JPanel {
     GeometryType geometry;
     public Point initPos;
+    public Point offSet;
     Shape currentShape;
     List<Shape> vShape;
     Shape clip;
@@ -56,6 +57,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public Canvas2DPanel() {
         initComponents();
         initPos=new Point(0,0);
+        offSet=new Point(0,0);
         vShape = new ArrayList();
         editMode=false;
         currentShine=0;
@@ -262,8 +264,19 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     private Shape getSelectedShape(Point2D p){
         for(Shape s:vShape){
-            if(s instanceof RectangularShape) //If is a rectangularShape
-                if(s.contains(p)) return s;
+            if(s instanceof RectangularShape){ //If is a rectangularShape
+                if(s.contains(p)){ 
+                    if( s instanceof Rectangle){
+                    Point2D.Double point1=new Point2D.Double(((RectangularShape)s).getX(),((RectangularShape)s).getY());
+                    offSet.setLocation(Math.abs(p.getX()-point1.getX()),Math.abs(p.getY()-point1.getY()));
+                    }
+                    else{
+                        Point2D.Double point1=new Point2D.Double(((RectangularShape)s).getCenterX(),((RectangularShape)s).getCenterY());
+                        offSet.setLocation(p.getX()-point1.getX(),p.getY()-point1.getY());
+                    }
+                    return s;
+                }
+            }
             if(s instanceof Line2D) //If is a line
                 if(s.intersects(p.getX(), p.getY(), 6, 6)) return s;  
         }
@@ -276,12 +289,16 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     private void setLocationShape(Point2D pos){
         if(currentShape!=null){
-            if(currentShape instanceof Rectangle) //If is a rectangle or a point
+            if(currentShape instanceof Rectangle){ //If is a rectangle or a point
+                pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());
                 ((Rectangle)currentShape).setLocation((Point)pos);
+            }
             if (currentShape instanceof Ellipse2D) { //If is a circle
                 Point2D.Double point1 = new Point2D.Double(((Ellipse2D) currentShape).getX(), ((Ellipse2D) currentShape).getY());
                 Point2D.Double point2 = new Point2D.Double(((Ellipse2D) currentShape).getCenterX(), ((Ellipse2D) currentShape).getCenterY());
                 point2.setLocation(pos.getX() + Math.abs((point1.getX() - point2.getX())), pos.getY() + Math.abs((point1.getY() - point2.getY())));
+                pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());
+                point2.setLocation(point2.getX()-offSet.getX(),point2.getY()-offSet.getY());
                 ((Ellipse2D.Float) currentShape).setFrameFromCenter(pos, point2);
             }
             if (currentShape instanceof Line2D.Float) { //If is a line
