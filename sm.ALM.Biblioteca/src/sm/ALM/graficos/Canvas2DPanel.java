@@ -52,7 +52,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     ShapeList vShape;
     Shape clipShape;
     boolean editMode;
-    Attribute attribute;
     
     public Canvas2DPanel() {
         initComponents();
@@ -60,7 +59,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         offSet=new Point(0,0);
         vShape = new ShapeList();
         editMode=false;
-        attribute=new Attribute();
         geometry=POINT;
         setBackground(Color.white);
         
@@ -106,7 +104,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
         
-        
         g2d.clip(clipShape);
         
         vShape.draw(g2d);
@@ -123,49 +120,49 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     public void setColor(Paint value){
-        attribute.setFilled(value);
+        vShape.getAttribute().setFilled(value);
         repaint();
     }
         
     public void setFilled(boolean boolValue){
-        attribute.filled=boolValue;
+        vShape.getAttribute().filled=boolValue;
         repaint();
     }
     
     public boolean getFilled(){            
-        return attribute.getFilled();
+        return vShape.getAttribute().getFilled();
     }
     
     public void setThick(Stroke stroke,Integer value){
-        attribute.setStroke(stroke,value);
+        vShape.getAttribute().setStroke(stroke,value);
         repaint();
     }
     
     public Integer getThick(){
-        return attribute.getThickness();
+        return vShape.getAttribute().getThickness();
     }
     public void setTransparency(Composite value){
-        attribute.setComp(value);
+        vShape.getAttribute().setComp(value);
         repaint();
     }
     
     public boolean getTransparency(){
         boolean result=false;
         
-        if(attribute.getComp()!=null)
+        if(vShape.getAttribute().getComp()!=null)
             result=true;
             
         return result;
     }
     
     public void setRender(RenderingHints value){
-        attribute.setRender(value);
+        vShape.getAttribute().setRender(value);
         repaint();
     }
     
     public boolean getRender(){
         boolean result=false;
-        if(attribute.getRender()!=null)
+        if(vShape.getAttribute().getRender()!=null)
             result=true;
         
         return result;

@@ -151,4 +151,8 @@ public class ShapeList {
             }
         }
     }
+    
+    public Attribute getAttribute(){
+        return attribute;
+    }
 }
