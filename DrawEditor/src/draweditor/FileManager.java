@@ -22,10 +22,17 @@ package draweditor;
 import GUI.InternalWindow;
 import GUI.MainWindow;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileManager {
      
@@ -70,6 +77,35 @@ public class FileManager {
          
          newIntWind.getCanvas().setColor(new Color(0,0,0)); 
          return newIntWind;
+    }
+    
+    public InternalWindow openFile(MainWindow window){
+        String[] filterList=ImageIO.getWriterFileSuffixes();
+        JFileChooser dlg = new JFileChooser();
+        InternalWindow newIntWind=null;
+                              
+        for(int i=0;i<filterList.length;i=i+1){
+            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
+        }
+        
+        int resp = dlg.showOpenDialog(window);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+             try{
+                File f = dlg.getSelectedFile();
+                BufferedImage img = ImageIO.read(f);
+                newIntWind = new InternalWindow(window);
+                newIntWind.getCanvas().setImage(img);
+                newIntWind.setTitle(f.getName());
+                newIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+                
+                FileManager.getSingletonInstance().getExtension(f.getName());
+
+                newIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(window,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return newIntWind;
     }
     
     
