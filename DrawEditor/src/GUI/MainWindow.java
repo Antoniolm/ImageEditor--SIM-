@@ -765,75 +765,22 @@ public class MainWindow extends javax.swing.JFrame {
     //  Menu events
     //////////////////////////////////////////////////////////////////////////
     private void OpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuActionPerformed
-        String[] filterList=ImageIO.getReaderFormatNames();
-        JFileChooser dlg = new JFileChooser();
-        
-        for(int i=0;i<filterList.length;i=i+2){
-            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i+1]));
-        }
-        
-        int resp = dlg.showOpenDialog(this);
-        if( resp == JFileChooser.APPROVE_OPTION) {
-             try{
-                File f = dlg.getSelectedFile();
-                BufferedImage img = ImageIO.read(f);
-                currentIntWind = new InternalWindow(this);
-                currentIntWind.getCanvas().setImage(img);
-                mainDesktop.add(currentIntWind);
-                currentIntWind.setTitle(f.getName());
-                currentIntWind.setVisible(true);
-                currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
-            }
+        InternalWindow intWind=file.openFile(this);
+        if(intWind!=null){
+            currentIntWind=intWind;
+            mainDesktop.add(currentIntWind);
+            currentIntWind.setVisible(true);
         }
     }//GEN-LAST:event_OpenMenuActionPerformed
 
     private void SaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveMenuActionPerformed
-        String[] filterList=ImageIO.getWriterFormatNames();
-        JFileChooser dlg = new JFileChooser();
-        
-        for(int i=0;i<filterList.length;i=i+2){
-            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i+1]));
-        }
-        
-        int resp = dlg.showSaveDialog(this);
-        if( resp == JFileChooser.APPROVE_OPTION) {
-            try {
-            BufferedImage img = currentIntWind.getCanvas().getImage(true);
-            if (img != null) {
-            File f = dlg.getSelectedFile();
-            ImageIO.write(img, "png", f);
-            currentIntWind.setTitle(f.getName());
-            }
-            }catch (Exception ex) {
-                JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
-            }
-        }
+        file.saveFile(currentIntWind, this);
     }//GEN-LAST:event_SaveMenuActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
-        InternalWindow newIntWind = new InternalWindow(this);
-        
-        if(currentIntWind!= null){
-            Point2D currentPositionWind=currentIntWind.getLocation();
-            currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-            newIntWind.setLocation((Point) currentPositionWind);
-        }
-        
-        currentIntWind=newIntWind;
+        currentIntWind=file.newFile(currentIntWind, this);
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
-        
-         BufferedImage img;
-         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
-         currentIntWind.getCanvas().setImage(img);
-         currentIntWind.getCanvas().setColor(new Color(255,255,255));
-         
-         Graphics2D g2d =img.createGraphics();
-         g2d.fillRect(0,0,img.getWidth(),img.getHeight());
-         
-         currentIntWind.getCanvas().setColor(new Color(0,0,0));
 
     }//GEN-LAST:event_newMenuActionPerformed
 
@@ -1177,8 +1124,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
-        currentIntWind=file.openFile(this);
-        if(currentIntWind!=null){
+        InternalWindow intWind=file.openFile(this);
+        if(intWind!=null){
+            currentIntWind=intWind;
             mainDesktop.add(currentIntWind);
             currentIntWind.setVisible(true);
         }
