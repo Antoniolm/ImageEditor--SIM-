@@ -73,6 +73,7 @@ public class MainWindow extends javax.swing.JFrame {
     
     InternalWindow currentIntWind; 
     BufferedImage imgSource;
+    FileManager file;
     
     public MainWindow() {
         setMinimumSize(new Dimension(1200,900));
@@ -85,7 +86,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         ColorCombo.setRenderer(new ColorComboRenderer());
         ColorCombo.setSelectedIndex(0);
-        thickSpinner.setValue(1);        
+        thickSpinner.setValue(1); 
+        file=FileManager.getSingletonInstance();
         
     }
 
@@ -1173,7 +1175,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         String[] filterList=ImageIO.getWriterFileSuffixes();
         JFileChooser dlg = new JFileChooser();
-        FileManager fileManager=FileManager.getSingletonInstance();
         
         for(int i=0;i<filterList.length;i=i+1){
             dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
@@ -1185,7 +1186,7 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage img = currentIntWind.getCanvas().getImage(true);
             if (img != null) {
             File f = dlg.getSelectedFile();
-            ImageIO.write(img, fileManager.getExtension(f.getName()), f);
+            ImageIO.write(img, file.getExtension(f.getName()), f);
             currentIntWind.setTitle(f.getName());
             }
             }catch (Exception ex) {
@@ -1224,27 +1225,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenButtonActionPerformed
 
     private void NewFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileButtonActionPerformed
-        InternalWindow newIntWind = new InternalWindow(this);
-        
-        if(currentIntWind!= null){
-            Point2D currentPositionWind=currentIntWind.getLocation();
-            currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-            newIntWind.setLocation((Point) currentPositionWind);
-        }
-        
-        currentIntWind=newIntWind;
+        currentIntWind=file.newFile(currentIntWind, this);
         mainDesktop.add(currentIntWind);
         currentIntWind.setVisible(true);
-        
-         BufferedImage img;
-         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
-         currentIntWind.getCanvas().setImage(img);
-         currentIntWind.getCanvas().setColor(new Color(255,255,255));
-         
-         Graphics2D g2d =img.createGraphics();
-         g2d.fillRect(0,0,img.getWidth(),img.getHeight());
-         
-         currentIntWind.getCanvas().setColor(new Color(0,0,0));
     }//GEN-LAST:event_NewFileButtonActionPerformed
 
     private void CopyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyButtonActionPerformed

@@ -151,7 +151,7 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
     }
-    canvas2DImagePanel getCanvas(){
+    public canvas2DImagePanel getCanvas(){
         return canvasPanel;
     }
             

@@ -19,6 +19,14 @@
 
 package draweditor;
 
+import GUI.InternalWindow;
+import GUI.MainWindow;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+
 public class FileManager {
      
     private static FileManager fileManager;  
@@ -41,6 +49,27 @@ public class FileManager {
         }
                
         return result;
+    }
+    
+    public InternalWindow newFile(InternalWindow currentIntWind,MainWindow window){
+        InternalWindow newIntWind = new InternalWindow(window);
+        
+        if(currentIntWind!= null){
+            Point2D currentPositionWind=currentIntWind.getLocation();
+            currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
+            newIntWind.setLocation((Point) currentPositionWind);
+        }
+        
+         BufferedImage img;
+         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
+         newIntWind.getCanvas().setImage(img);
+         newIntWind.getCanvas().setColor(new Color(255,255,255));
+         
+         Graphics2D g2d =img.createGraphics();
+         g2d.fillRect(0,0,img.getWidth(),img.getHeight());
+         
+         newIntWind.getCanvas().setColor(new Color(0,0,0)); 
+         return newIntWind;
     }
     
     
