@@ -1173,32 +1173,15 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SenButtonActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-        String[] filterList=ImageIO.getWriterFileSuffixes();
-        JFileChooser dlg = new JFileChooser();
-        
-        for(int i=0;i<filterList.length;i=i+1){
-            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
-        }
-        
-        int resp = dlg.showSaveDialog(this);
-        if( resp == JFileChooser.APPROVE_OPTION) {
-            try {
-            BufferedImage img = currentIntWind.getCanvas().getImage(true);
-            if (img != null) {
-            File f = dlg.getSelectedFile();
-            ImageIO.write(img, file.getExtension(f.getName()), f);
-            currentIntWind.setTitle(f.getName());
-            }
-            }catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,"Error al abrir la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
-            }
-        }
+        file.saveFile(currentIntWind, this);
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
         currentIntWind=file.openFile(this);
-        mainDesktop.add(currentIntWind);
-        currentIntWind.setVisible(true);
+        if(currentIntWind!=null){
+            mainDesktop.add(currentIntWind);
+            currentIntWind.setVisible(true);
+        }
     }//GEN-LAST:event_OpenButtonActionPerformed
 
     private void NewFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileButtonActionPerformed

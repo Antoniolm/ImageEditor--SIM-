@@ -108,5 +108,28 @@ public class FileManager {
         return newIntWind;
     }
     
+    public void saveFile(InternalWindow currentIntWind,MainWindow window){
+        String[] filterList=ImageIO.getWriterFileSuffixes();
+        JFileChooser dlg = new JFileChooser();
+       
+        for(int i=0;i<filterList.length;i=i+1){
+            dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
+        }
+        
+        int resp = dlg.showSaveDialog(window);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+            try {
+            BufferedImage img = currentIntWind.getCanvas().getImage(true);
+            if (img != null) {
+                File f = dlg.getSelectedFile();
+                ImageIO.write(img, getExtension(f.getName()), f);
+                currentIntWind.setTitle(f.getName());
+            }
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(window,"Error al abrir la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+    }
     
 }
