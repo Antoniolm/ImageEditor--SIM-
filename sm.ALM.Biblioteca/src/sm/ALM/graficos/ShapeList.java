@@ -5,6 +5,7 @@
  */
 package sm.ALM.graficos;
 
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -20,6 +21,7 @@ import java.util.List;
  * @author LENOVO
  */
 public class ShapeList {
+    Shape currentShape;
     private List<Shape> vShape;
     private Attribute attribute;
     
@@ -28,11 +30,25 @@ public class ShapeList {
         attribute =new Attribute();
     }
     
+    
+    public void draw(Graphics2D g2d){
+        attribute.apply(g2d);
+        
+        if(!attribute.getFilled())
+            for(Shape s:vShape)
+                g2d.draw(s);
+        else
+            for(Shape s:vShape){
+                if(s instanceof Line2D)
+                    g2d.draw(s);
+                else g2d.fill(s);
+            }
+    }
     /**
      * It will create a new shape 
      * @return 
      */
-    private Shape createShape(GeometryType geometry,Point2D initPos){
+    public void createShape(GeometryType geometry,Point2D initPos){
         Shape result=null;
         switch(geometry){
             case POINT: //Case point geoometry
@@ -49,14 +65,15 @@ public class ShapeList {
                 break;
 
         }
-        return result;
+        currentShape=result;
+        vShape.add(currentShape);
     }
     
     /**
      * It will update the currentShape
      * @param point 
      */
-    private void updateShape(Point2D point,Point2D initPos,Shape currentShape,GeometryType geometry){
+    public void updateShape(Point2D point,Point2D initPos,GeometryType geometry){
         switch (geometry) {
             case POINT: //Case point geoometry
                 break;
@@ -78,7 +95,8 @@ public class ShapeList {
      * @param p
      * @return shape 
      */
-    private Shape getSelectedShape(Point2D p,Point2D offSet){
+    public void getSelectedShape(Point2D p,Point2D offSet){
+        currentShape=null;
         for(Shape s:vShape){
             if(s instanceof RectangularShape){ //If is a rectangularShape
                 if(s.contains(p)){ 
@@ -90,25 +108,25 @@ public class ShapeList {
                         Point2D.Double point1=new Point2D.Double(((RectangularShape)s).getCenterX(),((RectangularShape)s).getCenterY());
                         offSet.setLocation(p.getX()-point1.getX(),p.getY()-point1.getY());
                     }
-                    return s;
+                    currentShape=s;
                 }
             }
             if(s instanceof Line2D){ //If is a line
                 if(s.intersects(p.getX(), p.getY(), 6, 6)){
                     Point2D.Double point1=new Point2D.Double(((Line2D)s).getX1(),((Line2D)s).getY1());
                     offSet.setLocation(p.getX()-point1.getX(),p.getY()-point1.getY());
-                    return s;
+                    currentShape=s;
                 }  
             }
         }
-        return null;
+        
     }
     
     /**
      * it will change the location of our current shape
      * @param pos 
      */
-    private void setLocationShape(Point2D pos,Point2D offSet,Shape currentShape){
+    public void setLocationShape(Point2D pos,Point2D offSet){
         if(currentShape!=null){
             if(currentShape instanceof Rectangle){ //If is a rectangle or a point
                 pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());

@@ -68,11 +68,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e){
-                    if(editMode) currentShape=getSelectedShape(e.getPoint());
+                    if(editMode) vShape.getSelectedShape(e.getPoint(),offSet);
                     else{
                         initPos=e.getPoint();       
-                        currentShape=createShape();
-                        vShape.add(currentShape);
+                        vShape.createShape(geometry,initPos);
                     }
                 repaint();                  
                 }
@@ -91,11 +90,11 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 @Override
                 public void mouseDragged(MouseEvent e){
                     if(editMode){
-                        setLocationShape(e.getPoint());
+                        vShape.setLocationShape(e.getPoint(),offSet);
                         setCursor(new Cursor(Cursor.MOVE_CURSOR));
                     }
                     else{
-                        updateShape(e.getPoint());
+                        vShape.updateShape(e.getPoint(),initPos,geometry);
                     }
                 repaint();                  
                 }
@@ -107,18 +106,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
         
-        attribute.apply(g2d);
+        
         g2d.clip(clipShape);
         
-        if(!attribute.getFilled())
-            for(Shape s:vShape)
-                g2d.draw(s);
-        else
-            for(Shape s:vShape){
-                if(s instanceof Line2D)
-                    g2d.draw(s);
-                else g2d.fill(s);
-            }
+        vShape.draw(g2d);
         
         
     }
