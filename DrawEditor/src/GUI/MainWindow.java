@@ -945,8 +945,6 @@ public class MainWindow extends javax.swing.JFrame {
             imgSource = new BufferedImage(cm,raster,alfaPre,null);
              
             cop.filter(imgSource,imgSrce);
-            //currentIntWind.getCanvas().setImage(imgDest);
-            //currentIntWind.getCanvas().repaint();
             mainDesktop.repaint();
         }
     }//GEN-LAST:event_FilterComboActionPerformed
@@ -1308,10 +1306,8 @@ public class MainWindow extends javax.swing.JFrame {
             if(imgSource!=null && umbraSlider.getValue()!=128){
                 try{
                     UmbralizacionOp umbral=new UmbralizacionOp(umbraSlider.getValue());
-                    BufferedImage imgDest = umbral.filter(imgSource, null);
-                    ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
-                    currentIntWind.getCanvas().setImage(imgDest);
-                    currentIntWind.getCanvas().repaint();
+                    umbral.filter(imgSource, currentIntWind.getCanvas().getImage());
+                    mainDesktop.repaint();
                 } catch(IllegalArgumentException e){
                         System.err.println(e.getLocalizedMessage());
                 }
@@ -1320,8 +1316,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_umbraSliderStateChanged
 
     private void umbraSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusGained
-        if(currentIntWind!=null)
-            imgSource=currentIntWind.getCanvas().getImage();
+        if(currentIntWind!=null){
+             ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
+             WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
+             boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
+             imgSource = new BufferedImage(cm,raster,alfaPre,null);
+        }
     }//GEN-LAST:event_umbraSliderFocusGained
 
     private void umbraSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusLost
