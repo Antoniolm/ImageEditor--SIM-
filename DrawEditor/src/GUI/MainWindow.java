@@ -381,7 +381,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.setToolTipText("Filter");
         jPanel1.setPreferredSize(new java.awt.Dimension(100, 110));
 
-        FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaciano", "Negativo" }));
+        FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaciano" }));
         FilterCombo.setPreferredSize(new java.awt.Dimension(80, 22));
         FilterCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -435,7 +435,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
         jPanel2.setToolTipText("SenFilter");
-        jPanel2.setPreferredSize(new java.awt.Dimension(250, 110));
+        jPanel2.setPreferredSize(new java.awt.Dimension(280, 110));
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
         SenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -657,7 +657,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainDesktop.setLayout(mainDesktopLayout);
         mainDesktopLayout.setHorizontalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1119, Short.MAX_VALUE)
+            .addGap(0, 1354, Short.MAX_VALUE)
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -935,15 +935,19 @@ public class MainWindow extends javax.swing.JFrame {
                 case "Laplaciano":
                     k = KernelProducer.createKernel(KernelProducer.TYPE_LAPLACIANA_3x3);
                 break;
-                case "Negativo":                    
-                    k = KernelProducer.createKernel(KernelProducer.TYPE_LAPLACIANA_3x3);
-                break;
             }
 
             ConvolveOp cop = new ConvolveOp(k,ConvolveOp.EDGE_NO_OP,null);
-            BufferedImage imgDest=cop.filter(imgSrce,null);
-            currentIntWind.getCanvas().setImage(imgDest);
-            currentIntWind.getCanvas().repaint();
+            
+            ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
+            WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
+            boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
+            imgSource = new BufferedImage(cm,raster,alfaPre,null);
+             
+            cop.filter(imgSource,imgSrce);
+            //currentIntWind.getCanvas().setImage(imgDest);
+            //currentIntWind.getCanvas().repaint();
+            mainDesktop.repaint();
         }
     }//GEN-LAST:event_FilterComboActionPerformed
 
@@ -1072,7 +1076,7 @@ public class MainWindow extends javax.swing.JFrame {
                     LookupOp lop = new LookupOp(lt, null);
                     // Imagen origen y destino iguales
                     lop.filter( imgSrce , imgSrce);
-                    currentIntWind.getCanvas().repaint();
+                    mainDesktop.repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
                 }
@@ -1089,7 +1093,7 @@ public class MainWindow extends javax.swing.JFrame {
                     LookupOp lop = new LookupOp(lt, null);
                     // Imagen origen y destino iguales
                     lop.filter( imgSrce , imgSrce);
-                    currentIntWind.getCanvas().repaint();
+                    mainDesktop.repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
                 }
@@ -1106,7 +1110,7 @@ public class MainWindow extends javax.swing.JFrame {
                     LookupOp lop = new LookupOp(lt, null);
                     // Imagen origen y destino iguales
                     lop.filter( imgSrce , imgSrce);
-                    currentIntWind.getCanvas().repaint();
+                    mainDesktop.repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
                 }
@@ -1130,7 +1134,7 @@ public class MainWindow extends javax.swing.JFrame {
                     LookupOp lop = new LookupOp(byteLookUpTable, null);
                     lop.filter( imgSrce , imgSrce);
                     
-                    currentIntWind.getCanvas().repaint();
+                    mainDesktop.repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
                 }
@@ -1187,7 +1191,7 @@ public class MainWindow extends javax.swing.JFrame {
                 try{
                     SepiaOp lop = new SepiaOp();
                     lop.filter( imgSrce , imgSrce);
-                    currentIntWind.getCanvas().repaint();
+                    mainDesktop.repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
                 }
@@ -1276,7 +1280,7 @@ public class MainWindow extends javax.swing.JFrame {
                 try{
                     TintOp tintado = new TintOp((Color)ColorCombo.getSelectedItem(),0.5f);
                     tintado.filter(imgSrce, imgSrce);
-                    currentIntWind.getCanvas().repaint();
+                    mainDesktop.repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
                 }
@@ -1291,7 +1295,7 @@ public class MainWindow extends javax.swing.JFrame {
                 try{
                     EqualizationOp ecualizacion = new EqualizationOp();
                     ecualizacion.filter(imgSrce, imgSrce);
-                    currentIntWind.getCanvas().repaint();
+                    mainDesktop.repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
                 }
@@ -1330,10 +1334,8 @@ public class MainWindow extends javax.swing.JFrame {
             if(imgSrce!=null){
                 try{
                     MybufferedImageOp ownFilter=new MybufferedImageOp();
-                    BufferedImage imgDest = ownFilter.filter(imgSrce, null);
-                    ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
-                    currentIntWind.getCanvas().setImage(imgDest);
-                    currentIntWind.getCanvas().repaint();
+                    ownFilter.filter(imgSrce, imgSrce);
+                    mainDesktop.repaint();
                 } catch(IllegalArgumentException e){
                         System.err.println(e.getLocalizedMessage());
                 }
@@ -1371,7 +1373,7 @@ public class MainWindow extends javax.swing.JFrame {
                     LookupOp lop = new LookupOp(byteLookUpTable, null);
                     lop.filter( imgSrce , imgSrce);
                     
-                    currentIntWind.getCanvas().repaint();
+                    mainDesktop.repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
                 }
@@ -1387,7 +1389,7 @@ public class MainWindow extends javax.swing.JFrame {
                 ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);  
                 ColorConvertOp op = new ColorConvertOp(cs, null);  
                 op.filter(imgSrce, imgSrce);
-                currentIntWind.getCanvas().repaint();
+                mainDesktop.repaint();
             }
         }
                     
