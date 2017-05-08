@@ -6,7 +6,9 @@
 package GUI;
 
 import java.awt.Dimension;
+import java.awt.geom.Rectangle2D;
 import javax.swing.JDialog;
+import sm.ALM.graficos.Canvas2DPanel;
 
 /**
  *
@@ -24,8 +26,8 @@ public class ResizePanel extends javax.swing.JDialog {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);       
         currentIntWind=IntWind;
         if(currentIntWind!=null){
-            WidthField.setText(currentIntWind.getCanvas().getWidthImage()+"");
-            HeightField.setText(currentIntWind.getCanvas().getHeightImage()+"");
+            WidthField.setText(((int)currentIntWind.getCanvas().getWidthImage())+"");
+            HeightField.setText(((int)currentIntWind.getCanvas().getHeightImage())+"");
         }
         else{
             WidthField.setText("300");
@@ -108,7 +110,12 @@ public class ResizePanel extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-        currentIntWind.getCanvas().setSizeImage(Integer.parseInt(WidthField.getText()), Integer.parseInt(HeightField.getText()));
+        Canvas2DPanel.setSizeImage(Integer.parseInt(WidthField.getText()), Integer.parseInt(HeightField.getText()));
+        if(currentIntWind!=null){
+            currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,Canvas2DPanel.getWidthImage()-1,Canvas2DPanel.getHeightImage()-1));
+            currentIntWind.getCanvas().ChangeSizeImage();
+            currentIntWind.repaint();
+        }
         setVisible(false);
         dispose();
     }//GEN-LAST:event_SaveButtonActionPerformed

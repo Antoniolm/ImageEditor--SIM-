@@ -33,6 +33,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sm.ALM.graficos.Canvas2DPanel;
 
 public class FileManager {
      
@@ -68,7 +69,7 @@ public class FileManager {
         }
         
          BufferedImage img;
-         img = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
+         img = new BufferedImage((int)Canvas2DPanel.getWidthImage(),(int)Canvas2DPanel.getHeightImage(),BufferedImage.TYPE_INT_ARGB);
          newIntWind.getCanvas().setImage(img);
          newIntWind.getCanvas().setColor(new Color(255,255,255));
          

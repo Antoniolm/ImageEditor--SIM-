@@ -36,7 +36,9 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import static sm.ALM.graficos.GeometryType.*;
@@ -183,15 +185,15 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return clipShape;
     }
     
-    public void setSizeImage(float width,float height){
+    public static void setSizeImage(float width,float height){
         heightSize=height;
         widthSize=width;
     }
     
-    public float getHeightImage(){
+    public static float getHeightImage(){
         return heightSize;
     }
-    public float getWidthImage(){
+    public static float getWidthImage(){
         return widthSize;
     }
     

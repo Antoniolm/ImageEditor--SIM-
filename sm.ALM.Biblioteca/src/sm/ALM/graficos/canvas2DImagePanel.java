@@ -20,6 +20,7 @@ package sm.ALM.graficos;
 
 import com.sun.javafx.iio.ImageStorage;
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -39,7 +40,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
     public canvas2DImagePanel() {
         super();
         initComponents();
-        clipShape =new Rectangle2D.Float(1,1,heightSize-1,heightSize-1);
+        clipShape =new Rectangle2D.Float(1,1,widthSize-1,heightSize-1);
         image=null;
     }
 
@@ -62,6 +63,17 @@ public class canvas2DImagePanel extends Canvas2DPanel {
         }
         else
             return getImage();
+    }
+    
+    public void ChangeSizeImage(){
+         BufferedImage img = new BufferedImage((int)Canvas2DPanel.getWidthImage(),(int)Canvas2DPanel.getHeightImage(),BufferedImage.TYPE_INT_ARGB);
+         setImage(img);
+         setColor(new Color(255,255,255));
+         
+         Graphics2D g2d =img.createGraphics();
+         g2d.fillRect(0,0,img.getWidth(),img.getHeight());
+         
+         setColor(new Color(0,0,0)); 
     }
     
     public void paintComponent(Graphics g){
