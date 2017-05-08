@@ -1351,6 +1351,27 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void NegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegativeButtonActionPerformed
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                try{
+                    double K = 255.0;
+                    byte[] bytes = new byte[256];
+                    
+                    for (int i = 0; i <= 255; i++) {
+                        bytes[i] = (byte)(255-i); // Negativo
+                    }
+                    ByteLookupTable byteLookUpTable = new ByteLookupTable(0, bytes);
+                    // Imagen origen y destino iguales
+                    LookupOp lop = new LookupOp(byteLookUpTable, null);
+                    lop.filter( imgSrce , imgSrce);
+                    
+                    currentIntWind.getCanvas().repaint();
+                } catch(Exception e){
+                    System.err.println(e.getLocalizedMessage());
+                }
+            }
+        } 
         
     }//GEN-LAST:event_NegativeButtonActionPerformed
 
