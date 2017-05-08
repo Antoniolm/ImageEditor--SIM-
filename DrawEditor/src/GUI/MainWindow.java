@@ -86,6 +86,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         ColorCombo.setRenderer(new ColorComboRenderer());
         ColorCombo.setSelectedIndex(0);
+        ColorCombo.setBackground((Color)ColorCombo.getSelectedItem());
+        
         thickSpinner.setValue(1); 
         file=FileManager.getSingletonInstance();
         
@@ -137,7 +139,8 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         SenButton = new javax.swing.JButton();
         sepiaButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        NegativeButton = new javax.swing.JButton();
+        GrayButton = new javax.swing.JButton();
         OwnFilterButton = new javax.swing.JButton();
         dyeButton = new javax.swing.JButton();
         equalizationButton = new javax.swing.JButton();
@@ -453,11 +456,26 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel2.add(sepiaButton);
 
-        jButton1.setText("N");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setMinimumSize(new java.awt.Dimension(31, 31));
-        jButton1.setPreferredSize(new java.awt.Dimension(31, 31));
-        jPanel2.add(jButton1);
+        NegativeButton.setText("N");
+        NegativeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        NegativeButton.setMinimumSize(new java.awt.Dimension(31, 31));
+        NegativeButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        NegativeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NegativeButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(NegativeButton);
+
+        GrayButton.setText("G");
+        GrayButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        GrayButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        GrayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GrayButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(GrayButton);
 
         OwnFilterButton.setText("P");
         OwnFilterButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1038,10 +1056,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_RotationSliderStateChanged
 
     private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
+        ColorCombo.setBackground((Color)ColorCombo.getSelectedItem());
         if(currentIntWind!=null){
             currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
-            int currentIndex=ColorCombo.getSelectedIndex();
-            ColorCombo.setSelectedIndex(currentIndex);
         }
     }//GEN-LAST:event_ColorComboActionPerformed
 
@@ -1101,15 +1118,17 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
-                    double K = 255.0/ Math.sin(Math.PI/2.0);
-                    byte[] lt = new byte[256];
+                    double K = 255.0;
+                    byte[] bytes = new byte[256];
+                    
                     for (int x = 0; x <= 255; x++) {
-                        lt[x] = ((byte)(K * Math.abs(Math.sin(Math.toRadians((x * 1.0) * (180.0/255.0))))));
+                        bytes[x] = ((byte)(K * Math.abs(Math.sin(Math.toRadians((x * 1.0) * (180.0/255.0))))));
                     }
-                    ByteLookupTable bLookUpTable = new ByteLookupTable(0, lt);
+                    ByteLookupTable byteLookUpTable = new ByteLookupTable(0, bytes);
                     // Imagen origen y destino iguales
-                    LookupOp lop = new LookupOp(bLookUpTable, null);
+                    LookupOp lop = new LookupOp(byteLookUpTable, null);
                     lop.filter( imgSrce , imgSrce);
+                    
                     currentIntWind.getCanvas().repaint();
                 } catch(Exception e){
                     System.err.println(e.getLocalizedMessage());
@@ -1330,6 +1349,20 @@ public class MainWindow extends javax.swing.JFrame {
             Kernel k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
         });
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void NegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegativeButtonActionPerformed
+        
+    }//GEN-LAST:event_NegativeButtonActionPerformed
+
+    private void GrayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GrayButtonActionPerformed
+        if(currentIntWind!=null) {
+            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            if(imgSrce!=null){
+                
+            }
+        }
+                    
+    }//GEN-LAST:event_GrayButtonActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1353,11 +1386,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton FilledButton;
     private javax.swing.JComboBox FilterCombo;
     private javax.swing.JButton GetDarkButton;
+    private javax.swing.JButton GrayButton;
     private javax.swing.JButton LessScaleButton;
     private javax.swing.JButton LightUpButton;
     private javax.swing.JToggleButton LineButton;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JButton MoreScaleButton;
+    private javax.swing.JButton NegativeButton;
     private javax.swing.JButton NewFileButton;
     private javax.swing.JButton OpenButton;
     private javax.swing.JMenuItem OpenMenu;
@@ -1386,7 +1421,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton contrastButton;
     private javax.swing.JButton dyeButton;
     private javax.swing.JButton equalizationButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
