@@ -1249,7 +1249,8 @@ public class MainWindow extends javax.swing.JFrame {
                             name+="(PYCC)";
                         break;
                         case "Gray":
-                            cs =ColorSpace.getInstance(ColorSpace.CS_GRAY);
+                            if(imgSrce.getRaster().getNumBands()!=1)
+                                cs =ColorSpace.getInstance(ColorSpace.CS_GRAY);
                             name+="(GRAY)";
                         break;
                     }
