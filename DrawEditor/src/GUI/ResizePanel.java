@@ -6,12 +6,13 @@
 package GUI;
 
 import java.awt.Dimension;
+import javax.swing.JDialog;
 
 /**
  *
  * @author LENOVO
  */
-public class ResizePanel extends java.awt.Dialog {
+public class ResizePanel extends javax.swing.JDialog {
 
     /**
      * Creates new form ResizePanel
@@ -19,7 +20,7 @@ public class ResizePanel extends java.awt.Dialog {
     public ResizePanel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setPreferredSize(new Dimension(200,200));
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -44,6 +45,9 @@ public class ResizePanel extends java.awt.Dialog {
 
         setTitle("Resize image");
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
             }
@@ -101,6 +105,10 @@ public class ResizePanel extends java.awt.Dialog {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonPanel;

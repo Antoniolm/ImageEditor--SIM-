@@ -1165,8 +1165,13 @@ public class MainWindow extends javax.swing.JFrame {
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
             newIntWind.setTitle(currentIntWind.getTitle());
             newIntWind.setLocation((Point) currentPositionWind);
+            BufferedImage imgSrc=currentIntWind.getCanvas().getImage();
                     
-            newIntWind.getCanvas().setImage(currentIntWind.getCanvas().getImage());
+            ColorModel model = imgSrc.getColorModel();
+            WritableRaster raster = imgSrc.copyData(null);
+            BufferedImage cloneImage = new BufferedImage(model, raster, model.isAlphaPremultiplied(), null);
+               
+            newIntWind.getCanvas().setImage(cloneImage);
             newIntWind.getCanvas().setClip(currentIntWind.getCanvas().getClip());
             currentIntWind=newIntWind;
             mainDesktop.add(currentIntWind);

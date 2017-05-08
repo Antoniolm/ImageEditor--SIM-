@@ -29,10 +29,7 @@ import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-/**
- *
- * @author LENOVO
- */
+
 public class canvas2DImagePanel extends Canvas2DPanel {
 
     private BufferedImage image;
@@ -41,7 +38,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
      */
     public canvas2DImagePanel() {
         initComponents();
-        clipShape =new Rectangle2D.Float(1,1,300,300);
+        clipShape =new Rectangle2D.Float(1,1,heightSize-1,heightSize-1);
         image=null;
     }
 
@@ -96,11 +93,11 @@ public class canvas2DImagePanel extends Canvas2DPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 716, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 832, Short.MAX_VALUE)
+            .addGap(0, 338, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
