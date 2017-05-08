@@ -1371,7 +1371,7 @@ public class MainWindow extends javax.swing.JFrame {
                     System.err.println(e.getLocalizedMessage());
                 }
             }
-        } 
+         } 
         
     }//GEN-LAST:event_NegativeButtonActionPerformed
 
@@ -1379,7 +1379,10 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentIntWind!=null) {
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
-                
+                ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);  
+                ColorConvertOp op = new ColorConvertOp(cs, null);  
+                op.filter(imgSrce, imgSrce);
+                currentIntWind.getCanvas().repaint();
             }
         }
                     
