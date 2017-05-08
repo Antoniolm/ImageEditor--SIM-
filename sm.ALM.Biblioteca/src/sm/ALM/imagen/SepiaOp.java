@@ -37,19 +37,20 @@ public class SepiaOp extends BufferedImageOpAdapter{
             dest = createCompatibleDestImage(src, null);
         }
 
+        int currentRGB,R,G,B,sepiaR,sepiaG,sepiaB,newRGB;
         for (int x = 0; x < src.getWidth(); x++) {
             for (int y = 0; y < src.getHeight(); y++) {
-                int currentRGB=src.getRGB(x, y);
+                currentRGB=src.getRGB(x, y);
                 
-                int R= (currentRGB >> 16) & 0xFF;
-                int G= (currentRGB >> 8 ) & 0xFF;
-                int B= (currentRGB) & 0xFF;
+                R= (currentRGB >> 16) & 0xFF;
+                G= (currentRGB >> 8 ) & 0xFF;
+                B= (currentRGB) & 0xFF;
                 
-                int sepiaR = (int) Math.min(255 ,0.393*R + 0.769*G + 0.189*B);
-                int sepiaG = (int) Math.min(255, 0.349*R + 0.686*G + 0.168*B);
-                int sepiaB = (int) Math.min(255, 0.272*R + 0.534*G + 0.131*B);
+                sepiaR = (int) Math.min(255 ,0.393*R + 0.769*G + 0.189*B);
+                sepiaG = (int) Math.min(255, 0.349*R + 0.686*G + 0.168*B);
+                sepiaB = (int) Math.min(255, 0.272*R + 0.534*G + 0.131*B);
                 
-                int newRGB = (sepiaR << 16) | (sepiaG << 8) | sepiaB; 
+                newRGB = (sepiaR << 16) | (sepiaG << 8) | sepiaB; 
                 dest.setRGB(x, y, newRGB);
             }
         }

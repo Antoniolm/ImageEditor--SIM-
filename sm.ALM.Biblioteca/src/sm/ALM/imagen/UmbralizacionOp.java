@@ -38,13 +38,14 @@ public class UmbralizacionOp  extends BufferedImageOpAdapter{
             dest = createCompatibleDestImage(src, null);
         }
 
+        int currentRGB,R,G,B;
         for (int x = 0; x < src.getWidth(); x++) {
             for (int y = 0; y < src.getHeight(); y++) {
-                int currentRGB=src.getRGB(x, y);
+                currentRGB=src.getRGB(x, y);
                 
-                int R= (currentRGB >> 16) & 0xFF;
-                int G= (currentRGB >> 8 ) & 0xFF;
-                int B= (currentRGB) & 0xFF;
+                R= (currentRGB >> 16) & 0xFF;
+                G= (currentRGB >> 8 ) & 0xFF;
+                B= (currentRGB) & 0xFF;
                 
                 if((R+G+B)/3>=umbral){
                     dest.setRGB(x, y, (255 << 16) | (255 << 8) | 255);
