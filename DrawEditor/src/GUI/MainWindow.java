@@ -168,7 +168,7 @@ public class MainWindow extends javax.swing.JFrame {
         SeeGeoMenu = new javax.swing.JCheckBoxMenuItem();
         SeeAttMenu = new javax.swing.JCheckBoxMenuItem();
         resizeItem = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        ResizeItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DrawEditor");
@@ -731,13 +731,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         resizeItem.setText("Image");
 
-        jMenuItem1.setText("Resize image");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        ResizeItem.setText("Resize image");
+        ResizeItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                ResizeItemActionPerformed(evt);
             }
         });
-        resizeItem.add(jMenuItem1);
+        resizeItem.add(ResizeItem);
 
         MenuBar.add(resizeItem);
 
@@ -752,32 +752,33 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void changeCurrentIntWind(InternalWindow vi){
        currentIntWind=vi;
-       FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
-       TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
-       SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
-       thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
-       ShineSlider.setValue(0);
-       RotationSlider.setValue(0);
-       umbraSlider.setValue(128);
-       
-       switch(currentIntWind.getCanvas().getGeometry()){
-           case POINT:
-               PointButton.setSelected(true);
-           break;
-           case LINE:
-               LineButton.setSelected(true);
-           break;
-           case RECTANGLE:
-               RtgleButton.setSelected(true);
-           break;
-           case CIRCLE:
-               CircleButton.setSelected(true);
-           break;    
+       if(currentIntWind!=null){
+            FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
+            TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
+            SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
+            thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
+            ShineSlider.setValue(0);
+            RotationSlider.setValue(0);
+            umbraSlider.setValue(128);
+
+            switch(currentIntWind.getCanvas().getGeometry()){
+                case POINT:
+                    PointButton.setSelected(true);
+                break;
+                case LINE:
+                    LineButton.setSelected(true);
+                break;
+                case RECTANGLE:
+                    RtgleButton.setSelected(true);
+                break;
+                case CIRCLE:
+                    CircleButton.setSelected(true);
+                break;    
+            }
+
+           if(currentIntWind.getCanvas().getEdit())
+               EditButton.setSelected(true);
        }
-       
-      if(currentIntWind.getCanvas().getEdit())
-          EditButton.setSelected(true);
-       
     }
     //////////////////////////////////////////////////////////////////////////
     //  Menu events
@@ -1340,20 +1341,19 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_OwnFilterButtonActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void ResizeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResizeItemActionPerformed
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ResizePanel dialog = new ResizePanel(new java.awt.Frame(), true);
+                ResizePanel dialog = new ResizePanel(new java.awt.Frame(), true,currentIntWind);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                        dispose();
                     }
                 });
                 dialog.setVisible(true);
             }
-            Kernel k = KernelProducer.createKernel(KernelProducer.TYPE_MEDIA_3x3);
         });
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_ResizeItemActionPerformed
 
     private void NegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegativeButtonActionPerformed
         if(currentIntWind!=null) {
@@ -1427,6 +1427,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem OpenMenu;
     private javax.swing.JButton OwnFilterButton;
     private javax.swing.JToggleButton PointButton;
+    private javax.swing.JMenuItem ResizeItem;
     private javax.swing.JPanel RotationPanel;
     private javax.swing.JSlider RotationSlider;
     private javax.swing.JToggleButton RtgleButton;
@@ -1450,7 +1451,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton contrastButton;
     private javax.swing.JButton dyeButton;
     private javax.swing.JButton equalizationButton;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

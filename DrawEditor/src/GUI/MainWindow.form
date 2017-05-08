@@ -92,12 +92,12 @@
             <Property name="text" type="java.lang.String" value="Image"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="ResizeItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Resize image"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ResizeItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

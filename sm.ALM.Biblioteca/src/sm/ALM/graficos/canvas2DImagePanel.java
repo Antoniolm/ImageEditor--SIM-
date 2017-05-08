@@ -37,6 +37,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
      * Creates new form canvas2DImagePanel
      */
     public canvas2DImagePanel() {
+        super();
         initComponents();
         clipShape =new Rectangle2D.Float(1,1,heightSize-1,heightSize-1);
         image=null;
@@ -93,7 +94,7 @@ public class canvas2DImagePanel extends Canvas2DPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+            .addGap(0, 552, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

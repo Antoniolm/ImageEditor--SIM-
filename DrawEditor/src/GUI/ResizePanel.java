@@ -17,10 +17,10 @@ public class ResizePanel extends javax.swing.JDialog {
     /**
      * Creates new form ResizePanel
      */
-    public ResizePanel(java.awt.Frame parent, boolean modal) {
+    public ResizePanel(java.awt.Frame parent, boolean modal,InternalWindow currentIntWind) {
         super(parent, modal);
         initComponents();
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);       
     }
 
     /**

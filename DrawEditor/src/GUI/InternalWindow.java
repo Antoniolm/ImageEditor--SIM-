@@ -70,6 +70,7 @@ public class InternalWindow extends javax.swing.JInternalFrame {
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -147,6 +148,10 @@ public class InternalWindow extends javax.swing.JInternalFrame {
     private void canvasPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvasPanelMouseExited
         parent.setCursorState("");
     }//GEN-LAST:event_canvasPanelMouseExited
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        parent.changeCurrentIntWind(null);
+    }//GEN-LAST:event_formInternalFrameClosing
 
     void setGeometry(GeometryType geom){
         canvasPanel.setGeometry(geom);
