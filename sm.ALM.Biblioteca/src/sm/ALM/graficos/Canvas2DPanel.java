@@ -188,7 +188,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         widthSize=width;
     }
     
-    public float getHeightImage(float width,float height){
+    public float getHeightImage(){
         return heightSize;
     }
     public float getWidthImage(){

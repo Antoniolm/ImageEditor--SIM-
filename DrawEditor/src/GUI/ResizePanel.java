@@ -14,13 +14,23 @@ import javax.swing.JDialog;
  */
 public class ResizePanel extends javax.swing.JDialog {
 
+    private InternalWindow currentIntWind;
     /**
      * Creates new form ResizePanel
      */
-    public ResizePanel(java.awt.Frame parent, boolean modal,InternalWindow currentIntWind) {
+    public ResizePanel(java.awt.Frame parent, boolean modal,InternalWindow IntWind) {
         super(parent, modal);
         initComponents();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);       
+        currentIntWind=IntWind;
+        if(currentIntWind!=null){
+            WidthField.setText(currentIntWind.getCanvas().getWidthImage()+"");
+            HeightField.setText(currentIntWind.getCanvas().getHeightImage()+"");
+        }
+        else{
+            WidthField.setText("300");
+            HeightField.setText("300");
+        }
     }
 
     /**
@@ -98,7 +108,9 @@ public class ResizePanel extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-
+        currentIntWind.getCanvas().setSizeImage(Integer.parseInt(WidthField.getText()), Integer.parseInt(HeightField.getText()));
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed

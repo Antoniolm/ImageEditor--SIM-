@@ -1347,7 +1347,7 @@ public class MainWindow extends javax.swing.JFrame {
                 ResizePanel dialog = new ResizePanel(new java.awt.Frame(), true,currentIntWind);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        dispose();
+                        dialog.dispose();
                     }
                 });
                 dialog.setVisible(true);
