@@ -41,7 +41,11 @@ public class FileManager {
     
     private FileManager() {
     }
-
+    
+    /**
+     * It will return the instance of our class
+     * @return 
+     */
     public static FileManager getSingletonInstance() {
         if (fileManager == null){
             fileManager = new FileManager();
@@ -49,6 +53,11 @@ public class FileManager {
         return fileManager;
     }
     
+    /**
+     * It will get the extension of a file
+     * @param name
+     * @return 
+     */
     public String getExtension(String name){
         String result="";
         for(int i=0;i<name.length();i++){
@@ -59,6 +68,12 @@ public class FileManager {
         return result;
     }
     
+    /**
+     * The method will create a new file 
+     * @param currentIntWind
+     * @param window
+     * @return 
+     */
     public InternalWindow newFile(InternalWindow currentIntWind,MainWindow window){
         InternalWindow newIntWind = new InternalWindow(window);
         
@@ -80,6 +95,11 @@ public class FileManager {
          return newIntWind;
     }
     
+    /**
+     * The method will open a new file 
+     * @param window
+     * @return 
+     */
     public InternalWindow openFile(MainWindow window){
         String[] filterList=ImageIO.getWriterFileSuffixes();
         JFileChooser dlg = new JFileChooser();
@@ -109,6 +129,11 @@ public class FileManager {
         return newIntWind;
     }
     
+    /**
+     * The method will save a file
+     * @param currentIntWind
+     * @param window 
+     */
     public void saveFile(InternalWindow currentIntWind,MainWindow window){
         String[] filterList=ImageIO.getWriterFileSuffixes();
         JFileChooser dlg = new JFileChooser();

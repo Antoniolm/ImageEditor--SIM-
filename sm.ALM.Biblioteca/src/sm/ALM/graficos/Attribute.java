@@ -62,43 +62,84 @@ public class Attribute {
             g2d.setRenderingHints(render);
     }
     
+    /**
+     * 
+     * @return 
+     */
     public Stroke getStroke() {
         return stroke;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Integer getThickness(){
         return strokeValue;
     }
     
+    /**
+     * 
+     * @param stroke
+     * @param value 
+     */
     public void setStroke(Stroke stroke,Integer value) {
         this.stroke = stroke;
         strokeValue=value;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Paint getColor() {
         return colorPaint;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public boolean getFilled() {
         return filled;
     }
 
+    /**
+     * 
+     * @param aPaint 
+     */
     public void setFilled(Paint aPaint) {
         this.colorPaint = aPaint;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Composite getComp() {
         return comp;
     }
 
+    /**
+     * 
+     * @param comp 
+     */
     public void setComp(Composite comp) {
         this.comp = comp;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public RenderingHints getRender() {
         return render;
     }
 
+    /**
+     * 
+     * @param render 
+     */
     public void setRender(RenderingHints render) {
         this.render = render;
     }

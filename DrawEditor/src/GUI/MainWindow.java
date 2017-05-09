@@ -206,6 +206,7 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(SaveButton);
 
         CopyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/copy.png"))); // NOI18N
+        CopyButton.setToolTipText("Copy Image");
         CopyButton.setPreferredSize(new java.awt.Dimension(31, 31));
         CopyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

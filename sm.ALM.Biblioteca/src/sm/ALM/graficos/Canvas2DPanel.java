@@ -102,52 +102,93 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         }); 
     }
     
+    /**
+     * 
+     * @param g 
+     */
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.clip(clipShape);
+        if(clipShape!=null)
+            g2d.clip(clipShape);
         
         vShape.draw(g2d);
-        
-        
     }
     
+    /**
+     * 
+     * @return 
+     */
     public GeometryType getGeometry(){
         return geometry;
     }
     
+    /**
+     * 
+     * @param aType 
+     */
     public void setGeometry(GeometryType aType){
         geometry=aType;
     }
     
+    /**
+     * 
+     * @param value 
+     */
     public void setColor(Paint value){
         vShape.getAttribute().setFilled(value);
         repaint();
     }
         
+    /**
+     * 
+     * @param boolValue 
+     */
     public void setFilled(boolean boolValue){
         vShape.getAttribute().filled=boolValue;
         repaint();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public boolean getFilled(){            
         return vShape.getAttribute().getFilled();
     }
     
+    /**
+     * 
+     * @param stroke
+     * @param value 
+     */
     public void setThick(Stroke stroke,Integer value){
         vShape.getAttribute().setStroke(stroke,value);
         repaint();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public Integer getThick(){
         return vShape.getAttribute().getThickness();
     }
+    
+    /**
+     * 
+     * @param value 
+     */
     public void setTransparency(Composite value){
         vShape.getAttribute().setComp(value);
         repaint();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public boolean getTransparency(){
         boolean result=false;
         
@@ -157,11 +198,19 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return result;
     }
     
+    /**
+     * 
+     * @param value 
+     */
     public void setRender(RenderingHints value){
         vShape.getAttribute().setRender(value);
         repaint();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public boolean getRender(){
         boolean result=false;
         if(vShape.getAttribute().getRender()!=null)
@@ -170,29 +219,60 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return result;
     }
     
+    /**
+     * 
+     * @param value 
+     */
     public void setEdit(boolean value){
         editMode=value;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public boolean getEdit(){
         return editMode;
     }
     
+    /**
+     * 
+     * @param newClip 
+     */
     public void setClip(Shape newClip){
         clipShape=newClip;
     }
+    
+    /**
+     * 
+     * @return 
+     */
     public Shape getClip(){
         return clipShape;
     }
     
+    /**
+     * 
+     * @param width
+     * @param height 
+     */
     public static void setSizeImage(float width,float height){
         heightSize=height;
         widthSize=width;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public static float getHeightImage(){
         return heightSize;
     }
+    
+    /**
+     * 
+     * @return 
+     */
     public static float getWidthImage(){
         return widthSize;
     }

@@ -16,44 +16,53 @@
 // ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // **
 // *********************************************************************
+
 package sm.ALM.graficos;
 
-import com.sun.javafx.iio.ImageStorage;
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import static sm.ALM.graficos.Canvas2DPanel.widthSize;
 
 
-public class canvas2DImagePanel extends Canvas2DPanel {
+public class canvas2DImagePanel  extends Canvas2DPanel {
 
-    private BufferedImage image;
+     private BufferedImage image;
     /**
-     * Creates new form canvas2DImagePanel
+     * Creates new form canvas2DImagePanel2
      */
     public canvas2DImagePanel() {
-        super();
+       super();
         initComponents();
         clipShape =new Rectangle2D.Float(1,1,widthSize-1,heightSize-1);
         image=null;
     }
 
-    
+    /**
+     * It will set a new value of our image
+     * @param img 
+     */
     public void setImage(BufferedImage img){
         image = img;
         setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
     }
     
+    /**
+     * It will return the image of our canvas
+     * @return 
+     */
     public BufferedImage getImage(){
         return image;
     }
     
+    /**
+     * @param drawVector
+     * @return 
+     */
     public BufferedImage getImage(boolean drawVector){
         if (drawVector) {
             BufferedImage newImage=new BufferedImage(image.getWidth(),image.getHeight(),image.getType());
@@ -65,6 +74,9 @@ public class canvas2DImagePanel extends Canvas2DPanel {
             return getImage();
     }
     
+    /**
+     * It will resize the image of an image
+     */
     public void ChangeSizeImage(){
          BufferedImage img = new BufferedImage((int)Canvas2DPanel.getWidthImage(),(int)Canvas2DPanel.getHeightImage(),BufferedImage.TYPE_INT_ARGB);
          setImage(img);
@@ -76,6 +88,10 @@ public class canvas2DImagePanel extends Canvas2DPanel {
          setColor(new Color(0,0,0)); 
     }
     
+    /**
+     * 
+     * @param g 
+     */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         if(image!=null) g.drawImage(image,0,0,this);
@@ -96,30 +112,18 @@ public class canvas2DImagePanel extends Canvas2DPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(204, 204, 204));
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                formMouseEntered(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        if(!editMode)
-            setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        else
-            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_formMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
