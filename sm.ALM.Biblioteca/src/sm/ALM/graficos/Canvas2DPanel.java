@@ -48,6 +48,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     GeometryType geometry;
     public Point initPos;
     public Point offSet;
+    private int currentColor;
     static float widthSize=300;
     static float heightSize=300;
     Shape currentShape;
@@ -63,6 +64,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         editMode=false;
         geometry=POINT;
         setBackground(Color.white);
+        currentColor=0;
         
         //Added our mouseListener 
         addMouseListener(new MouseAdapter() {
@@ -277,6 +279,14 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return widthSize;
     }
     
+    
+    public void setCurrentColor(int value){
+        currentColor=value;        
+    }
+    
+    public int getCurrentColor(){
+        return currentColor;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

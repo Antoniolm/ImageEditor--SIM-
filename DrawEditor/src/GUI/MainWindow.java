@@ -85,8 +85,6 @@ public class MainWindow extends javax.swing.JFrame {
             ColorCombo.addItem(color);
         
         ColorCombo.setRenderer(new ColorComboRenderer());
-        ColorCombo.setSelectedIndex(0);
-        ColorCombo.setBackground((Color)ColorCombo.getSelectedItem());
         
         thickSpinner.setValue(1); 
         file=FileManager.getSingletonInstance();
@@ -758,6 +756,10 @@ public class MainWindow extends javax.swing.JFrame {
             TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
             SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
             thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
+            
+            ColorCombo.setSelectedIndex(currentIntWind.getCanvas().getCurrentColor());
+            currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+            
             ShineSlider.setValue(0);
             RotationSlider.setValue(0);
             umbraSlider.setValue(128);
@@ -1062,6 +1064,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
         ColorCombo.setBackground((Color)ColorCombo.getSelectedItem());
         if(currentIntWind!=null){
+            currentIntWind.getCanvas().setCurrentColor(ColorCombo.getSelectedIndex());
             currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
         }
     }//GEN-LAST:event_ColorComboActionPerformed

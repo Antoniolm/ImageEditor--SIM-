@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Código consultado para realizar este renderer es de la pagina java2s.com
+ * Referencia ha dicho codigo : http://www.java2s.com/Code/Java/Swing-JFC/Colorcomboboxrenderer.htm
+ * El código es poco flexible por lo que las modificaciones realizadas han sido pocas.
  */
 package sm.ALM.graficos;
 
@@ -22,12 +22,12 @@ public class ColorComboRenderer extends JPanel implements ListCellRenderer {
     super();
     setBorder(new CompoundBorder(
         new MatteBorder(5,5,5,20, Color.white), new LineBorder(
-            Color.black)));
+            Color.GRAY)));
   }
 
   public Component getListCellRendererComponent(JList list, Object obj,int row, boolean sel, boolean hasFocus) {
-    if (obj instanceof Color)
-      currentColor = (Color) obj;
+    currentColor = (Color) obj;
+    setBackground(currentColor);
     return this;
   }
 
