@@ -29,13 +29,14 @@ import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShapeList {
-    Shape currentShape;
-    private List<Shape> vShape;
+public class Figure {
+    private Shape currentShape;
     private Attribute attribute;
+    private boolean isSelected;
     
-    public ShapeList(){
-        vShape = new ArrayList();        
+    public Figure(){
+        currentShape=null;       
+        isSelected=false;
         attribute =new Attribute();
     }
     
@@ -46,39 +47,37 @@ public class ShapeList {
     public void draw(Graphics2D g2d){
         attribute.apply(g2d);
         
-        if(!attribute.getFilled())
-            for(Shape s:vShape)
-                g2d.draw(s);
-        else
-            for(Shape s:vShape){
-                if(s instanceof Line2D)
-                    g2d.draw(s);
-                else g2d.fill(s);
+        if(currentShape!=null){
+            if(!attribute.getFilled())
+                g2d.draw(currentShape);
+            else {
+                if(currentShape instanceof Line2D) 
+                    g2d.draw(currentShape);
+                else 
+                    g2d.fill(currentShape);
             }
+        }
     }
     /**
      * It will create a new shape 
      * @return 
      */
     public void createShape(GeometryType geometry,Point2D initPos){
-        Shape result=null;
         switch(geometry){
             case POINT: //Case point geoometry
-                result=new Line2D.Float(initPos,initPos);
+                currentShape=new Line2D.Float(initPos,initPos);
                 break;
             case LINE: //Case line geoometry
-                result=new Line2D.Float();
+                currentShape=new Line2D.Float();
                 break;
             case RECTANGLE: //Case rectangle geoometry
-                result=new Rectangle();
+                currentShape=new Rectangle();
                 break;
             case CIRCLE: //Case circle geoometry
-                result=new Ellipse2D.Float();
+                currentShape=new Ellipse2D.Float();
                 break;
 
         }
-        currentShape=result;
-        vShape.add(currentShape);
     }
     
     /**
@@ -108,27 +107,24 @@ public class ShapeList {
      * @return shape 
      */
     public void getSelectedShape(Point2D p,Point2D offSet){
-        currentShape=null;
-        for(Shape s:vShape){
-            if(s instanceof RectangularShape){ //If is a rectangularShape
-                if(s.contains(p)){ 
-                    if( s instanceof Rectangle){
-                    Point2D.Double point1=new Point2D.Double(((RectangularShape)s).getX(),((RectangularShape)s).getY());
-                    offSet.setLocation(Math.abs(p.getX()-point1.getX()),Math.abs(p.getY()-point1.getY()));
-                    }
-                    else{
-                        Point2D.Double point1=new Point2D.Double(((RectangularShape)s).getCenterX(),((RectangularShape)s).getCenterY());
-                        offSet.setLocation(p.getX()-point1.getX(),p.getY()-point1.getY());
-                    }
-                    currentShape=s;
+        isSelected=false;
+        if (currentShape!= null && currentShape instanceof RectangularShape) { //If is a rectangularShape
+            if (currentShape.contains(p)) {
+                if (currentShape instanceof Rectangle) {
+                    Point2D.Double point1 = new Point2D.Double(((RectangularShape) currentShape).getX(), ((RectangularShape) currentShape).getY());
+                    offSet.setLocation(Math.abs(p.getX() - point1.getX()), Math.abs(p.getY() - point1.getY()));
+                } else {
+                    Point2D.Double point1 = new Point2D.Double(((RectangularShape) currentShape).getCenterX(), ((RectangularShape) currentShape).getCenterY());
+                    offSet.setLocation(p.getX() - point1.getX(), p.getY() - point1.getY());
                 }
+                isSelected=true;
             }
-            if(s instanceof Line2D){ //If is a line
-                if(s.intersects(p.getX(), p.getY(), 6, 6)){
-                    Point2D.Double point1=new Point2D.Double(((Line2D)s).getX1(),((Line2D)s).getY1());
-                    offSet.setLocation(p.getX()-point1.getX(),p.getY()-point1.getY());
-                    currentShape=s;
-                }  
+        }
+        if (currentShape instanceof Line2D) { //If is a line
+            if (currentShape.intersects(p.getX(), p.getY(), 6, 6)) {
+                Point2D.Double point1 = new Point2D.Double(((Line2D) currentShape).getX1(), ((Line2D) currentShape).getY1());
+                offSet.setLocation(p.getX() - point1.getX(), p.getY() - point1.getY());
+                isSelected=true;
             }
         }
         
@@ -139,7 +135,7 @@ public class ShapeList {
      * @param pos 
      */
     public void setLocationShape(Point2D pos,Point2D offSet){
-        if(currentShape!=null){
+        if(currentShape!=null && isSelected){
             if(currentShape instanceof Rectangle){ //If is a rectangle or a point
                 pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());
                 ((Rectangle)currentShape).setLocation((Point)pos);

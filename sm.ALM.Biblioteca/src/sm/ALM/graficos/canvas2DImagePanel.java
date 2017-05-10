@@ -31,7 +31,6 @@ import static sm.ALM.graficos.Canvas2DPanel.widthSize;
 
 public class canvas2DImagePanel  extends Canvas2DPanel {
 
-     private BufferedImage image;
     /**
      * Creates new form canvas2DImagePanel2
      */

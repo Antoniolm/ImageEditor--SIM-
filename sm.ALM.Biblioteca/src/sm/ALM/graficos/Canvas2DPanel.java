@@ -46,13 +46,14 @@ import static sm.ALM.graficos.GeometryType.*;
 
 public class Canvas2DPanel extends javax.swing.JPanel {
     GeometryType geometry;
-    public Point initPos;
-    public Point offSet;
+    protected BufferedImage image;
+    protected Point initPos;
+    protected Point offSet;
     private int currentColor;
     static float widthSize=300;
     static float heightSize=300;
     Shape currentShape;
-    ShapeList vShape;
+    Figure vShape;
     Shape clipShape;
     boolean editMode;
     
@@ -60,7 +61,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         initComponents();
         initPos=new Point(0,0);
         offSet=new Point(0,0);
-        vShape = new ShapeList();
+        vShape = new Figure();
         editMode=false;
         geometry=POINT;
         setBackground(Color.white);
@@ -72,7 +73,11 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 public void mousePressed(MouseEvent e){
                     if(editMode) vShape.getSelectedShape(e.getPoint(),offSet);
                     else{
-                        initPos=e.getPoint();       
+                        initPos=e.getPoint();   
+                        
+                        Graphics2D g2d=(Graphics2D) image.getGraphics();
+                        vShape.draw(g2d);
+                        
                         vShape.createShape(geometry,initPos);
                     }
                 repaint();                  
