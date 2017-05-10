@@ -22,5 +22,6 @@ public enum GeometryType {
     POINT,
     LINE,
     RECTANGLE,
-    CIRCLE,
+    RRECTANGLE,
+    CIRCLE
 }

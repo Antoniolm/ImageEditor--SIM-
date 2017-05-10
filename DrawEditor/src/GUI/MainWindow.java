@@ -113,6 +113,7 @@ public class MainWindow extends javax.swing.JFrame {
         PointButton = new javax.swing.JToggleButton();
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
+        RRtglButton = new javax.swing.JToggleButton();
         CircleButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -257,6 +258,16 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(RtgleButton);
+
+        buttonGroup1.add(RRtglButton);
+        RRtglButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rectangulo.png"))); // NOI18N
+        RRtglButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        RRtglButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RRtglButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(RRtglButton);
 
         buttonGroup1.add(CircleButton);
         CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/elipse.png"))); // NOI18N
@@ -1429,6 +1440,12 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_AboutItemActionPerformed
+
+    private void RRtglButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RRtglButtonActionPerformed
+        StateBarLabel.setText("Rounded Rectangle");
+        currentIntWind.setGeometry(GeometryType.RECTANGLE);
+        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+    }//GEN-LAST:event_RRtglButtonActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1466,6 +1483,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem OpenMenu;
     private javax.swing.JButton OwnFilterButton;
     private javax.swing.JToggleButton PointButton;
+    private javax.swing.JToggleButton RRtglButton;
     private javax.swing.JMenuItem ResizeItem;
     private javax.swing.JPanel RotationPanel;
     private javax.swing.JSlider RotationSlider;

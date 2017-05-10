@@ -25,7 +25,9 @@ import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
+import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,10 +70,13 @@ public class Figure {
                 currentShape=new Line2D.Float(initPos,initPos);
                 break;
             case LINE: //Case line geoometry
-                currentShape=new Line2D.Float();
+                currentShape=new Line2DFigure();
                 break;
             case RECTANGLE: //Case rectangle geoometry
                 currentShape=new Rectangle();
+                break;
+            case RRECTANGLE: //Case rectangle geoometry
+                currentShape=new RoundRectangle2D.Float();
                 break;
             case CIRCLE: //Case circle geoometry
                 currentShape=new Ellipse2D.Float();
@@ -89,9 +94,12 @@ public class Figure {
             case POINT: //Case point geoometry
                 break;
             case LINE: //Case line geoometry
-                ((Line2D.Float) currentShape).setLine(initPos, point);
+                ((Line2DFigure)currentShape).setLine(initPos, point);
                 break;
             case RECTANGLE: //Case rectangle geoometry
+                ((Rectangle) currentShape).setFrameFromDiagonal(initPos, point);
+                break;
+            case RRECTANGLE: //Case rectangle geoometry
                 ((Rectangle) currentShape).setFrameFromDiagonal(initPos, point);
                 break;
             case CIRCLE: //Case circle geoometry
@@ -121,11 +129,7 @@ public class Figure {
             }
         }
         if (currentShape instanceof Line2D) { //If is a line
-            if (currentShape.intersects(p.getX(), p.getY(), 6, 6)) {
-                Point2D.Double point1 = new Point2D.Double(((Line2D) currentShape).getX1(), ((Line2D) currentShape).getY1());
-                offSet.setLocation(p.getX() - point1.getX(), p.getY() - point1.getY());
-                isSelected=true;
-            }
+            if (((Line2DFigure)currentShape).wasSelected(p, offSet)) isSelected=true;
         }
         
     }
@@ -148,14 +152,8 @@ public class Figure {
                 point2.setLocation(point2.getX()-offSet.getX(),point2.getY()-offSet.getY());
                 ((Ellipse2D.Float) currentShape).setFrameFromCenter(pos, point2);
             }
-            if (currentShape instanceof Line2D.Float) { //If is a line
-                Point2D point1 = ((Line2D) currentShape).getP1();
-                Point2D point2 = ((Line2D) currentShape).getP2();
-                Point2D diff= new Point2D.Double((pos.getX() - point1.getX()),(pos.getY() - point1.getY()));
-                point2.setLocation(point2.getX() + diff.getX(), point2.getY() + diff.getY());
-                pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());
-                point2.setLocation(point2.getX()-offSet.getX(),point2.getY()-offSet.getY());
-                ((Line2D) currentShape).setLine(pos, point2);
+            if (currentShape instanceof Line2DFigure.Float) { //If is a line
+                ((Line2DFigure)currentShape).setPosition(pos, offSet);
             }
         }
     }
@@ -166,5 +164,9 @@ public class Figure {
      */
     public Attribute getAttribute(){
         return attribute;
+    }
+    
+    public void shapeInImage(){
+        currentShape=null;
     }
 }
