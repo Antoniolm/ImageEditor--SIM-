@@ -16,7 +16,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 public class ColorComboRenderer extends JPanel implements ListCellRenderer {
-  protected Color currentColor = Color.black;
+  protected Color currentColor;
 
   public ColorComboRenderer() {
     super();

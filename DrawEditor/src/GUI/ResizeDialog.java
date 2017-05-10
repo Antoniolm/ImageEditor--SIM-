@@ -14,13 +14,13 @@ import sm.ALM.graficos.Canvas2DPanel;
  *
  * @author LENOVO
  */
-public class ResizePanel extends javax.swing.JDialog {
+public class ResizeDialog extends javax.swing.JDialog {
 
     private InternalWindow currentIntWind;
     /**
      * Creates new form ResizePanel
      */
-    public ResizePanel(java.awt.Frame parent, boolean modal,InternalWindow IntWind) {
+    public ResizeDialog(java.awt.Frame parent, boolean modal,InternalWindow IntWind) {
         super(parent, modal);
         initComponents();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);       
@@ -81,10 +81,10 @@ public class ResizePanel extends javax.swing.JDialog {
         });
         ButtonPanel.add(CancelButton);
 
-        add(ButtonPanel, java.awt.BorderLayout.SOUTH);
-        add(jPanel1, java.awt.BorderLayout.EAST);
-        add(jPanel2, java.awt.BorderLayout.WEST);
-        add(jPanel4, java.awt.BorderLayout.NORTH);
+        getContentPane().add(ButtonPanel, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.EAST);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.WEST);
+        getContentPane().add(jPanel4, java.awt.BorderLayout.NORTH);
 
         jPanel3.setLayout(new java.awt.GridLayout(3, 0));
 
@@ -96,7 +96,7 @@ public class ResizePanel extends javax.swing.JDialog {
         jPanel3.add(HeightLabel);
         jPanel3.add(HeightField);
 
-        add(jPanel3, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

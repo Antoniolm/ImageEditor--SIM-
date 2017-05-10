@@ -7,3 +7,5 @@
 *.zip
 /sm.ALM.image/nbproject/private/
 /sm.ALM.image/build/
+*.jar
+DrawEditor.pack.jar

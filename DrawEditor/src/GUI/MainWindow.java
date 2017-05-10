@@ -167,6 +167,8 @@ public class MainWindow extends javax.swing.JFrame {
         SeeAttMenu = new javax.swing.JCheckBoxMenuItem();
         resizeItem = new javax.swing.JMenu();
         ResizeItem = new javax.swing.JMenuItem();
+        HelpItem = new javax.swing.JMenu();
+        AboutItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DrawEditor");
@@ -697,7 +699,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         MenuBar.add(FileMenu);
 
-        EditMenu.setText("Edit");
+        EditMenu.setText("See");
 
         SeeSBMenu.setSelected(true);
         SeeSBMenu.setText("See state bar");
@@ -739,6 +741,18 @@ public class MainWindow extends javax.swing.JFrame {
         resizeItem.add(ResizeItem);
 
         MenuBar.add(resizeItem);
+
+        HelpItem.setText("Help");
+
+        AboutItem.setText("About");
+        AboutItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AboutItemActionPerformed(evt);
+            }
+        });
+        HelpItem.add(AboutItem);
+
+        MenuBar.add(HelpItem);
 
         setJMenuBar(MenuBar);
 
@@ -807,7 +821,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_newMenuActionPerformed
 
     private void SeeGeoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeGeoMenuActionPerformed
-        //GeomToolBar.setVisible(SeeGeoMenu.isSelected());
+        DrawPanel.setVisible(SeeGeoMenu.isSelected());
     }//GEN-LAST:event_SeeGeoMenuActionPerformed
 
     private void SeeAttMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeAttMenuActionPerformed
@@ -1351,7 +1365,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void ResizeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResizeItemActionPerformed
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ResizePanel dialog = new ResizePanel(new java.awt.Frame(), true,currentIntWind);
+                ResizeDialog dialog = new ResizeDialog(new java.awt.Frame(), true,currentIntWind);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         dialog.dispose();
@@ -1399,6 +1413,22 @@ public class MainWindow extends javax.swing.JFrame {
         }
                     
     }//GEN-LAST:event_GrayButtonActionPerformed
+
+    private void AboutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutItemActionPerformed
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                AboutDialog dialog = new AboutDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        dialog.dispose();
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_AboutItemActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1406,6 +1436,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AboutItem;
     private javax.swing.JPanel AttributePanel;
     private javax.swing.JToolBar AttributeToolBar;
     private javax.swing.JButton BandButton;
@@ -1423,6 +1454,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox FilterCombo;
     private javax.swing.JButton GetDarkButton;
     private javax.swing.JButton GrayButton;
+    private javax.swing.JMenu HelpItem;
     private javax.swing.JButton LessScaleButton;
     private javax.swing.JButton LightUpButton;
     private javax.swing.JToggleButton LineButton;
