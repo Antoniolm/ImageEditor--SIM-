@@ -32,6 +32,7 @@ import java.awt.geom.Point2D;
 public class Line2DFigure extends Figure{
     
     public Line2DFigure(){
+        super();
         currentShape=new Line2D.Float();
         attribute=new Attribute();
     }
@@ -42,6 +43,11 @@ public class Line2DFigure extends Figure{
         g2d.draw(currentShape);
     }
          
+    @Override
+    public void updatePosition(Point2D initPos, Point2D point) {
+        ((Line2D.Float)currentShape).setLine(initPos, point);
+    }
+    
     @Override
     public boolean wasSelected(Point2D pos,Point2D offSet){
         boolean result =false;
@@ -63,4 +69,5 @@ public class Line2DFigure extends Figure{
         point2.setLocation(point2.getX()-offSet.getX(),point2.getY()-offSet.getY());
         ((Line2D.Float)currentShape).setLine(newPos, point2);
     }
+
 }

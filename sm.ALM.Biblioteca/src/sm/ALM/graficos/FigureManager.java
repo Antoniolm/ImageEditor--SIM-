@@ -47,14 +47,6 @@ public class FigureManager {
     public void draw(Graphics2D g2d){
         if(currentShape!=null){
             currentShape.draw(g2d);
-            /*if(!attribute.getFilled())
-                g2d.draw(currentShape);
-            else {
-                if(currentShape instanceof Line2D) 
-                    g2d.draw(currentShape);
-                else 
-                    g2d.fill(currentShape);
-            }*/
         }
     }
     /**
@@ -70,7 +62,7 @@ public class FigureManager {
                 currentShape=new Line2DFigure();
                 break;
             case RECTANGLE: //Case rectangle geoometry
-                //currentShape=new Rectangle();
+                currentShape=new Rectangle2DFigure();
                 break;
             case RRECTANGLE: //Case rectangle geoometry
                 //currentShape=new RoundRectangle2D.Float();
@@ -87,16 +79,10 @@ public class FigureManager {
      * @param point 
      */
     public void updateShape(Point2D point,Point2D initPos,GeometryType geometry){
-        /*switch (geometry) {
-            case POINT: //Case point geoometry
-                break;
-            case LINE: //Case line geoometry
-                ((Line2DFigure)currentShape).setLine(initPos, point);
-                break;
-            case RECTANGLE: //Case rectangle geoometry
-                ((Rectangle) currentShape).setFrameFromDiagonal(initPos, point);
-                break;
-            case RRECTANGLE: //Case rectangle geoometry
+        if(geometry!=GeometryType.POINT){
+            currentShape.updatePosition(initPos, point);
+        }
+        /*    case RRECTANGLE: //Case rectangle geoometry
                 ((Rectangle) currentShape).setFrameFromDiagonal(initPos, point);
                 break;
             case CIRCLE: //Case circle geoometry
@@ -112,8 +98,10 @@ public class FigureManager {
      * @return shape 
      */
     public void getSelectedShape(Point2D p,Point2D offSet){
-        /*isSelected=false;
-        if (currentShape!= null && currentShape instanceof RectangularShape) { //If is a rectangularShape
+        isSelected=false;
+        if(currentShape.wasSelected(p,offSet))
+            isSelected=true;
+        /*if (currentShape!= null && currentShape instanceof RectangularShape) { //If is a rectangularShape
             if (currentShape.contains(p)) {
                 if (currentShape instanceof Rectangle) {
                     Point2D.Double point1 = new Point2D.Double(((RectangularShape) currentShape).getX(), ((RectangularShape) currentShape).getY());
@@ -136,6 +124,9 @@ public class FigureManager {
      * @param pos 
      */
     public void setLocationShape(Point2D pos,Point2D offSet){
+        if(currentShape!=null && isSelected){
+            currentShape.setPosition(pos, offSet);
+        }
         /*if(currentShape!=null && isSelected){
             if(currentShape instanceof Rectangle){ //If is a rectangle or a point
                 pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());
@@ -160,9 +151,9 @@ public class FigureManager {
      * @return 
      */
     public Attribute getAttribute(){
-        if (currentShape instanceof Line2DFigure) { //If is a line
-            return ((Line2DFigure) currentShape).getAttribute();
-        }
+        if(currentShape!=null)
+            return currentShape.getAttribute();
+
         return null;
     }
     

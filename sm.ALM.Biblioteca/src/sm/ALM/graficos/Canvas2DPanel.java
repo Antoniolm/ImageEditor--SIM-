@@ -144,8 +144,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param value 
      */
     public void setColor(Paint value){
-        vShape.getAttribute().setFilled(value);
-        repaint();
+        if(vShape.getAttribute()!=null){
+            vShape.getAttribute().setFilled(value);
+            repaint();
+        }
     }
         
     /**

@@ -777,14 +777,14 @@ public class MainWindow extends javax.swing.JFrame {
     public void changeCurrentIntWind(InternalWindow vi){
        currentIntWind=vi;
        if(currentIntWind!=null){
-            FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
+            /*FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
             TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
             SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
             thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
             
             ColorCombo.setSelectedIndex(currentIntWind.getCanvas().getCurrentColor());
             currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
-            
+            */
             ShineSlider.setValue(0);
             RotationSlider.setValue(0);
             umbraSlider.setValue(128);
