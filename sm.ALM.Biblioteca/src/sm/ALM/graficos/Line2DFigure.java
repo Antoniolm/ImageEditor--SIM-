@@ -30,10 +30,15 @@ import java.awt.geom.Point2D;
  * @author Antonio David López Machado
  */
 public class Line2DFigure extends Figure{
-    
+        
     public Line2DFigure(){
         super();
         currentShape=new Line2D.Float();
+    }
+    
+    public Line2DFigure(Point2D initPos){
+        super();
+        currentShape=new Line2D.Float(initPos,initPos);
     }
     
     @Override

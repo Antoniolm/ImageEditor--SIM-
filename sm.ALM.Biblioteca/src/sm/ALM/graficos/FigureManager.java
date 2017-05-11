@@ -58,7 +58,7 @@ public class FigureManager {
     public void createShape(GeometryType geometry,Point2D initPos){
         switch(geometry){
             case POINT: //Case point geoometry
-                currentShape=new Line2DFigure();
+                currentShape=new Line2DFigure(initPos);
                 break;
             case LINE: //Case line geoometry
                 currentShape=new Line2DFigure();
