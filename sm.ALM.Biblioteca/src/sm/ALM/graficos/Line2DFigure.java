@@ -29,18 +29,20 @@ import java.awt.geom.Point2D;
  *
  * @author Antonio David López Machado
  */
-public class Line2DFigure extends Figure2{
+public class Line2DFigure extends Figure{
     
     public Line2DFigure(){
         currentShape=new Line2D.Float();
         attribute=new Attribute();
     }
     
-     public void draw(Graphics2D g2d){
+    @Override
+    public void draw(Graphics2D g2d){
         attribute.apply(g2d);
         g2d.draw(currentShape);
     }
          
+    @Override
     public boolean wasSelected(Point2D pos,Point2D offSet){
         boolean result =false;
         if (((Line2D.Float)currentShape).intersects(pos.getX(), pos.getY(), 6, 6)) {
@@ -51,6 +53,7 @@ public class Line2DFigure extends Figure2{
         return result;
     }
     
+    @Override
     public void setPosition(Point2D newPos,Point2D offSet){
         Point2D point1 = ((Line2D.Float)currentShape).getP1();
         Point2D point2 = ((Line2D.Float)currentShape).getP2();

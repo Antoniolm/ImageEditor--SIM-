@@ -53,7 +53,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     static float widthSize=300;
     static float heightSize=300;
     Shape currentShape;
-    Figure vShape;
+    FigureManager vShape;
     Shape clipShape;
     boolean editMode;
     
@@ -61,7 +61,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         initComponents();
         initPos=new Point(0,0);
         offSet=new Point(0,0);
-        vShape = new Figure();
+        vShape = new FigureManager();
         editMode=false;
         geometry=POINT;
         setBackground(Color.white);
