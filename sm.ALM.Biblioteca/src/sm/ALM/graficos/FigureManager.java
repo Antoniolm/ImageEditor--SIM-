@@ -70,7 +70,7 @@ public class FigureManager {
                 //currentShape=new RoundRectangle2D.Float();
                 break;
             case CIRCLE: //Case circle geoometry
-                //currentShape=new Ellipse2D.Float();
+                currentShape=new Ellipse2DFigure();
                 break;
 
         }
@@ -84,13 +84,6 @@ public class FigureManager {
         if(geometry!=GeometryType.POINT){
             currentShape.updatePosition(initPos, point);
         }
-        /*    case RRECTANGLE: //Case rectangle geoometry
-                ((Rectangle) currentShape).setFrameFromDiagonal(initPos, point);
-                break;
-            case CIRCLE: //Case circle geoometry
-                ((Ellipse2D.Float) currentShape).setFrameFromDiagonal(initPos, point);
-                break;
-        }*/
     }
     
     /**
@@ -102,23 +95,7 @@ public class FigureManager {
     public void getSelectedShape(Point2D p,Point2D offSet){
         isSelected=false;
         if(currentShape.wasSelected(p,offSet))
-            isSelected=true;
-        /*if (currentShape!= null && currentShape instanceof RectangularShape) { //If is a rectangularShape
-            if (currentShape.contains(p)) {
-                if (currentShape instanceof Rectangle) {
-                    Point2D.Double point1 = new Point2D.Double(((RectangularShape) currentShape).getX(), ((RectangularShape) currentShape).getY());
-                    offSet.setLocation(Math.abs(p.getX() - point1.getX()), Math.abs(p.getY() - point1.getY()));
-                } else {
-                    Point2D.Double point1 = new Point2D.Double(((RectangularShape) currentShape).getCenterX(), ((RectangularShape) currentShape).getCenterY());
-                    offSet.setLocation(p.getX() - point1.getX(), p.getY() - point1.getY());
-                }
-                isSelected=true;
-            }
-        }
-        if (currentShape instanceof Line2D) { //If is a line
-            if (((Line2DFigure)currentShape).wasSelected(p, offSet)) isSelected=true;
-        }*/
-        
+            isSelected=true;   
     }
     
     /**
@@ -129,23 +106,6 @@ public class FigureManager {
         if(currentShape!=null && isSelected){
             currentShape.setPosition(pos, offSet);
         }
-        /*if(currentShape!=null && isSelected){
-            if(currentShape instanceof Rectangle){ //If is a rectangle or a point
-                pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());
-                ((Rectangle)currentShape).setLocation((Point)pos);
-            }
-            if (currentShape instanceof Ellipse2D) { //If is a circle
-                Point2D.Double point1 = new Point2D.Double(((Ellipse2D) currentShape).getX(), ((Ellipse2D) currentShape).getY());
-                Point2D.Double point2 = new Point2D.Double(((Ellipse2D) currentShape).getCenterX(), ((Ellipse2D) currentShape).getCenterY());
-                point2.setLocation(pos.getX() + Math.abs((point1.getX() - point2.getX())), pos.getY() + Math.abs((point1.getY() - point2.getY())));
-                pos.setLocation(pos.getX()-offSet.getX(),pos.getY()-offSet.getY());
-                point2.setLocation(point2.getX()-offSet.getX(),point2.getY()-offSet.getY());
-                ((Ellipse2D.Float) currentShape).setFrameFromCenter(pos, point2);
-            }
-            if (currentShape instanceof Line2DFigure) { //If is a line
-                ((Line2DFigure)currentShape).setPosition(pos, offSet);
-            }
-        }*/
     }
     
     /**
