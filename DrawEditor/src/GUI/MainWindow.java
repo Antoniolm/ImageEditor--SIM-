@@ -110,6 +110,7 @@ public class MainWindow extends javax.swing.JFrame {
         OpenButton = new javax.swing.JButton();
         SaveButton = new javax.swing.JButton();
         CopyButton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
         PointButton = new javax.swing.JToggleButton();
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
@@ -118,10 +119,16 @@ public class MainWindow extends javax.swing.JFrame {
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
         ColorCombo = new javax.swing.JComboBox();
+        jSeparator3 = new javax.swing.JSeparator();
         thickSpinner = new javax.swing.JSpinner();
+        typeLineCombo = new javax.swing.JComboBox();
+        jSeparator4 = new javax.swing.JSeparator();
         FilledButton = new javax.swing.JToggleButton();
         TransButton = new javax.swing.JToggleButton();
         SmoothButton = new javax.swing.JToggleButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        FontCombo = new javax.swing.JComboBox();
+        SizeFontSpinner = new javax.swing.JSpinner();
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
@@ -216,6 +223,10 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(CopyButton);
 
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator2.setPreferredSize(new java.awt.Dimension(2, 31));
+        toolBarPanel.add(jSeparator2);
+
         buttonGroup1.add(PointButton);
         PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/punto.png"))); // NOI18N
         PointButton.setSelected(true);
@@ -293,6 +304,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(EditButton);
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setPreferredSize(new java.awt.Dimension(2, 31));
         toolBarPanel.add(jSeparator1);
 
         ColorCombo.setToolTipText("Color");
@@ -303,6 +317,10 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(ColorCombo);
 
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator3.setPreferredSize(new java.awt.Dimension(2, 31));
+        toolBarPanel.add(jSeparator3);
+
         thickSpinner.setToolTipText("Thickness");
         thickSpinner.setMinimumSize(new java.awt.Dimension(50, 22));
         thickSpinner.setPreferredSize(new java.awt.Dimension(50, 22));
@@ -312,6 +330,20 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(thickSpinner);
+
+        typeLineCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Solid line", "Broken line" }));
+        typeLineCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeLineComboActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(typeLineCombo);
+
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator4.setToolTipText("");
+        jSeparator4.setMinimumSize(new java.awt.Dimension(2, 31));
+        jSeparator4.setPreferredSize(new java.awt.Dimension(2, 31));
+        toolBarPanel.add(jSeparator4);
 
         FilledButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rellenar.png"))); // NOI18N
         FilledButton.setToolTipText("Filled");
@@ -342,6 +374,13 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(SmoothButton);
+
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator5.setPreferredSize(new java.awt.Dimension(2, 31));
+        toolBarPanel.add(jSeparator5);
+
+        toolBarPanel.add(FontCombo);
+        toolBarPanel.add(SizeFontSpinner);
 
         DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
 
@@ -844,7 +883,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_mainDesktopFocusGained
 
     private void thickSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_thickSpinnerStateChanged
-        Integer value=(int)thickSpinner.getValue();
+        int value=(int)thickSpinner.getValue();
         if(value==0) thickSpinner.setValue(1);
         
         if(currentIntWind != null)
@@ -1446,6 +1485,24 @@ public class MainWindow extends javax.swing.JFrame {
         currentIntWind.setGeometry(GeometryType.RECTANGLE);
         currentIntWind.getCanvas().setEdit(EditButton.isSelected());
     }//GEN-LAST:event_RRtglButtonActionPerformed
+
+    private void typeLineComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeLineComboActionPerformed
+        if(currentIntWind != null){
+            
+            switch((String)typeLineCombo.getSelectedItem()){
+                case "Solid line":
+                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 0.0F }, 0.0F),(int)thickSpinner.getValue());
+                break;
+                case "Broken line":
+                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),(int)thickSpinner.getValue());
+                break;
+
+
+            }
+        }
+    }//GEN-LAST:event_typeLineComboActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1469,6 +1526,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu FileMenu;
     private javax.swing.JToggleButton FilledButton;
     private javax.swing.JComboBox FilterCombo;
+    private javax.swing.JComboBox FontCombo;
     private javax.swing.JButton GetDarkButton;
     private javax.swing.JButton GrayButton;
     private javax.swing.JMenu HelpItem;
@@ -1497,6 +1555,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton SenButton;
     private javax.swing.JPanel ShinePanel;
     private javax.swing.JSlider ShineSlider;
+    private javax.swing.JSpinner SizeFontSpinner;
     private javax.swing.JToggleButton SmoothButton;
     private javax.swing.JLabel StateBarLabel;
     private javax.swing.JPanel StateBarPanel;
@@ -1513,6 +1572,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JMenu resizeItem;
@@ -1522,6 +1585,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton sepiaButton;
     private javax.swing.JSpinner thickSpinner;
     private javax.swing.JPanel toolBarPanel;
+    private javax.swing.JComboBox typeLineCombo;
     private javax.swing.JSlider umbraSlider;
     // End of variables declaration//GEN-END:variables
 }

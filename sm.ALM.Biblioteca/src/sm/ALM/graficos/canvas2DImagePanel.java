@@ -96,9 +96,8 @@ public class canvas2DImagePanel  extends Canvas2DPanel {
         if(image!=null) g.drawImage(image,0,0,this);
         
         Graphics2D g2d = (Graphics2D)g;
-        float[] patternLine = { 5.0F, 5.0F };
         g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
-                        BasicStroke.JOIN_MITER, 1.0F, patternLine, 0.0F));
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F));
         g2d.draw(clipShape);
     }
     /**
