@@ -69,6 +69,9 @@ public class FigureManager {
             case RRECTANGLE: //Case rectangle geoometry
                 //currentShape=new RoundRectangle2D.Float();
                 break;
+            case TEXT:
+                //currentShape=new Text2DFigure(initPos);
+            break;    
             case CIRCLE: //Case circle geoometry
                 currentShape=new Ellipse2DFigure();
                 break;
@@ -81,7 +84,7 @@ public class FigureManager {
      * @param point 
      */
     public void updateShape(Point2D point,Point2D initPos,GeometryType geometry){
-        if(geometry!=GeometryType.POINT){
+        if(geometry!=GeometryType.POINT && geometry!=GeometryType.TEXT){
             currentShape.updatePosition(initPos, point);
         }
     }

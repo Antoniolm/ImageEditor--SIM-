@@ -28,6 +28,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Shape;
@@ -51,6 +52,7 @@ import java.awt.image.RescaleOp;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -89,6 +91,13 @@ public class MainWindow extends javax.swing.JFrame {
         thickSpinner.setValue(1); 
         file=FileManager.getSingletonInstance();
         
+        //Initialize font list
+        GraphicsEnvironment ge;
+        ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String []systemFont = ge.getAvailableFontFamilyNames();
+        
+        fontCombo.setModel(new DefaultComboBoxModel(systemFont));
+        
     }
 
     /**
@@ -116,6 +125,7 @@ public class MainWindow extends javax.swing.JFrame {
         RtgleButton = new javax.swing.JToggleButton();
         RRtglButton = new javax.swing.JToggleButton();
         CircleButton = new javax.swing.JToggleButton();
+        TextButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
         ColorCombo = new javax.swing.JComboBox();
@@ -127,7 +137,7 @@ public class MainWindow extends javax.swing.JFrame {
         TransButton = new javax.swing.JToggleButton();
         SmoothButton = new javax.swing.JToggleButton();
         jSeparator5 = new javax.swing.JSeparator();
-        FontCombo = new javax.swing.JComboBox();
+        fontCombo = new javax.swing.JComboBox();
         SizeFontSpinner = new javax.swing.JSpinner();
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
@@ -294,6 +304,16 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(CircleButton);
 
+        buttonGroup1.add(TextButton);
+        TextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Texto.gif"))); // NOI18N
+        TextButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        TextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(TextButton);
+
         buttonGroup1.add(EditButton);
         EditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/seleccion.png"))); // NOI18N
         EditButton.setToolTipText("Edit mode");
@@ -379,7 +399,8 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator5.setPreferredSize(new java.awt.Dimension(2, 31));
         toolBarPanel.add(jSeparator5);
 
-        toolBarPanel.add(FontCombo);
+        fontCombo.setMaximumSize(new java.awt.Dimension(100, 31));
+        toolBarPanel.add(fontCombo);
         toolBarPanel.add(SizeFontSpinner);
 
         DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
@@ -1503,6 +1524,10 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_typeLineComboActionPerformed
+
+    private void TextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextButtonActionPerformed
+        
+    }//GEN-LAST:event_TextButtonActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1526,7 +1551,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu FileMenu;
     private javax.swing.JToggleButton FilledButton;
     private javax.swing.JComboBox FilterCombo;
-    private javax.swing.JComboBox FontCombo;
     private javax.swing.JButton GetDarkButton;
     private javax.swing.JButton GrayButton;
     private javax.swing.JMenu HelpItem;
@@ -1559,6 +1583,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton SmoothButton;
     private javax.swing.JLabel StateBarLabel;
     private javax.swing.JPanel StateBarPanel;
+    private javax.swing.JToggleButton TextButton;
     private javax.swing.JToggleButton TransButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -1567,6 +1592,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton contrastButton;
     private javax.swing.JButton dyeButton;
     private javax.swing.JButton equalizationButton;
+    private javax.swing.JComboBox fontCombo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
