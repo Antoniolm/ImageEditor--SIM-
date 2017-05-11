@@ -20,22 +20,34 @@
 package sm.ALM.graficos;
 
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.geom.Point2D;
 
-public abstract class Figure {
-    Shape currentShape;
+public class Text2DFigure extends Figure{
+    private String text;
     
-    protected Figure(){
-        currentShape=null;
+    public Text2DFigure(Point2D initPos){
+        super();
+        //new dialog
     }
     
-    public abstract void draw(Graphics2D g2d,Attribute attribute);
-    public abstract void updatePosition(Point2D initPos, Point2D point);
-    public abstract void setPosition(Point2D newPos,Point2D offSet);
-    public abstract boolean wasSelected(Point2D pos,Point2D offSet);
-    
-    public Shape getShape(){
-        return currentShape;
+    @Override
+    public void draw(Graphics2D g2d, Attribute attribute) {
+        
     }
+
+    @Override
+    public void updatePosition(Point2D initPos, Point2D point) {
+        
+    }
+
+    @Override
+    public void setPosition(Point2D newPos, Point2D offSet) {
+        
+    }
+
+    @Override
+    public boolean wasSelected(Point2D pos, Point2D offSet) {
+        return false;
+    }
+    
 }
