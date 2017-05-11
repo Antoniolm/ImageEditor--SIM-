@@ -31,11 +31,10 @@ public class Rectangle2DFigure extends Figure{
     public Rectangle2DFigure(){
         super();
         currentShape=new Rectangle();
-        attribute=new Attribute();
     }
     
     @Override
-    public void draw(Graphics2D g2d) {
+    public void draw(Graphics2D g2d,Attribute attribute) {
         attribute.apply(g2d);
         
         if(!attribute.getFilled())

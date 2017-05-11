@@ -34,11 +34,10 @@ public class Line2DFigure extends Figure{
     public Line2DFigure(){
         super();
         currentShape=new Line2D.Float();
-        attribute=new Attribute();
     }
     
     @Override
-    public void draw(Graphics2D g2d){
+    public void draw(Graphics2D g2d,Attribute attribute){
         attribute.apply(g2d);
         g2d.draw(currentShape);
     }

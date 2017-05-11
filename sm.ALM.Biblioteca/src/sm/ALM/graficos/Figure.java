@@ -24,21 +24,16 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 
 public abstract class Figure {
-    Attribute attribute;
     Shape currentShape;
     
     protected Figure(){
-        attribute=null;
         currentShape=null;
     }
     
-    public abstract void draw(Graphics2D g2d);
+    public abstract void draw(Graphics2D g2d,Attribute attribute);
     public abstract void updatePosition(Point2D initPos, Point2D point);
     public abstract void setPosition(Point2D newPos,Point2D offSet);
     public abstract boolean wasSelected(Point2D pos,Point2D offSet);
-    public Attribute getAttribute(){
-        return attribute;
-    }
     public Shape getShape(){
         return currentShape;
     }

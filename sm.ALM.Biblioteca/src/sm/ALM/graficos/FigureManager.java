@@ -33,10 +33,12 @@ import java.util.List;
 
 public class FigureManager {
     private Figure currentShape;
+    private Attribute attribute;
     private boolean isSelected;
     
     public FigureManager(){
-        currentShape=null;       
+        currentShape=null;
+        attribute=new Attribute();
         isSelected=false;
     }
     
@@ -46,7 +48,7 @@ public class FigureManager {
      */
     public void draw(Graphics2D g2d){
         if(currentShape!=null){
-            currentShape.draw(g2d);
+            currentShape.draw(g2d,attribute);
         }
     }
     /**
@@ -151,10 +153,7 @@ public class FigureManager {
      * @return 
      */
     public Attribute getAttribute(){
-        if(currentShape!=null)
-            return currentShape.getAttribute();
-
-        return null;
+        return attribute;
     }
     
     public void shapeInImage(){
