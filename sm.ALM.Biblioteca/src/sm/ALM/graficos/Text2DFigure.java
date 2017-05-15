@@ -24,15 +24,32 @@ import java.awt.geom.Point2D;
 
 public class Text2DFigure extends Figure{
     private String text;
+    private String font;
+    private Point2D position;
+    
     
     public Text2DFigure(Point2D initPos){
         super();
-        //new dialog
+        text="";
+        position=initPos;
+        TextDialog dialog = new TextDialog(new javax.swing.JFrame(), true, this);
+        dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                dialog.dispose();
+            }
+        });
+        dialog.setVisible(true);        
+    }
+    
+    public void setString(String aText){
+        text=aText;
     }
     
     @Override
     public void draw(Graphics2D g2d, Attribute attribute) {
-        
+        if(text!="")
+            g2d.drawString(text, (int)position.getX(), (int)position.getY());
     }
 
     @Override

@@ -1550,7 +1550,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_typeLineComboActionPerformed
 
     private void TextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextButtonActionPerformed
-        
+        StateBarLabel.setText("Text");
+        if(currentIntWind!=null){
+            currentIntWind.setGeometry(GeometryType.TEXT);
+            currentIntWind.repaint();
+        }
     }//GEN-LAST:event_TextButtonActionPerformed
     
     //Methods 

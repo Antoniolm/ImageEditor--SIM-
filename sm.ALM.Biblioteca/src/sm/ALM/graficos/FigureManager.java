@@ -70,7 +70,7 @@ public class FigureManager {
                 //currentShape=new RoundRectangle2D.Float();
                 break;
             case TEXT:
-                //currentShape=new Text2DFigure(initPos);
+                currentShape=new Text2DFigure(initPos);
             break;    
             case CIRCLE: //Case circle geoometry
                 currentShape=new Ellipse2DFigure();
