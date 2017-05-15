@@ -917,20 +917,29 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void CircleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleButtonActionPerformed
         StateBarLabel.setText("Circle");
-        currentIntWind.setGeometry(GeometryType.CIRCLE);
-        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        if(currentIntWind!=null){
+            currentIntWind.setGeometry(GeometryType.CIRCLE);
+            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            currentIntWind.repaint();
+        }
     }//GEN-LAST:event_CircleButtonActionPerformed
 
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
-        currentIntWind.setGeometry(GeometryType.RECTANGLE);
-        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        if(currentIntWind!=null){
+            currentIntWind.setGeometry(GeometryType.RECTANGLE);
+            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            currentIntWind.repaint();
+        }
     }//GEN-LAST:event_RtgleButtonActionPerformed
 
     private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
         StateBarLabel.setText("Line");
-        currentIntWind.setGeometry(GeometryType.LINE);
-        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        if(currentIntWind!=null){
+            currentIntWind.setGeometry(GeometryType.LINE);
+            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            currentIntWind.repaint();
+        }
     }//GEN-LAST:event_LineButtonActionPerformed
 
     //////////////////////////////////////////////////////////////////////////
@@ -938,30 +947,42 @@ public class MainWindow extends javax.swing.JFrame {
     //////////////////////////////////////////////////////////////////////////
     private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
         StateBarLabel.setText("Point");
-        currentIntWind.setGeometry(GeometryType.POINT);
-        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        if(currentIntWind!=null){
+            currentIntWind.setGeometry(GeometryType.POINT);
+            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            currentIntWind.repaint();
+        }
     }//GEN-LAST:event_PointButtonActionPerformed
 
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
-        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        if(currentIntWind!=null){
+            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            currentIntWind.repaint();
+        }
     }//GEN-LAST:event_EditButtonActionPerformed
 
     private void FilledButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledButtonActionPerformed
+       if(currentIntWind!=null){
         currentIntWind.getCanvas().setFilled(FilledButton.isSelected());
+       }
     }//GEN-LAST:event_FilledButtonActionPerformed
 
     private void TransButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransButtonActionPerformed
-        if(TransButton.isSelected())
-            currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
-        else
-            currentIntWind.getCanvas().setTransparency(null);
+        if(currentIntWind!=null){
+            if(TransButton.isSelected())
+                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+            else
+                currentIntWind.getCanvas().setTransparency(null);
+        }
     }//GEN-LAST:event_TransButtonActionPerformed
 
     private void SmoothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SmoothButtonActionPerformed
-        if(SmoothButton.isSelected())
-            currentIntWind.getCanvas().setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
-        else
-            currentIntWind.getCanvas().setRender(null);
+        if(currentIntWind!=null){
+            if(SmoothButton.isSelected())
+                currentIntWind.getCanvas().setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
+            else
+                currentIntWind.getCanvas().setRender(null);
+        }
     }//GEN-LAST:event_SmoothButtonActionPerformed
 
     private void ShineSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ShineSliderStateChanged
@@ -1503,8 +1524,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void RRtglButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RRtglButtonActionPerformed
         StateBarLabel.setText("Rounded Rectangle");
-        currentIntWind.setGeometry(GeometryType.RECTANGLE);
-        currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+        if(currentIntWind!=null){
+            currentIntWind.setGeometry(GeometryType.RECTANGLE);
+            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            currentIntWind.repaint();
+        }
     }//GEN-LAST:event_RRtglButtonActionPerformed
 
     private void typeLineComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeLineComboActionPerformed

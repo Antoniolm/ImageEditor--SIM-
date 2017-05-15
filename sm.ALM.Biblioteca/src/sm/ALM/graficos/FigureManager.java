@@ -122,4 +122,10 @@ public class FigureManager {
     public void shapeInImage(){
         currentShape=null;
     }
+    
+    public void isEdited(boolean value){
+        if(currentShape!=null){
+            currentShape.isEdited(value);
+        }
+    }
 }

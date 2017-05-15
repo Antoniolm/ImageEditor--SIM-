@@ -25,9 +25,11 @@ import java.awt.geom.Point2D;
 
 public abstract class Figure {
     Shape currentShape;
+    boolean editMode;
     
     protected Figure(){
         currentShape=null;
+        editMode=false;
     }
     
     public abstract void draw(Graphics2D g2d,Attribute attribute);
@@ -37,5 +39,9 @@ public abstract class Figure {
     
     public Shape getShape(){
         return currentShape;
+    }
+    
+    public void isEdited(boolean value){
+        editMode=value;
     }
 }

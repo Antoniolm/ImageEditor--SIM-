@@ -19,6 +19,8 @@
 
 package sm.ALM.graficos;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -40,6 +42,12 @@ public class Ellipse2DFigure extends Figure{
             else {
                 g2d.fill(currentShape);
         }
+        if(editMode){
+            g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F));
+            g2d.draw(currentShape.getBounds2D());
+        }
+        
     }
 
     @Override

@@ -234,6 +234,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     public void setEdit(boolean value){
         editMode=value;
+        if(vShape!=null)
+            vShape.isEdited(value);
     }
     
     /**
