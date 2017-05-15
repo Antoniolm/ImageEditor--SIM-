@@ -43,6 +43,7 @@ public class Ellipse2DFigure extends Figure{
                 g2d.fill(currentShape);
         }
         if(editMode){
+            g2d.setColor(Color.GRAY);
             g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
                         BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F));
             g2d.draw(currentShape.getBounds2D());

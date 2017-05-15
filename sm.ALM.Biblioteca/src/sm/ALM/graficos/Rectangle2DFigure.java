@@ -19,6 +19,8 @@
 
 package sm.ALM.graficos;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -41,6 +43,17 @@ public class Rectangle2DFigure extends Figure{
                 g2d.draw(currentShape);
             else {
                 g2d.fill(currentShape);
+        }
+        
+        if(editMode){
+            g2d.setColor(Color.GRAY);
+            g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F));
+            Rectangle2D bound=currentShape.getBounds2D();
+            bound.setFrameFromDiagonal(((Rectangle)currentShape).getX()-1,((Rectangle)currentShape).getY()-1,
+                                       ((Rectangle)currentShape).getX() +((Rectangle)currentShape).getWidth()+2,
+                                       ((Rectangle)currentShape).getY() +((Rectangle)currentShape).getHeight()+2);
+            g2d.draw(bound);
         }
     }
 
