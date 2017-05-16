@@ -28,7 +28,7 @@ public class InternalWindowSound extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         player = new SMClipPlayer(file);
-        ((SMPlayer)player.addLineListener(new SoundManager());
+        ((SMClipPlayer)player).addLineListener(new SoundManager());
     }
 
     /**

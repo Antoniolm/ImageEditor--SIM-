@@ -27,7 +27,7 @@ public class InternalWindowRecord extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         recorder=new SMSoundPlayerRecorder(file);
-        recorder.addLineListener(new SoundManager());
+        ((SMSoundPlayerRecorder)recorder).addLineListener(new SoundManager());
     }
 
     /**
