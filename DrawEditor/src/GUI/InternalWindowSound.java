@@ -22,6 +22,10 @@ public class InternalWindowSound extends javax.swing.JInternalFrame {
      */
     public InternalWindowSound(File file) {
         initComponents();
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         player = new SMClipPlayer(file);
     }
 
@@ -59,7 +63,6 @@ public class InternalWindowSound extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(playButton);
         playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/PlayPressed_48x48.png"))); // NOI18N
-        playButton.setSelected(true);
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playButtonActionPerformed(evt);
@@ -69,6 +72,7 @@ public class InternalWindowSound extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(stopButton);
         stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/StopDisabled_48x48.png"))); // NOI18N
+        stopButton.setSelected(true);
         stopButton.setToolTipText("");
         stopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

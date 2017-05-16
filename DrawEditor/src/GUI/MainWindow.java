@@ -178,9 +178,9 @@ public class MainWindow extends javax.swing.JFrame {
         FileMenu = new javax.swing.JMenu();
         newMenu = new javax.swing.JMenuItem();
         OpenMenu = new javax.swing.JMenuItem();
-        openAudioButton = new javax.swing.JMenuItem();
+        openSoundButton = new javax.swing.JMenuItem();
         SaveMenu = new javax.swing.JMenuItem();
-        saveAudioButton = new javax.swing.JMenuItem();
+        recordSoundButton = new javax.swing.JMenuItem();
         EditMenu = new javax.swing.JMenu();
         SeeSBMenu = new javax.swing.JCheckBoxMenuItem();
         SeeGeoMenu = new javax.swing.JCheckBoxMenuItem();
@@ -761,8 +761,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
         FileMenu.add(OpenMenu);
 
-        openAudioButton.setText("Open audio");
-        FileMenu.add(openAudioButton);
+        openSoundButton.setText("Open sound");
+        openSoundButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openSoundButtonActionPerformed(evt);
+            }
+        });
+        FileMenu.add(openSoundButton);
 
         SaveMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
         SaveMenu.setText("Save");
@@ -773,8 +778,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
         FileMenu.add(SaveMenu);
 
-        saveAudioButton.setText("Save audio");
-        FileMenu.add(saveAudioButton);
+        recordSoundButton.setText("Record sound");
+        recordSoundButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recordSoundButtonActionPerformed(evt);
+            }
+        });
+        FileMenu.add(recordSoundButton);
 
         MenuBar.add(FileMenu);
 
@@ -1564,6 +1574,28 @@ public class MainWindow extends javax.swing.JFrame {
             currentIntWind.repaint();
         }
     }//GEN-LAST:event_TextButtonActionPerformed
+
+    private void recordSoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordSoundButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recordSoundButtonActionPerformed
+
+    private void openSoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSoundButtonActionPerformed
+
+        JFileChooser dlg = new JFileChooser();
+                                      
+        int resp = dlg.showOpenDialog(this);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+             try{
+                File f = dlg.getSelectedFile();
+                InternalWindowSound newIntWind = new InternalWindowSound(f);
+                newIntWind.setTitle(f.getName());
+                mainDesktop.add(newIntWind);
+                newIntWind.setVisible(true);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_openSoundButtonActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1640,12 +1672,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
-    private javax.swing.JMenuItem openAudioButton;
+    private javax.swing.JMenuItem openSoundButton;
+    private javax.swing.JMenuItem recordSoundButton;
     private javax.swing.JMenu resizeItem;
     private javax.swing.JButton rot180Button;
     private javax.swing.JButton rot270Button;
     private javax.swing.JButton rot90Button;
-    private javax.swing.JMenuItem saveAudioButton;
     private javax.swing.JButton sepiaButton;
     private javax.swing.JSpinner thickSpinner;
     private javax.swing.JPanel toolBarPanel;

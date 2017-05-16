@@ -19,6 +19,10 @@ public class InternalWindowRecord extends javax.swing.JInternalFrame {
      */
     public InternalWindowRecord() {
         initComponents();
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         //recorder=new SMRecorder();
     }
 
@@ -56,7 +60,6 @@ public class InternalWindowRecord extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(recordButton);
         recordButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/RecordPressed_48x48.png"))); // NOI18N
-        recordButton.setSelected(true);
         recordButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 recordButtonActionPerformed(evt);
@@ -66,6 +69,7 @@ public class InternalWindowRecord extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(stopButton);
         stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/StopDisabled_48x48.png"))); // NOI18N
+        stopButton.setSelected(true);
         stopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopButtonActionPerformed(evt);

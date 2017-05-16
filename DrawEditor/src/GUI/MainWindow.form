@@ -40,10 +40,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OpenMenuActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="openAudioButton">
+            <MenuItem class="javax.swing.JMenuItem" name="openSoundButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Open audio"/>
+                <Property name="text" type="java.lang.String" value="Open sound"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openSoundButtonActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SaveMenu">
               <Properties>
@@ -56,10 +59,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SaveMenuActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="saveAudioButton">
+            <MenuItem class="javax.swing.JMenuItem" name="recordSoundButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Save audio"/>
+                <Property name="text" type="java.lang.String" value="Record sound"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recordSoundButtonActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
