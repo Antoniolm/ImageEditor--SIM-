@@ -16,13 +16,13 @@ public class SoundManager implements LineListener {
     @Override
     public void update(LineEvent event) {
         if (event.getType() == LineEvent.Type.START) {
-            
+            System.out.println("START"+event.getSource().getClass());
         }
         if (event.getType() == LineEvent.Type.STOP) {
-            
+            System.out.println("STOP"+event.getSource().getClass());
         }
         if (event.getType() == LineEvent.Type.CLOSE) {
-            
+            System.out.println("CLOSE"+event.getSource().getClass());
         }
     }
 }

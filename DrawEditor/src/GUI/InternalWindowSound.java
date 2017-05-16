@@ -7,6 +7,9 @@ package GUI;
 
 import draweditor.SoundManager;
 import java.io.File;
+import javax.sound.sampled.LineEvent;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import sm.sound.SMClipPlayer;
 import sm.sound.SMPlayer;
 
@@ -28,7 +31,28 @@ public class InternalWindowSound extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         player = new SMClipPlayer(file);
-        ((SMClipPlayer)player).addLineListener(new SoundManager());
+        ((SMClipPlayer)player).addLineListener(new SoundManager() {
+
+            @Override
+            public void update(LineEvent event) {
+                super.update(event); //To change body of generated methods, choose Tools | Templates.
+                if (event.getType() == LineEvent.Type.START) {
+                    playButton.setSelected(true);
+                    playButton.setIcon(new ImageIcon(getClass().getResource("/iconos/PlayDisabled_48x48.png")));
+                    stopButton.setIcon(new ImageIcon(getClass().getResource("/iconos/StopNormalRed_48x48.png")));
+                }
+                if (event.getType() == LineEvent.Type.STOP) {
+                    if(player!=null) player.stop();
+                    stopButton.setSelected(true);
+                    playButton.setIcon(new ImageIcon(getClass().getResource("/iconos/PlayPressed_48x48.png")));
+                    stopButton.setIcon(new ImageIcon(getClass().getResource("/iconos/StopDisabled_48x48.png")));
+                }
+                if (event.getType() == LineEvent.Type.CLOSE) {
+                    
+                }
+            }
+            
+        });
     }
 
     /**
