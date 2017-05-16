@@ -178,7 +178,9 @@ public class MainWindow extends javax.swing.JFrame {
         FileMenu = new javax.swing.JMenu();
         newMenu = new javax.swing.JMenuItem();
         OpenMenu = new javax.swing.JMenuItem();
+        openAudioButton = new javax.swing.JMenuItem();
         SaveMenu = new javax.swing.JMenuItem();
+        saveAudioButton = new javax.swing.JMenuItem();
         EditMenu = new javax.swing.JMenu();
         SeeSBMenu = new javax.swing.JCheckBoxMenuItem();
         SeeGeoMenu = new javax.swing.JCheckBoxMenuItem();
@@ -759,6 +761,9 @@ public class MainWindow extends javax.swing.JFrame {
         });
         FileMenu.add(OpenMenu);
 
+        openAudioButton.setText("Open audio");
+        FileMenu.add(openAudioButton);
+
         SaveMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
         SaveMenu.setText("Save");
         SaveMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -767,6 +772,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         FileMenu.add(SaveMenu);
+
+        saveAudioButton.setText("Save audio");
+        FileMenu.add(saveAudioButton);
 
         MenuBar.add(FileMenu);
 
@@ -1632,10 +1640,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
+    private javax.swing.JMenuItem openAudioButton;
     private javax.swing.JMenu resizeItem;
     private javax.swing.JButton rot180Button;
     private javax.swing.JButton rot270Button;
     private javax.swing.JButton rot90Button;
+    private javax.swing.JMenuItem saveAudioButton;
     private javax.swing.JButton sepiaButton;
     private javax.swing.JSpinner thickSpinner;
     private javax.swing.JPanel toolBarPanel;
