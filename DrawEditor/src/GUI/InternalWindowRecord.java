@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import draweditor.SoundManager;
 import java.io.File;
 import sm.sound.SMRecorder;
 import sm.sound.SMSoundPlayerRecorder;
@@ -26,6 +27,7 @@ public class InternalWindowRecord extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         recorder=new SMSoundPlayerRecorder(file);
+        recorder.addLineListener(new SoundManager());
     }
 
     /**

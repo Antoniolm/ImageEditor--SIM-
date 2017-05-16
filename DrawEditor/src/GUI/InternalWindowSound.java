@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import draweditor.SoundManager;
 import java.io.File;
 import sm.sound.SMClipPlayer;
 import sm.sound.SMPlayer;
@@ -27,6 +28,7 @@ public class InternalWindowSound extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         player = new SMClipPlayer(file);
+        ((SMPlayer)player.addLineListener(new SoundManager());
     }
 
     /**
