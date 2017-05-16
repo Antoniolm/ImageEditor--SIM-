@@ -5,7 +5,9 @@
  */
 package GUI;
 
+import java.io.File;
 import sm.sound.SMRecorder;
+import sm.sound.SMSoundPlayerRecorder;
 
 /**
  *
@@ -17,13 +19,13 @@ public class InternalWindowRecord extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalWindowRecord
      */
-    public InternalWindowRecord() {
+    public InternalWindowRecord(File file) {
         initComponents();
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        //recorder=new SMRecorder();
+        recorder=new SMSoundPlayerRecorder(file);
     }
 
     /**

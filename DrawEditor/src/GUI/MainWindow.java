@@ -1576,7 +1576,20 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_TextButtonActionPerformed
 
     private void recordSoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordSoundButtonActionPerformed
-        // TODO add your handling code here:
+        JFileChooser dlg = new JFileChooser();
+        
+        int resp = dlg.showSaveDialog(this);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+            try {
+                File f = dlg.getSelectedFile();
+                InternalWindowRecord newIntWind=new InternalWindowRecord(f);
+                newIntWind.setVisible(true);
+                mainDesktop.add(newIntWind);
+
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,"Error al abrir la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_recordSoundButtonActionPerformed
 
     private void openSoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSoundButtonActionPerformed
