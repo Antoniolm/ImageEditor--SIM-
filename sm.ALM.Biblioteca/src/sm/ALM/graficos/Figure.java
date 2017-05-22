@@ -25,20 +25,35 @@ import java.awt.geom.Point2D;
 
 public abstract class Figure {
     Shape currentShape;
+    Attribute attribute;
+    Point2D offSet;
     boolean editMode;
     
     protected Figure(){
         currentShape=null;
         editMode=false;
+        offSet=new Point2D.Float(0,0);
     }
     
-    public abstract void draw(Graphics2D g2d,Attribute attribute);
+    public abstract void draw(Graphics2D g2d);
     public abstract void updatePosition(Point2D initPos, Point2D point);
-    public abstract void setPosition(Point2D newPos,Point2D offSet);
-    public abstract boolean wasSelected(Point2D pos,Point2D offSet);
+    public abstract void setPosition(Point2D newPos);
+    public abstract boolean wasSelected(Point2D pos);
     
     public Shape getShape(){
         return currentShape;
+    }
+    
+    public Attribute getAttribute(){
+        return attribute;
+    }
+    
+    public void setShape(Shape s){
+        currentShape=s;
+    }
+    
+    public void setAttribute(Attribute att){
+        attribute=att;
     }
     
     public void isEdited(boolean value){

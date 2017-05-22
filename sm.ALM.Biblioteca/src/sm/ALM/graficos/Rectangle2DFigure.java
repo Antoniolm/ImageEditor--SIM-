@@ -30,13 +30,14 @@ import java.awt.geom.RectangularShape;
 
 public class Rectangle2DFigure extends Figure{
 
-    public Rectangle2DFigure(){
+    public Rectangle2DFigure(Attribute anAtt){
         super();
+        attribute=anAtt;
         currentShape=new Rectangle();
     }
     
     @Override
-    public void draw(Graphics2D g2d,Attribute attribute) {
+    public void draw(Graphics2D g2d) {
         attribute.apply(g2d);
         
         if(!attribute.getFilled())
@@ -63,13 +64,13 @@ public class Rectangle2DFigure extends Figure{
     }
     
     @Override
-    public void setPosition(Point2D newPos, Point2D offSet) {
+    public void setPosition(Point2D newPos) {
         newPos.setLocation(newPos.getX()-offSet.getX(),newPos.getY()-offSet.getY());
         ((Rectangle)currentShape).setLocation((Point)newPos);
     }
 
     @Override
-    public boolean wasSelected(Point2D pos, Point2D offSet) {
+    public boolean wasSelected(Point2D pos) {
         boolean result=false;
         
         if (currentShape.contains(pos)) {

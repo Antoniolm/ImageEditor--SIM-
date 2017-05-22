@@ -32,18 +32,20 @@ import java.awt.geom.Point2D;
  */
 public class Line2DFigure extends Figure{
         
-    public Line2DFigure(){
+    public Line2DFigure(Attribute anAtt){
         super();
+        attribute=anAtt;
         currentShape=new Line2D.Float();
     }
     
-    public Line2DFigure(Point2D initPos){
+    public Line2DFigure(Point2D initPos,Attribute anAtt){
         super();
+        attribute=anAtt;
         currentShape=new Line2D.Float(initPos,initPos);
     }
     
     @Override
-    public void draw(Graphics2D g2d,Attribute attribute){
+    public void draw(Graphics2D g2d){
         attribute.apply(g2d);
         g2d.draw(currentShape);
         
@@ -61,7 +63,7 @@ public class Line2DFigure extends Figure{
     }
     
     @Override
-    public boolean wasSelected(Point2D pos,Point2D offSet){
+    public boolean wasSelected(Point2D pos){
         boolean result =false;
         if (((Line2D.Float)currentShape).intersects(pos.getX(), pos.getY(), 6, 6)) {
             Point2D.Double point1 = new Point2D.Double(((Line2D.Float)currentShape).getX1(), ((Line2D.Float)currentShape).getY1());
@@ -72,7 +74,7 @@ public class Line2DFigure extends Figure{
     }
     
     @Override
-    public void setPosition(Point2D newPos,Point2D offSet){
+    public void setPosition(Point2D newPos){
         Point2D point1 = ((Line2D.Float)currentShape).getP1();
         Point2D point2 = ((Line2D.Float)currentShape).getP2();
         Point2D diff= new Point2D.Double((newPos.getX() - point1.getX()),(newPos.getY() - point1.getY()));

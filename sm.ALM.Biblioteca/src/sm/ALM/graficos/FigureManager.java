@@ -48,7 +48,7 @@ public class FigureManager {
      */
     public void draw(Graphics2D g2d){
         if(currentShape!=null){
-            currentShape.draw(g2d,attribute);
+            currentShape.draw(g2d);
         }
     }
     /**
@@ -58,13 +58,13 @@ public class FigureManager {
     public void createShape(GeometryType geometry,Point2D initPos){
         switch(geometry){
             case POINT: //Case point geoometry
-                currentShape=new Line2DFigure(initPos);
+                currentShape=new Line2DFigure(initPos,attribute);
                 break;
             case LINE: //Case line geoometry
-                currentShape=new Line2DFigure();
+                currentShape=new Line2DFigure(attribute);
                 break;
             case RECTANGLE: //Case rectangle geoometry
-                currentShape=new Rectangle2DFigure();
+                currentShape=new Rectangle2DFigure(attribute);
                 break;
             case RRECTANGLE: //Case rectangle geoometry
                 //currentShape=new RoundRectangle2D.Float();
@@ -73,7 +73,7 @@ public class FigureManager {
                 currentShape=new Text2DFigure(initPos,attribute);
             break;    
             case CIRCLE: //Case circle geoometry
-                currentShape=new Ellipse2DFigure();
+                currentShape=new Ellipse2DFigure(attribute);
                 break;
 
         }
@@ -95,9 +95,9 @@ public class FigureManager {
      * @param p
      * @return shape 
      */
-    public void getSelectedShape(Point2D p,Point2D offSet){
+    public void getSelectedShape(Point2D p){
         isSelected=false;
-        if(currentShape.wasSelected(p,offSet))
+        if(currentShape.wasSelected(p))
             isSelected=true;   
     }
     
@@ -105,9 +105,9 @@ public class FigureManager {
      * it will change the location of our current shape
      * @param pos 
      */
-    public void setLocationShape(Point2D pos,Point2D offSet){
+    public void setLocationShape(Point2D pos){
         if(currentShape!=null && isSelected){
-            currentShape.setPosition(pos, offSet);
+            currentShape.setPosition(pos);
         }
     }
     

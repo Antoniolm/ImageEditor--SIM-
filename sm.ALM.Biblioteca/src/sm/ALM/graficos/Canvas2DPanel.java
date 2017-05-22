@@ -48,7 +48,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     GeometryType geometry;
     protected BufferedImage image;
     protected Point initPos;
-    protected Point offSet;
     private int currentColor;
     static float widthSize=300;
     static float heightSize=300;
@@ -60,7 +59,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public Canvas2DPanel() {
         initComponents();
         initPos=new Point(0,0);
-        offSet=new Point(0,0);
         vShape = new FigureManager();
         editMode=false;
         geometry=POINT;
@@ -71,7 +69,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e){
-                    if(editMode) vShape.getSelectedShape(e.getPoint(),offSet);
+                    if(editMode) vShape.getSelectedShape(e.getPoint());
                     else{
                         initPos=e.getPoint();   
                         
@@ -97,7 +95,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 @Override
                 public void mouseDragged(MouseEvent e){
                     if(editMode){
-                        vShape.setLocationShape(e.getPoint(),offSet);
+                        vShape.setLocationShape(e.getPoint());
                         setCursor(new Cursor(Cursor.MOVE_CURSOR));
                     }
                     else{

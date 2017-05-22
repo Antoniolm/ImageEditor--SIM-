@@ -41,6 +41,7 @@ public class Text2DFigure extends Figure{
         super();
         text="";
         position=initPos;
+        attribute=anAtt;
         TextDialog dialog = new TextDialog(new javax.swing.JFrame(), true, this);
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -56,14 +57,20 @@ public class Text2DFigure extends Figure{
     }
     
     @Override
-    public void draw(Graphics2D g2d, Attribute attribute) {
+    public void draw(Graphics2D g2d) {
         attribute.apply(g2d);
-        //g2d.translate(position.getX(), position.getY());
+        
         getTextShape(g2d, new Font("Arial", Font.BOLD, 30));
         AffineTransform trans=new AffineTransform();
         trans.translate(position.getX(), position.getY());
         currentShape=trans.createTransformedShape(currentShape);
-        g2d.draw(currentShape);
+        
+        if(!attribute.getFilled())
+                g2d.draw(currentShape);
+        else {
+                g2d.fill(currentShape);
+        }
+        
         
         if(editMode){
             g2d.setColor(Color.GRAY);
@@ -87,16 +94,17 @@ public class Text2DFigure extends Figure{
     }
 
     @Override
-    public void setPosition(Point2D newPos, Point2D offSet) {
+    public void setPosition(Point2D newPos) {
+        newPos.setLocation(newPos.getX()-offSet.getX(),newPos.getY()-offSet.getY());
         position=newPos;
     }
 
     @Override
-    public boolean wasSelected(Point2D pos, Point2D offSet) {
+    public boolean wasSelected(Point2D pos) {
         boolean result =false;
         if (currentShape.getBounds2D().contains(pos)) {            
+            offSet.setLocation(Math.abs(pos.getX() - position.getX()), Math.abs(pos.getY() - position.getY()));
             result=true;
-            System.out.println("is taked");
         }   
         return result;
     }

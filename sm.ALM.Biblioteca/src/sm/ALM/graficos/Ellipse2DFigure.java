@@ -28,13 +28,14 @@ import java.awt.geom.Point2D;
 public class Ellipse2DFigure extends Figure{
 
     
-    public Ellipse2DFigure(){
+    public Ellipse2DFigure(Attribute anAtt){
         super();
+        attribute=anAtt;
         currentShape=new Ellipse2D.Float();
     }
     
     @Override
-    public void draw(Graphics2D g2d, Attribute attribute) {
+    public void draw(Graphics2D g2d) {
         attribute.apply(g2d);
         
         if(!attribute.getFilled())
@@ -57,7 +58,7 @@ public class Ellipse2DFigure extends Figure{
     }
 
     @Override
-    public void setPosition(Point2D newPos, Point2D offSet) {
+    public void setPosition(Point2D newPos) {
         Point2D.Double point1 = new Point2D.Double(((Ellipse2D) currentShape).getX(), ((Ellipse2D) currentShape).getY());
         Point2D.Double point2 = new Point2D.Double(((Ellipse2D) currentShape).getCenterX(), ((Ellipse2D) currentShape).getCenterY());
         point2.setLocation(newPos.getX() + Math.abs((point1.getX() - point2.getX())), newPos.getY() + Math.abs((point1.getY() - point2.getY())));
@@ -67,7 +68,7 @@ public class Ellipse2DFigure extends Figure{
     }
 
     @Override
-    public boolean wasSelected(Point2D pos, Point2D offSet) {
+    public boolean wasSelected(Point2D pos) {
         boolean result=false;
         
         if (currentShape.contains(pos)) {
