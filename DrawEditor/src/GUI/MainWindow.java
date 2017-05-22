@@ -135,6 +135,7 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         FilledButton = new javax.swing.JToggleButton();
         TransButton = new javax.swing.JToggleButton();
+        TransparencySlider = new javax.swing.JSlider();
         SmoothButton = new javax.swing.JToggleButton();
         jSeparator5 = new javax.swing.JSeparator();
         fontCombo = new javax.swing.JComboBox();
@@ -159,7 +160,6 @@ public class MainWindow extends javax.swing.JFrame {
         SenButton = new javax.swing.JButton();
         sepiaButton = new javax.swing.JButton();
         NegativeButton = new javax.swing.JButton();
-        GrayButton = new javax.swing.JButton();
         OwnFilterButton = new javax.swing.JButton();
         dyeButton = new javax.swing.JButton();
         equalizationButton = new javax.swing.JButton();
@@ -390,6 +390,18 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(TransButton);
 
+        TransparencySlider.setMaximum(10);
+        TransparencySlider.setSnapToTicks(true);
+        TransparencySlider.setToolTipText("");
+        TransparencySlider.setValue(10);
+        TransparencySlider.setPreferredSize(new java.awt.Dimension(60, 26));
+        TransparencySlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                TransparencySliderStateChanged(evt);
+            }
+        });
+        toolBarPanel.add(TransparencySlider);
+
         SmoothButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/alisar.png"))); // NOI18N
         SmoothButton.setToolTipText("Smooth");
         SmoothButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -404,10 +416,12 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator5.setPreferredSize(new java.awt.Dimension(2, 31));
         toolBarPanel.add(jSeparator5);
 
+        fontCombo.setToolTipText("Font text");
         fontCombo.setMaximumSize(new java.awt.Dimension(100, 31));
         toolBarPanel.add(fontCombo);
 
         BoldButton.setText("B");
+        BoldButton.setToolTipText("bold style");
         BoldButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BoldButton.setPreferredSize(new java.awt.Dimension(31, 31));
         BoldButton.addActionListener(new java.awt.event.ActionListener() {
@@ -418,6 +432,7 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(BoldButton);
 
         ItalicButton.setText("I");
+        ItalicButton.setToolTipText("italic style");
         ItalicButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ItalicButton.setPreferredSize(new java.awt.Dimension(31, 31));
         ItalicButton.addActionListener(new java.awt.event.ActionListener() {
@@ -428,6 +443,7 @@ public class MainWindow extends javax.swing.JFrame {
         toolBarPanel.add(ItalicButton);
 
         underlineButton.setText("U");
+        underlineButton.setToolTipText("underline style");
         underlineButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         underlineButton.setPreferredSize(new java.awt.Dimension(31, 31));
         underlineButton.addActionListener(new java.awt.event.ActionListener() {
@@ -436,6 +452,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(underlineButton);
+
+        SizeFontSpinner.setToolTipText("Text Size");
         toolBarPanel.add(SizeFontSpinner);
 
         DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
@@ -465,6 +483,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         ShineSlider.setMaximum(255);
         ShineSlider.setMinimum(-255);
+        ShineSlider.setToolTipText("Shine slider");
         ShineSlider.setValue(0);
         ShineSlider.setPreferredSize(new java.awt.Dimension(100, 26));
         ShineSlider.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -489,6 +508,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(100, 110));
 
         FilterCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Media", "Binomial", "Enfoque", "Relieve", "Laplaciano" }));
+        FilterCombo.setToolTipText("Filter list");
         FilterCombo.setPreferredSize(new java.awt.Dimension(80, 22));
         FilterCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -509,6 +529,7 @@ public class MainWindow extends javax.swing.JFrame {
         ContrastPanel.setPreferredSize(new java.awt.Dimension(140, 110));
 
         contrastButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/contraste.png"))); // NOI18N
+        contrastButton.setToolTipText("Contrast");
         contrastButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         contrastButton.setPreferredSize(new java.awt.Dimension(31, 31));
         contrastButton.addActionListener(new java.awt.event.ActionListener() {
@@ -519,6 +540,7 @@ public class MainWindow extends javax.swing.JFrame {
         ContrastPanel.add(contrastButton);
 
         LightUpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/iluminar.png"))); // NOI18N
+        LightUpButton.setToolTipText("Light up");
         LightUpButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LightUpButton.setPreferredSize(new java.awt.Dimension(31, 31));
         LightUpButton.addActionListener(new java.awt.event.ActionListener() {
@@ -529,6 +551,7 @@ public class MainWindow extends javax.swing.JFrame {
         ContrastPanel.add(LightUpButton);
 
         GetDarkButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/oscurecer.png"))); // NOI18N
+        GetDarkButton.setToolTipText("Dark image");
         GetDarkButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         GetDarkButton.setPreferredSize(new java.awt.Dimension(31, 31));
         GetDarkButton.addActionListener(new java.awt.event.ActionListener() {
@@ -545,6 +568,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(280, 110));
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
+        SenButton.setToolTipText("Sen filter");
         SenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SenButton.setPreferredSize(new java.awt.Dimension(31, 31));
         SenButton.addActionListener(new java.awt.event.ActionListener() {
@@ -555,6 +579,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2.add(SenButton);
 
         sepiaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sepia.png"))); // NOI18N
+        sepiaButton.setToolTipText("Sepia filter");
         sepiaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         sepiaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -564,6 +589,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2.add(sepiaButton);
 
         NegativeButton.setText("N");
+        NegativeButton.setToolTipText("Negative filter");
         NegativeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         NegativeButton.setMinimumSize(new java.awt.Dimension(31, 31));
         NegativeButton.setPreferredSize(new java.awt.Dimension(31, 31));
@@ -574,17 +600,8 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel2.add(NegativeButton);
 
-        GrayButton.setText("G");
-        GrayButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        GrayButton.setPreferredSize(new java.awt.Dimension(31, 31));
-        GrayButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GrayButtonActionPerformed(evt);
-            }
-        });
-        jPanel2.add(GrayButton);
-
         OwnFilterButton.setText("P");
+        OwnFilterButton.setToolTipText("Own filter");
         OwnFilterButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         OwnFilterButton.setPreferredSize(new java.awt.Dimension(31, 31));
         OwnFilterButton.addActionListener(new java.awt.event.ActionListener() {
@@ -595,6 +612,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2.add(OwnFilterButton);
 
         dyeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/tintar.png"))); // NOI18N
+        dyeButton.setToolTipText("Dye filter");
         dyeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         dyeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -604,6 +622,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2.add(dyeButton);
 
         equalizationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ecualizar.png"))); // NOI18N
+        equalizationButton.setToolTipText("Equalization filter");
         equalizationButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         equalizationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -617,6 +636,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Color"));
 
         BandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/bandas.png"))); // NOI18N
+        BandButton.setToolTipText("Extract band");
         BandButton.setPreferredSize(new java.awt.Dimension(31, 31));
         BandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -626,6 +646,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel3.add(BandButton);
 
         ColorSpaceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RGB", "PYCC", "Gray" }));
+        ColorSpaceCombo.setToolTipText("Color space");
         ColorSpaceCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 ColorSpaceComboItemStateChanged(evt);
@@ -646,7 +667,7 @@ public class MainWindow extends javax.swing.JFrame {
         RotationPanel.setPreferredSize(new java.awt.Dimension(270, 110));
 
         RotationSlider.setMaximum(360);
-        RotationSlider.setToolTipText("");
+        RotationSlider.setToolTipText("Rotation slider");
         RotationSlider.setValue(0);
         RotationSlider.setPreferredSize(new java.awt.Dimension(120, 26));
         RotationSlider.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -665,6 +686,7 @@ public class MainWindow extends javax.swing.JFrame {
         RotationPanel.add(RotationSlider);
 
         rot90Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion90.png"))); // NOI18N
+        rot90Button.setToolTipText("rotation of 90 grade");
         rot90Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot90Button.setPreferredSize(new java.awt.Dimension(31, 31));
         rot90Button.addActionListener(new java.awt.event.ActionListener() {
@@ -675,6 +697,7 @@ public class MainWindow extends javax.swing.JFrame {
         RotationPanel.add(rot90Button);
 
         rot180Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion180.png"))); // NOI18N
+        rot180Button.setToolTipText("rotation of 180 grade");
         rot180Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot180Button.setPreferredSize(new java.awt.Dimension(31, 31));
         rot180Button.addActionListener(new java.awt.event.ActionListener() {
@@ -685,6 +708,7 @@ public class MainWindow extends javax.swing.JFrame {
         RotationPanel.add(rot180Button);
 
         rot270Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion270.png"))); // NOI18N
+        rot270Button.setToolTipText("rotation of 270 grade");
         rot270Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot270Button.setPreferredSize(new java.awt.Dimension(31, 31));
         rot270Button.addActionListener(new java.awt.event.ActionListener() {
@@ -701,6 +725,7 @@ public class MainWindow extends javax.swing.JFrame {
         ScalePanel.setPreferredSize(new java.awt.Dimension(100, 110));
 
         MoreScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/aumentar.png"))); // NOI18N
+        MoreScaleButton.setToolTipText("Zoom in");
         MoreScaleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         MoreScaleButton.setPreferredSize(new java.awt.Dimension(31, 31));
         MoreScaleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -711,6 +736,7 @@ public class MainWindow extends javax.swing.JFrame {
         ScalePanel.add(MoreScaleButton);
 
         LessScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/disminuir.png"))); // NOI18N
+        LessScaleButton.setToolTipText("Zoom out");
         LessScaleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LessScaleButton.setPreferredSize(new java.awt.Dimension(31, 31));
         LessScaleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -726,6 +752,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(150, 83));
 
         umbraSlider.setMaximum(255);
+        umbraSlider.setToolTipText("Umbralization slider");
         umbraSlider.setValue(128);
         umbraSlider.setPreferredSize(new java.awt.Dimension(100, 26));
         umbraSlider.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -1020,8 +1047,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void TransButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransButtonActionPerformed
         if(currentIntWind!=null){
-            if(TransButton.isSelected())
-                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+            if(TransButton.isSelected()){
+                float value=((float)TransparencySlider.getValue())/10.0f;
+                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value));
+            }
             else
                 currentIntWind.getCanvas().setTransparency(null);
         }
@@ -1544,19 +1573,6 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_NegativeButtonActionPerformed
 
-    private void GrayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GrayButtonActionPerformed
-        if(currentIntWind!=null) {
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
-            if(imgSrce!=null){
-                ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);  
-                ColorConvertOp op = new ColorConvertOp(cs, null);  
-                op.filter(imgSrce, imgSrce);
-                mainDesktop.repaint();
-            }
-        }
-                    
-    }//GEN-LAST:event_GrayButtonActionPerformed
-
     private void AboutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutItemActionPerformed
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1655,6 +1671,15 @@ public class MainWindow extends javax.swing.JFrame {
     private void underlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_underlineButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_underlineButtonActionPerformed
+
+    private void TransparencySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_TransparencySliderStateChanged
+        if(currentIntWind!=null){
+            if(TransButton.isSelected()){
+                float value=((float)TransparencySlider.getValue())/10.0f;
+                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value));
+            }
+        }
+    }//GEN-LAST:event_TransparencySliderStateChanged
     
     //Methods 
     public void setCursorState(String message){
@@ -1680,7 +1705,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton FilledButton;
     private javax.swing.JComboBox FilterCombo;
     private javax.swing.JButton GetDarkButton;
-    private javax.swing.JButton GrayButton;
     private javax.swing.JMenu HelpItem;
     private javax.swing.JToggleButton ItalicButton;
     private javax.swing.JButton LessScaleButton;
@@ -1714,6 +1738,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel StateBarPanel;
     private javax.swing.JToggleButton TextButton;
     private javax.swing.JToggleButton TransButton;
+    private javax.swing.JSlider TransparencySlider;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
