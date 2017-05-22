@@ -1604,6 +1604,7 @@ public class MainWindow extends javax.swing.JFrame {
         StateBarLabel.setText("Text");
         if(currentIntWind!=null){
             currentIntWind.setGeometry(GeometryType.TEXT);
+            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
             currentIntWind.repaint();
         }
     }//GEN-LAST:event_TextButtonActionPerformed
