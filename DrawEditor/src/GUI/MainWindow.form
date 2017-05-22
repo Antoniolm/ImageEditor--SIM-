@@ -534,6 +534,9 @@
                   <Dimension value="[100, 31]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fontComboActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="BoldButton">
               <Properties>

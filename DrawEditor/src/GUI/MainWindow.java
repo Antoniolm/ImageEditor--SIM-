@@ -418,6 +418,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         fontCombo.setToolTipText("Font text");
         fontCombo.setMaximumSize(new java.awt.Dimension(100, 31));
+        fontCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontComboActionPerformed(evt);
+            }
+        });
         toolBarPanel.add(fontCombo);
 
         BoldButton.setText("B");
@@ -1680,6 +1685,12 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_TransparencySliderStateChanged
+
+    private void fontComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontComboActionPerformed
+        /*if(currentIntWind!=null){
+            //currentIntWind.getCanvas().get
+        }*/
+    }//GEN-LAST:event_fontComboActionPerformed
     
     //Methods 
     public void setCursorState(String message){

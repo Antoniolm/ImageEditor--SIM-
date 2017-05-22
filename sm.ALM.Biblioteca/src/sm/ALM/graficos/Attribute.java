@@ -32,7 +32,8 @@ public class Attribute {
     boolean filled;
     Composite comp;
     RenderingHints render;
-    
+    FontClass font;
+
     /**
      * Constructor
      */
@@ -42,6 +43,7 @@ public class Attribute {
         filled=false;
         comp=null;
         render=null;
+        font=new FontClass();
         strokeValue=1;
     }
    
@@ -64,6 +66,49 @@ public class Attribute {
     
     /**
      * 
+     * @param render 
+     */
+    public void setRender(RenderingHints render) {
+        this.render = render;
+    }
+    
+    /**
+     * 
+     * @param comp 
+     */
+    public void setComp(Composite comp) {
+        this.comp = comp;
+    }
+    
+    /**
+     * 
+     * @param aPaint 
+     */
+    public void setFilled(Paint aPaint) {
+        this.colorPaint = aPaint;
+    }
+
+    /**
+     * 
+     * @param stroke
+     * @param value 
+     */
+    public void setStroke(Stroke stroke,Integer value) {
+        this.stroke = stroke;
+        strokeValue=value;
+    }
+
+    /**
+     * 
+     * @param font 
+     */
+    public void setFont(FontClass font) {
+        this.font = font;
+    }
+    
+    
+    /**
+     * 
      * @return 
      */
     public Stroke getStroke() {
@@ -77,17 +122,7 @@ public class Attribute {
     public Integer getThickness(){
         return strokeValue;
     }
-    
-    /**
-     * 
-     * @param stroke
-     * @param value 
-     */
-    public void setStroke(Stroke stroke,Integer value) {
-        this.stroke = stroke;
-        strokeValue=value;
-    }
-
+       
     /**
      * 
      * @return 
@@ -103,15 +138,7 @@ public class Attribute {
     public boolean getFilled() {
         return filled;
     }
-
-    /**
-     * 
-     * @param aPaint 
-     */
-    public void setFilled(Paint aPaint) {
-        this.colorPaint = aPaint;
-    }
-
+    
     /**
      * 
      * @return 
@@ -122,25 +149,20 @@ public class Attribute {
 
     /**
      * 
-     * @param comp 
-     */
-    public void setComp(Composite comp) {
-        this.comp = comp;
-    }
-
-    /**
-     * 
      * @return 
      */
     public RenderingHints getRender() {
         return render;
     }
-
+    
     /**
      * 
-     * @param render 
-     */
-    public void setRender(RenderingHints render) {
-        this.render = render;
+     * @return 
+     */ 
+    public FontClass getFont() {
+        return font;
     }
+
+    
+    
 }
