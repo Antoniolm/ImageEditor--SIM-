@@ -28,6 +28,7 @@ import java.awt.Shape;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
 public class Text2DFigure extends Figure{
@@ -57,8 +58,11 @@ public class Text2DFigure extends Figure{
     @Override
     public void draw(Graphics2D g2d, Attribute attribute) {
         attribute.apply(g2d);
-        g2d.translate(position.getX(), position.getY());
+        //g2d.translate(position.getX(), position.getY());
         getTextShape(g2d, new Font("Arial", Font.BOLD, 30));
+        AffineTransform trans=new AffineTransform();
+        trans.translate(position.getX(), position.getY());
+        currentShape=trans.createTransformedShape(currentShape);
         g2d.draw(currentShape);
         
         if(editMode){

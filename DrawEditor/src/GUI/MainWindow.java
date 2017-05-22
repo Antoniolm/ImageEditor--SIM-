@@ -138,6 +138,9 @@ public class MainWindow extends javax.swing.JFrame {
         SmoothButton = new javax.swing.JToggleButton();
         jSeparator5 = new javax.swing.JSeparator();
         fontCombo = new javax.swing.JComboBox();
+        BoldButton = new javax.swing.JToggleButton();
+        ItalicButton = new javax.swing.JToggleButton();
+        underlineButton = new javax.swing.JToggleButton();
         SizeFontSpinner = new javax.swing.JSpinner();
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
@@ -403,6 +406,36 @@ public class MainWindow extends javax.swing.JFrame {
 
         fontCombo.setMaximumSize(new java.awt.Dimension(100, 31));
         toolBarPanel.add(fontCombo);
+
+        BoldButton.setText("B");
+        BoldButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BoldButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        BoldButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoldButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(BoldButton);
+
+        ItalicButton.setText("I");
+        ItalicButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ItalicButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        ItalicButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItalicButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(ItalicButton);
+
+        underlineButton.setText("U");
+        underlineButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        underlineButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        underlineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                underlineButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(underlineButton);
         toolBarPanel.add(SizeFontSpinner);
 
         DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
@@ -1609,6 +1642,18 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_openSoundButtonActionPerformed
+
+    private void BoldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoldButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BoldButtonActionPerformed
+
+    private void ItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItalicButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItalicButtonActionPerformed
+
+    private void underlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_underlineButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_underlineButtonActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1620,6 +1665,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel AttributePanel;
     private javax.swing.JToolBar AttributeToolBar;
     private javax.swing.JButton BandButton;
+    private javax.swing.JToggleButton BoldButton;
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JComboBox ColorCombo;
     private javax.swing.JComboBox ColorSpaceCombo;
@@ -1635,6 +1681,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton GetDarkButton;
     private javax.swing.JButton GrayButton;
     private javax.swing.JMenu HelpItem;
+    private javax.swing.JToggleButton ItalicButton;
     private javax.swing.JButton LessScaleButton;
     private javax.swing.JButton LightUpButton;
     private javax.swing.JToggleButton LineButton;
@@ -1696,5 +1743,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel toolBarPanel;
     private javax.swing.JComboBox typeLineCombo;
     private javax.swing.JSlider umbraSlider;
+    private javax.swing.JToggleButton underlineButton;
     // End of variables declaration//GEN-END:variables
 }
