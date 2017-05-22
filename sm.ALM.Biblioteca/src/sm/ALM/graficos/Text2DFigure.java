@@ -19,6 +19,8 @@
 
 package sm.ALM.graficos;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -56,8 +58,15 @@ public class Text2DFigure extends Figure{
     public void draw(Graphics2D g2d, Attribute attribute) {
         attribute.apply(g2d);
         g2d.translate(position.getX(), position.getY());
-        getTextShape(g2d, new Font("Arial", Font.BOLD, 8));
+        getTextShape(g2d, new Font("Arial", Font.BOLD, 30));
         g2d.draw(currentShape);
+        
+        if(editMode){
+            g2d.setColor(Color.GRAY);
+            g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F));
+            g2d.draw(currentShape.getBounds2D());
+        }
     }
     
     public void getTextShape(Graphics2D g2d, Font font) {
