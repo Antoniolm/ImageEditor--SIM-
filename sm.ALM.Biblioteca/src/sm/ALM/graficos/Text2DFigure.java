@@ -36,7 +36,7 @@ public class Text2DFigure extends Figure{
     private Point2D position;
     
     
-    public Text2DFigure(Point2D initPos){
+    public Text2DFigure(Point2D initPos,Attribute anAtt){
         super();
         text="";
         position=initPos;
@@ -84,12 +84,17 @@ public class Text2DFigure extends Figure{
 
     @Override
     public void setPosition(Point2D newPos, Point2D offSet) {
-        
+        position=newPos;
     }
 
     @Override
     public boolean wasSelected(Point2D pos, Point2D offSet) {
-        return false;
+        boolean result =false;
+        if (currentShape.getBounds2D().contains(pos)) {            
+            result=true;
+            System.out.println("is taked");
+        }   
+        return result;
     }
     
 }
