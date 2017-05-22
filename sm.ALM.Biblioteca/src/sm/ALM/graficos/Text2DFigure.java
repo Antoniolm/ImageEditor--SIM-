@@ -19,7 +19,13 @@
 
 package sm.ALM.graficos;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphVector;
+import java.awt.font.TextLayout;
 import java.awt.geom.Point2D;
 
 public class Text2DFigure extends Figure{
@@ -48,8 +54,18 @@ public class Text2DFigure extends Figure{
     
     @Override
     public void draw(Graphics2D g2d, Attribute attribute) {
-        if(text!="")
-            g2d.drawString(text, (int)position.getX(), (int)position.getY());
+        attribute.apply(g2d);
+        g2d.translate(position.getX(), position.getY());
+        getTextShape(g2d, new Font("Arial", Font.BOLD, 8));
+        g2d.draw(currentShape);
+    }
+    
+    public void getTextShape(Graphics2D g2d, Font font) {
+        if(text!=""){
+            FontRenderContext frc = g2d.getFontRenderContext();
+            TextLayout tl = new TextLayout(text, font, frc);
+            currentShape=tl.getOutline(null);
+        }
     }
 
     @Override
