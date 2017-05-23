@@ -15,16 +15,14 @@ import javax.media.Player;
  *
  * @author LENOVO
  */
-public class InternalWindowJMFPlayer extends javax.swing.JInternalFrame {
+public class InternalWindowJMFCamera extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form InternalWindowJMFPlayer
+     * Creates new form InternalWindowJMFCamera
      */
-    
     private Player player = null;
-
     
-    private InternalWindowJMFPlayer(File f) {
+    private InternalWindowJMFCamera(File f) {
         initComponents();
         
         String sfichero = "file:" + f.getAbsolutePath();
@@ -41,23 +39,13 @@ public class InternalWindowJMFPlayer extends javax.swing.JInternalFrame {
             player = null;
         }
     }
-    
-    public static InternalWindowJMFPlayer getInstance(File f){
-        InternalWindowJMFPlayer v = new InternalWindowJMFPlayer(f);
+
+     public static InternalWindowJMFCamera getInstance(File f){
+        InternalWindowJMFCamera v = new InternalWindowJMFCamera(f);
         if(v.player!=null) return v;
         else return null;
     }
     
-    public void play() {
-        if (player != null) {
-            try {
-                player.start();
-            } catch (Exception e) {
-                System.err.println("VentanaInternaJMFPlayer: "+e);
-            }
-        }
-    }
-
     public void close() {
         if (player != null) {
             try {
@@ -67,7 +55,6 @@ public class InternalWindowJMFPlayer extends javax.swing.JInternalFrame {
             }
         }
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
