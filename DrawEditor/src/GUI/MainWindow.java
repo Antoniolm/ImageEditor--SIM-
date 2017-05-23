@@ -79,7 +79,7 @@ public class MainWindow extends javax.swing.JFrame {
     FileManager file;
     
     public MainWindow() {
-        setMinimumSize(new Dimension(1400,900));
+        setMinimumSize(new Dimension(1500,900));
         initComponents();
         
         Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
@@ -96,11 +96,11 @@ public class MainWindow extends javax.swing.JFrame {
         file=FileManager.getSingletonInstance();
         
         //Initialize font list
-        /*GraphicsEnvironment ge;
+        GraphicsEnvironment ge;
         ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String []systemFont = ge.getAvailableFontFamilyNames();
         
-        fontCombo.setModel(new DefaultComboBoxModel(systemFont));*/
+        fontCombo.setModel(new DefaultComboBoxModel(systemFont));
         
     }
 
@@ -141,6 +141,7 @@ public class MainWindow extends javax.swing.JFrame {
         typeLineCombo = new javax.swing.JComboBox();
         jSeparator4 = new javax.swing.JSeparator();
         FilledButton = new javax.swing.JToggleButton();
+        FilledTypeCombo = new javax.swing.JComboBox();
         TransButton = new javax.swing.JToggleButton();
         TransparencySlider = new javax.swing.JSlider();
         SmoothButton = new javax.swing.JToggleButton();
@@ -207,9 +208,12 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DrawEditor");
 
+        DrawPanel.setPreferredSize(new java.awt.Dimension(1300, 43));
         DrawPanel.setLayout(new java.awt.BorderLayout());
 
-        toolBarPanel.setPreferredSize(new java.awt.Dimension(1200, 43));
+        toolBarPanel.setAlignmentX(0.0F);
+        toolBarPanel.setPreferredSize(new java.awt.Dimension(1450, 43));
+        toolBarPanel.setVerifyInputWhenFocusTarget(false);
 
         NewFileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo.png"))); // NOI18N
         NewFileButton.setToolTipText("New file");
@@ -406,6 +410,10 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(FilledButton);
+
+        FilledTypeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filled", "Vertical degrade", "Horizontal degrade" }));
+        FilledTypeCombo.setToolTipText("Filled style");
+        toolBarPanel.add(FilledTypeCombo);
 
         TransButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/transparencia.png"))); // NOI18N
         TransButton.setToolTipText("Transparency");
@@ -1806,6 +1814,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JToggleButton FilledButton;
+    private javax.swing.JComboBox FilledTypeCombo;
     private javax.swing.JComboBox FilterCombo;
     private javax.swing.JButton GetDarkButton;
     private javax.swing.JMenu HelpItem;

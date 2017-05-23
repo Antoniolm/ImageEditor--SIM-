@@ -119,13 +119,25 @@ public class FigureManager {
         return attribute;
     }
     
+    /**
+     * It will return the attribute of our vector
+     * @return 
+     */
+    public void setAttribute(Attribute att){
+        attribute=att;
+        if(currentShape!=null && currentShape.isEdited()){
+            currentShape.setAttribute(new Attribute(att));
+        }
+        
+    }
+    
     public void shapeInImage(){
         currentShape=null;
     }
     
     public void isEdited(boolean value){
         if(currentShape!=null){
-            currentShape.isEdited(value);
+            currentShape.setEdited(value);
         }
     }
 }

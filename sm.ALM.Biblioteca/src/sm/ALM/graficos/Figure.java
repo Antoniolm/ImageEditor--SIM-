@@ -56,7 +56,11 @@ public abstract class Figure {
         attribute=att;
     }
     
-    public void isEdited(boolean value){
+    public boolean isEdited(){
+        return editMode;
+    }
+    
+    public void setEdited(boolean value){
         editMode=value;
     }
 }

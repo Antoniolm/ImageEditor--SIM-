@@ -142,7 +142,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     public void setColor(Paint value){
         if(vShape.getAttribute()!=null){
-            vShape.getAttribute().setFilled(value);
+            Attribute att=vShape.getAttribute();
+            att.setFilled(value);
+            vShape.setAttribute(att);
             repaint();
         }
     }
@@ -187,7 +189,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param value 
      */
     public void setTransparency(Composite value){
-        vShape.getAttribute().setComp(value);
+        Attribute att=vShape.getAttribute();
+        att.setComp(value);
+        vShape.setAttribute(att);
         repaint();
     }
     
