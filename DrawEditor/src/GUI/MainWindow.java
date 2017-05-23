@@ -82,14 +82,10 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         
         Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
-        Color colorsBot[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
         
         for(Color color : colors){
-            ColorCombo.addItem(color);            
-        }
-        
-        for(Color color : colorsBot){
-            ColorBotCombo.addItem(color);            
+            ColorCombo.addItem(color);
+            ColorBotCombo.addItem(color);
         }
         
         ColorCombo.setRenderer(new ColorComboRenderer());
@@ -1716,7 +1712,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_fontComboActionPerformed
 
     private void ColorBotComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorBotComboActionPerformed
-        ColorBotCombo.setBackground((Color)ColorCombo.getSelectedItem());
+        ColorBotCombo.setBackground((Color)ColorBotCombo.getSelectedItem());
         
     }//GEN-LAST:event_ColorBotComboActionPerformed
     
