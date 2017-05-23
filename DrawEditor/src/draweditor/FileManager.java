@@ -96,6 +96,30 @@ public class FileManager {
     }
     
     /**
+     * The method will create a new file 
+     * @param currentIntWind
+     * @param window
+     * @return 
+     */
+    public InternalWindowImage newFile(InternalWindowImage currentIntWind,MainWindow window,BufferedImage img){
+        InternalWindowImage newIntWind = new InternalWindowImage(window);
+        
+        if(currentIntWind!= null){
+            Point2D currentPositionWind=currentIntWind.getLocation();
+            currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
+            newIntWind.setLocation((Point) currentPositionWind);
+        }
+        
+         newIntWind.getCanvas().setImage(img);
+         newIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+         
+         Graphics2D g2d =img.createGraphics();
+         
+         newIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
+         return newIntWind;
+    }
+    
+    /**
      * The method will open a new file 
      * @param window
      * @return 

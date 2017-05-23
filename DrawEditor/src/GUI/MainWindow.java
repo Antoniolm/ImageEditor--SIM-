@@ -74,11 +74,12 @@ public class MainWindow extends javax.swing.JFrame {
      */
     
     InternalWindowImage currentIntWind; 
+    InternalWindowCamera currentIntCamera;
     BufferedImage imgSource;
     FileManager file;
     
     public MainWindow() {
-        setMinimumSize(new Dimension(1200,900));
+        setMinimumSize(new Dimension(1400,900));
         initComponents();
         
         Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
@@ -95,11 +96,11 @@ public class MainWindow extends javax.swing.JFrame {
         file=FileManager.getSingletonInstance();
         
         //Initialize font list
-        GraphicsEnvironment ge;
+        /*GraphicsEnvironment ge;
         ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String []systemFont = ge.getAvailableFontFamilyNames();
         
-        fontCombo.setModel(new DefaultComboBoxModel(systemFont));
+        fontCombo.setModel(new DefaultComboBoxModel(systemFont));*/
         
     }
 
@@ -149,6 +150,8 @@ public class MainWindow extends javax.swing.JFrame {
         ItalicButton = new javax.swing.JToggleButton();
         underlineButton = new javax.swing.JToggleButton();
         SizeFontSpinner = new javax.swing.JSpinner();
+        jSeparator6 = new javax.swing.JSeparator();
+        CatchCameraButton = new javax.swing.JButton();
         AttributePanel = new javax.swing.JPanel();
         StateBarPanel = new javax.swing.JPanel();
         StateBarLabel = new javax.swing.JLabel();
@@ -204,6 +207,8 @@ public class MainWindow extends javax.swing.JFrame {
         setTitle("DrawEditor");
 
         DrawPanel.setLayout(new java.awt.BorderLayout());
+
+        toolBarPanel.setPreferredSize(new java.awt.Dimension(1200, 43));
 
         NewFileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo.png"))); // NOI18N
         NewFileButton.setToolTipText("New file");
@@ -480,6 +485,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         SizeFontSpinner.setToolTipText("Text Size");
         toolBarPanel.add(SizeFontSpinner);
+
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator6.setPreferredSize(new java.awt.Dimension(2, 31));
+        toolBarPanel.add(jSeparator6);
+
+        CatchCameraButton.setText("C");
+        CatchCameraButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CatchCameraButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        CatchCameraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CatchCameraButtonActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(CatchCameraButton);
 
         DrawPanel.add(toolBarPanel, java.awt.BorderLayout.WEST);
 
@@ -1726,10 +1745,16 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ColorBotComboActionPerformed
 
     private void OpenCameraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenCameraItemActionPerformed
-        InternalWindowCamera newIntWind = InternalWindowCamera.getInstance();
-        newIntWind.setVisible(true);
-        mainDesktop.add(newIntWind);
+        currentIntCamera = InternalWindowCamera.getInstance();
+        currentIntCamera.setVisible(true);
+        mainDesktop.add(currentIntCamera);
     }//GEN-LAST:event_OpenCameraItemActionPerformed
+
+    private void CatchCameraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatchCameraButtonActionPerformed
+        currentIntWind=file.newFile(currentIntWind, this,currentIntCamera.getImage());
+        mainDesktop.add(currentIntWind);
+        currentIntWind.setVisible(true);
+    }//GEN-LAST:event_CatchCameraButtonActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1742,6 +1767,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToolBar AttributeToolBar;
     private javax.swing.JButton BandButton;
     private javax.swing.JToggleButton BoldButton;
+    private javax.swing.JButton CatchCameraButton;
     private javax.swing.JToggleButton CircleButton;
     private javax.swing.JComboBox ColorBotCombo;
     private javax.swing.JComboBox ColorCombo;
@@ -1810,6 +1836,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JMenuItem openSoundButton;

@@ -9,6 +9,7 @@ import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.media.Manager;
@@ -30,15 +31,21 @@ public class InternalWindowCamera extends javax.swing.JInternalFrame {
         initComponents();
         
         camera = Webcam.getDefault();
+        
+        Dimension resoluciones[] = camera.getViewSizes();
+        Dimension maxRes = resoluciones[resoluciones.length-1];
+        camera.setViewSize(maxRes);
+        
         WebcamPanel areaVisual;
         
         if (camera != null) {
             areaVisual = new WebcamPanel(camera);
-        if (areaVisual!= null) {
-            getContentPane().add(areaVisual, BorderLayout.CENTER);
-            pack();
+            if (areaVisual!= null) {
+                getContentPane().add(areaVisual, BorderLayout.CENTER);
+                pack();
+            }
         }
- }
+
     }
 
      public static InternalWindowCamera getInstance(){
@@ -69,6 +76,10 @@ public class InternalWindowCamera extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -86,17 +97,6 @@ public class InternalWindowCamera extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
