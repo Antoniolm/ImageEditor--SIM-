@@ -40,6 +40,8 @@ public class InternalWindowCamera extends javax.swing.JInternalFrame {
         
         if (camera != null) {
             areaVisual = new WebcamPanel(camera);
+            areaVisual.setFitArea(false);
+            
             if (areaVisual!= null) {
                 getContentPane().add(areaVisual, BorderLayout.CENTER);
                 pack();
