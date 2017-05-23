@@ -29,13 +29,13 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 
-public class InternalWindow extends javax.swing.JInternalFrame {
+public class InternalWindowImage extends javax.swing.JInternalFrame {
     /**
-     * Creates new form InternalWindow
+     * Creates new form InternalWindowImage
      */
     MainWindow parent=null;
     
-    public InternalWindow(MainWindow window) {
+    public InternalWindowImage(MainWindow window) {
         initComponents();
         setClosable(true);
         setIconifiable(true);

@@ -19,7 +19,7 @@
 
 package draweditor;
 
-import GUI.InternalWindow;
+import GUI.InternalWindowImage;
 import GUI.MainWindow;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -74,8 +74,8 @@ public class FileManager {
      * @param window
      * @return 
      */
-    public InternalWindow newFile(InternalWindow currentIntWind,MainWindow window){
-        InternalWindow newIntWind = new InternalWindow(window);
+    public InternalWindowImage newFile(InternalWindowImage currentIntWind,MainWindow window){
+        InternalWindowImage newIntWind = new InternalWindowImage(window);
         
         if(currentIntWind!= null){
             Point2D currentPositionWind=currentIntWind.getLocation();
@@ -100,10 +100,10 @@ public class FileManager {
      * @param window
      * @return 
      */
-    public InternalWindow openFile(MainWindow window){
+    public InternalWindowImage openFile(MainWindow window){
         String[] filterList=ImageIO.getWriterFileSuffixes();
         JFileChooser dlg = new JFileChooser();
-        InternalWindow newIntWind=null;
+        InternalWindowImage newIntWind=null;
                               
         for(int i=0;i<filterList.length;i=i+1){
             dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
@@ -114,7 +114,7 @@ public class FileManager {
              try{
                 File f = dlg.getSelectedFile();
                 BufferedImage img = ImageIO.read(f);
-                newIntWind = new InternalWindow(window);
+                newIntWind = new InternalWindowImage(window);
                 newIntWind.getCanvas().setImage(img);
                 newIntWind.setTitle(f.getName());
                 newIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
@@ -134,7 +134,7 @@ public class FileManager {
      * @param currentIntWind
      * @param window 
      */
-    public void saveFile(InternalWindow currentIntWind,MainWindow window){
+    public void saveFile(InternalWindowImage currentIntWind,MainWindow window){
         String[] filterList=ImageIO.getWriterFileSuffixes();
         JFileChooser dlg = new JFileChooser();
        

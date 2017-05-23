@@ -73,7 +73,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     
-    InternalWindow currentIntWind; 
+    InternalWindowImage currentIntWind; 
     BufferedImage imgSource;
     FileManager file;
     
@@ -936,7 +936,7 @@ public class MainWindow extends javax.swing.JFrame {
       StateBarPanel.setVisible(SeeSBMenu.isSelected());
     }//GEN-LAST:event_SeeSBMenuActionPerformed
 
-    public void changeCurrentIntWind(InternalWindow vi){
+    public void changeCurrentIntWind(InternalWindowImage vi){
        currentIntWind=vi;
        if(currentIntWind!=null){
             FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
@@ -974,7 +974,7 @@ public class MainWindow extends javax.swing.JFrame {
     //  Menu events
     //////////////////////////////////////////////////////////////////////////
     private void OpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuActionPerformed
-        InternalWindow intWind=file.openFile(this);
+        InternalWindowImage intWind=file.openFile(this);
         if(intWind!=null){
             currentIntWind=intWind;
             mainDesktop.add(currentIntWind);
@@ -1360,7 +1360,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
-        InternalWindow intWind=file.openFile(this);
+        InternalWindowImage intWind=file.openFile(this);
         if(intWind!=null){
             currentIntWind=intWind;
             mainDesktop.add(currentIntWind);
@@ -1375,7 +1375,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_NewFileButtonActionPerformed
 
     private void CopyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyButtonActionPerformed
-        InternalWindow newIntWind = new InternalWindow(this);
+        InternalWindowImage newIntWind = new InternalWindowImage(this);
         
         if(currentIntWind!= null){
             Point2D currentPositionWind=currentIntWind.getLocation();
@@ -1428,7 +1428,7 @@ public class MainWindow extends javax.swing.JFrame {
                     //Creamos una nueva imagen que contiene como raster el correspondiente a la banda
                     BufferedImage img = new BufferedImage(cm, bandRaster, false, null);
 
-                    currentIntWind = new InternalWindow(this);
+                    currentIntWind = new InternalWindowImage(this);
                     currentIntWind.setTitle(name+" (banda "+i+")");
                     currentIntWind.getCanvas().setImage(img);
                     mainDesktop.add(currentIntWind);
@@ -1473,7 +1473,7 @@ public class MainWindow extends javax.swing.JFrame {
                         ColorConvertOp cop = new ColorConvertOp(cs, null);
                         BufferedImage img = cop.filter(imgSrce, null);
 
-                        currentIntWind = new InternalWindow(this);
+                        currentIntWind = new InternalWindowImage(this);
                         currentIntWind.setTitle(name);
                         currentIntWind.getCanvas().setImage(img);
                         mainDesktop.add(currentIntWind);

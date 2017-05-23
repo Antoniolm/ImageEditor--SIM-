@@ -16,11 +16,11 @@ import sm.ALM.graficos.Canvas2DPanel;
  */
 public class ResizeDialog extends javax.swing.JDialog {
 
-    private InternalWindow currentIntWind;
+    private InternalWindowImage currentIntWind;
     /**
      * Creates new form ResizePanel
      */
-    public ResizeDialog(java.awt.Frame parent, boolean modal,InternalWindow IntWind) {
+    public ResizeDialog(java.awt.Frame parent, boolean modal,InternalWindowImage IntWind) {
         super(parent, modal);
         initComponents();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);       
