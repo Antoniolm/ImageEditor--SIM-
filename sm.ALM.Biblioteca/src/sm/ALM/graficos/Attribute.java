@@ -47,6 +47,20 @@ public class Attribute {
         strokeValue=1;
     }
    
+    
+    /**
+     * Copy constructor
+     */
+    public Attribute(Attribute att){
+        stroke=att.stroke;
+        colorPaint=att.colorPaint;
+        filled=att.filled;
+        comp=att.comp;
+        render=att.render;
+        font=att.font;
+        strokeValue=att.strokeValue;
+    }
+    
     /**
      * It will apply the current attribue to a graphics2D object
      * @param g2d 

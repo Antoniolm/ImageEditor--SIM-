@@ -58,22 +58,22 @@ public class FigureManager {
     public void createShape(GeometryType geometry,Point2D initPos){
         switch(geometry){
             case POINT: //Case point geoometry
-                currentShape=new Line2DFigure(initPos,attribute);
+                currentShape=new Line2DFigure(initPos,new Attribute(attribute));
                 break;
             case LINE: //Case line geoometry
-                currentShape=new Line2DFigure(attribute);
+                currentShape=new Line2DFigure(new Attribute(attribute));
                 break;
             case RECTANGLE: //Case rectangle geoometry
-                currentShape=new Rectangle2DFigure(attribute);
+                currentShape=new Rectangle2DFigure(new Attribute(attribute));
                 break;
             case RRECTANGLE: //Case rectangle geoometry
                 //currentShape=new RoundRectangle2D.Float();
                 break;
             case TEXT:
-                currentShape=new Text2DFigure(initPos,attribute);
+                currentShape=new Text2DFigure(initPos,new Attribute(attribute));
             break;    
             case CIRCLE: //Case circle geoometry
-                currentShape=new Ellipse2DFigure(attribute);
+                currentShape=new Ellipse2DFigure(new Attribute(attribute));
                 break;
 
         }
