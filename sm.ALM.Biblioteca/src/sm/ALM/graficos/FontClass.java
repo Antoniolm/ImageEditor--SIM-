@@ -23,10 +23,14 @@ package sm.ALM.graficos;
 public class FontClass {
     String font;
     int sizeFont;
-    boolean styleFont;
+    int styleFont;
     
-    public FontClass(){
+    public FontClass(String aFont, int aSize,int aStyle){
+        font=aFont;
+        sizeFont=aSize;
+        styleFont=aStyle;
     }
+    
     public String getFont() {
         return font;
     }
@@ -43,11 +47,11 @@ public class FontClass {
         this.sizeFont = sizeFont;
     }
 
-    public boolean isStyleFont() {
+    public int getStyleFont() {
         return styleFont;
     }
 
-    public void setStyleFont(boolean styleFont) {
+    public void setStyleFont(int styleFont) {
         this.styleFont = styleFont;
     }
     

@@ -51,7 +51,6 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     private int currentColor;
     static float widthSize=300;
     static float heightSize=300;
-    Shape currentShape;
     FigureManager vShape;
     Shape clipShape;
     boolean editMode;
@@ -294,6 +293,12 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public int getCurrentColor(){
         return currentColor;
     }
+    
+    public void setFont(String font,int size,int style){
+        if(vShape!=null)
+            vShape.getAttribute().setFont(new FontClass(font,size,style));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

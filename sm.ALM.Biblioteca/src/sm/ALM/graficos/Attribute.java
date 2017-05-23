@@ -43,7 +43,7 @@ public class Attribute {
         filled=false;
         comp=null;
         render=null;
-        font=new FontClass();
+        font=null;
         strokeValue=1;
     }
    

@@ -82,11 +82,18 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         
         Color colors[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
-      
-        for(Color color : colors)
-            ColorCombo.addItem(color);
+        Color colorsBot[] = { Color.BLACK, Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.GREEN };
+        
+        for(Color color : colors){
+            ColorCombo.addItem(color);            
+        }
+        
+        for(Color color : colorsBot){
+            ColorBotCombo.addItem(color);            
+        }
         
         ColorCombo.setRenderer(new ColorComboRenderer());
+        ColorBotCombo.setRenderer(new ColorComboRenderer());
         
         thickSpinner.setValue(1); 
         file=FileManager.getSingletonInstance();
@@ -128,7 +135,10 @@ public class MainWindow extends javax.swing.JFrame {
         TextButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
         ColorCombo = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        ColorBotCombo = new javax.swing.JComboBox();
         jSeparator3 = new javax.swing.JSeparator();
         thickSpinner = new javax.swing.JSpinner();
         typeLineCombo = new javax.swing.JComboBox();
@@ -334,6 +344,9 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator1.setPreferredSize(new java.awt.Dimension(2, 31));
         toolBarPanel.add(jSeparator1);
 
+        jLabel1.setText("T :");
+        toolBarPanel.add(jLabel1);
+
         ColorCombo.setToolTipText("Color");
         ColorCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,6 +354,17 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         toolBarPanel.add(ColorCombo);
+
+        jLabel2.setText("B:");
+        toolBarPanel.add(jLabel2);
+
+        ColorBotCombo.setToolTipText("Color");
+        ColorBotCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ColorBotComboActionPerformed(evt);
+            }
+        });
+        toolBarPanel.add(ColorBotCombo);
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator3.setPreferredSize(new java.awt.Dimension(2, 31));
@@ -393,7 +417,6 @@ public class MainWindow extends javax.swing.JFrame {
         TransparencySlider.setMaximum(10);
         TransparencySlider.setSnapToTicks(true);
         TransparencySlider.setToolTipText("");
-        TransparencySlider.setValue(10);
         TransparencySlider.setPreferredSize(new java.awt.Dimension(60, 26));
         TransparencySlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -1691,6 +1714,11 @@ public class MainWindow extends javax.swing.JFrame {
             //currentIntWind.getCanvas().get
         }*/
     }//GEN-LAST:event_fontComboActionPerformed
+
+    private void ColorBotComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorBotComboActionPerformed
+        ColorBotCombo.setBackground((Color)ColorCombo.getSelectedItem());
+        
+    }//GEN-LAST:event_ColorBotComboActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1704,6 +1732,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton BandButton;
     private javax.swing.JToggleButton BoldButton;
     private javax.swing.JToggleButton CircleButton;
+    private javax.swing.JComboBox ColorBotCombo;
     private javax.swing.JComboBox ColorCombo;
     private javax.swing.JComboBox ColorSpaceCombo;
     private javax.swing.JPanel ContrastPanel;
@@ -1758,6 +1787,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton dyeButton;
     private javax.swing.JButton equalizationButton;
     private javax.swing.JComboBox fontCombo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
