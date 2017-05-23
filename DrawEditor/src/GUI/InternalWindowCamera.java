@@ -5,7 +5,11 @@
  */
 package GUI;
 
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
+import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.media.Manager;
 import javax.media.MediaLocator;
@@ -15,41 +19,41 @@ import javax.media.Player;
  *
  * @author LENOVO
  */
-public class InternalWindowJMFCamera extends javax.swing.JInternalFrame {
+public class InternalWindowCamera extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form InternalWindowJMFCamera
+     * Creates new form InternalWindowCamera
      */
-    private Player player = null;
+    private Webcam camera = null;
     
-    private InternalWindowJMFCamera(File f) {
+    private InternalWindowCamera() {
         initComponents();
         
-        String sfichero = "file:" + f.getAbsolutePath();
-        MediaLocator ml = new MediaLocator(sfichero);
-        try {
-            player = Manager.createRealizedPlayer(ml);
-            Component vc = player.getVisualComponent();
-            if(vc!=null)add(vc, java.awt.BorderLayout.CENTER);
-                Component cpc = player.getControlPanelComponent();
-            if(cpc!=null)add(cpc, java.awt.BorderLayout.SOUTH);
-                this.pack();
-        }catch(Exception e) {
-            System.err.println("InternalWindowJMFPlayer: "+e);
-            player = null;
+        camera = Webcam.getDefault();
+        WebcamPanel areaVisual;
+        
+        if (camera != null) {
+            areaVisual = new WebcamPanel(camera);
+        if (areaVisual!= null) {
+            getContentPane().add(areaVisual, BorderLayout.CENTER);
+            pack();
         }
+ }
     }
 
-     public static InternalWindowJMFCamera getInstance(File f){
-        InternalWindowJMFCamera v = new InternalWindowJMFCamera(f);
-        if(v.player!=null) return v;
-        else return null;
+     public static InternalWindowCamera getInstance(){
+        InternalWindowCamera v = new InternalWindowCamera();
+        return (v.camera!=null?v:null);
     }
+     
+     public BufferedImage getImage(){
+         return camera.getImage();
+     }
     
     public void close() {
-        if (player != null) {
+        if (camera != null) {
             try {
-                player.close();
+                camera.close();
             } catch (Exception e) {
                 System.err.println("VentanaInternaJMFPlayer: "+e);
             }

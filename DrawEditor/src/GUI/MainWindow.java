@@ -188,6 +188,7 @@ public class MainWindow extends javax.swing.JFrame {
         newMenu = new javax.swing.JMenuItem();
         OpenMenu = new javax.swing.JMenuItem();
         openSoundButton = new javax.swing.JMenuItem();
+        OpenCameraItem = new javax.swing.JMenuItem();
         SaveMenu = new javax.swing.JMenuItem();
         recordSoundButton = new javax.swing.JMenuItem();
         EditMenu = new javax.swing.JMenu();
@@ -852,6 +853,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         FileMenu.add(openSoundButton);
+
+        OpenCameraItem.setText("Open Camera");
+        OpenCameraItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenCameraItemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(OpenCameraItem);
 
         SaveMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
         SaveMenu.setText("Save");
@@ -1715,6 +1724,12 @@ public class MainWindow extends javax.swing.JFrame {
         ColorBotCombo.setBackground((Color)ColorBotCombo.getSelectedItem());
         
     }//GEN-LAST:event_ColorBotComboActionPerformed
+
+    private void OpenCameraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenCameraItemActionPerformed
+        InternalWindowCamera newIntWind = InternalWindowCamera.getInstance();
+        newIntWind.setVisible(true);
+        mainDesktop.add(newIntWind);
+    }//GEN-LAST:event_OpenCameraItemActionPerformed
     
     //Methods 
     public void setCursorState(String message){
@@ -1751,6 +1766,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton NegativeButton;
     private javax.swing.JButton NewFileButton;
     private javax.swing.JButton OpenButton;
+    private javax.swing.JMenuItem OpenCameraItem;
     private javax.swing.JMenuItem OpenMenu;
     private javax.swing.JButton OwnFilterButton;
     private javax.swing.JToggleButton PointButton;
