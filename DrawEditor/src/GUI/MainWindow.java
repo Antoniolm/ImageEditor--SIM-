@@ -981,9 +981,12 @@ public class MainWindow extends javax.swing.JFrame {
             TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
             SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
             thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
+            ColorCombo.setSelectedItem(currentIntWind.getCanvas().getCurrentColor());
             
-            ColorCombo.setSelectedIndex(currentIntWind.getCanvas().getCurrentColor());
-            currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+            FontClass font=currentIntWind.getCanvas().getFontClass();
+            fontCombo.setSelectedItem(font.getFont());
+            SizeFontSpinner.setValue(font.getSizeFont());
+            //new buttons bold, italic
             
             ShineSlider.setValue(0);
             RotationSlider.setValue(0);
@@ -1338,7 +1341,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
         ColorCombo.setBackground((Color)ColorCombo.getSelectedItem());
         if(currentIntWind!=null){
-            currentIntWind.getCanvas().setCurrentColor(ColorCombo.getSelectedIndex());
             currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
         }
     }//GEN-LAST:event_ColorComboActionPerformed
@@ -1768,6 +1770,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_TransparencySliderStateChanged
 
     private void fontComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontComboActionPerformed
+        int style=0;
+        if(BoldButton.isSelected())
+            style=style | Font.BOLD;
+        if(ItalicButton.isSelected())
+            style=style | Font.ITALIC;
         
         if(currentIntWind!=null){
             currentIntWind.getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),0);

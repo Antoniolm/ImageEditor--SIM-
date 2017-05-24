@@ -52,6 +52,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     static float widthSize=300;
     static float heightSize=300;
     FigureManager vShape;
+    Attribute attribute;
     Shape clipShape;
     boolean editMode;
     
@@ -59,6 +60,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         initComponents();
         initPos=new Point(0,0);
         vShape = new FigureManager();
+        attribute=new Attribute();
         editMode=false;
         geometry=POINT;
         setBackground(Color.white);
@@ -75,7 +77,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                         Graphics2D g2d=(Graphics2D) image.getGraphics();
                         vShape.draw(g2d);
                         
-                        vShape.createShape(geometry,initPos);
+                        vShape.createShape(geometry,attribute,initPos);
                     }
                 repaint();                  
                 }
@@ -136,17 +138,23 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         geometry=aType;
     }
     
+    
+    public FigureManager getFigure(){
+        return vShape;
+    }
     /**
      * 
      * @param value 
      */
     public void setColor(Paint value){
-        if(vShape.getAttribute()!=null){
-            Attribute att=vShape.getAttribute();
-            att.setFilled(value);
-            vShape.setAttribute(att);
-            repaint();
+        attribute.setFilled(value);
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setFilled(value);
         }
+        repaint();
+              
     }
         
     /**
@@ -154,9 +162,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param boolValue 
      */
     public void setFilled(boolean boolValue){
-        Attribute att=vShape.getAttribute();
-        att.filled=boolValue;
-        vShape.setAttribute(att);
+        attribute.filled=boolValue;
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().filled=boolValue;
+        }
+        
         repaint();
     }
     
@@ -165,7 +177,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @return 
      */
     public boolean getFilled(){            
-        return vShape.getAttribute().getFilled();
+        return attribute.getFilled();
     }
     
     /**
@@ -174,9 +186,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param value 
      */
     public void setThick(Stroke stroke,Integer value){
-        Attribute att=vShape.getAttribute();
-        att.setStroke(stroke,value);
-        vShape.setAttribute(att);
+        attribute.setStroke(stroke,value);
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setStroke(stroke,value);
+        }
+        
         repaint();
     }
     
@@ -185,7 +201,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @return 
      */
     public Integer getThick(){
-        return vShape.getAttribute().getThickness();
+        return attribute.getThickness();
     }
     
     /**
@@ -193,9 +209,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param value 
      */
     public void setTransparency(Composite value){
-        Attribute att=vShape.getAttribute();
-        att.setComp(value);
-        vShape.setAttribute(att);
+        attribute.setComp(value);
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setComp(value);
+        }
+        
         repaint();
     }
     
@@ -206,7 +226,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public boolean getTransparency(){
         boolean result=false;
         
-        if(vShape.getAttribute().getComp()!=null)
+        if(attribute.getComp()!=null)
             result=true;
             
         return result;
@@ -217,9 +237,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param value 
      */
     public void setRender(RenderingHints value){
-        Attribute att=vShape.getAttribute();
-        att.setRender(value);
-        vShape.setAttribute(att);
+        attribute.setRender(value);
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setRender(value);
+        }
+        
         repaint();
     }
     
@@ -229,7 +253,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     public boolean getRender(){
         boolean result=false;
-        if(vShape.getAttribute().getRender()!=null)
+        if(attribute.getRender()!=null)
             result=true;
         
         return result;
@@ -241,8 +265,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     public void setEdit(boolean value){
         editMode=value;
-        if(vShape!=null)
-            vShape.isEdited(value);
+        vShape.isEdited(value);
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null){
+                attribute=new Attribute(fig.getAttribute());
+            }
+        }
     }
     
     /**
@@ -294,21 +323,24 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public static float getWidthImage(){
         return widthSize;
     }
-    
-    
-    public void setCurrentColor(int value){
-        currentColor=value;        
-    }
-    
-    public int getCurrentColor(){
-        return currentColor;
+        
+    public Color getCurrentColor(){
+        return (Color)attribute.getColor();
     }
     
     public void setFont(String font,int size,int style){
-        Attribute att=vShape.getAttribute();
-        att.setFont(new FontClass(font,size,style));
-        vShape.setAttribute(att);
+        attribute.setFont(new FontClass(font,size,style));
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setFont(new FontClass(font,size,style));
+        }
+        
         repaint();
+    }
+    
+    public FontClass getFontClass(){
+        return attribute.getFont();
     }
     
     /**

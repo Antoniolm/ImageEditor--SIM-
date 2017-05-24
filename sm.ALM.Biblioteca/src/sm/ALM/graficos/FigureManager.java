@@ -33,12 +33,10 @@ import java.util.List;
 
 public class FigureManager {
     private Figure currentShape;
-    private Attribute attribute;
     private boolean isSelected;
     
     public FigureManager(){
         currentShape=null;
-        attribute=new Attribute();
         isSelected=false;
     }
     
@@ -55,7 +53,7 @@ public class FigureManager {
      * It will create a new shape 
      * @return 
      */
-    public void createShape(GeometryType geometry,Point2D initPos){
+    public void createShape(GeometryType geometry,Attribute attribute,Point2D initPos){
         switch(geometry){
             case POINT: //Case point geoometry
                 currentShape=new Line2DFigure(initPos,new Attribute(attribute));
@@ -110,27 +108,15 @@ public class FigureManager {
             currentShape.setPosition(pos);
         }
     }
-    
-    /**
-     * It will return the attribute of our vector
-     * @return 
-     */
-    public Attribute getAttribute(){
-        return attribute;
-    }
-    
-    /**
-     * It will return the attribute of our vector
-     * @return 
-     */
-    public void setAttribute(Attribute att){
-        attribute=att;
-        if(currentShape!=null && currentShape.isEdited()){
-            currentShape.setAttribute(new Attribute(att));
-        }
         
+    /**
+     * 
+     * @return 
+     */
+    public Figure getFigure(){
+        return currentShape;
     }
-    
+        
     public void shapeInImage(){
         currentShape=null;
     }
@@ -138,9 +124,6 @@ public class FigureManager {
     public void isEdited(boolean value){
         if(currentShape!=null){
             currentShape.setEdited(value);
-            if(value){
-                attribute=new Attribute(currentShape.getAttribute());
-            }
        }             
     }
 }
