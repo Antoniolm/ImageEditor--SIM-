@@ -138,6 +138,9 @@ public class FigureManager {
     public void isEdited(boolean value){
         if(currentShape!=null){
             currentShape.setEdited(value);
-        }
+            if(value){
+                attribute=new Attribute(currentShape.getAttribute());
+            }
+       }             
     }
 }

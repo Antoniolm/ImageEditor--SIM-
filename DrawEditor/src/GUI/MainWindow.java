@@ -413,6 +413,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         FilledTypeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filled", "Vertical degrade", "Horizontal degrade" }));
         FilledTypeCombo.setToolTipText("Filled style");
+        FilledTypeCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FilledTypeComboActionPerformed(evt);
+            }
+        });
         toolBarPanel.add(FilledTypeCombo);
 
         TransButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/transparencia.png"))); // NOI18N
@@ -1115,6 +1120,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
         if(currentIntWind!=null){
             currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            if(EditButton.isSelected())
+                changeCurrentIntWind(currentIntWind);
             currentIntWind.repaint();
         }
     }//GEN-LAST:event_EditButtonActionPerformed
@@ -1797,6 +1804,21 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_OpenVideoButtonActionPerformed
+
+    private void FilledTypeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledTypeComboActionPerformed
+        if(currentIntWind != null){
+            
+            switch((String)typeLineCombo.getSelectedItem()){
+                case "Vertical degrade":
+                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue()),(int)thickSpinner.getValue());
+                break;
+                case "Horizontal degrade":
+                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),(int)thickSpinner.getValue());
+                break;
+            }
+        }
+    }//GEN-LAST:event_FilledTypeComboActionPerformed
     
     //Methods 
     public void setCursorState(String message){

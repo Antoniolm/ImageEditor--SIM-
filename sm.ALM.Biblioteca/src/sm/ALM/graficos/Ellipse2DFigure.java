@@ -64,8 +64,9 @@ public class Ellipse2DFigure extends Figure{
         Point2D.Double point1 = new Point2D.Double(((Ellipse2D) currentShape).getX(), ((Ellipse2D) currentShape).getY());
         Point2D.Double point2 = new Point2D.Double(((Ellipse2D) currentShape).getCenterX(), ((Ellipse2D) currentShape).getCenterY());
         point2.setLocation(newPos.getX() + Math.abs((point1.getX() - point2.getX())), newPos.getY() + Math.abs((point1.getY() - point2.getY())));
-        newPos.setLocation(newPos.getX()-offSet.getX(),newPos.getY()-offSet.getY());
+        newPos.setLocation(Math.abs(newPos.getX()-offSet.getX()),Math.abs(newPos.getY()-offSet.getY()));
         point2.setLocation(point2.getX()-offSet.getX(),point2.getY()-offSet.getY());
+        //System.out.println("("+newPos.toString()+","+point2.toString()+")");
         ((Ellipse2D.Float) currentShape).setFrameFromCenter(newPos, point2);
     }
 

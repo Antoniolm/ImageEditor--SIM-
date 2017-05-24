@@ -530,6 +530,9 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Filled style"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FilledTypeComboActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="TransButton">
               <Properties>
