@@ -17,6 +17,7 @@ import sm.ALM.graficos.Canvas2DPanel;
 public class ResizeDialog extends javax.swing.JDialog {
 
     private InternalWindowImage currentIntWind;
+    private boolean accepted;
     /**
      * Creates new form ResizePanel
      */
@@ -25,6 +26,7 @@ public class ResizeDialog extends javax.swing.JDialog {
         initComponents();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);       
         currentIntWind=IntWind;
+        accepted=false;
         if(currentIntWind!=null){
             WidthField.setText(((int)currentIntWind.getCanvas().getWidthImage())+"");
             HeightField.setText(((int)currentIntWind.getCanvas().getHeightImage())+"");
@@ -116,6 +118,7 @@ public class ResizeDialog extends javax.swing.JDialog {
             currentIntWind.getCanvas().ChangeSizeImage();
             currentIntWind.repaint();
         }
+        accepted=true;
         setVisible(false);
         dispose();
     }//GEN-LAST:event_SaveButtonActionPerformed
@@ -125,6 +128,9 @@ public class ResizeDialog extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
+    public boolean isAccepted(){
+        return accepted;
+    }
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
 
     }//GEN-LAST:event_formWindowClosed

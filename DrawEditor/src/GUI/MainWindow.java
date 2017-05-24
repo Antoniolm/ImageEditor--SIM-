@@ -202,8 +202,6 @@ public class MainWindow extends javax.swing.JFrame {
         SeeSBMenu = new javax.swing.JCheckBoxMenuItem();
         SeeGeoMenu = new javax.swing.JCheckBoxMenuItem();
         SeeAttMenu = new javax.swing.JCheckBoxMenuItem();
-        resizeItem = new javax.swing.JMenu();
-        ResizeItem = new javax.swing.JMenuItem();
         HelpItem = new javax.swing.JMenu();
         AboutItem = new javax.swing.JMenuItem();
 
@@ -955,18 +953,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         MenuBar.add(EditMenu);
 
-        resizeItem.setText("Image");
-
-        ResizeItem.setText("Resize image");
-        ResizeItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ResizeItemActionPerformed(evt);
-            }
-        });
-        resizeItem.add(ResizeItem);
-
-        MenuBar.add(resizeItem);
-
         HelpItem.setText("Help");
 
         AboutItem.setText("About");
@@ -1434,9 +1420,23 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenButtonActionPerformed
 
     private void NewFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileButtonActionPerformed
-        currentIntWind=file.newFile(currentIntWind, this);
-        mainDesktop.add(currentIntWind);
-        currentIntWind.setVisible(true);
+        
+        
+        ResizeDialog dialog = new ResizeDialog(new java.awt.Frame(), true, currentIntWind);
+        dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                dialog.dispose();
+            }
+        });
+        dialog.setVisible(true);
+        
+        boolean isAccepted=dialog.isAccepted();
+        
+        if(isAccepted){
+            currentIntWind=file.newFile(currentIntWind, this);
+            mainDesktop.add(currentIntWind);
+            currentIntWind.setVisible(true);
+        }
     }//GEN-LAST:event_NewFileButtonActionPerformed
 
     private void CopyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyButtonActionPerformed
@@ -1622,20 +1622,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_OwnFilterButtonActionPerformed
-
-    private void ResizeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResizeItemActionPerformed
-         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ResizeDialog dialog = new ResizeDialog(new java.awt.Frame(), true,currentIntWind);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        dialog.dispose();
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_ResizeItemActionPerformed
 
     private void NegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegativeButtonActionPerformed
         if(currentIntWind!=null) {
@@ -1866,7 +1852,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton OwnFilterButton;
     private javax.swing.JToggleButton PointButton;
     private javax.swing.JToggleButton RRtglButton;
-    private javax.swing.JMenuItem ResizeItem;
     private javax.swing.JPanel RotationPanel;
     private javax.swing.JSlider RotationSlider;
     private javax.swing.JToggleButton RtgleButton;
@@ -1910,7 +1895,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JMenuItem openSoundButton;
     private javax.swing.JMenuItem recordSoundButton;
-    private javax.swing.JMenu resizeItem;
     private javax.swing.JButton rot180Button;
     private javax.swing.JButton rot270Button;
     private javax.swing.JButton rot90Button;

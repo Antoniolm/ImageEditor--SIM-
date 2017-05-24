@@ -119,21 +119,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="resizeItem">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Image"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="ResizeItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Resize image"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ResizeItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="HelpItem">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
