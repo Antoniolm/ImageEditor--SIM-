@@ -20,6 +20,7 @@ package sm.ALM.graficos;
 
 import java.awt.Color;
 import java.awt.Composite;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RenderingHints;
@@ -43,7 +44,7 @@ public class Attribute {
         filled=false;
         comp=null;
         render=null;
-        font=null;
+        font=new FontClass("Arial",15,0);
         strokeValue=1;
     }
    

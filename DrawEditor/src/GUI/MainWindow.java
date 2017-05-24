@@ -27,6 +27,7 @@ import sm.ALM.graficos.*;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
@@ -93,6 +94,7 @@ public class MainWindow extends javax.swing.JFrame {
         ColorBotCombo.setRenderer(new ColorComboRenderer());
         
         thickSpinner.setValue(1); 
+        SizeFontSpinner.setValue(15);
         file=FileManager.getSingletonInstance();
         
         //Initialize font list
@@ -1766,9 +1768,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_TransparencySliderStateChanged
 
     private void fontComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontComboActionPerformed
-        /*if(currentIntWind!=null){
-            //currentIntWind.getCanvas().get
-        }*/
+        
+        if(currentIntWind!=null){
+            currentIntWind.getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),0);
+        }
     }//GEN-LAST:event_fontComboActionPerformed
 
     private void ColorBotComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorBotComboActionPerformed

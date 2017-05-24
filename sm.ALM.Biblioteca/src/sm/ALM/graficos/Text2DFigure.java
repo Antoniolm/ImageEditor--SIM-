@@ -70,7 +70,7 @@ public class Text2DFigure extends Figure{
         attribute.apply(g2d);
         
         FontClass font=attribute.getFont();
-        getTextShape(g2d, new Font("Arial",Font.BOLD,30));//font.getFont(), font.getStyleFont(), font.getSizeFont()));
+        getTextShape(g2d, new Font(font.getFont(), font.getStyleFont(), font.getSizeFont()));
         AffineTransform trans=new AffineTransform();
         trans.translate(position.getX(), position.getY());
         currentShape=trans.createTransformedShape(currentShape);

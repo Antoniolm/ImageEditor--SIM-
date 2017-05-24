@@ -305,8 +305,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     public void setFont(String font,int size,int style){
-        if(vShape!=null)
-            vShape.getAttribute().setFont(new FontClass(font,size,style));
+        Attribute att=vShape.getAttribute();
+        att.setFont(new FontClass(font,size,style));
+        vShape.setAttribute(att);
+        repaint();
     }
     
     /**
