@@ -154,7 +154,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param boolValue 
      */
     public void setFilled(boolean boolValue){
-        vShape.getAttribute().filled=boolValue;
+        Attribute att=vShape.getAttribute();
+        att.filled=boolValue;
+        vShape.setAttribute(att);
         repaint();
     }
     
@@ -172,7 +174,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param value 
      */
     public void setThick(Stroke stroke,Integer value){
-        vShape.getAttribute().setStroke(stroke,value);
+        Attribute att=vShape.getAttribute();
+        att.setStroke(stroke,value);
+        vShape.setAttribute(att);
         repaint();
     }
     
@@ -213,7 +217,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param value 
      */
     public void setRender(RenderingHints value){
-        vShape.getAttribute().setRender(value);
+        Attribute att=vShape.getAttribute();
+        att.setRender(value);
+        vShape.setAttribute(att);
         repaint();
     }
     

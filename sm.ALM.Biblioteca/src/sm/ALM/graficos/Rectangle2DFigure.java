@@ -38,14 +38,6 @@ public class Rectangle2DFigure extends Figure{
     
     @Override
     public void draw(Graphics2D g2d) {
-        attribute.apply(g2d);
-        
-        if(!attribute.getFilled())
-                g2d.draw(currentShape);
-            else {
-                g2d.fill(currentShape);
-        }
-        
         if(editMode){
             g2d.setColor(Color.GRAY);
             g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
@@ -55,7 +47,17 @@ public class Rectangle2DFigure extends Figure{
                                        ((Rectangle)currentShape).getX() +((Rectangle)currentShape).getWidth()+2,
                                        ((Rectangle)currentShape).getY() +((Rectangle)currentShape).getHeight()+2);
             g2d.draw(bound);
+            g2d.setStroke(new BasicStroke());
         }
+        
+        attribute.apply(g2d);
+        
+        if(!attribute.getFilled())
+                g2d.draw(currentShape);
+            else {
+                g2d.fill(currentShape);
+        }        
+
     }
 
     @Override
