@@ -37,7 +37,7 @@ public abstract class Figure {
         offSet=new Point2D.Float(0,0);
     }
     
-    public abstract void draw(Graphics2D g2d);
+    public abstract void draw(Graphics2D g2d,boolean drawImage);
     public abstract void updatePosition(Point2D initPos, Point2D point);
     public abstract void setPosition(Point2D newPos);
     public abstract boolean wasSelected(Point2D pos);

@@ -57,9 +57,9 @@ public class Text2DFigure extends Figure{
     }
     
     @Override
-    public void draw(Graphics2D g2d) {
+    public void draw(Graphics2D g2d,boolean drawImage) {
         
-        if(editMode){
+        if(editMode && ! drawImage){
             g2d.setColor(Color.GRAY);
             g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
                         BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F));

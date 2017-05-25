@@ -44,9 +44,9 @@ public class FigureManager {
      *  It will draw our vector of shapes
      * @param g2d 
      */
-    public void draw(Graphics2D g2d){
+    public void draw(Graphics2D g2d,boolean drawImage){
         if(currentShape!=null){
-            currentShape.draw(g2d);
+            currentShape.draw(g2d,drawImage);
         }
     }
     /**
