@@ -67,6 +67,9 @@ public class FigureManager {
             case RRECTANGLE: //Case rectangle geoometry
                 //currentShape=new RoundRectangle2D.Float();
                 break;
+            case CURVE: 
+                currentShape=new Curve2DFigure(new Attribute(attribute));
+                break;
             case TEXT:
                 currentShape=new Text2DFigure(initPos,new Attribute(attribute));
             break;    

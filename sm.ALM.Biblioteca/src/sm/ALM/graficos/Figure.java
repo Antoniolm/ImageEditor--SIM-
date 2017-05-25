@@ -26,6 +26,8 @@ import java.awt.geom.Point2D;
 public abstract class Figure {
     Shape currentShape;
     Attribute attribute;
+    GeometryType type;
+    
     Point2D offSet;
     boolean editMode;
     
@@ -46,6 +48,10 @@ public abstract class Figure {
     
     public Attribute getAttribute(){
         return attribute;
+    }
+    
+    public GeometryType getType(){
+        return type;
     }
     
     public void setShape(Shape s){

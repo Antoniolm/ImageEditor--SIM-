@@ -32,6 +32,7 @@ public class Ellipse2DFigure extends Figure{
         super();
         attribute=anAtt;
         currentShape=new Ellipse2D.Float();
+        type=GeometryType.CIRCLE;
     }
     
     @Override

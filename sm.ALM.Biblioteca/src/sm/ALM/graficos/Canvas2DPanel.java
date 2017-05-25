@@ -77,7 +77,11 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                         Graphics2D g2d=(Graphics2D) image.getGraphics();
                         vShape.draw(g2d);
                         
-                        vShape.createShape(geometry,attribute,initPos);
+                        if(vShape.getFigure()!=null && vShape.getFigure().getType()==GeometryType.CURVE && !((Curve2DFigure)vShape.getFigure()).isCreated()){
+                             ((Curve2DFigure)vShape.getFigure()).setCreated(true);
+                        }
+                        else 
+                            vShape.createShape(geometry,attribute,initPos);
                     }
                 repaint();                  
                 }
@@ -105,6 +109,13 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 repaint();                  
                 }
                 
+                @Override
+                public void mouseMoved(MouseEvent e) {
+                    if(vShape.getFigure()!=null && vShape.getFigure().getType()==GeometryType.CURVE){
+                        ((Curve2DFigure)vShape.getFigure()).updateCurve(e.getPoint());
+                        repaint();
+                    }
+                }                
         }); 
     }
     
@@ -200,15 +211,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         
         repaint();
     }
-    
-    /**
-     * 
-     * @return 
-     */
-    public Integer getThick(){
-        return attribute.getThickness();
-    }
-    
+        
     /**
      * 
      * @param value 

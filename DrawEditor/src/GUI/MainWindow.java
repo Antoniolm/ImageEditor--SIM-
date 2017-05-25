@@ -980,8 +980,8 @@ public class MainWindow extends javax.swing.JFrame {
             FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
             TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
             SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
-            thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
-            ColorCombo.setSelectedItem(currentIntWind.getCanvas().getCurrentColor());
+            thickSpinner.setValue((Integer)currentIntWind.getCanvas().getAttribute().getThickness());
+            ColorCombo.setSelectedItem((Color)currentIntWind.getCanvas().getAttribute().getColor());
             typeLineCombo.setSelectedItem(currentIntWind.getCanvas().getAttribute().getStrokeStyle());
             
             FontClass font=currentIntWind.getCanvas().getFontClass();
@@ -1682,9 +1682,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_AboutItemActionPerformed
 
     private void RRtglButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RRtglButtonActionPerformed
-        StateBarLabel.setText("Rounded Rectangle");
+        StateBarLabel.setText("Curve");
         if(currentIntWind!=null){
-            currentIntWind.setGeometry(GeometryType.RECTANGLE);
+            currentIntWind.setGeometry(GeometryType.CURVE);
             currentIntWind.getCanvas().setEdit(EditButton.isSelected());
             currentIntWind.repaint();
         }
