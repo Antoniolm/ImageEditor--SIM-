@@ -74,14 +74,15 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                     else{
                         initPos=e.getPoint();   
                         
-                        Graphics2D g2d=(Graphics2D) image.getGraphics();
-                        vShape.draw(g2d);
-                        
                         if(vShape.getFigure()!=null && vShape.getFigure().getType()==GeometryType.CURVE && !((Curve2DFigure)vShape.getFigure()).isCreated()){
                              ((Curve2DFigure)vShape.getFigure()).setCreated(true);
                         }
-                        else 
+                        
+                        else {
+                            Graphics2D g2d=(Graphics2D) image.getGraphics();
+                            vShape.draw(g2d);
                             vShape.createShape(geometry,attribute,initPos);
+                        }
                     }
                 repaint();                  
                 }
@@ -111,7 +112,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                 
                 @Override
                 public void mouseMoved(MouseEvent e) {
-                    if(vShape.getFigure()!=null && vShape.getFigure().getType()==GeometryType.CURVE){
+                    if(vShape.getFigure()!=null && vShape.getFigure().getType()==GeometryType.CURVE && !((Curve2DFigure)vShape.getFigure()).isCreated() ){
                         ((Curve2DFigure)vShape.getFigure()).updateCurve(e.getPoint());
                         repaint();
                     }
