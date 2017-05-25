@@ -980,7 +980,7 @@ public class MainWindow extends javax.swing.JFrame {
             FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
             TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
             SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
-            thickSpinner.setValue((Integer)currentIntWind.getCanvas().getAttribute().getThickness());
+            thickSpinner.setValue(currentIntWind.getCanvas().getAttribute().getThickness());
             ColorCombo.setSelectedItem((Color)currentIntWind.getCanvas().getAttribute().getColor());
             typeLineCombo.setSelectedItem(currentIntWind.getCanvas().getAttribute().getStrokeStyle());
             TransparencySlider.setValue(currentIntWind.getCanvas().getAttribute().getTransValue());
@@ -1185,10 +1185,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void ShineSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ShineSliderFocusGained
         if(currentIntWind!=null){
-             ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
-             WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
-             boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
-             imgSource = new BufferedImage(cm,raster,alfaPre,null);
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
+            ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
+            WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
+            boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
+            imgSource = new BufferedImage(cm,raster,alfaPre,null);
         }
     }//GEN-LAST:event_ShineSliderFocusGained
 
@@ -1197,7 +1199,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ShineSliderFocusLost
 
     private void FilterComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterComboActionPerformed
-         BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+        //Attach the currentShape to our image
+        currentIntWind.getCanvas().drawInImage(); 
+        
+        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
         if(imgSrce!=null){
             Kernel k=null;
 
@@ -1232,6 +1237,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_FilterComboActionPerformed
 
     private void MoreScaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoreScaleButtonActionPerformed
+        //Attach the currentShape to our image
+        currentIntWind.getCanvas().drawInImage(); 
         BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getScaleInstance(1.1,1.1);
@@ -1249,6 +1256,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_MoreScaleButtonActionPerformed
 
     private void LessScaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LessScaleButtonActionPerformed
+        //Attach the currentShape to our image
+        currentIntWind.getCanvas().drawInImage(); 
         BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getScaleInstance(0.9,0.9);
@@ -1266,6 +1275,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_LessScaleButtonActionPerformed
 
     private void rot90ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot90ButtonActionPerformed
+        //Attach the currentShape to our image
+        currentIntWind.getCanvas().drawInImage(); 
         BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(90.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
@@ -1282,6 +1293,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_rot90ButtonActionPerformed
 
     private void rot180ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot180ButtonActionPerformed
+        //Attach the currentShape to our image
+        currentIntWind.getCanvas().drawInImage(); 
         BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(180.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
@@ -1298,6 +1311,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_rot180ButtonActionPerformed
 
     private void rot270ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot270ButtonActionPerformed
+        //Attach the currentShape to our image
+        currentIntWind.getCanvas().drawInImage(); 
         BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(270.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
@@ -1314,8 +1329,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_rot270ButtonActionPerformed
 
     private void RotationSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RotationSliderFocusGained
-        if(currentIntWind!=null)
+        if(currentIntWind!=null){
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             imgSource=currentIntWind.getCanvas().getImage();
+        }
     }//GEN-LAST:event_RotationSliderFocusGained
 
     private void RotationSliderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RotationSliderFocusLost
@@ -1349,6 +1367,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void contrastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrastButtonActionPerformed
         if(currentIntWind!=null) { 
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
@@ -1366,6 +1386,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void LightUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LightUpButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
@@ -1383,6 +1405,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void GetDarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetDarkButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
@@ -1400,6 +1424,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void SenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
@@ -1481,6 +1507,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void sepiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sepiaButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
@@ -1496,7 +1524,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void BandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BandButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            
             String name=currentIntWind.getTitle();
             if(imgSrce!=null){
                 int numBand=imgSrce.getRaster().getNumBands();
@@ -1531,6 +1562,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void ColorSpaceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorSpaceComboActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             String name=currentIntWind.getTitle();
             if(imgSrce!=null){
@@ -1571,6 +1604,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void dyeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dyeButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
@@ -1586,6 +1621,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void equalizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalizationButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
@@ -1615,10 +1652,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void umbraSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusGained
         if(currentIntWind!=null){
-             ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
-             WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
-             boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
-             imgSource = new BufferedImage(cm,raster,alfaPre,null);
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
+            ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
+            WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
+            boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
+            imgSource = new BufferedImage(cm,raster,alfaPre,null);
         }
     }//GEN-LAST:event_umbraSliderFocusGained
 
@@ -1628,6 +1667,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void OwnFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OwnFilterButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage(); 
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{
@@ -1643,6 +1684,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void NegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegativeButtonActionPerformed
         if(currentIntWind!=null) {
+            //Attach the currentShape to our image
+            currentIntWind.getCanvas().drawInImage();
+            
             BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
             if(imgSrce!=null){
                 try{

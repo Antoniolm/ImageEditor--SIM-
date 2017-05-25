@@ -79,8 +79,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                         }
                         
                         else {
-                            Graphics2D g2d=(Graphics2D) image.getGraphics();
-                            vShape.draw(g2d);
+                            drawInImage();
                             vShape.createShape(geometry,attribute,initPos);
                         }
                     }
@@ -131,7 +130,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         if(clipShape!=null)
             g2d.clip(clipShape);
         
-        vShape.draw(g2d);
+        vShape.draw(g2d,false);
     }
     
     /**
@@ -331,6 +330,12 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      */
     public static float getWidthImage(){
         return widthSize;
+    }
+    
+    public void drawInImage(){
+        Graphics2D g2d=(Graphics2D) image.getGraphics();
+        vShape.draw(g2d,true);
+        vShape.shapeInImage();
     }
         
     public Color getCurrentColor(){
