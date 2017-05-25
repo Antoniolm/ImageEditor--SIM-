@@ -982,6 +982,7 @@ public class MainWindow extends javax.swing.JFrame {
             SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
             thickSpinner.setValue((Integer)currentIntWind.getCanvas().getThick());
             ColorCombo.setSelectedItem(currentIntWind.getCanvas().getCurrentColor());
+            typeLineCombo.setSelectedItem(currentIntWind.getCanvas().getAttribute().getStrokeStyle());
             
             FontClass font=currentIntWind.getCanvas().getFontClass();
             fontCombo.setSelectedItem(font.getFont());
@@ -1066,11 +1067,11 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentIntWind != null){
             switch((String)typeLineCombo.getSelectedItem()){
                 case "Solid line":
-                    currentIntWind.getCanvas().setThick(new BasicStroke(value),value);
+                    currentIntWind.getCanvas().setThick(new BasicStroke(value),value,"Solid line");
                 break;
                 case "Broken line":
                     currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
-                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),value);
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),value,"Broken line");
                 break;
             }
             
@@ -1694,11 +1695,11 @@ public class MainWindow extends javax.swing.JFrame {
             
             switch((String)typeLineCombo.getSelectedItem()){
                 case "Solid line":
-                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue()),(int)thickSpinner.getValue());
+                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue()),(int)thickSpinner.getValue(),"Solid line");
                 break;
                 case "Broken line":
                     currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
-                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),(int)thickSpinner.getValue());
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),(int)thickSpinner.getValue(),"Broken line");
                 break;
             }
         }
@@ -1820,11 +1821,11 @@ public class MainWindow extends javax.swing.JFrame {
             
             switch((String)typeLineCombo.getSelectedItem()){
                 case "Vertical degrade":
-                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue()),(int)thickSpinner.getValue());
+                    //currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue()),(int)thickSpinner.getValue());
                 break;
                 case "Horizontal degrade":
-                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
-                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),(int)thickSpinner.getValue());
+                    //currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
+                      //  BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),(int)thickSpinner.getValue());
                 break;
             }
         }

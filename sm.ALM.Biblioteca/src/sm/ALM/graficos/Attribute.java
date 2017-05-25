@@ -29,8 +29,9 @@ import java.awt.Stroke;
 public class Attribute {
     Stroke stroke;
     Integer strokeValue;
+    String strokeStyle;
     Paint colorPaint;
-    boolean filled;
+    boolean filled;    
     Composite comp;
     RenderingHints render;
     FontClass font;
@@ -40,6 +41,7 @@ public class Attribute {
      */
     public Attribute(){
         stroke=null;
+        strokeStyle="Solid line";
         colorPaint=new Color(0,0,0);
         filled=false;
         comp=null;
@@ -60,6 +62,7 @@ public class Attribute {
         render=att.render;
         font=att.font;
         strokeValue=att.strokeValue;
+        strokeStyle=att.strokeStyle;
     }
     
     /**
@@ -108,9 +111,10 @@ public class Attribute {
      * @param stroke
      * @param value 
      */
-    public void setStroke(Stroke stroke,Integer value) {
+    public void setStroke(Stroke stroke,int value,String valueStyle) {
         this.stroke = stroke;
         strokeValue=value;
+        strokeStyle=valueStyle;
     }
 
     /**
@@ -134,8 +138,16 @@ public class Attribute {
      * 
      * @return 
      */
-    public Integer getThickness(){
+    public int getThickness(){
         return strokeValue;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public String getStrokeStyle(){
+        return strokeStyle;
     }
        
     /**

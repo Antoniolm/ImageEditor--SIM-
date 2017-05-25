@@ -142,6 +142,11 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     public FigureManager getFigure(){
         return vShape;
     }
+    
+    public Attribute getAttribute(){
+        return attribute;
+    }
+    
     /**
      * 
      * @param value 
@@ -185,12 +190,12 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param stroke
      * @param value 
      */
-    public void setThick(Stroke stroke,Integer value){
-        attribute.setStroke(stroke,value);
+    public void setThick(Stroke stroke,Integer value,String style){
+        attribute.setStroke(stroke,value,style);
         if(editMode){
             Figure fig=vShape.getFigure();
             if(fig!=null)
-                fig.getAttribute().setStroke(stroke,value);
+                fig.getAttribute().setStroke(stroke,value,style);
         }
         
         repaint();
