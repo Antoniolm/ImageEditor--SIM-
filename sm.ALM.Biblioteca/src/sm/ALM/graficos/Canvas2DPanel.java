@@ -217,12 +217,12 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * 
      * @param value 
      */
-    public void setTransparency(Composite value){
-        attribute.setComp(value);
+    public void setTransparency(Composite value,int transValue){
+        attribute.setComp(value,transValue);
         if(editMode){
             Figure fig=vShape.getFigure();
             if(fig!=null)
-                fig.getAttribute().setComp(value);
+                fig.getAttribute().setComp(value,transValue);
         }
         
         repaint();

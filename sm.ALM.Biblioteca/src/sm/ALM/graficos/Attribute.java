@@ -33,6 +33,7 @@ public class Attribute {
     Paint colorPaint;
     boolean filled;    
     Composite comp;
+    int transValue;
     RenderingHints render;
     FontClass font;
 
@@ -45,6 +46,7 @@ public class Attribute {
         colorPaint=new Color(0,0,0);
         filled=false;
         comp=null;
+        transValue=10;
         render=null;
         font=new FontClass("Arial",15,0);
         strokeValue=1;
@@ -59,6 +61,7 @@ public class Attribute {
         colorPaint=att.colorPaint;
         filled=att.filled;
         comp=att.comp;
+        transValue=att.transValue;
         render=att.render;
         font=att.font;
         strokeValue=att.strokeValue;
@@ -94,8 +97,9 @@ public class Attribute {
      * 
      * @param comp 
      */
-    public void setComp(Composite comp) {
+    public void setComp(Composite comp,int value) {
         this.comp = comp;
+        transValue=value;
     }
     
     /**
@@ -172,6 +176,10 @@ public class Attribute {
      */
     public Composite getComp() {
         return comp;
+    }
+    
+    public int getTransValue() {
+        return transValue;
     }
 
     /**

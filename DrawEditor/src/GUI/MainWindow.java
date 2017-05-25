@@ -432,7 +432,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         TransparencySlider.setMaximum(10);
         TransparencySlider.setSnapToTicks(true);
-        TransparencySlider.setToolTipText("");
+        TransparencySlider.setToolTipText("Transparency slider");
         TransparencySlider.setPreferredSize(new java.awt.Dimension(60, 26));
         TransparencySlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -983,6 +983,7 @@ public class MainWindow extends javax.swing.JFrame {
             thickSpinner.setValue((Integer)currentIntWind.getCanvas().getAttribute().getThickness());
             ColorCombo.setSelectedItem((Color)currentIntWind.getCanvas().getAttribute().getColor());
             typeLineCombo.setSelectedItem(currentIntWind.getCanvas().getAttribute().getStrokeStyle());
+            TransparencySlider.setValue(currentIntWind.getCanvas().getAttribute().getTransValue());
             
             FontClass font=currentIntWind.getCanvas().getFontClass();
             fontCombo.setSelectedItem(font.getFont());
@@ -1141,10 +1142,10 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentIntWind!=null){
             if(TransButton.isSelected()){
                 float value=((float)TransparencySlider.getValue())/10.0f;
-                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value));
+                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value),TransparencySlider.getValue());
             }
             else
-                currentIntWind.getCanvas().setTransparency(null);
+                currentIntWind.getCanvas().setTransparency(null,TransparencySlider.getValue());
         }
     }//GEN-LAST:event_TransButtonActionPerformed
 
@@ -1765,7 +1766,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentIntWind!=null){
             if(TransButton.isSelected()){
                 float value=((float)TransparencySlider.getValue())/10.0f;
-                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value));
+                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value),TransparencySlider.getValue());
             }
         }
     }//GEN-LAST:event_TransparencySliderStateChanged
