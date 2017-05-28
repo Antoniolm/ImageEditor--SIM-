@@ -50,6 +50,10 @@ public class Rectangle2DFigure extends Figure{
             g2d.setStroke(new BasicStroke());
         }
         
+        if(attribute.getFilled())
+            attribute.generateFilled((int)((Rectangle) currentShape).getX(),(int) ((Rectangle) currentShape).getY(),
+            (int)((Rectangle) currentShape).getHeight(),(int)((Rectangle) currentShape).getWidth());
+        
         attribute.apply(g2d);
         
         if(!attribute.getFilled())

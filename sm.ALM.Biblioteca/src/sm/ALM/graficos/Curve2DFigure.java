@@ -40,6 +40,10 @@ public class Curve2DFigure extends Figure{
             g2d.setStroke(new BasicStroke());
         }
         
+        if(attribute.getFilled())
+            attribute.generateFilled((int)((QuadCurve2D.Float) currentShape).getX1(),(int) ((QuadCurve2D.Float) currentShape).getY1(),
+            (int)((QuadCurve2D.Float) currentShape).getX2(),(int)((QuadCurve2D.Float) currentShape).getY2());
+        
         attribute.apply(g2d);
         
         if(!attribute.getFilled())

@@ -45,6 +45,10 @@ public class Ellipse2DFigure extends Figure{
             g2d.setStroke(new BasicStroke());
         }
         
+        if(attribute.getFilled())
+            attribute.generateFilled((int)((Ellipse2D.Float) currentShape).getX(),(int) ((Ellipse2D.Float) currentShape).getY(),
+            (int)((Ellipse2D.Float) currentShape).getHeight(),(int)((Ellipse2D.Float) currentShape).getWidth());
+        
         attribute.apply(g2d);
         
         if(!attribute.getFilled())

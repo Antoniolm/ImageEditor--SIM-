@@ -85,7 +85,7 @@ public class Attribute {
         if(stroke!=null)
             g2d.setStroke(stroke);
         
-        if(filledType=="Filled")
+        if(filledType=="Filled" || gPaint==null)
             g2d.setPaint(colorPaintT);
         else
             g2d.setPaint(gPaint);
@@ -254,12 +254,15 @@ public class Attribute {
     
     public void generateFilled(int x,int y,int h,int w){
         switch(filledType){
+            case "Filled" :
+                gPaint=null;
+            break;
             case "Vertical degrade" :
                 gPaint = new GradientPaint(x+(w/2), y, colorPaintT, x+(w/2), y+h, colorPaintB);
                 break;
             case "Horizontal degrade" : 
                 gPaint = new GradientPaint(x, y+(h/2), colorPaintT, x+w, y+(h/2), colorPaintB);
-                break;     
+                break;
         }
     }
 
