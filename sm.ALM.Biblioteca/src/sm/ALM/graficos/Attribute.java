@@ -258,10 +258,10 @@ public class Attribute {
                 gPaint=null;
             break;
             case "Vertical degrade" :
-                gPaint = new GradientPaint(x+(w/2), y, colorPaintT, x+(w/2), y+h, colorPaintB);
+                gPaint = new GradientPaint(x, y+(h/2), colorPaintT, x+w, y+(h/2), colorPaintB);
                 break;
             case "Horizontal degrade" : 
-                gPaint = new GradientPaint(x, y+(h/2), colorPaintT, x+w, y+(h/2), colorPaintB);
+                gPaint = new GradientPaint(x+(w/2), y, colorPaintT, x+(w/2), y+h, colorPaintB);
                 break;
         }
     }

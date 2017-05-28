@@ -23,6 +23,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
@@ -46,13 +47,18 @@ public class Line2DFigure extends Figure{
     
     @Override
     public void draw(Graphics2D g2d,boolean drawImage){
-        if(editMode && drawImage){
+        if(editMode && ! drawImage){
             g2d.setColor(Color.GRAY);
             g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
                         BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F));
             g2d.draw(currentShape.getBounds2D());
             g2d.setStroke(new BasicStroke());
         }
+        
+        Rectangle bound=currentShape.getBounds();
+        if(attribute.getFilled())
+            attribute.generateFilled((int)(( Rectangle) bound).getX(),(int) (( Rectangle) bound).getY(),
+            (int)(( Rectangle) bound).getHeight(),(int)(( Rectangle) bound).getWidth());
         
         attribute.apply(g2d);
         g2d.draw(currentShape);

@@ -9,6 +9,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
@@ -40,9 +41,10 @@ public class Curve2DFigure extends Figure{
             g2d.setStroke(new BasicStroke());
         }
         
+        Rectangle bound=currentShape.getBounds();
         if(attribute.getFilled())
-            attribute.generateFilled((int)((QuadCurve2D.Float) currentShape).getX1(),(int) ((QuadCurve2D.Float) currentShape).getY1(),
-            (int)((QuadCurve2D.Float) currentShape).getX2(),(int)((QuadCurve2D.Float) currentShape).getY2());
+            attribute.generateFilled((int)(( Rectangle) bound).getX(),(int) (( Rectangle) bound).getY(),
+            (int)(( Rectangle) bound).getHeight(),(int)(( Rectangle) bound).getWidth());
         
         attribute.apply(g2d);
         

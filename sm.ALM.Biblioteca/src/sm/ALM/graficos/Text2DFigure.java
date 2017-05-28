@@ -24,12 +24,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 public class Text2DFigure extends Figure{
     private String text;
@@ -67,10 +69,16 @@ public class Text2DFigure extends Figure{
             g2d.setStroke(new BasicStroke());
         }
         
-        attribute.apply(g2d);
-        
         FontClass font=attribute.getFont();
         getTextShape(g2d, new Font(font.getFont(), font.getStyleFont(), font.getSizeFont()));
+        
+        Rectangle bound=currentShape.getBounds();
+        if(attribute.getFilled())
+            attribute.generateFilled((int)(( Rectangle) bound).getX(),(int) (( Rectangle) bound).getY(),
+            (int)(( Rectangle) bound).getHeight(),(int)(( Rectangle) bound).getWidth());
+        
+        attribute.apply(g2d);
+        
         AffineTransform trans=new AffineTransform();
         trans.translate(position.getX(), position.getY());
         currentShape=trans.createTransformedShape(currentShape);
