@@ -86,12 +86,12 @@ public class FileManager {
          BufferedImage img;
          img = new BufferedImage((int)Canvas2DPanel.getWidthImage(),(int)Canvas2DPanel.getHeightImage(),BufferedImage.TYPE_INT_ARGB);
          newIntWind.getCanvas().setImage(img);
-         newIntWind.getCanvas().setColor(new Color(255,255,255));
+         newIntWind.getCanvas().setColorT(new Color(255,255,255));
          
          Graphics2D g2d =img.createGraphics();
          g2d.fillRect(0,0,img.getWidth(),img.getHeight());
          
-         newIntWind.getCanvas().setColor(new Color(0,0,0)); 
+         newIntWind.getCanvas().setColorT(new Color(0,0,0)); 
          return newIntWind;
     }
     

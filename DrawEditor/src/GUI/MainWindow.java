@@ -1362,7 +1362,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
         ColorCombo.setBackground((Color)ColorCombo.getSelectedItem());
         if(currentIntWind!=null){
-            currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+            currentIntWind.getCanvas().setColorT((Color)ColorCombo.getSelectedItem());
         }
     }//GEN-LAST:event_ColorComboActionPerformed
 
@@ -1833,7 +1833,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void ColorBotComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorBotComboActionPerformed
         ColorBotCombo.setBackground((Color)ColorBotCombo.getSelectedItem());
         if(currentIntWind!=null){
-            currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+            currentIntWind.getCanvas().setColorB((Color)ColorBotCombo.getSelectedItem());
         }
     }//GEN-LAST:event_ColorBotComboActionPerformed
 

@@ -162,12 +162,27 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * 
      * @param value 
      */
-    public void setColor(Color value){
+    public void setColorT(Color value){
         attribute.setColorT(value);
         if(editMode){
             Figure fig=vShape.getFigure();
             if(fig!=null)
                 fig.getAttribute().setColorT(value);
+        }
+        repaint();
+              
+    }
+    
+    /**
+     * 
+     * @param value 
+     */
+    public void setColorB(Color value){
+        attribute.setColorB(value);
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setColorB(value);
         }
         repaint();
               

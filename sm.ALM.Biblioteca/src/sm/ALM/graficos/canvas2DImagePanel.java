@@ -79,12 +79,12 @@ public class canvas2DImagePanel  extends Canvas2DPanel {
     public void ChangeSizeImage(){
          BufferedImage img = new BufferedImage((int)Canvas2DPanel.getWidthImage(),(int)Canvas2DPanel.getHeightImage(),BufferedImage.TYPE_INT_ARGB);
          setImage(img);
-         setColor(new Color(255,255,255));
+         setColorT(new Color(255,255,255));
          
          Graphics2D g2d =img.createGraphics();
          g2d.fillRect(0,0,img.getWidth(),img.getHeight());
          
-         setColor(new Color(0,0,0)); 
+         setColorT(new Color(0,0,0)); 
     }
     
     /**
