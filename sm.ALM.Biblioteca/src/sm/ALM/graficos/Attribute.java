@@ -115,9 +115,12 @@ public class Attribute {
      * @param stroke
      * @param value 
      */
-    public void setStroke(Stroke stroke,int value,String valueStyle) {
+    public void setStroke(Stroke stroke,int value) {
         this.stroke = stroke;
         strokeValue=value;
+    }
+    
+    public void setStrokeStyle(String valueStyle){
         strokeStyle=valueStyle;
     }
 

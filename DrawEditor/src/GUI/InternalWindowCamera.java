@@ -55,9 +55,9 @@ public class InternalWindowCamera extends javax.swing.JInternalFrame {
         return (v.camera!=null?v:null);
     }
      
-     public BufferedImage getImage(){
+    public BufferedImage getImage(){
          return camera.getImage();
-     }
+    }
     
     public void close() {
         if (camera != null) {

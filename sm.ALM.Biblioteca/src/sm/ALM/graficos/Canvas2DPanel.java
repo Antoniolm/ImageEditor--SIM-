@@ -201,12 +201,27 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * @param stroke
      * @param value 
      */
-    public void setThick(Stroke stroke,Integer value,String style){
-        attribute.setStroke(stroke,value,style);
+    public void setThick(Stroke stroke,Integer value){
+        attribute.setStroke(stroke,value);
         if(editMode){
             Figure fig=vShape.getFigure();
             if(fig!=null)
-                fig.getAttribute().setStroke(stroke,value,style);
+                fig.getAttribute().setStroke(stroke,value);
+        }
+        
+        repaint();
+    }
+    
+    /**
+     * 
+     * @param style 
+     */
+    public void setStrokeStyle(String style){
+        attribute.setStrokeStyle(style);
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setStrokeStyle(style);
         }
         
         repaint();
