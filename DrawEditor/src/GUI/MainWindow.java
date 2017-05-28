@@ -977,7 +977,8 @@ public class MainWindow extends javax.swing.JFrame {
     public void changeCurrentIntWind(InternalWindowImage vi){
        currentIntWind=vi;
        if(currentIntWind!=null){
-            FilledButton.setSelected(currentIntWind.getCanvas().getFilled());
+            FilledButton.setSelected(currentIntWind.getCanvas().getAttribute().getFilled());
+            FilledTypeCombo.setSelectedItem(currentIntWind.getCanvas().getAttribute().getFilledType());
             TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
             SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
             thickSpinner.setValue(currentIntWind.getCanvas().getAttribute().getThickness());
@@ -1869,13 +1870,15 @@ public class MainWindow extends javax.swing.JFrame {
     private void FilledTypeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledTypeComboActionPerformed
         if(currentIntWind != null){
             
-            switch((String)typeLineCombo.getSelectedItem()){
+            switch((String)FilledTypeCombo.getSelectedItem()){
+                case "Filled ":
+                    currentIntWind.getCanvas().setFilledType("Filled");
+                break;
                 case "Vertical degrade":
-                    //currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue()),(int)thickSpinner.getValue());
+                    currentIntWind.getCanvas().setFilledType("Vertical degrade");
                 break;
                 case "Horizontal degrade":
-                    //currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
-                      //  BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),(int)thickSpinner.getValue());
+                    currentIntWind.getCanvas().setFilledType("Horizontal degrade");
                 break;
             }
         }

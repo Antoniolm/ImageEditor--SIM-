@@ -21,6 +21,7 @@ package sm.ALM.graficos;
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Font;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RenderingHints;
@@ -32,6 +33,7 @@ public class Attribute {
     String strokeStyle;
     Color colorPaintT;
     Color colorPaintB;
+    GradientPaint gPaint;
     boolean filled;   
     String filledType;
     Composite comp;
@@ -47,7 +49,9 @@ public class Attribute {
         strokeStyle="Solid line";
         colorPaintT=new Color(0,0,0);
         colorPaintB=new Color(0,0,0);
+        gPaint=null;
         filled=false;
+        filledType="Filled";
         comp=null;
         transValue=10;
         render=null;
@@ -64,6 +68,7 @@ public class Attribute {
         colorPaintT=att.colorPaintT;
         colorPaintB=att.colorPaintB;
         filled=att.filled;
+        filledType=att.filledType;
         comp=att.comp;
         transValue=att.transValue;
         render=att.render;
@@ -80,7 +85,10 @@ public class Attribute {
         if(stroke!=null)
             g2d.setStroke(stroke);
         
-        g2d.setPaint(colorPaintT);
+        if(filledType=="Filled")
+            g2d.setPaint(colorPaintT);
+        else
+            g2d.setPaint(gPaint);
         
         if(comp!=null)
             g2d.setComposite(comp);
@@ -220,6 +228,10 @@ public class Attribute {
         return comp;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public int getTransValue() {
         return transValue;
     }
@@ -242,11 +254,12 @@ public class Attribute {
     
     public void generateFilled(int x,int y,int h,int w){
         switch(filledType){
-            case "Vertical Degree" :
+            case "Vertical degrade" :
+                gPaint = new GradientPaint(x+(w/2), y, colorPaintT, x+(w/2), y+h, colorPaintB);
                 break;
-            case "Horizontal Degree" : 
-                break;
-                
+            case "Horizontal degrade" : 
+                gPaint = new GradientPaint(x, y+(h/2), colorPaintT, x+w, y+(h/2), colorPaintB);
+                break;     
         }
     }
 

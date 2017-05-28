@@ -203,14 +203,17 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         repaint();
     }
     
-    /**
-     * 
-     * @return 
-     */
-    public boolean getFilled(){            
-        return attribute.getFilled();
+    public void setFilledType(String type){
+        attribute.setFilledType(type);
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setFilledType(type);
+        }
+        
+        repaint();
     }
-    
+   
     /**
      * 
      * @param stroke
