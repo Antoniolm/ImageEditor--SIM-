@@ -922,10 +922,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         MenuBar.add(FileMenu);
 
-        EditMenu.setText("See");
+        EditMenu.setText("View");
 
         SeeSBMenu.setSelected(true);
-        SeeSBMenu.setText("See state bar");
+        SeeSBMenu.setText("State bar");
         SeeSBMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SeeSBMenuActionPerformed(evt);
@@ -934,7 +934,7 @@ public class MainWindow extends javax.swing.JFrame {
         EditMenu.add(SeeSBMenu);
 
         SeeGeoMenu.setSelected(true);
-        SeeGeoMenu.setText("See geometry bar");
+        SeeGeoMenu.setText("Geometry bar");
         SeeGeoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SeeGeoMenuActionPerformed(evt);
@@ -943,7 +943,7 @@ public class MainWindow extends javax.swing.JFrame {
         EditMenu.add(SeeGeoMenu);
 
         SeeAttMenu.setSelected(true);
-        SeeAttMenu.setText("See attribute bar");
+        SeeAttMenu.setText("Attribute bar");
         SeeAttMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SeeAttMenuActionPerformed(evt);
@@ -1775,7 +1775,7 @@ public class MainWindow extends javax.swing.JFrame {
                 mainDesktop.add(newIntWind);
 
             }catch (Exception ex) {
-                JOptionPane.showMessageDialog(this,"Error al abrir la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error al grabar el sonido .","Open error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_recordSoundButtonActionPerformed
@@ -1862,7 +1862,7 @@ public class MainWindow extends javax.swing.JFrame {
                 mainDesktop.add(newIntWind);
                 newIntWind.setVisible(true);
             }catch(Exception ex){
-                JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error al abrir el video.","Save error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_OpenVideoButtonActionPerformed

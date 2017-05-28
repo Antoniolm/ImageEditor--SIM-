@@ -87,13 +87,13 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="EditMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="See"/>
+            <Property name="text" type="java.lang.String" value="View"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="SeeSBMenu">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="See state bar"/>
+                <Property name="text" type="java.lang.String" value="State bar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeeSBMenuActionPerformed"/>
@@ -102,7 +102,7 @@
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="SeeGeoMenu">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="See geometry bar"/>
+                <Property name="text" type="java.lang.String" value="Geometry bar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeeGeoMenuActionPerformed"/>
@@ -111,7 +111,7 @@
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="SeeAttMenu">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="See attribute bar"/>
+                <Property name="text" type="java.lang.String" value="Attribute bar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeeAttMenuActionPerformed"/>

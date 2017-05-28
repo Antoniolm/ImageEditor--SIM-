@@ -147,7 +147,7 @@ public class FileManager {
 
                 newIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
             }catch(Exception ex){
-                JOptionPane.showMessageDialog(window,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(window,"Error al abrir la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
             }
         }
         return newIntWind;
@@ -176,7 +176,7 @@ public class FileManager {
                 currentIntWind.setTitle(f.getName());
             }
             }catch (Exception ex) {
-                JOptionPane.showMessageDialog(window,"Error al abrir la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(window,"Error al guardar la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
             }
         }
         
