@@ -981,7 +981,8 @@ public class MainWindow extends javax.swing.JFrame {
             TransButton.setSelected(currentIntWind.getCanvas().getTransparency());
             SmoothButton.setSelected(currentIntWind.getCanvas().getRender());
             thickSpinner.setValue(currentIntWind.getCanvas().getAttribute().getThickness());
-            ColorCombo.setSelectedItem((Color)currentIntWind.getCanvas().getAttribute().getColor());
+            ColorCombo.setSelectedItem((Color)currentIntWind.getCanvas().getAttribute().getColorT());
+            ColorBotCombo.setSelectedItem((Color)currentIntWind.getCanvas().getAttribute().getColorB());
             typeLineCombo.setSelectedItem(currentIntWind.getCanvas().getAttribute().getStrokeStyle());
             TransparencySlider.setValue(currentIntWind.getCanvas().getAttribute().getTransValue());
             
@@ -1831,7 +1832,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void ColorBotComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorBotComboActionPerformed
         ColorBotCombo.setBackground((Color)ColorBotCombo.getSelectedItem());
-        
+        if(currentIntWind!=null){
+            currentIntWind.getCanvas().setColor((Color)ColorCombo.getSelectedItem());
+        }
     }//GEN-LAST:event_ColorBotComboActionPerformed
 
     private void OpenCameraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenCameraItemActionPerformed

@@ -162,12 +162,12 @@ public class Canvas2DPanel extends javax.swing.JPanel {
      * 
      * @param value 
      */
-    public void setColor(Paint value){
-        attribute.setFilled(value);
+    public void setColor(Color value){
+        attribute.setColorT(value);
         if(editMode){
             Figure fig=vShape.getFigure();
             if(fig!=null)
-                fig.getAttribute().setFilled(value);
+                fig.getAttribute().setColorT(value);
         }
         repaint();
               
@@ -354,7 +354,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
         
     public Color getCurrentColor(){
-        return (Color)attribute.getColor();
+        return (Color)attribute.getColorT();
     }
     
     public void setFont(String font,int size,int style){

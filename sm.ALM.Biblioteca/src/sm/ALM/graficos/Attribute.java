@@ -30,8 +30,10 @@ public class Attribute {
     Stroke stroke;
     Integer strokeValue;
     String strokeStyle;
-    Paint colorPaint;
-    boolean filled;    
+    Color colorPaintT;
+    Color colorPaintB;
+    boolean filled;   
+    String filledType;
     Composite comp;
     int transValue;
     RenderingHints render;
@@ -43,7 +45,8 @@ public class Attribute {
     public Attribute(){
         stroke=null;
         strokeStyle="Solid line";
-        colorPaint=new Color(0,0,0);
+        colorPaintT=new Color(0,0,0);
+        colorPaintB=new Color(0,0,0);
         filled=false;
         comp=null;
         transValue=10;
@@ -58,7 +61,8 @@ public class Attribute {
      */
     public Attribute(Attribute att){
         stroke=att.stroke;
-        colorPaint=att.colorPaint;
+        colorPaintT=att.colorPaintT;
+        colorPaintB=att.colorPaintB;
         filled=att.filled;
         comp=att.comp;
         transValue=att.transValue;
@@ -76,7 +80,7 @@ public class Attribute {
         if(stroke!=null)
             g2d.setStroke(stroke);
         
-        g2d.setPaint(colorPaint);
+        g2d.setPaint(colorPaintT);
         
         if(comp!=null)
             g2d.setComposite(comp);
@@ -106,8 +110,16 @@ public class Attribute {
      * 
      * @param aPaint 
      */
-    public void setFilled(Paint aPaint) {
-        this.colorPaint = aPaint;
+    public void setColorT(Color aColor) {
+        this.colorPaintT = aColor;
+    }
+    
+    /**
+     * 
+     * @param aPaint 
+     */
+    public void setColorB(Color aColor) {
+        this.colorPaintB= aColor;
     }
 
     /**
@@ -120,6 +132,10 @@ public class Attribute {
         strokeValue=value;
     }
     
+    /**
+     * 
+     * @param valueStyle 
+     */
     public void setStrokeStyle(String valueStyle){
         strokeStyle=valueStyle;
     }
@@ -132,6 +148,13 @@ public class Attribute {
         this.font = font;
     }
     
+    /**
+     * 
+     * @param type 
+     */
+    public void setFilledType(String type){
+        filledType=type;
+    }
     
     /**
      * 
@@ -161,8 +184,16 @@ public class Attribute {
      * 
      * @return 
      */
-    public Paint getColor() {
-        return colorPaint;
+    public Paint getColorT() {
+        return colorPaintT;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public Paint getColorB() {
+        return colorPaintB;
     }
     
     /**
@@ -171,6 +202,14 @@ public class Attribute {
      */
     public boolean getFilled() {
         return filled;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public String getFilledType(){
+        return filledType;
     }
     
     /**
@@ -199,6 +238,16 @@ public class Attribute {
      */ 
     public FontClass getFont() {
         return font;
+    }
+    
+    public void generateFilled(int x,int y,int h,int w){
+        switch(filledType){
+            case "Vertical Degree" :
+                break;
+            case "Horizontal Degree" : 
+                break;
+                
+        }
     }
 
     
