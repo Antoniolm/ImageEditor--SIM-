@@ -7,8 +7,9 @@ package GUI;
 
 import java.awt.image.BufferedImage;
 import javax.swing.JInternalFrame;
+import javax.swing.JScrollPane;
+import sm.ALM.graficos.Canvas2DPanel;
 import sm.ALM.graficos.GeometryType;
-import sm.ALM.graficos.canvas2DImagePanel;
 
 /**
  *
@@ -19,12 +20,13 @@ public class InternalWindowImage extends InternalWindow{
      * Creates new form InternalWindowImage
      */
     MainWindow parent=null;
-    private sm.ALM.graficos.canvas2DImagePanel canvasPanel;
-    private javax.swing.JScrollPane jScrollPane1;
+    private Canvas2DPanel canvasPanel;
+    private JScrollPane jScrollPane1;
     
     public InternalWindowImage(MainWindow window) {
         initComponents();
-        parent=window;        
+        parent=window;       
+        type=InternalWindowType.IMAGE;
     }
     
     @Override
@@ -35,8 +37,8 @@ public class InternalWindowImage extends InternalWindow{
         internalWind.setMaximizable(true);
         internalWind.setResizable(true);
         internalWind.setSize(300, 300);
-        jScrollPane1 = new javax.swing.JScrollPane();
-        canvasPanel = new sm.ALM.graficos.canvas2DImagePanel();
+        jScrollPane1 = new JScrollPane();
+        canvasPanel = new Canvas2DPanel();
 
         internalWind.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         internalWind.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -138,7 +140,7 @@ public class InternalWindowImage extends InternalWindow{
         canvasPanel.setGeometry(geom);
     }
     
-    public canvas2DImagePanel getCanvas(){
+    public Canvas2DPanel getCanvas(){
         return canvasPanel;
     }
 

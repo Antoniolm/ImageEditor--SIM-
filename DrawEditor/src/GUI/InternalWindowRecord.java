@@ -23,6 +23,7 @@ public class InternalWindowRecord extends InternalWindow{
      */
     public InternalWindowRecord(File file) {
         initComponents();
+        type=InternalWindowType.RECORD;
         recorder=new SMSoundPlayerRecorder(file);
         ((SMSoundPlayerRecorder)recorder).addLineListener(new SoundManager());
     }

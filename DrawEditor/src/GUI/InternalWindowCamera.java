@@ -25,6 +25,7 @@ public class InternalWindowCamera extends InternalWindow{
     private InternalWindowCamera() {
         initComponents();
         
+        type=InternalWindowType.CAMERA;
         camera = Webcam.getDefault();
         
         Dimension resoluciones[] = camera.getViewSizes();

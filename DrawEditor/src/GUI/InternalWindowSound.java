@@ -26,6 +26,7 @@ public class InternalWindowSound extends InternalWindow{
      */
     public InternalWindowSound(File file) {
         initComponents();
+        type=InternalWindowType.SOUND;
         player = new SMClipPlayer(file);
         ((SMClipPlayer)player).addLineListener(new LineListener() {
             @Override

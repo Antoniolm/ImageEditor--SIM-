@@ -145,7 +145,7 @@ public class FileManager {
                 
                 FileManager.getSingletonInstance().getExtension(f.getName());
 
-                newIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
+                newIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()+1,img.getHeight()+1));
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(window,"Error al abrir la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
             }

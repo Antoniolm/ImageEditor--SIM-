@@ -1007,9 +1007,15 @@ public class MainWindow extends javax.swing.JFrame {
                 case RECTANGLE:
                     RtgleButton.setSelected(true);
                 break;
+                case CURVE:
+                    RRtglButton.setSelected(true);
+                break;
                 case CIRCLE:
                     CircleButton.setSelected(true);
                 break;    
+                case TEXT:
+                    TextButton.setSelected(true);    
+                break;
             }
 
            if(intWind.getCanvas().getEdit())
@@ -1490,10 +1496,10 @@ public class MainWindow extends javax.swing.JFrame {
         InternalWindowImage newIntWind = new InternalWindowImage(this);
         
         if(currentInternalWindow!= null){
-            Point2D currentPositionWind=currentIntWind.getLocation();
+            Point2D currentPositionWind=currentInternalWindow.getWindow().getLocation();
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-            newIntWind.setTitle(currentIntWind.getTitle());
-            newIntWind.setLocation((Point) currentPositionWind);
+            newIntWind.getWindow().setTitle(currentInternalWindow.getWindow().getTitle());
+            newIntWind.getWindow().setLocation((Point) currentPositionWind);
             BufferedImage imgSrc=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
                     
             ColorModel model = imgSrc.getColorModel();
@@ -1531,7 +1537,7 @@ public class MainWindow extends javax.swing.JFrame {
             ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
             BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             
-            String name=currentIntWind.getTitle();
+            String name=currentInternalWindow.getWindow().getTitle();
             if(imgSrce!=null){
                 int numBand=imgSrce.getRaster().getNumBands();
                 for(int i=0;i<numBand;i++){
@@ -1546,11 +1552,11 @@ public class MainWindow extends javax.swing.JFrame {
                     BufferedImage img = new BufferedImage(cm, bandRaster, false, null);
 
                     currentInternalWindow = new InternalWindowImage(this);
-                    currentIntWind.setTitle(name+" (banda "+i+")");
-                    currentIntWind.getCanvas().setImage(img);
-                    mainDesktop.add(currentIntWind);
-                    currentIntWind.setVisible(true);
-                    currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+                    currentInternalWindow.getWindow().setTitle(name+" (banda "+i+")");
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(img);
+                    mainDesktop.add(currentInternalWindow.getWindow());
+                    currentInternalWindow.getWindow().setVisible(true);
+                    currentInternalWindow.getWindow().setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
 
                     ((InternalWindowImage)currentInternalWindow).getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
                     
@@ -1568,7 +1574,7 @@ public class MainWindow extends javax.swing.JFrame {
             //Attach the currentShape to our image
             ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
             BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
-            String name=currentIntWind.getTitle();
+            String name=currentInternalWindow.getWindow().getTitle();
             if(imgSrce!=null){
                     ColorSpace cs=null;
                     switch(ColorSpaceCombo.getSelectedItem().toString()){
@@ -1592,14 +1598,14 @@ public class MainWindow extends javax.swing.JFrame {
                         ColorConvertOp cop = new ColorConvertOp(cs, null);
                         BufferedImage img = cop.filter(imgSrce, null);
 
-                        currentIntWind = new InternalWindowImage(this);
-                        currentIntWind.setTitle(name);
-                        currentIntWind.getCanvas().setImage(img);
-                        mainDesktop.add(currentIntWind);
-                        currentIntWind.setVisible(true);
-                        currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+                        currentInternalWindow = new InternalWindowImage(this);
+                        currentInternalWindow.getWindow().setTitle(name);
+                        ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(img);
+                        mainDesktop.add(currentInternalWindow.getWindow());
+                        currentInternalWindow.getWindow().setVisible(true);
+                        currentInternalWindow.getWindow().setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
 
-                        currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
+                        ((InternalWindowImage)currentInternalWindow).getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
                     }
             }
        }
@@ -1732,9 +1738,9 @@ public class MainWindow extends javax.swing.JFrame {
     private void RRtglButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RRtglButtonActionPerformed
         StateBarLabel.setText("Curve");
         if(currentInternalWindow!=null){
-            currentIntWind.setGeometry(GeometryType.CURVE);
+            ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.CURVE);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
-            currentIntWind.repaint();
+            currentInternalWindow.getWindow().repaint();
         }
     }//GEN-LAST:event_RRtglButtonActionPerformed
 
@@ -1758,9 +1764,9 @@ public class MainWindow extends javax.swing.JFrame {
     private void TextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextButtonActionPerformed
         StateBarLabel.setText("Text");
         if(currentInternalWindow!=null){
-            currentInternalWindow.setGeometry(GeometryType.TEXT);
+            ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.TEXT);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
-            currentIntWind.repaint();
+            currentInternalWindow.getWindow().repaint();
         }
     }//GEN-LAST:event_TextButtonActionPerformed
 
@@ -1817,7 +1823,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null){
             if(TransButton.isSelected()){
                 float value=((float)TransparencySlider.getValue())/10.0f;
-                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value),TransparencySlider.getValue());
+                ((InternalWindowImage)currentInternalWindow).getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value),TransparencySlider.getValue());
             }
         }
     }//GEN-LAST:event_TransparencySliderStateChanged
@@ -1842,16 +1848,15 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ColorBotComboActionPerformed
 
     private void OpenCameraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenCameraItemActionPerformed
-        currentIntCamera = InternalWindowCamera.getInstance();
-        JInternalFrame currentInternal=currentIntCamera.getWindow();
-        currentInternal.setVisible(true);
-        mainDesktop.add(currentInternal);
+        currentInternalWindow = InternalWindowCamera.getInstance();
+        currentInternalWindow.getWindow().setVisible(true);
+        mainDesktop.add(currentInternalWindow.getWindow());
     }//GEN-LAST:event_OpenCameraItemActionPerformed
 
     private void CatchCameraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatchCameraButtonActionPerformed
-        currentIntWind=file.newFile(currentIntWind, this,currentIntCamera.getImage());
-        mainDesktop.add(currentIntWind);
-        currentIntWind.setVisible(true);
+        currentInternalWindow=file.newFile((InternalWindowImage)currentInternalWindow, this,((InternalWindowCamera)currentInternalWindow).getImage());
+        mainDesktop.add(currentInternalWindow.getWindow());
+        currentInternalWindow.getWindow().setVisible(true);
     }//GEN-LAST:event_CatchCameraButtonActionPerformed
 
     private void OpenVideoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenVideoButtonActionPerformed

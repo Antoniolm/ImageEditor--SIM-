@@ -23,7 +23,7 @@ public class InternalWindowJMFPlayer extends InternalWindow{
     
     private InternalWindowJMFPlayer(File f) {
         initComponents();
-        
+        type=InternalWindowType.VIDEO;
         String sfichero = "file:" + f.getAbsolutePath();
         MediaLocator ml = new MediaLocator(sfichero);
         try {
