@@ -58,6 +58,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -1771,8 +1772,9 @@ public class MainWindow extends javax.swing.JFrame {
             try {
                 File f = dlg.getSelectedFile();
                 InternalWindowRecord newIntWind=new InternalWindowRecord(f);
-                newIntWind.setVisible(true);
-                mainDesktop.add(newIntWind);
+                JInternalFrame window=newIntWind.getWindow();
+                window.setVisible(true);
+                mainDesktop.add(window);
 
             }catch (Exception ex) {
                 JOptionPane.showMessageDialog(this,"Error al grabar el sonido .","Open error",JOptionPane.ERROR_MESSAGE);
@@ -1789,9 +1791,10 @@ public class MainWindow extends javax.swing.JFrame {
              try{
                 File f = dlg.getSelectedFile();
                 InternalWindowSound newIntWind = new InternalWindowSound(f);
-                newIntWind.setTitle(f.getName());
-                mainDesktop.add(newIntWind);
-                newIntWind.setVisible(true);
+                JInternalFrame wind=newIntWind.getWindow();
+                wind.setTitle(f.getName());
+                mainDesktop.add(wind);
+                wind.setVisible(true);
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
             }
@@ -1840,8 +1843,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void OpenCameraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenCameraItemActionPerformed
         currentIntCamera = InternalWindowCamera.getInstance();
-        currentIntCamera.setVisible(true);
-        mainDesktop.add(currentIntCamera);
+        JInternalFrame currentInternal=currentIntCamera.getWindow();
+        currentInternal.setVisible(true);
+        mainDesktop.add(currentInternal);
     }//GEN-LAST:event_OpenCameraItemActionPerformed
 
     private void CatchCameraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatchCameraButtonActionPerformed
@@ -1858,9 +1862,10 @@ public class MainWindow extends javax.swing.JFrame {
              try{
                 File f = dlg.getSelectedFile();
                 InternalWindowJMFPlayer newIntWind = InternalWindowJMFPlayer.getInstance(f);
-                newIntWind.setTitle(f.getName());
-                mainDesktop.add(newIntWind);
-                newIntWind.setVisible(true);
+                JInternalFrame window=newIntWind.getWindow();
+                window.setTitle(f.getName());
+                mainDesktop.add(window);
+                window.setVisible(true);
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(this,"Error al abrir el video.","Save error",JOptionPane.ERROR_MESSAGE);
             }

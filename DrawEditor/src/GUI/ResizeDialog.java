@@ -8,6 +8,7 @@ package GUI;
 import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
 import javax.swing.JDialog;
+import javax.swing.JInternalFrame;
 import sm.ALM.graficos.Canvas2DPanel;
 
 /**
@@ -114,9 +115,10 @@ public class ResizeDialog extends javax.swing.JDialog {
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         Canvas2DPanel.setSizeImage(Integer.parseInt(WidthField.getText()), Integer.parseInt(HeightField.getText()));
         if(currentIntWind!=null){
+            JInternalFrame window=currentIntWind.getWindow();
             currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,Canvas2DPanel.getWidthImage()-1,Canvas2DPanel.getHeightImage()-1));
             currentIntWind.getCanvas().ChangeSizeImage();
-            currentIntWind.repaint();
+            window.repaint();
         }
         accepted=true;
         setVisible(false);
