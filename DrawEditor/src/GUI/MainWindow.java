@@ -1099,8 +1099,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void RtgleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtgleButtonActionPerformed
         StateBarLabel.setText("Rectangle");
         if(currentInternalWindow!=null){
-            currentIntWind.setGeometry(GeometryType.RECTANGLE);
-            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.RECTANGLE);
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
             currentInternalWindow.getWindow().repaint();
         }
     }//GEN-LAST:event_RtgleButtonActionPerformed
@@ -1108,8 +1108,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void LineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineButtonActionPerformed
         StateBarLabel.setText("Line");
         if(currentInternalWindow!=null){
-            currentIntWind.setGeometry(GeometryType.LINE);
-            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.LINE);
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
             currentInternalWindow.getWindow().repaint();
         }
     }//GEN-LAST:event_LineButtonActionPerformed
@@ -1120,24 +1120,24 @@ public class MainWindow extends javax.swing.JFrame {
     private void PointButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PointButtonActionPerformed
         StateBarLabel.setText("Point");
         if(currentInternalWindow!=null){
-            currentIntWind.setGeometry(GeometryType.POINT);
-            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.POINT);
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
             currentInternalWindow.getWindow().repaint();
         }
     }//GEN-LAST:event_PointButtonActionPerformed
 
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
         if(currentInternalWindow!=null){
-            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
             if(EditButton.isSelected())
-                changeCurrentIntWind(currentIntWind);
+                changeCurrentIntWind(((InternalWindowImage)currentInternalWindow));
             currentInternalWindow.getWindow().repaint();
         }
     }//GEN-LAST:event_EditButtonActionPerformed
 
     private void FilledButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledButtonActionPerformed
        if(currentInternalWindow!=null){
-        currentIntWind.getCanvas().setFilled(FilledButton.isSelected());
+        ((InternalWindowImage)currentInternalWindow).getCanvas().setFilled(FilledButton.isSelected());
        }
     }//GEN-LAST:event_FilledButtonActionPerformed
 
@@ -1145,19 +1145,19 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null){
             if(TransButton.isSelected()){
                 float value=((float)TransparencySlider.getValue())/10.0f;
-                currentIntWind.getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value),TransparencySlider.getValue());
+                ((InternalWindowImage)currentInternalWindow).getCanvas().setTransparency(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, value),TransparencySlider.getValue());
             }
             else
-                currentIntWind.getCanvas().setTransparency(null,TransparencySlider.getValue());
+                ((InternalWindowImage)currentInternalWindow).getCanvas().setTransparency(null,TransparencySlider.getValue());
         }
     }//GEN-LAST:event_TransButtonActionPerformed
 
     private void SmoothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SmoothButtonActionPerformed
         if(currentInternalWindow!=null){
             if(SmoothButton.isSelected())
-                currentIntWind.getCanvas().setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
+                ((InternalWindowImage)currentInternalWindow).getCanvas().setRender(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
             else
-                currentIntWind.getCanvas().setRender(null);
+                ((InternalWindowImage)currentInternalWindow).getCanvas().setRender(null);
         }
     }//GEN-LAST:event_SmoothButtonActionPerformed
 
@@ -1166,13 +1166,13 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null) {
             if(imgSource!=null){
                 try{
-                    if(currentIntWind.getCanvas().getImage().getColorModel().hasAlpha()){
+                    if(((InternalWindowImage)currentInternalWindow).getCanvas().getImage().getColorModel().hasAlpha()){
                        rop = new RescaleOp(new float[]{1.0f,1.0f,1.0f,1.0f},new float[]{ShineSlider.getValue(),ShineSlider.getValue(),ShineSlider.getValue(),0.0f},null); 
                     }
                     else{
                         rop = new RescaleOp(1.0F, ShineSlider.getValue(), null);
                     }
-                    rop.filter(imgSource, currentIntWind.getCanvas().getImage());
+                    rop.filter(imgSource, ((InternalWindowImage)currentInternalWindow).getCanvas().getImage());
                     mainDesktop.repaint();
                     
                 } catch(IllegalArgumentException e){
@@ -1189,10 +1189,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void ShineSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ShineSliderFocusGained
         if(currentInternalWindow!=null){
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
-            WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
-            boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            ColorModel cm = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().getColorModel();
+            WritableRaster raster = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().copyData(null);
+            boolean alfaPre = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().isAlphaPremultiplied();
             imgSource = new BufferedImage(cm,raster,alfaPre,null);
         }
     }//GEN-LAST:event_ShineSliderFocusGained
@@ -1203,9 +1203,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void FilterComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterComboActionPerformed
         //Attach the currentShape to our image
-        currentIntWind.getCanvas().drawInImage(); 
+        ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
         
-        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+        BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
         if(imgSrce!=null){
             Kernel k=null;
 
@@ -1229,9 +1229,9 @@ public class MainWindow extends javax.swing.JFrame {
 
             ConvolveOp cop = new ConvolveOp(k,ConvolveOp.EDGE_NO_OP,null);
             
-            ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
-            WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
-            boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
+            ColorModel cm = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().getColorModel();
+            WritableRaster raster = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().copyData(null);
+            boolean alfaPre = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().isAlphaPremultiplied();
             imgSource = new BufferedImage(cm,raster,alfaPre,null);
              
             cop.filter(imgSource,imgSrce);
@@ -1241,17 +1241,17 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void MoreScaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoreScaleButtonActionPerformed
         //Attach the currentShape to our image
-        currentIntWind.getCanvas().drawInImage(); 
-        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+        ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+        BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getScaleInstance(1.1,1.1);
 
             try{
                AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                BufferedImage imgDest = atop.filter( imgSrce, null);
-               ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
-               currentIntWind.getCanvas().setImage(imgDest);
-               currentIntWind.getCanvas().repaint();
+               ((Rectangle2D)((InternalWindowImage)currentInternalWindow).getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(imgDest);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().repaint();
             }catch(Exception e){ 
                 System.err.println("Error"); 
             }
@@ -1260,17 +1260,17 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void LessScaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LessScaleButtonActionPerformed
         //Attach the currentShape to our image
-        currentIntWind.getCanvas().drawInImage(); 
-        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+        ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+        BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getScaleInstance(0.9,0.9);
 
             try{
                AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                BufferedImage imgDest = atop.filter( imgSrce, null);
-               ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
-               currentIntWind.getCanvas().setImage(imgDest);
-               currentIntWind.getCanvas().repaint();
+               ((Rectangle2D)((InternalWindowImage)currentInternalWindow).getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(imgDest);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().repaint();
             }catch(Exception e){ 
                 System.err.println("Error"); 
             }
@@ -1279,16 +1279,16 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void rot90ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot90ButtonActionPerformed
         //Attach the currentShape to our image
-        currentIntWind.getCanvas().drawInImage(); 
-        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+        ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+        BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(90.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
             try{
                AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                BufferedImage imgDest = atop.filter(imgSrce, null);
-               ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
-               currentIntWind.getCanvas().setImage(imgDest);
-               currentIntWind.getCanvas().repaint();
+               ((Rectangle2D)((InternalWindowImage)currentInternalWindow).getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(imgDest);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().repaint();
             }catch(Exception e){ 
                 System.err.println("Error"); 
             }
@@ -1297,16 +1297,16 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void rot180ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot180ButtonActionPerformed
         //Attach the currentShape to our image
-        currentIntWind.getCanvas().drawInImage(); 
-        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+        ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+        BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(180.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
             try{
                AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                BufferedImage imgDest = atop.filter(imgSrce, null);
-               ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
-               currentIntWind.getCanvas().setImage(imgDest);
-               currentIntWind.getCanvas().repaint();
+               ((Rectangle2D)((InternalWindowImage)currentInternalWindow).getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(imgDest);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().repaint();
             }catch(Exception e){ 
                 System.err.println("Error"); 
             }
@@ -1315,16 +1315,16 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void rot270ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rot270ButtonActionPerformed
         //Attach the currentShape to our image
-        currentIntWind.getCanvas().drawInImage(); 
-        BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+        ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+        BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(270.0),imgSrce.getWidth()/2,imgSrce.getHeight()/2);
             try{
                AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                BufferedImage imgDest = atop.filter(imgSrce, null);
-               ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
-               currentIntWind.getCanvas().setImage(imgDest);
-               currentIntWind.getCanvas().repaint();
+               ((Rectangle2D)((InternalWindowImage)currentInternalWindow).getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(imgDest);
+               ((InternalWindowImage)currentInternalWindow).getCanvas().repaint();
             }catch(Exception e){ 
                 System.err.println("Error"); 
             }
@@ -1334,8 +1334,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void RotationSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RotationSliderFocusGained
         if(currentInternalWindow!=null){
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            imgSource=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            imgSource=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
         }
     }//GEN-LAST:event_RotationSliderFocusGained
 
@@ -1350,9 +1350,9 @@ public class MainWindow extends javax.swing.JFrame {
                     AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(RotationSlider.getValue()),imgSource.getWidth()/2,imgSource.getHeight()/2);
                     AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
                     BufferedImage imgDest = atop.filter(imgSource, null);
-                    ((Rectangle2D)currentIntWind.getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
-                    currentIntWind.getCanvas().setImage(imgDest);
-                    currentIntWind.getCanvas().repaint();
+                    ((Rectangle2D)((InternalWindowImage)currentInternalWindow).getCanvas().getClip()).setFrame(1, 1, imgDest.getWidth()-1, imgDest.getHeight()-1);
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(imgDest);
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().repaint();
 
                 } catch(IllegalArgumentException e){
                         System.err.println(e.getLocalizedMessage());
@@ -1364,15 +1364,15 @@ public class MainWindow extends javax.swing.JFrame {
     private void ColorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorComboActionPerformed
         ColorCombo.setBackground((Color)ColorCombo.getSelectedItem());
         if(currentInternalWindow!=null){
-            currentIntWind.getCanvas().setColorT((Color)ColorCombo.getSelectedItem());
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setColorT((Color)ColorCombo.getSelectedItem());
         }
     }//GEN-LAST:event_ColorComboActionPerformed
 
     private void contrastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrastButtonActionPerformed
         if(currentInternalWindow!=null) { 
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     LookupTable lt = LookupTableProducer.createLookupTable(LookupTableProducer.TYPE_SFUNCION);
@@ -1390,8 +1390,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void LightUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LightUpButtonActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     LookupTable lt = LookupTableProducer.createLookupTable(LookupTableProducer.TYPE_LOGARITHM);
@@ -1409,8 +1409,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void GetDarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetDarkButtonActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     LookupTable lt = LookupTableProducer.createLookupTable(LookupTableProducer.TYPE_POWER);
@@ -1428,8 +1428,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void SenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenButtonActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     double K = 255.0;
@@ -1494,14 +1494,14 @@ public class MainWindow extends javax.swing.JFrame {
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
             newIntWind.setTitle(currentIntWind.getTitle());
             newIntWind.setLocation((Point) currentPositionWind);
-            BufferedImage imgSrc=currentIntWind.getCanvas().getImage();
+            BufferedImage imgSrc=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
                     
             ColorModel model = imgSrc.getColorModel();
             WritableRaster raster = imgSrc.copyData(null);
             BufferedImage cloneImage = new BufferedImage(model, raster, model.isAlphaPremultiplied(), null);
                
             newIntWind.getCanvas().setImage(cloneImage);
-            newIntWind.getCanvas().setClip(currentIntWind.getCanvas().getClip());
+            newIntWind.getCanvas().setClip(((InternalWindowImage)currentInternalWindow).getCanvas().getClip());
             currentInternalWindow=newIntWind;
             mainDesktop.add(currentInternalWindow.getWindow());
             currentInternalWindow.getWindow().setVisible(true);
@@ -1512,7 +1512,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
             ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     SepiaOp lop = new SepiaOp();
@@ -1528,8 +1528,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void BandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BandButtonActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             
             String name=currentIntWind.getTitle();
             if(imgSrce!=null){
@@ -1545,14 +1545,14 @@ public class MainWindow extends javax.swing.JFrame {
                     //Creamos una nueva imagen que contiene como raster el correspondiente a la banda
                     BufferedImage img = new BufferedImage(cm, bandRaster, false, null);
 
-                    currentIntWind = new InternalWindowImage(this);
+                    currentInternalWindow = new InternalWindowImage(this);
                     currentIntWind.setTitle(name+" (banda "+i+")");
                     currentIntWind.getCanvas().setImage(img);
                     mainDesktop.add(currentIntWind);
                     currentIntWind.setVisible(true);
                     currentIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
 
-                    currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
                     
                 }
             }
@@ -1566,8 +1566,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void ColorSpaceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorSpaceComboActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             String name=currentIntWind.getTitle();
             if(imgSrce!=null){
                     ColorSpace cs=null;
@@ -1608,8 +1608,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void dyeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dyeButtonActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     TintOp tintado = new TintOp((Color)ColorCombo.getSelectedItem(),0.5f);
@@ -1625,8 +1625,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void equalizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalizationButtonActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     EqualizationOp ecualizacion = new EqualizationOp();
@@ -1644,7 +1644,7 @@ public class MainWindow extends javax.swing.JFrame {
             if(imgSource!=null && umbraSlider.getValue()!=128){
                 try{
                     UmbralizacionOp umbral=new UmbralizacionOp(umbraSlider.getValue());
-                    umbral.filter(imgSource, currentIntWind.getCanvas().getImage());
+                    umbral.filter(imgSource, ((InternalWindowImage)currentInternalWindow).getCanvas().getImage());
                     mainDesktop.repaint();
                 } catch(IllegalArgumentException e){
                         System.err.println(e.getLocalizedMessage());
@@ -1656,10 +1656,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void umbraSliderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_umbraSliderFocusGained
         if(currentInternalWindow!=null){
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            ColorModel cm = currentIntWind.getCanvas().getImage().getColorModel();
-            WritableRaster raster = currentIntWind.getCanvas().getImage().copyData(null);
-            boolean alfaPre = currentIntWind.getCanvas().getImage().isAlphaPremultiplied();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            ColorModel cm = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().getColorModel();
+            WritableRaster raster = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().copyData(null);
+            boolean alfaPre = ((InternalWindowImage)currentInternalWindow).getCanvas().getImage().isAlphaPremultiplied();
             imgSource = new BufferedImage(cm,raster,alfaPre,null);
         }
     }//GEN-LAST:event_umbraSliderFocusGained
@@ -1671,8 +1671,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void OwnFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OwnFilterButtonActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage(); 
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     MybufferedImageOp ownFilter=new MybufferedImageOp();
@@ -1688,9 +1688,9 @@ public class MainWindow extends javax.swing.JFrame {
     private void NegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegativeButtonActionPerformed
         if(currentInternalWindow!=null) {
             //Attach the currentShape to our image
-            currentIntWind.getCanvas().drawInImage();
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage();
             
-            BufferedImage imgSrce=currentIntWind.getCanvas().getImage();
+            BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             if(imgSrce!=null){
                 try{
                     double K = 255.0;
@@ -1733,7 +1733,7 @@ public class MainWindow extends javax.swing.JFrame {
         StateBarLabel.setText("Curve");
         if(currentInternalWindow!=null){
             currentIntWind.setGeometry(GeometryType.CURVE);
-            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
             currentIntWind.repaint();
         }
     }//GEN-LAST:event_RRtglButtonActionPerformed
@@ -1743,13 +1743,13 @@ public class MainWindow extends javax.swing.JFrame {
             
             switch((String)typeLineCombo.getSelectedItem()){
                 case "Solid line":
-                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue()),(int)thickSpinner.getValue());
-                    currentIntWind.getCanvas().setStrokeStyle("Solid line");
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue()),(int)thickSpinner.getValue());
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setStrokeStyle("Solid line");
                 break;
                 case "Broken line":
-                    currentIntWind.getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setThick(new BasicStroke((int)thickSpinner.getValue(), BasicStroke.CAP_BUTT,
                         BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F),(int)thickSpinner.getValue());
-                    currentIntWind.getCanvas().setStrokeStyle("Broken line");
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setStrokeStyle("Broken line");
                 break;
             }
         }
@@ -1759,7 +1759,7 @@ public class MainWindow extends javax.swing.JFrame {
         StateBarLabel.setText("Text");
         if(currentInternalWindow!=null){
             currentInternalWindow.setGeometry(GeometryType.TEXT);
-            currentIntWind.getCanvas().setEdit(EditButton.isSelected());
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
             currentIntWind.repaint();
         }
     }//GEN-LAST:event_TextButtonActionPerformed
@@ -1830,14 +1830,14 @@ public class MainWindow extends javax.swing.JFrame {
             style=style | Font.ITALIC;
         
         if(currentInternalWindow!=null){
-            currentIntWind.getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),0);
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),0);
         }
     }//GEN-LAST:event_fontComboActionPerformed
 
     private void ColorBotComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorBotComboActionPerformed
         ColorBotCombo.setBackground((Color)ColorBotCombo.getSelectedItem());
         if(currentInternalWindow!=null){
-            currentIntWind.getCanvas().setColorB((Color)ColorBotCombo.getSelectedItem());
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setColorB((Color)ColorBotCombo.getSelectedItem());
         }
     }//GEN-LAST:event_ColorBotComboActionPerformed
 
@@ -1877,13 +1877,13 @@ public class MainWindow extends javax.swing.JFrame {
             
             switch((String)FilledTypeCombo.getSelectedItem()){
                 case "Filled ":
-                    currentIntWind.getCanvas().setFilledType("Filled");
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setFilledType("Filled");
                 break;
                 case "Vertical degrade":
-                    currentIntWind.getCanvas().setFilledType("Vertical degrade");
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setFilledType("Vertical degrade");
                 break;
                 case "Horizontal degrade":
-                    currentIntWind.getCanvas().setFilledType("Horizontal degrade");
+                    ((InternalWindowImage)currentInternalWindow).getCanvas().setFilledType("Horizontal degrade");
                 break;
             }
         }
