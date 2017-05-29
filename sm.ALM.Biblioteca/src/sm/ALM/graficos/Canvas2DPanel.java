@@ -19,10 +19,12 @@
 
 package sm.ALM.graficos;
 
+import java.awt.BasicStroke;
 import static sm.ALM.graficos.Canvas2DPanel.*;
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -63,8 +65,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         attribute=new Attribute();
         editMode=false;
         geometry=POINT;
-        setBackground(Color.white);
+        setBackground(new Color(204, 204, 204));
         currentColor=0;
+        clipShape =new Rectangle2D.Float(1,1,widthSize+1,heightSize+1);
+        image=null;
         
         //Added our mouseListener 
         addMouseListener(new MouseAdapter() {
@@ -104,6 +108,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
                         setCursor(new Cursor(Cursor.MOVE_CURSOR));
                     }
                     else{
+                        if(vShape.getFigure().getType()==GeometryType.CURVE && ((Curve2DFigure)vShape.getFigure()).isCreated()){
+                             ((Curve2DFigure)vShape.getFigure()).setCreated(false);
+                        }
                         vShape.updateShape(e.getPoint(),initPos,geometry);
                     }
                 repaint();                  
@@ -127,8 +134,16 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
         
-        if(clipShape!=null)
-            g2d.clip(clipShape);
+        g2d.setStroke(new BasicStroke(2.0F, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, 1.0F,new float[]{ 5.0F, 5.0F }, 0.0F));
+        g2d.draw(clipShape);
+        
+        if(clipShape!=null){
+            g2d.clip(clipShape);            
+        }
+        
+        
+        if(image!=null) g.drawImage(image,0,0,this);
         
         vShape.draw(g2d,false);
     }
@@ -300,6 +315,25 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return result;
     }
     
+    public Color getCurrentColor(){
+        return (Color)attribute.getColorT();
+    }
+    
+    public void setFont(String font,int size,int style){
+        attribute.setFont(new FontClass(font,size,style));
+        if(editMode){
+            Figure fig=vShape.getFigure();
+            if(fig!=null)
+                fig.getAttribute().setFont(new FontClass(font,size,style));
+        }
+        
+        repaint();
+    }
+    
+    public FontClass getFontClass(){
+        return attribute.getFont();
+    }
+    
     /**
      * 
      * @param value 
@@ -370,24 +404,51 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         vShape.draw(g2d,true);
         vShape.shapeInImage();
     }
-        
-    public Color getCurrentColor(){
-        return (Color)attribute.getColorT();
+    
+    /**
+     * It will set a new value of our image
+     * @param img 
+     */
+    public void setImage(BufferedImage img){
+        image = img;
+        setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
     }
     
-    public void setFont(String font,int size,int style){
-        attribute.setFont(new FontClass(font,size,style));
-        if(editMode){
-            Figure fig=vShape.getFigure();
-            if(fig!=null)
-                fig.getAttribute().setFont(new FontClass(font,size,style));
+    /**
+     * It will return the image of our canvas
+     * @return 
+     */
+    public BufferedImage getImage(){
+        return image;
+    }
+    
+    /**
+     * @param drawVector
+     * @return 
+     */
+    public BufferedImage getImage(boolean drawVector){
+        if (drawVector) {
+            BufferedImage newImage=new BufferedImage(image.getWidth(),image.getHeight(),image.getType());
+            paint(newImage.createGraphics());
+            
+            return newImage;
         }
-        
-        repaint();
+        else
+            return getImage();
     }
     
-    public FontClass getFontClass(){
-        return attribute.getFont();
+    /**
+     * It will resize the image of an image
+     */
+    public void ChangeSizeImage(){
+         BufferedImage img = new BufferedImage((int)Canvas2DPanel.getWidthImage(),(int)Canvas2DPanel.getHeightImage(),BufferedImage.TYPE_INT_ARGB);
+         setImage(img);
+         setColorT(new Color(255,255,255));
+         
+         Graphics2D g2d =img.createGraphics();
+         g2d.fillRect(0,0,img.getWidth(),img.getHeight());
+         
+         setColorT(new Color(0,0,0)); 
     }
     
     /**

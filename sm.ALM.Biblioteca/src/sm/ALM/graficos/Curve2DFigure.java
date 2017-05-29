@@ -21,10 +21,11 @@ import java.awt.geom.QuadCurve2D;
  * @author LENOVO
  */
 public class Curve2DFigure extends Figure{    
-    boolean created=false; 
+    boolean created; 
     
     public Curve2DFigure(Attribute anAtt){
         super();
+        created=true;
         attribute=anAtt;
         currentShape= new QuadCurve2D.Float();
         type=GeometryType.CURVE;
