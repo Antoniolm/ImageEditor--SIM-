@@ -19,6 +19,7 @@
 
 package draweditor;
 
+import GUI.InternalWindow;
 import GUI.InternalWindowImage;
 import GUI.MainWindow;
 import java.awt.Color;
@@ -74,7 +75,7 @@ public class FileManager {
      * @param window
      * @return 
      */
-    public InternalWindowImage newFile(InternalWindowImage currentIntWind,MainWindow window){
+    public InternalWindowImage newFile(InternalWindow currentIntWind,String title,MainWindow window){
         InternalWindowImage newIntWind = new InternalWindowImage(window);
         
         if(currentIntWind!= null){
@@ -101,7 +102,7 @@ public class FileManager {
      * @param window
      * @return 
      */
-    public InternalWindowImage newFile(InternalWindowImage currentIntWind,MainWindow window,BufferedImage img){
+    public InternalWindowImage newFile(InternalWindow currentIntWind,String title,MainWindow window,BufferedImage img){
         InternalWindowImage newIntWind = new InternalWindowImage(window);
         
         if(currentIntWind!= null){

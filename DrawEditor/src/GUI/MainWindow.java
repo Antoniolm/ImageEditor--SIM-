@@ -1039,7 +1039,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveMenuActionPerformed
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
-        InternalWindowImage currentInt=file.newFile((InternalWindowImage)currentInternalWindow, this);
+        InternalWindowImage currentInt=file.newFile(currentInternalWindow,"untitled.jpg" ,this);
         ResizeDialog dialog = new ResizeDialog(new java.awt.Frame(), true, currentInt);
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -1473,7 +1473,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void NewFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileButtonActionPerformed
         
-        InternalWindowImage currentInt=file.newFile((InternalWindowImage)currentInternalWindow, this);
+        InternalWindowImage currentInt=file.newFile(currentInternalWindow,"untitled.jpg",this);
         ResizeDialog dialog = new ResizeDialog(new java.awt.Frame(), true, currentInt);
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -1854,7 +1854,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenCameraItemActionPerformed
 
     private void CatchCameraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatchCameraButtonActionPerformed
-        currentInternalWindow=file.newFile((InternalWindowImage)currentInternalWindow, this,((InternalWindowCamera)currentInternalWindow).getImage());
+        currentInternalWindow=file.newFile(currentInternalWindow,"untitled.jpg",this,((InternalWindowCamera)currentInternalWindow).getImage());
         mainDesktop.add(currentInternalWindow.getWindow());
         currentInternalWindow.getWindow().setVisible(true);
     }//GEN-LAST:event_CatchCameraButtonActionPerformed
