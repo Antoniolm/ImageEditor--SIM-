@@ -78,9 +78,9 @@ public class FileManager {
         InternalWindowImage newIntWind = new InternalWindowImage(window);
         
         if(currentIntWind!= null){
-            Point2D currentPositionWind=currentIntWind.getLocation();
+            Point2D currentPositionWind=currentIntWind.getWindow().getLocation();
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-            newIntWind.setLocation((Point) currentPositionWind);
+            newIntWind.getWindow().setLocation((Point) currentPositionWind);
         }
         
          BufferedImage img;
@@ -105,13 +105,13 @@ public class FileManager {
         InternalWindowImage newIntWind = new InternalWindowImage(window);
         
         if(currentIntWind!= null){
-            Point2D currentPositionWind=currentIntWind.getLocation();
+            Point2D currentPositionWind=currentIntWind.getWindow().getLocation();
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-            newIntWind.setLocation((Point) currentPositionWind);
+            newIntWind.getWindow().setLocation((Point) currentPositionWind);
         }
         
          newIntWind.getCanvas().setImage(img);
-         newIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+         newIntWind.getWindow().setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
          
          Graphics2D g2d =img.createGraphics();
          
@@ -140,8 +140,8 @@ public class FileManager {
                 BufferedImage img = ImageIO.read(f);
                 newIntWind = new InternalWindowImage(window);
                 newIntWind.getCanvas().setImage(img);
-                newIntWind.setTitle(f.getName());
-                newIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+                newIntWind.getWindow().setTitle(f.getName());
+                newIntWind.getWindow().setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
                 
                 FileManager.getSingletonInstance().getExtension(f.getName());
 
@@ -173,7 +173,7 @@ public class FileManager {
             if (img != null) {
                 File f = dlg.getSelectedFile();
                 ImageIO.write(img, getExtension(f.getName()), f);
-                currentIntWind.setTitle(f.getName());
+                currentIntWind.getWindow().setTitle(f.getName());
             }
             }catch (Exception ex) {
                 JOptionPane.showMessageDialog(window,"Error al guardar la imagen.","Open error",JOptionPane.ERROR_MESSAGE);
