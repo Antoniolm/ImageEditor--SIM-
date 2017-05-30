@@ -71,6 +71,10 @@ public class Text2DFigure extends Figure{
         
         FontClass font=attribute.getFont();
         getTextShape(g2d, new Font(font.getFont(), font.getStyleFont(), font.getSizeFont()));
+                
+        AffineTransform trans=new AffineTransform();
+        trans.translate(position.getX(), position.getY());
+        currentShape=trans.createTransformedShape(currentShape);
         
         Rectangle bound=currentShape.getBounds();
         if(attribute.getFilled())
@@ -78,10 +82,6 @@ public class Text2DFigure extends Figure{
             (int)(( Rectangle) bound).getHeight(),(int)(( Rectangle) bound).getWidth());
         
         attribute.apply(g2d);
-        
-        AffineTransform trans=new AffineTransform();
-        trans.translate(position.getX(), position.getY());
-        currentShape=trans.createTransformedShape(currentShape);
         
         if(!attribute.getFilled())
                 g2d.draw(currentShape);

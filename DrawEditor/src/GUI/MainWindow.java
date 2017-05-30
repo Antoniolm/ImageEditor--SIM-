@@ -129,7 +129,7 @@ public class MainWindow extends javax.swing.JFrame {
         PointButton = new javax.swing.JToggleButton();
         LineButton = new javax.swing.JToggleButton();
         RtgleButton = new javax.swing.JToggleButton();
-        RRtglButton = new javax.swing.JToggleButton();
+        CurveButton = new javax.swing.JToggleButton();
         CircleButton = new javax.swing.JToggleButton();
         TextButton = new javax.swing.JToggleButton();
         EditButton = new javax.swing.JToggleButton();
@@ -217,7 +217,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         NewFileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo.png"))); // NOI18N
         NewFileButton.setToolTipText("New file");
-        NewFileButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        NewFileButton.setPreferredSize(new java.awt.Dimension(31, 31));
         NewFileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewFileButtonActionPerformed(evt);
@@ -227,7 +227,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         OpenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/abrir.png"))); // NOI18N
         OpenButton.setToolTipText("Open file");
-        OpenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        OpenButton.setPreferredSize(new java.awt.Dimension(31, 31));
         OpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OpenButtonActionPerformed(evt);
@@ -237,7 +237,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         SaveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Guardar.gif"))); // NOI18N
         SaveButton.setToolTipText("Save file");
-        SaveButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SaveButton.setPreferredSize(new java.awt.Dimension(31, 31));
         SaveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SaveButtonActionPerformed(evt);
@@ -263,9 +263,9 @@ public class MainWindow extends javax.swing.JFrame {
         PointButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/punto.png"))); // NOI18N
         PointButton.setSelected(true);
         PointButton.setToolTipText("Point");
-        PointButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PointButton.setFocusable(false);
         PointButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        PointButton.setPreferredSize(new java.awt.Dimension(31, 31));
         PointButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         PointButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,9 +277,9 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup1.add(LineButton);
         LineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/linea.png"))); // NOI18N
         LineButton.setToolTipText("Line");
-        LineButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LineButton.setFocusable(false);
         LineButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LineButton.setPreferredSize(new java.awt.Dimension(31, 31));
         LineButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         LineButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,9 +291,9 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup1.add(RtgleButton);
         RtgleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rectangulo.png"))); // NOI18N
         RtgleButton.setToolTipText("Rectangle");
-        RtgleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RtgleButton.setFocusable(false);
         RtgleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        RtgleButton.setPreferredSize(new java.awt.Dimension(31, 31));
         RtgleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         RtgleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,22 +302,22 @@ public class MainWindow extends javax.swing.JFrame {
         });
         toolBarPanel.add(RtgleButton);
 
-        buttonGroup1.add(RRtglButton);
-        RRtglButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rectangulo.png"))); // NOI18N
-        RRtglButton.setPreferredSize(new java.awt.Dimension(31, 31));
-        RRtglButton.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(CurveButton);
+        CurveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/curves-27448_640.png"))); // NOI18N
+        CurveButton.setPreferredSize(new java.awt.Dimension(31, 31));
+        CurveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RRtglButtonActionPerformed(evt);
+                CurveButtonActionPerformed(evt);
             }
         });
-        toolBarPanel.add(RRtglButton);
+        toolBarPanel.add(CurveButton);
 
         buttonGroup1.add(CircleButton);
         CircleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/elipse.png"))); // NOI18N
         CircleButton.setToolTipText("Ellipse");
-        CircleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CircleButton.setFocusable(false);
         CircleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CircleButton.setPreferredSize(new java.awt.Dimension(31, 31));
         CircleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         CircleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +339,7 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup1.add(EditButton);
         EditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/seleccion.png"))); // NOI18N
         EditButton.setToolTipText("Edit mode");
-        EditButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        EditButton.setPreferredSize(new java.awt.Dimension(31, 31));
         EditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditButtonActionPerformed(evt);
@@ -403,7 +403,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         FilledButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rellenar.png"))); // NOI18N
         FilledButton.setToolTipText("Filled");
-        FilledButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        FilledButton.setPreferredSize(new java.awt.Dimension(31, 31));
         FilledButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FilledButtonActionPerformed(evt);
@@ -422,7 +422,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         TransButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/transparencia.png"))); // NOI18N
         TransButton.setToolTipText("Transparency");
-        TransButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TransButton.setPreferredSize(new java.awt.Dimension(31, 31));
         TransButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TransButtonActionPerformed(evt);
@@ -443,7 +443,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         SmoothButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/alisar.png"))); // NOI18N
         SmoothButton.setToolTipText("Smooth");
-        SmoothButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SmoothButton.setPreferredSize(new java.awt.Dimension(31, 31));
         SmoothButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SmoothButtonActionPerformed(evt);
@@ -588,7 +588,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         contrastButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/contraste.png"))); // NOI18N
         contrastButton.setToolTipText("Contrast");
-        contrastButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         contrastButton.setPreferredSize(new java.awt.Dimension(31, 31));
         contrastButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -599,7 +598,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         LightUpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/iluminar.png"))); // NOI18N
         LightUpButton.setToolTipText("Light up");
-        LightUpButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LightUpButton.setPreferredSize(new java.awt.Dimension(31, 31));
         LightUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -610,7 +608,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         GetDarkButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/oscurecer.png"))); // NOI18N
         GetDarkButton.setToolTipText("Dark image");
-        GetDarkButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         GetDarkButton.setPreferredSize(new java.awt.Dimension(31, 31));
         GetDarkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -627,7 +624,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         SenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinusoidal.png"))); // NOI18N
         SenButton.setToolTipText("Sen filter");
-        SenButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SenButton.setPreferredSize(new java.awt.Dimension(31, 31));
         SenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -638,7 +634,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         sepiaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sepia.png"))); // NOI18N
         sepiaButton.setToolTipText("Sepia filter");
-        sepiaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        sepiaButton.setPreferredSize(new java.awt.Dimension(31, 31));
         sepiaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sepiaButtonActionPerformed(evt);
@@ -648,7 +644,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         NegativeButton.setText("N");
         NegativeButton.setToolTipText("Negative filter");
-        NegativeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         NegativeButton.setMinimumSize(new java.awt.Dimension(31, 31));
         NegativeButton.setPreferredSize(new java.awt.Dimension(31, 31));
         NegativeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -660,7 +655,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         OwnFilterButton.setText("P");
         OwnFilterButton.setToolTipText("Own filter");
-        OwnFilterButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         OwnFilterButton.setPreferredSize(new java.awt.Dimension(31, 31));
         OwnFilterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -671,7 +665,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         dyeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/tintar.png"))); // NOI18N
         dyeButton.setToolTipText("Dye filter");
-        dyeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dyeButton.setPreferredSize(new java.awt.Dimension(31, 31));
         dyeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dyeButtonActionPerformed(evt);
@@ -681,7 +675,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         equalizationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ecualizar.png"))); // NOI18N
         equalizationButton.setToolTipText("Equalization filter");
-        equalizationButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        equalizationButton.setPreferredSize(new java.awt.Dimension(31, 31));
         equalizationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equalizationButtonActionPerformed(evt);
@@ -745,7 +739,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         rot90Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion90.png"))); // NOI18N
         rot90Button.setToolTipText("rotation of 90 grade");
-        rot90Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot90Button.setPreferredSize(new java.awt.Dimension(31, 31));
         rot90Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -756,7 +749,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         rot180Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion180.png"))); // NOI18N
         rot180Button.setToolTipText("rotation of 180 grade");
-        rot180Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot180Button.setPreferredSize(new java.awt.Dimension(31, 31));
         rot180Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -767,7 +759,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         rot270Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/rotacion270.png"))); // NOI18N
         rot270Button.setToolTipText("rotation of 270 grade");
-        rot270Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rot270Button.setPreferredSize(new java.awt.Dimension(31, 31));
         rot270Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -784,7 +775,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         MoreScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/aumentar.png"))); // NOI18N
         MoreScaleButton.setToolTipText("Zoom in");
-        MoreScaleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         MoreScaleButton.setPreferredSize(new java.awt.Dimension(31, 31));
         MoreScaleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -795,7 +785,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         LessScaleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/disminuir.png"))); // NOI18N
         LessScaleButton.setToolTipText("Zoom out");
-        LessScaleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LessScaleButton.setPreferredSize(new java.awt.Dimension(31, 31));
         LessScaleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -849,7 +838,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainDesktop.setLayout(mainDesktopLayout);
         mainDesktopLayout.setHorizontalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1354, Short.MAX_VALUE)
+            .addGap(0, 1595, Short.MAX_VALUE)
         );
         mainDesktopLayout.setVerticalGroup(
             mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1008,7 +997,7 @@ public class MainWindow extends javax.swing.JFrame {
                     RtgleButton.setSelected(true);
                 break;
                 case CURVE:
-                    RRtglButton.setSelected(true);
+                    CurveButton.setSelected(true);
                 break;
                 case CIRCLE:
                     CircleButton.setSelected(true);
@@ -1351,7 +1340,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void RotationSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RotationSliderStateChanged
         if(currentInternalWindow!=null) {
-            if(imgSource!=null && RotationSlider.getValue()!=0){
+            if(imgSource!=null){
                 try{
                     AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(RotationSlider.getValue()),imgSource.getWidth()/2,imgSource.getHeight()/2);
                     AffineTransformOp atop = new AffineTransformOp(at,AffineTransformOp.TYPE_BILINEAR);
@@ -1735,14 +1724,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_AboutItemActionPerformed
 
-    private void RRtglButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RRtglButtonActionPerformed
+    private void CurveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CurveButtonActionPerformed
         StateBarLabel.setText("Curve");
         if(currentInternalWindow!=null){
             ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.CURVE);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
             currentInternalWindow.getWindow().repaint();
         }
-    }//GEN-LAST:event_RRtglButtonActionPerformed
+    }//GEN-LAST:event_CurveButtonActionPerformed
 
     private void typeLineComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeLineComboActionPerformed
         if(currentInternalWindow != null){
@@ -1913,6 +1902,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel ContrastPanel;
     private javax.swing.JButton CopyButton;
     private javax.swing.JLabel CursorPosLabel;
+    private javax.swing.JToggleButton CurveButton;
     private javax.swing.JPanel DrawPanel;
     private javax.swing.JToggleButton EditButton;
     private javax.swing.JMenu EditMenu;
@@ -1936,7 +1926,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem OpenVideoButton;
     private javax.swing.JButton OwnFilterButton;
     private javax.swing.JToggleButton PointButton;
-    private javax.swing.JToggleButton RRtglButton;
     private javax.swing.JPanel RotationPanel;
     private javax.swing.JSlider RotationSlider;
     private javax.swing.JToggleButton RtgleButton;
