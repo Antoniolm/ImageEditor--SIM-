@@ -50,17 +50,17 @@ public abstract class InternalWindow extends JInternalFrame{
     public static InternalWindow getInstance(String extension,MainWindow parent,File file) throws IOException{
         InternalWindow result=null;
         System.out.println(extension);
-        if(extension.equals("jpg")){
+        if(extension.equals("jpg") || extension.equals("bmp") || extension.equals("gif") || extension.equals("png") || extension.equals("jpeg") || extension.equals("wbmp")){
             result=new InternalWindowImage(parent);
             BufferedImage img = ImageIO.read(file);
             ((InternalWindowImage)result).getCanvas().setImage(img);
             result.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
             ((InternalWindowImage)result).getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()+1,img.getHeight()+1));
         }
-        else if(extension.equals("wav")){
+        else if(extension.equals("wav") || extension.equals("aiff") ||extension.equals("au") || extension.equals("rmf") || extension.equals("mp3")){
             result=new InternalWindowSound(file);
         }
-        else if( extension.equals("avi")){
+        else if(extension.equals("avi") || extension.equals("mov") || extension.equals("mpeg")){
             result=InternalWindowJMFPlayer.getInstance(file);
         }
             

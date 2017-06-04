@@ -194,7 +194,6 @@ public class MainWindow extends javax.swing.JFrame {
         newMenu = new javax.swing.JMenuItem();
         OpenMenu = new javax.swing.JMenuItem();
         OpenCameraItem = new javax.swing.JMenuItem();
-        OpenVideoButton = new javax.swing.JMenuItem();
         SaveMenu = new javax.swing.JMenuItem();
         recordSoundButton = new javax.swing.JMenuItem();
         EditMenu = new javax.swing.JMenu();
@@ -874,14 +873,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         FileMenu.add(OpenCameraItem);
-
-        OpenVideoButton.setText("Open Video");
-        OpenVideoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OpenVideoButtonActionPerformed(evt);
-            }
-        });
-        FileMenu.add(OpenVideoButton);
 
         SaveMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
         SaveMenu.setText("Save");
@@ -1820,24 +1811,6 @@ public class MainWindow extends javax.swing.JFrame {
         currentInternalWindow.setVisible(true);
     }//GEN-LAST:event_CatchCameraButtonActionPerformed
 
-    private void OpenVideoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenVideoButtonActionPerformed
-        JFileChooser dlg = new JFileChooser();
-                                      
-        int resp = dlg.showOpenDialog(this);
-        if( resp == JFileChooser.APPROVE_OPTION) {
-             try{
-                File f = dlg.getSelectedFile();
-                InternalWindowJMFPlayer newIntWind = InternalWindowJMFPlayer.getInstance(f);
-                JInternalFrame window=newIntWind;
-                window.setTitle(f.getName());
-                mainDesktop.add(window);
-                window.setVisible(true);
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(this,"Error al abrir el video.","Save error",JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_OpenVideoButtonActionPerformed
-
     private void FilledTypeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilledTypeComboActionPerformed
         if(currentInternalWindow != null){
             
@@ -1895,7 +1868,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton OpenButton;
     private javax.swing.JMenuItem OpenCameraItem;
     private javax.swing.JMenuItem OpenMenu;
-    private javax.swing.JMenuItem OpenVideoButton;
     private javax.swing.JButton OwnFilterButton;
     private javax.swing.JToggleButton PointButton;
     private javax.swing.JPanel RotationPanel;
