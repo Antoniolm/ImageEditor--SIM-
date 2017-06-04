@@ -19,6 +19,7 @@
 
 package GUI;
 
+import java.io.File;
 import javax.swing.JInternalFrame;
 
 enum InternalWindowType{
@@ -40,4 +41,16 @@ public abstract class InternalWindow extends JInternalFrame{
         return type;
     }
     public abstract void initComponents();
+    
+    public static InternalWindow getInstance(String extension,MainWindow parent,File file){
+        InternalWindow result=null;
+        if(extension== "jpg")
+            result=new InternalWindowImage(parent);
+        else if(extension=="wav")
+            result=new InternalWindowSound(file);
+        else if( extension=="avi")
+            result=InternalWindowJMFPlayer.getInstance(file);
+            
+        return result;
+    }
 }
