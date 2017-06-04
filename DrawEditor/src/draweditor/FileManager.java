@@ -136,6 +136,18 @@ public class FileManager {
             dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
         }
         
+        //Sound 
+        dlg.addChoosableFileFilter(new FileNameExtensionFilter("wav","wav"));
+        dlg.addChoosableFileFilter(new FileNameExtensionFilter("aiff","aiff"));
+        dlg.addChoosableFileFilter(new FileNameExtensionFilter("au","au"));
+        dlg.addChoosableFileFilter(new FileNameExtensionFilter("rmf","rmf"));
+        dlg.addChoosableFileFilter(new FileNameExtensionFilter("mp3","mp3"));
+        
+        //Video
+        dlg.addChoosableFileFilter(new FileNameExtensionFilter("avi","avi"));
+        dlg.addChoosableFileFilter(new FileNameExtensionFilter("mov","mov"));
+        dlg.addChoosableFileFilter(new FileNameExtensionFilter("mpeg","mpeg"));
+        
         int resp = dlg.showOpenDialog(window);
         if( resp == JFileChooser.APPROVE_OPTION) {
              try{
@@ -143,7 +155,7 @@ public class FileManager {
                 newIntWind=InternalWindow.getInstance(getExtension(f.getName()), window, f);
                 newIntWind.setTitle(f.getName());                
             }catch(Exception ex){
-                JOptionPane.showMessageDialog(window,"Error al abrir la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(window,"Error to open the file.","Save error",JOptionPane.ERROR_MESSAGE);
             }
         }
         return newIntWind;
