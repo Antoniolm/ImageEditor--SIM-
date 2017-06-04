@@ -115,10 +115,9 @@ public class ResizeDialog extends javax.swing.JDialog {
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         Canvas2DPanel.setSizeImage(Integer.parseInt(WidthField.getText()), Integer.parseInt(HeightField.getText()));
         if(currentIntWind!=null){
-            JInternalFrame window=currentIntWind.getWindow();
             currentIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,Canvas2DPanel.getWidthImage()-1,Canvas2DPanel.getHeightImage()-1));
             currentIntWind.getCanvas().ChangeSizeImage();
-            window.repaint();
+            currentIntWind.repaint();
         }
         accepted=true;
         setVisible(false);

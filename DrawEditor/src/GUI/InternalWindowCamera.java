@@ -39,8 +39,8 @@ public class InternalWindowCamera extends InternalWindow{
             areaVisual.setFitArea(false);
             
             if (areaVisual!= null) {
-                internalWind.getContentPane().add(areaVisual, BorderLayout.CENTER);
-                internalWind.pack();
+                getContentPane().add(areaVisual, BorderLayout.CENTER);
+                pack();
             }
         }
 
@@ -68,12 +68,11 @@ public class InternalWindowCamera extends InternalWindow{
     
     @Override
     public void initComponents() {
-        internalWind=new JInternalFrame();
-        internalWind.setClosable(true);
-        internalWind.setIconifiable(true);
-        internalWind.setMaximizable(true);
-        internalWind.setResizable(true);
-        internalWind.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -91,7 +90,7 @@ public class InternalWindowCamera extends InternalWindow{
             }
         });
 
-        internalWind.pack();
+        pack();
     }
     
 }

@@ -33,12 +33,11 @@ enum InternalWindowType{
  *
  * @author LENOVO
  */
-public abstract class InternalWindow {
-    JInternalFrame internalWind;
+public abstract class InternalWindow extends JInternalFrame{
     InternalWindowType type;
     
-    public JInternalFrame getWindow(){
-        return internalWind;
+    public InternalWindowType getWindow(){
+        return type;
     }
     public abstract void initComponents();
 }

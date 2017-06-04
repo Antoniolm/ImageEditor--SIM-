@@ -30,16 +30,16 @@ public class InternalWindowRecord extends InternalWindow{
 
     @Override
     public void initComponents() {
-        internalWind=new JInternalFrame();
-        internalWind.setClosable(true);
-        internalWind.setIconifiable(true);
-        internalWind.setMaximizable(true);
-        internalWind.setResizable(true);
+        new JInternalFrame();
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         buttonGroup1 = new javax.swing.ButtonGroup();
         recordButton = new javax.swing.JToggleButton();
         stopButton = new javax.swing.JToggleButton();
 
-        internalWind.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -56,7 +56,7 @@ public class InternalWindowRecord extends InternalWindow{
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
-        internalWind.getContentPane().setLayout(new java.awt.FlowLayout());
+        getContentPane().setLayout(new java.awt.FlowLayout());
 
         buttonGroup1.add(recordButton);
         recordButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/RecordPressed_48x48.png"))); // NOI18N
@@ -65,7 +65,7 @@ public class InternalWindowRecord extends InternalWindow{
                 recordButtonActionPerformed(evt);
             }
         });
-        internalWind.getContentPane().add(recordButton);
+        getContentPane().add(recordButton);
 
         buttonGroup1.add(stopButton);
         stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/StopDisabled_48x48.png"))); // NOI18N
@@ -75,9 +75,9 @@ public class InternalWindowRecord extends InternalWindow{
                 stopButtonActionPerformed(evt);
             }
         });
-        internalWind.getContentPane().add(stopButton);
+        getContentPane().add(stopButton);
 
-        internalWind.pack();
+        pack();
     }
     
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {                                          

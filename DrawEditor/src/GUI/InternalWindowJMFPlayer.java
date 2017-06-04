@@ -29,10 +29,10 @@ public class InternalWindowJMFPlayer extends InternalWindow{
         try {
             player = Manager.createRealizedPlayer(ml);
             Component vc = player.getVisualComponent();
-            if(vc!=null)internalWind.add(vc, java.awt.BorderLayout.CENTER);
+            if(vc!=null)add(vc, java.awt.BorderLayout.CENTER);
                 Component cpc = player.getControlPanelComponent();
-            if(cpc!=null)internalWind.add(cpc, java.awt.BorderLayout.SOUTH);
-                internalWind.pack();
+            if(cpc!=null)add(cpc, java.awt.BorderLayout.SOUTH);
+                pack();
         }catch(Exception e) {
             System.err.println("InternalWindowJMFPlayer: "+e);
             player = null;
@@ -67,12 +67,11 @@ public class InternalWindowJMFPlayer extends InternalWindow{
     
     @Override
     public void initComponents() {
-        internalWind=new JInternalFrame();
-        internalWind.setClosable(true);
-        internalWind.setIconifiable(true);
-        internalWind.setMaximizable(true);
-        internalWind.setResizable(true);
-        internalWind.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -90,7 +89,7 @@ public class InternalWindowJMFPlayer extends InternalWindow{
             }
         });
 
-        internalWind.pack();
+        pack();
     }
     
 }

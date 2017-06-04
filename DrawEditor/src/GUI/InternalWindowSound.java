@@ -44,16 +44,15 @@ public class InternalWindowSound extends InternalWindow{
     
     @Override
     public void initComponents() {
-        internalWind=new JInternalFrame();
-        internalWind.setClosable(true);
-        internalWind.setIconifiable(true);
-        internalWind.setMaximizable(true);
-        internalWind.setResizable(true);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         buttonGroup1 = new javax.swing.ButtonGroup();
         playButton = new javax.swing.JToggleButton();
         stopButton = new javax.swing.JToggleButton();
 
-        internalWind.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -70,7 +69,7 @@ public class InternalWindowSound extends InternalWindow{
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
-        internalWind.getContentPane().setLayout(new java.awt.FlowLayout());
+        getContentPane().setLayout(new java.awt.FlowLayout());
 
         buttonGroup1.add(playButton);
         playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/PlayPressed_48x48.png"))); // NOI18N
@@ -82,7 +81,7 @@ public class InternalWindowSound extends InternalWindow{
                 stopButton.setIcon(new ImageIcon(getClass().getResource("/iconos/StopNormalRed_48x48.png")));
             }
         });
-        internalWind.getContentPane().add(playButton);
+        getContentPane().add(playButton);
 
         buttonGroup1.add(stopButton);
         stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/StopDisabled_48x48.png"))); // NOI18N
@@ -93,9 +92,9 @@ public class InternalWindowSound extends InternalWindow{
                 if(player!=null ) player.stop();
             }
         });
-        internalWind.getContentPane().add(stopButton);
+        getContentPane().add(stopButton);
 
-        internalWind.pack();
+        pack();
     }
     
     private javax.swing.ButtonGroup buttonGroup1;

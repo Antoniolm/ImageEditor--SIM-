@@ -31,22 +31,21 @@ public class InternalWindowImage extends InternalWindow{
     
     @Override
     public void initComponents() {
-        internalWind=new JInternalFrame();
-        internalWind.setClosable(true);
-        internalWind.setIconifiable(true);
-        internalWind.setMaximizable(true);
-        internalWind.setResizable(true);
-        internalWind.setSize(300, 300);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setSize(300, 300);
         jScrollPane1 = new JScrollPane();
         canvasPanel = new Canvas2DPanel();
 
-        internalWind.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        internalWind.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
             }
         });
-        internalWind.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
             }
@@ -64,7 +63,7 @@ public class InternalWindowImage extends InternalWindow{
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
-        internalWind.addMouseListener(new java.awt.event.MouseAdapter() {
+        addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 formMouseEntered(evt);
             }
@@ -94,9 +93,9 @@ public class InternalWindowImage extends InternalWindow{
 
         jScrollPane1.setViewportView(canvasPanel);
 
-        internalWind.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        internalWind.pack();
+        pack();
     }
     
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {                                            

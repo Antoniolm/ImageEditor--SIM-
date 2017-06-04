@@ -1018,8 +1018,8 @@ public class MainWindow extends javax.swing.JFrame {
         InternalWindowImage intWind=file.openFile(this);
         if(intWind!=null){
             currentInternalWindow=intWind;
-            mainDesktop.add(currentInternalWindow.getWindow());
-            currentInternalWindow.getWindow().setVisible(true);
+            mainDesktop.add(currentInternalWindow);
+            currentInternalWindow.setVisible(true);
         }
     }//GEN-LAST:event_OpenMenuActionPerformed
 
@@ -1042,8 +1042,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         if(isAccepted){
             currentInternalWindow=currentInt;
-            mainDesktop.add(currentInternalWindow.getWindow());
-            currentInternalWindow.getWindow().setVisible(true);
+            mainDesktop.add(currentInternalWindow);
+            currentInternalWindow.setVisible(true);
         }
     }//GEN-LAST:event_newMenuActionPerformed
 
@@ -1087,7 +1087,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null){
             ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.CIRCLE);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
-            currentInternalWindow.getWindow().repaint();
+            currentInternalWindow.repaint();
         }
     }//GEN-LAST:event_CircleButtonActionPerformed
 
@@ -1096,7 +1096,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null){
             ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.RECTANGLE);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
-            currentInternalWindow.getWindow().repaint();
+            currentInternalWindow.repaint();
         }
     }//GEN-LAST:event_RtgleButtonActionPerformed
 
@@ -1105,7 +1105,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null){
             ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.LINE);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
-            currentInternalWindow.getWindow().repaint();
+            currentInternalWindow.repaint();
         }
     }//GEN-LAST:event_LineButtonActionPerformed
 
@@ -1117,7 +1117,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null){
             ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.POINT);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
-            currentInternalWindow.getWindow().repaint();
+            currentInternalWindow.repaint();
         }
     }//GEN-LAST:event_PointButtonActionPerformed
 
@@ -1126,7 +1126,7 @@ public class MainWindow extends javax.swing.JFrame {
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
             if(EditButton.isSelected())
                 changeCurrentIntWind(((InternalWindowImage)currentInternalWindow));
-            currentInternalWindow.getWindow().repaint();
+            currentInternalWindow.repaint();
         }
     }//GEN-LAST:event_EditButtonActionPerformed
 
@@ -1455,8 +1455,8 @@ public class MainWindow extends javax.swing.JFrame {
         InternalWindowImage intWind=file.openFile(this);
         if(intWind!=null){
             currentInternalWindow=intWind;
-            mainDesktop.add(currentInternalWindow.getWindow());
-            currentInternalWindow.getWindow().setVisible(true);
+            mainDesktop.add(currentInternalWindow);
+            currentInternalWindow.setVisible(true);
         }
     }//GEN-LAST:event_OpenButtonActionPerformed
 
@@ -1476,8 +1476,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         if(isAccepted){
             currentInternalWindow=currentInt;
-            mainDesktop.add(currentInternalWindow.getWindow());
-            currentInternalWindow.getWindow().setVisible(true);
+            mainDesktop.add(currentInternalWindow);
+            currentInternalWindow.setVisible(true);
         }
     }//GEN-LAST:event_NewFileButtonActionPerformed
 
@@ -1485,10 +1485,10 @@ public class MainWindow extends javax.swing.JFrame {
         InternalWindowImage newIntWind = new InternalWindowImage(this);
         
         if(currentInternalWindow!= null){
-            Point2D currentPositionWind=currentInternalWindow.getWindow().getLocation();
+            Point2D currentPositionWind=currentInternalWindow.getLocation();
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
-            newIntWind.getWindow().setTitle(currentInternalWindow.getWindow().getTitle());
-            newIntWind.getWindow().setLocation((Point) currentPositionWind);
+            newIntWind.setTitle(currentInternalWindow.getTitle());
+            newIntWind.setLocation((Point) currentPositionWind);
             BufferedImage imgSrc=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
                     
             ColorModel model = imgSrc.getColorModel();
@@ -1498,8 +1498,8 @@ public class MainWindow extends javax.swing.JFrame {
             newIntWind.getCanvas().setImage(cloneImage);
             newIntWind.getCanvas().setClip(((InternalWindowImage)currentInternalWindow).getCanvas().getClip());
             currentInternalWindow=newIntWind;
-            mainDesktop.add(currentInternalWindow.getWindow());
-            currentInternalWindow.getWindow().setVisible(true);
+            mainDesktop.add(currentInternalWindow);
+            currentInternalWindow.setVisible(true);
         }
     }//GEN-LAST:event_CopyButtonActionPerformed
 
@@ -1526,7 +1526,7 @@ public class MainWindow extends javax.swing.JFrame {
             ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
             BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
             
-            String name=currentInternalWindow.getWindow().getTitle();
+            String name=currentInternalWindow.getTitle();
             if(imgSrce!=null){
                 int numBand=imgSrce.getRaster().getNumBands();
                 for(int i=0;i<numBand;i++){
@@ -1541,11 +1541,11 @@ public class MainWindow extends javax.swing.JFrame {
                     BufferedImage img = new BufferedImage(cm, bandRaster, false, null);
 
                     currentInternalWindow = new InternalWindowImage(this);
-                    currentInternalWindow.getWindow().setTitle(name+" (banda "+i+")");
+                    currentInternalWindow.setTitle(name+" (banda "+i+")");
                     ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(img);
-                    mainDesktop.add(currentInternalWindow.getWindow());
-                    currentInternalWindow.getWindow().setVisible(true);
-                    currentInternalWindow.getWindow().setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+                    mainDesktop.add(currentInternalWindow);
+                    currentInternalWindow.setVisible(true);
+                    currentInternalWindow.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
 
                     ((InternalWindowImage)currentInternalWindow).getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
                     
@@ -1563,7 +1563,7 @@ public class MainWindow extends javax.swing.JFrame {
             //Attach the currentShape to our image
             ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
             BufferedImage imgSrce=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
-            String name=currentInternalWindow.getWindow().getTitle();
+            String name=currentInternalWindow.getTitle();
             if(imgSrce!=null){
                     ColorSpace cs=null;
                     switch(ColorSpaceCombo.getSelectedItem().toString()){
@@ -1588,11 +1588,11 @@ public class MainWindow extends javax.swing.JFrame {
                         BufferedImage img = cop.filter(imgSrce, null);
 
                         currentInternalWindow = new InternalWindowImage(this);
-                        currentInternalWindow.getWindow().setTitle(name);
+                        currentInternalWindow.setTitle(name);
                         ((InternalWindowImage)currentInternalWindow).getCanvas().setImage(img);
-                        mainDesktop.add(currentInternalWindow.getWindow());
-                        currentInternalWindow.getWindow().setVisible(true);
-                        currentInternalWindow.getWindow().setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+                        mainDesktop.add(currentInternalWindow);
+                        currentInternalWindow.setVisible(true);
+                        currentInternalWindow.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
 
                         ((InternalWindowImage)currentInternalWindow).getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
                     }
@@ -1729,7 +1729,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null){
             ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.CURVE);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
-            currentInternalWindow.getWindow().repaint();
+            currentInternalWindow.repaint();
         }
     }//GEN-LAST:event_CurveButtonActionPerformed
 
@@ -1755,7 +1755,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(currentInternalWindow!=null){
             ((InternalWindowImage)currentInternalWindow).setGeometry(GeometryType.TEXT);
             ((InternalWindowImage)currentInternalWindow).getCanvas().setEdit(EditButton.isSelected());
-            currentInternalWindow.getWindow().repaint();
+            currentInternalWindow.repaint();
         }
     }//GEN-LAST:event_TextButtonActionPerformed
 
@@ -1767,7 +1767,7 @@ public class MainWindow extends javax.swing.JFrame {
             try {
                 File f = dlg.getSelectedFile();
                 InternalWindowRecord newIntWind=new InternalWindowRecord(f);
-                JInternalFrame window=newIntWind.getWindow();
+                JInternalFrame window=newIntWind;
                 window.setVisible(true);
                 mainDesktop.add(window);
 
@@ -1786,7 +1786,7 @@ public class MainWindow extends javax.swing.JFrame {
              try{
                 File f = dlg.getSelectedFile();
                 InternalWindowSound newIntWind = new InternalWindowSound(f);
-                JInternalFrame wind=newIntWind.getWindow();
+                JInternalFrame wind=newIntWind;
                 wind.setTitle(f.getName());
                 mainDesktop.add(wind);
                 wind.setVisible(true);
@@ -1838,14 +1838,14 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void OpenCameraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenCameraItemActionPerformed
         currentInternalWindow = InternalWindowCamera.getInstance();
-        currentInternalWindow.getWindow().setVisible(true);
-        mainDesktop.add(currentInternalWindow.getWindow());
+        currentInternalWindow.setVisible(true);
+        mainDesktop.add(currentInternalWindow);
     }//GEN-LAST:event_OpenCameraItemActionPerformed
 
     private void CatchCameraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatchCameraButtonActionPerformed
         currentInternalWindow=file.newFile(currentInternalWindow,"untitled.jpg",this,((InternalWindowCamera)currentInternalWindow).getImage());
-        mainDesktop.add(currentInternalWindow.getWindow());
-        currentInternalWindow.getWindow().setVisible(true);
+        mainDesktop.add(currentInternalWindow);
+        currentInternalWindow.setVisible(true);
     }//GEN-LAST:event_CatchCameraButtonActionPerformed
 
     private void OpenVideoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenVideoButtonActionPerformed
@@ -1856,7 +1856,7 @@ public class MainWindow extends javax.swing.JFrame {
              try{
                 File f = dlg.getSelectedFile();
                 InternalWindowJMFPlayer newIntWind = InternalWindowJMFPlayer.getInstance(f);
-                JInternalFrame window=newIntWind.getWindow();
+                JInternalFrame window=newIntWind;
                 window.setTitle(f.getName());
                 mainDesktop.add(window);
                 window.setVisible(true);
