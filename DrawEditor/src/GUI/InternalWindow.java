@@ -19,7 +19,12 @@
 
 package GUI;
 
+import java.awt.Dimension;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JInternalFrame;
 
 enum InternalWindowType{
@@ -42,14 +47,22 @@ public abstract class InternalWindow extends JInternalFrame{
     }
     public abstract void initComponents();
     
-    public static InternalWindow getInstance(String extension,MainWindow parent,File file){
+    public static InternalWindow getInstance(String extension,MainWindow parent,File file) throws IOException{
         InternalWindow result=null;
-        if(extension== "jpg")
+        System.out.println(extension);
+        if(extension.equals("jpg")){
             result=new InternalWindowImage(parent);
-        else if(extension=="wav")
+            BufferedImage img = ImageIO.read(file);
+            ((InternalWindowImage)result).getCanvas().setImage(img);
+            result.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+            ((InternalWindowImage)result).getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()+1,img.getHeight()+1));
+        }
+        else if(extension.equals("wav")){
             result=new InternalWindowSound(file);
-        else if( extension=="avi")
+        }
+        else if( extension.equals("avi")){
             result=InternalWindowJMFPlayer.getInstance(file);
+        }
             
         return result;
     }

@@ -193,7 +193,6 @@ public class MainWindow extends javax.swing.JFrame {
         FileMenu = new javax.swing.JMenu();
         newMenu = new javax.swing.JMenuItem();
         OpenMenu = new javax.swing.JMenuItem();
-        openSoundButton = new javax.swing.JMenuItem();
         OpenCameraItem = new javax.swing.JMenuItem();
         OpenVideoButton = new javax.swing.JMenuItem();
         SaveMenu = new javax.swing.JMenuItem();
@@ -868,14 +867,6 @@ public class MainWindow extends javax.swing.JFrame {
         });
         FileMenu.add(OpenMenu);
 
-        openSoundButton.setText("Open sound");
-        openSoundButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openSoundButtonActionPerformed(evt);
-            }
-        });
-        FileMenu.add(openSoundButton);
-
         OpenCameraItem.setText("Open Camera");
         OpenCameraItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1015,7 +1006,7 @@ public class MainWindow extends javax.swing.JFrame {
     //  Menu events
     //////////////////////////////////////////////////////////////////////////
     private void OpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuActionPerformed
-        InternalWindowImage intWind=file.openFile(this);
+        InternalWindow intWind=file.openFile(this);
         if(intWind!=null){
             currentInternalWindow=intWind;
             mainDesktop.add(currentInternalWindow);
@@ -1452,7 +1443,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
-        InternalWindowImage intWind=file.openFile(this);
+        InternalWindow intWind=file.openFile(this);
         if(intWind!=null){
             currentInternalWindow=intWind;
             mainDesktop.add(currentInternalWindow);
@@ -1777,25 +1768,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_recordSoundButtonActionPerformed
 
-    private void openSoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSoundButtonActionPerformed
-
-        JFileChooser dlg = new JFileChooser();
-                                      
-        int resp = dlg.showOpenDialog(this);
-        if( resp == JFileChooser.APPROVE_OPTION) {
-             try{
-                File f = dlg.getSelectedFile();
-                InternalWindowSound newIntWind = new InternalWindowSound(f);
-                JInternalFrame wind=newIntWind;
-                wind.setTitle(f.getName());
-                mainDesktop.add(wind);
-                wind.setVisible(true);
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(this,"Error al guardar la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_openSoundButtonActionPerformed
-
     private void BoldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoldButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BoldButtonActionPerformed
@@ -1967,7 +1939,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuItem newMenu;
-    private javax.swing.JMenuItem openSoundButton;
     private javax.swing.JMenuItem recordSoundButton;
     private javax.swing.JButton rot180Button;
     private javax.swing.JButton rot270Button;

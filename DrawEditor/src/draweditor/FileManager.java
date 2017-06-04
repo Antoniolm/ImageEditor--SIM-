@@ -127,10 +127,10 @@ public class FileManager {
      * @param window
      * @return 
      */
-    public InternalWindowImage openFile(MainWindow window){
+    public InternalWindow openFile(MainWindow window){
         String[] filterList=ImageIO.getWriterFileSuffixes();
         JFileChooser dlg = new JFileChooser();
-        InternalWindowImage newIntWind=null;
+        InternalWindow newIntWind=null;
                               
         for(int i=0;i<filterList.length;i=i+1){
             dlg.addChoosableFileFilter(new FileNameExtensionFilter(filterList[i], filterList[i]));
@@ -140,15 +140,8 @@ public class FileManager {
         if( resp == JFileChooser.APPROVE_OPTION) {
              try{
                 File f = dlg.getSelectedFile();
-                BufferedImage img = ImageIO.read(f);
-                newIntWind = new InternalWindowImage(window);
-                newIntWind.getCanvas().setImage(img);
-                newIntWind.setTitle(f.getName());
-                newIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
-                
-                FileManager.getSingletonInstance().getExtension(f.getName());
-
-                newIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()+1,img.getHeight()+1));
+                newIntWind=InternalWindow.getInstance(getExtension(f.getName()), window, f);
+                newIntWind.setTitle(f.getName());                
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(window,"Error al abrir la imagen.","Save error",JOptionPane.ERROR_MESSAGE);
             }
