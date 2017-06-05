@@ -996,7 +996,9 @@ public class MainWindow extends javax.swing.JFrame {
             FontClass font=intWind.getCanvas().getFontClass();
             fontCombo.setSelectedItem(font.getFont());
             SizeFontSpinner.setValue(font.getSizeFont());
-            //new buttons bold, italic
+            BoldButton.setSelected(font.isBold());
+            ItalicButton.setSelected(font.isItalic());
+            underlineButton.setSelected(font.isUnder());
             
             ShineSlider.setValue(0);
             RotationSlider.setValue(0);
