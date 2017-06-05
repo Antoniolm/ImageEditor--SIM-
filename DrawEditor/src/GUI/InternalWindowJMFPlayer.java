@@ -6,10 +6,16 @@
 package GUI;
 
 import java.awt.Component;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import javax.media.Buffer;
 import javax.media.Manager;
 import javax.media.MediaLocator;
 import javax.media.Player;
+import javax.media.control.FrameGrabbingControl;
+import javax.media.format.VideoFormat;
+import javax.media.util.BufferToImage;
 import javax.swing.JInternalFrame;
 
 /**
@@ -65,6 +71,17 @@ public class InternalWindowJMFPlayer extends InternalWindow{
                 System.err.println("VentanaInternaJMFPlayer: "+e);
             }
         }
+    }
+    
+    public BufferedImage getFrame(){
+        FrameGrabbingControl fgc;
+        String claseCtr = "javax.media.control.FrameGrabbingControl";
+        fgc = (FrameGrabbingControl)player.getControl(claseCtr);
+        Buffer bufferFrame = fgc.grabFrame();
+        BufferToImage bti;
+        bti=new BufferToImage((VideoFormat)bufferFrame.getFormat());
+        Image img = bti.createImage(bufferFrame);
+        return (BufferedImage)img;
     }
     
     @Override

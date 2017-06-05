@@ -1871,7 +1871,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void CatchCameraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatchCameraButtonActionPerformed
         if(currentInternalWindow!=null && (currentInternalWindow.getType()==InternalWindowType.CAMERA || currentInternalWindow.getType()==InternalWindowType.VIDEO)) {
-            currentInternalWindow=file.newFile(currentInternalWindow,"untitled.png",this,((InternalWindowCamera)currentInternalWindow).getImage());
+            if(currentInternalWindow.getType()==InternalWindowType.CAMERA)
+                currentInternalWindow=file.newFile(currentInternalWindow,"untitled.png",this,((InternalWindowCamera)currentInternalWindow).getImage());
+            else
+                currentInternalWindow=file.newFile(currentInternalWindow,"untitled.png",this,((InternalWindowJMFPlayer)currentInternalWindow).getFrame());
+            
             mainDesktop.add(currentInternalWindow);
             currentInternalWindow.setVisible(true);
         }
