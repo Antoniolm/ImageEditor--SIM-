@@ -22,8 +22,9 @@ public class InternalWindowCamera extends InternalWindow{
      */
     private Webcam camera = null;
     
-    private InternalWindowCamera() {
+    private InternalWindowCamera(MainWindow window) {
         initComponents();
+        parent=window;
         
         type=InternalWindowType.CAMERA;
         camera = Webcam.getDefault();
@@ -47,8 +48,8 @@ public class InternalWindowCamera extends InternalWindow{
     }
 
     
-    public static InternalWindowCamera getInstance(){
-        InternalWindowCamera v = new InternalWindowCamera();
+    public static InternalWindowCamera getInstance(MainWindow window){
+        InternalWindowCamera v = new InternalWindowCamera(window);
         return (v.camera!=null?v:null);
     }
      
@@ -74,6 +75,7 @@ public class InternalWindowCamera extends InternalWindow{
         setResizable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -92,5 +94,9 @@ public class InternalWindowCamera extends InternalWindow{
 
         pack();
     }
+    
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {                                            
+        parent.changeCurrentIntWind(this);
+    } 
     
 }

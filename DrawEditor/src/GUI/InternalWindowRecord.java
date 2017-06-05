@@ -21,8 +21,9 @@ public class InternalWindowRecord extends InternalWindow{
     /**
      * Creates new form InternalWindowRecord
      */
-    public InternalWindowRecord(File file) {
+    public InternalWindowRecord(File file,MainWindow window) {
         initComponents();
+        parent=window;
         type=InternalWindowType.RECORD;
         recorder=new SMSoundPlayerRecorder(file);
         ((SMSoundPlayerRecorder)recorder).addLineListener(new SoundManager());
@@ -41,6 +42,7 @@ public class InternalWindowRecord extends InternalWindow{
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -79,6 +81,10 @@ public class InternalWindowRecord extends InternalWindow{
 
         pack();
     }
+    
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {                                            
+        parent.changeCurrentIntWind(this);
+    } 
     
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {                                          
         if(recorder!= null) recorder.stop();

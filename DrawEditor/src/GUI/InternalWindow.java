@@ -41,6 +41,7 @@ enum InternalWindowType{
  */
 public abstract class InternalWindow extends JInternalFrame{
     InternalWindowType type;
+    MainWindow parent=null;
     
     public InternalWindowType getType(){
         return type;
@@ -58,10 +59,10 @@ public abstract class InternalWindow extends JInternalFrame{
             ((InternalWindowImage)result).getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()+1,img.getHeight()+1));
         }
         else if(extension.equals("wav") || extension.equals("aiff") ||extension.equals("au") || extension.equals("rmf") || extension.equals("mp3")){
-            result=new InternalWindowSound(file);
+            result=new InternalWindowSound(file,parent);
         }
         else if(extension.equals("avi") || extension.equals("mov") || extension.equals("mpeg")){
-            result=InternalWindowJMFPlayer.getInstance(file);
+            result=InternalWindowJMFPlayer.getInstance(file,parent);
         }
             
         return result;

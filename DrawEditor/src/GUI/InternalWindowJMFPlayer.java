@@ -21,8 +21,10 @@ public class InternalWindowJMFPlayer extends InternalWindow{
      private Player player = null;
 
     
-    private InternalWindowJMFPlayer(File f) {
+    private InternalWindowJMFPlayer(File f,MainWindow window) {
         initComponents();
+        parent=window;
+        
         type=InternalWindowType.VIDEO;
         String sfichero = "file:" + f.getAbsolutePath();
         MediaLocator ml = new MediaLocator(sfichero);
@@ -39,8 +41,8 @@ public class InternalWindowJMFPlayer extends InternalWindow{
         }
     }
     
-    public static InternalWindowJMFPlayer getInstance(File f){
-        InternalWindowJMFPlayer v = new InternalWindowJMFPlayer(f);
+    public static InternalWindowJMFPlayer getInstance(File f,MainWindow window){
+        InternalWindowJMFPlayer v = new InternalWindowJMFPlayer(f,window);
         if(v.player!=null) return v;
         else return null;
     }
@@ -73,6 +75,7 @@ public class InternalWindowJMFPlayer extends InternalWindow{
         setResizable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -91,5 +94,9 @@ public class InternalWindowJMFPlayer extends InternalWindow{
 
         pack();
     }
+    
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {                                            
+        parent.changeCurrentIntWind(this);
+    } 
     
 }

@@ -19,7 +19,6 @@ public class InternalWindowImage extends InternalWindow{
     /**
      * Creates new form InternalWindowImage
      */
-    MainWindow parent=null;
     private Canvas2DPanel canvasPanel;
     private JScrollPane jScrollPane1;
     

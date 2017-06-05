@@ -979,22 +979,22 @@ public class MainWindow extends javax.swing.JFrame {
       StateBarPanel.setVisible(SeeSBMenu.isSelected());
     }//GEN-LAST:event_SeeSBMenuActionPerformed
 
-    public void changeCurrentIntWind(InternalWindowImage intWind){
+    public void changeCurrentIntWind(InternalWindow intWind){
        currentInternalWindow=intWind;
        if(currentInternalWindow!=null && currentInternalWindow.getType()==InternalWindowType.IMAGE){
             SaveButton.setEnabled(true);
             SaveMenu.setEnabled(true);
-            FilledButton.setSelected(intWind.getCanvas().getAttribute().getFilled());
-            FilledTypeCombo.setSelectedItem(intWind.getCanvas().getAttribute().getFilledType());
-            TransButton.setSelected(intWind.getCanvas().getTransparency());
-            SmoothButton.setSelected(intWind.getCanvas().getRender());
-            thickSpinner.setValue(intWind.getCanvas().getAttribute().getThickness());
-            ColorCombo.setSelectedItem((Color)intWind.getCanvas().getAttribute().getColorT());
-            ColorBotCombo.setSelectedItem((Color)intWind.getCanvas().getAttribute().getColorB());
-            typeLineCombo.setSelectedItem(intWind.getCanvas().getAttribute().getStrokeStyle());
-            TransparencySlider.setValue(intWind.getCanvas().getAttribute().getTransValue());
+            FilledButton.setSelected(((InternalWindowImage)intWind).getCanvas().getAttribute().getFilled());
+            FilledTypeCombo.setSelectedItem(((InternalWindowImage)intWind).getCanvas().getAttribute().getFilledType());
+            TransButton.setSelected(((InternalWindowImage)intWind).getCanvas().getTransparency());
+            SmoothButton.setSelected(((InternalWindowImage)intWind).getCanvas().getRender());
+            thickSpinner.setValue(((InternalWindowImage)intWind).getCanvas().getAttribute().getThickness());
+            ColorCombo.setSelectedItem((Color)((InternalWindowImage)intWind).getCanvas().getAttribute().getColorT());
+            ColorBotCombo.setSelectedItem((Color)((InternalWindowImage)intWind).getCanvas().getAttribute().getColorB());
+            typeLineCombo.setSelectedItem(((InternalWindowImage)intWind).getCanvas().getAttribute().getStrokeStyle());
+            TransparencySlider.setValue(((InternalWindowImage)intWind).getCanvas().getAttribute().getTransValue());
             
-            FontClass font=intWind.getCanvas().getFontClass();
+            FontClass font=((InternalWindowImage)intWind).getCanvas().getFontClass();
             fontCombo.setSelectedItem(font.getFont());
             SizeFontSpinner.setValue(font.getSizeFont());
             BoldButton.setSelected(font.isBold());
@@ -1005,7 +1005,7 @@ public class MainWindow extends javax.swing.JFrame {
             RotationSlider.setValue(0);
             umbraSlider.setValue(128);
 
-            switch(intWind.getCanvas().getGeometry()){
+            switch(((InternalWindowImage)intWind).getCanvas().getGeometry()){
                 case POINT:
                     PointButton.setSelected(true);
                 break;
@@ -1026,7 +1026,7 @@ public class MainWindow extends javax.swing.JFrame {
                 break;
             }
 
-           if(intWind.getCanvas().getEdit())
+           if(((InternalWindowImage)intWind).getCanvas().getEdit())
                EditButton.setSelected(true);
        }
        else {
@@ -1808,7 +1808,7 @@ public class MainWindow extends javax.swing.JFrame {
         if( resp == JFileChooser.APPROVE_OPTION) {
             try {
                 File f = dlg.getSelectedFile();
-                InternalWindowRecord newIntWind=new InternalWindowRecord(f);
+                InternalWindowRecord newIntWind=new InternalWindowRecord(f,this);
                 JInternalFrame window=newIntWind;
                 window.setVisible(true);
                 mainDesktop.add(window);
@@ -1864,7 +1864,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ColorBotComboActionPerformed
 
     private void OpenCameraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenCameraItemActionPerformed
-        currentInternalWindow = InternalWindowCamera.getInstance();
+        currentInternalWindow = InternalWindowCamera.getInstance(this);
         currentInternalWindow.setVisible(true);
         mainDesktop.add(currentInternalWindow);
     }//GEN-LAST:event_OpenCameraItemActionPerformed

@@ -24,8 +24,10 @@ public class InternalWindowSound extends InternalWindow{
     /**
      * Creates new form InternalWindowSound
      */
-    public InternalWindowSound(File file) {
+    public InternalWindowSound(File file,MainWindow window) {
         initComponents();
+        parent=window;
+        
         type=InternalWindowType.SOUND;
         player = new SMClipPlayer(file);
         ((SMClipPlayer)player).addLineListener(new LineListener() {
@@ -54,6 +56,7 @@ public class InternalWindowSound extends InternalWindow{
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -96,6 +99,10 @@ public class InternalWindowSound extends InternalWindow{
 
         pack();
     }
+    
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {                                            
+        parent.changeCurrentIntWind(this);
+    } 
     
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JToggleButton playButton;
