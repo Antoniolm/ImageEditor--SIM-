@@ -1846,7 +1846,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenCameraItemActionPerformed
 
     private void CatchCameraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatchCameraButtonActionPerformed
-        currentInternalWindow=file.newFile(currentInternalWindow,"untitled.jpg",this,((InternalWindowCamera)currentInternalWindow).getImage());
+        currentInternalWindow=file.newFile(currentInternalWindow,"untitled.png",this,((InternalWindowCamera)currentInternalWindow).getImage());
         mainDesktop.add(currentInternalWindow);
         currentInternalWindow.setVisible(true);
     }//GEN-LAST:event_CatchCameraButtonActionPerformed
