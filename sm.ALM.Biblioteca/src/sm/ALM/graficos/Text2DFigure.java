@@ -28,10 +28,12 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
+import java.awt.font.TextAttribute;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
 
 public class Text2DFigure extends Figure{
     private String text;
@@ -69,8 +71,7 @@ public class Text2DFigure extends Figure{
             g2d.setStroke(new BasicStroke());
         }
         
-        FontClass font=attribute.getFont();
-        getTextShape(g2d, new Font(font.getFont(), font.getStyleFont(), font.getSizeFont()));
+        getTextShape(g2d, attribute.getFont().generateFont());
                 
         AffineTransform trans=new AffineTransform();
         trans.translate(position.getX(), position.getY());
@@ -91,7 +92,7 @@ public class Text2DFigure extends Figure{
     }
     
     public void getTextShape(Graphics2D g2d, Font font) {
-        if(text!=""){
+        if(text!=""){          
             FontRenderContext frc = g2d.getFontRenderContext();
             TextLayout tl = new TextLayout(text, font, frc);
             currentShape=tl.getOutline(null);

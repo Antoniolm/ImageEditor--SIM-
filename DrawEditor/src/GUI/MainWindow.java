@@ -1794,15 +1794,24 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_recordSoundButtonActionPerformed
 
     private void BoldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoldButtonActionPerformed
-        // TODO add your handling code here:
+        if(currentInternalWindow!=null){
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),
+                    BoldButton.isSelected(),ItalicButton.isSelected(),underlineButton.isSelected());
+        }
     }//GEN-LAST:event_BoldButtonActionPerformed
 
     private void ItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItalicButtonActionPerformed
-        // TODO add your handling code here:
+        if(currentInternalWindow!=null){
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),
+                    BoldButton.isSelected(),ItalicButton.isSelected(),underlineButton.isSelected());
+        }
     }//GEN-LAST:event_ItalicButtonActionPerformed
 
     private void underlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_underlineButtonActionPerformed
-        // TODO add your handling code here:
+        if(currentInternalWindow!=null){
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),
+                    BoldButton.isSelected(),ItalicButton.isSelected(),underlineButton.isSelected());
+        }
     }//GEN-LAST:event_underlineButtonActionPerformed
 
     private void TransparencySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_TransparencySliderStateChanged
@@ -1815,14 +1824,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_TransparencySliderStateChanged
 
     private void fontComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontComboActionPerformed
-        int style=0;
-        if(BoldButton.isSelected())
-            style=style | Font.BOLD;
-        if(ItalicButton.isSelected())
-            style=style | Font.ITALIC;
-        
         if(currentInternalWindow!=null){
-            ((InternalWindowImage)currentInternalWindow).getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),0);
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),
+                    BoldButton.isSelected(),ItalicButton.isSelected(),underlineButton.isSelected());
         }
     }//GEN-LAST:event_fontComboActionPerformed
 
@@ -1863,7 +1867,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_FilledTypeComboActionPerformed
 
     private void SizeFontSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SizeFontSpinnerStateChanged
-        // TODO add your handling code here:
+        if(currentInternalWindow!=null){
+            ((InternalWindowImage)currentInternalWindow).getCanvas().setFont((String)fontCombo.getSelectedItem(),(int)SizeFontSpinner.getValue(),
+                    BoldButton.isSelected(),ItalicButton.isSelected(),underlineButton.isSelected());
+        }
     }//GEN-LAST:event_SizeFontSpinnerStateChanged
     
     //Methods 

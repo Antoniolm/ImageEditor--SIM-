@@ -55,7 +55,7 @@ public class Attribute {
         comp=null;
         transValue=10;
         render=null;
-        font=new FontClass("Arial",15,0);
+        font=new FontClass("Arial",15,false,false,false);
         strokeValue=1;
     }
    

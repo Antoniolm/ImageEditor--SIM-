@@ -19,24 +19,32 @@
 
 package sm.ALM.graficos;
 
+import java.awt.Font;
+import java.awt.font.TextAttribute;
+import java.util.Map;
+
 
 public class FontClass {
-    String font;
+    String fontType;
     int sizeFont;
-    int styleFont;
+    boolean isBold;
+    boolean isItalic;
+    boolean isUnderLine;
     
-    public FontClass(String aFont, int aSize,int aStyle){
-        font=aFont;
+    public FontClass(String aFont, int aSize,boolean bold, boolean italic, boolean underLight){
+        fontType=aFont;
         sizeFont=aSize;
-        styleFont=aStyle;
+        isBold=bold;
+        isItalic=italic;
+        isUnderLine=underLight;
     }
     
     public String getFont() {
-        return font;
+        return fontType;
     }
 
     public void setFont(String font) {
-        this.font = font;
+        this.fontType = font;
     }
 
     public int getSizeFont() {
@@ -47,12 +55,40 @@ public class FontClass {
         this.sizeFont = sizeFont;
     }
 
-    public int getStyleFont() {
-        return styleFont;
+    public boolean isBold() {
+        return isBold;
+    }
+    
+    public boolean isItalic() {
+        return isItalic;
     }
 
-    public void setStyleFont(int styleFont) {
-        this.styleFont = styleFont;
+    public boolean isUnder() {
+        return isUnderLine;
+    }
+    
+    public void setStyle(boolean bold, boolean italic, boolean underLight) {
+        isBold=bold;
+        isItalic=italic;
+        isUnderLine=underLight;
+    }
+    
+    public Font generateFont(){
+        int style=0;
+        if(isBold)
+            style=style | Font.BOLD;
+        if(isItalic)
+            style=style | Font.ITALIC;
+        
+        Font font=new Font(fontType,style,sizeFont);
+        
+        if(isUnderLine){
+            Map atributosTexto = font.getAttributes();
+            atributosTexto.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+            font=font.deriveFont(atributosTexto);
+        }
+        
+        return font;
     }
     
     

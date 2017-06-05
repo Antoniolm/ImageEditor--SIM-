@@ -319,12 +319,12 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return (Color)attribute.getColorT();
     }
     
-    public void setFont(String font,int size,int style){
-        attribute.setFont(new FontClass(font,size,style));
+    public void setFont(String font,int size,boolean bold, boolean italic, boolean underLight){
+        attribute.setFont(new FontClass(font,size,bold,italic,underLight));
         if(editMode){
             Figure fig=vShape.getFigure();
             if(fig!=null)
-                fig.getAttribute().setFont(new FontClass(font,size,style));
+                fig.getAttribute().setFont(new FontClass(font,size,bold,italic,underLight));
         }
         
         repaint();
