@@ -981,8 +981,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void changeCurrentIntWind(InternalWindowImage intWind){
        currentInternalWindow=intWind;
-       if(currentInternalWindow!=null){
-            
+       if(currentInternalWindow!=null && currentInternalWindow.getType()==InternalWindowType.IMAGE){
+            SaveButton.setEnabled(true);
+            SaveMenu.setEnabled(true);
             FilledButton.setSelected(intWind.getCanvas().getAttribute().getFilled());
             FilledTypeCombo.setSelectedItem(intWind.getCanvas().getAttribute().getFilledType());
             TransButton.setSelected(intWind.getCanvas().getTransparency());
@@ -1027,6 +1028,10 @@ public class MainWindow extends javax.swing.JFrame {
 
            if(intWind.getCanvas().getEdit())
                EditButton.setSelected(true);
+       }
+       else {
+           SaveMenu.setEnabled(false);
+           SaveButton.setEnabled(false);
        }
     }
     //////////////////////////////////////////////////////////////////////////
@@ -1507,6 +1512,8 @@ public class MainWindow extends javax.swing.JFrame {
             currentPositionWind.setLocation(currentPositionWind.getX()+20, currentPositionWind.getY()+20);
             newIntWind.setTitle(currentInternalWindow.getTitle());
             newIntWind.setLocation((Point) currentPositionWind);
+            
+            ((InternalWindowImage)currentInternalWindow).getCanvas().drawInImage(); 
             BufferedImage imgSrc=((InternalWindowImage)currentInternalWindow).getCanvas().getImage();
                     
             ColorModel model = imgSrc.getColorModel();

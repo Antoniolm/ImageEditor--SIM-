@@ -42,7 +42,7 @@ enum InternalWindowType{
 public abstract class InternalWindow extends JInternalFrame{
     InternalWindowType type;
     
-    public InternalWindowType getWindow(){
+    public InternalWindowType getType(){
         return type;
     }
     public abstract void initComponents();
