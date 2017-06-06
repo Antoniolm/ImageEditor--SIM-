@@ -12,14 +12,19 @@ import sm.sound.SMRecorder;
 import sm.sound.SMSoundPlayerRecorder;
 
 /**
- *
- * @author LENOVO
+ * That class will create a internal window that will let us record a sound.
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class InternalWindowRecord extends InternalWindow{
-    
-    SMRecorder recorder;
     /**
-     * Creates new form InternalWindowRecord
+     * It will be manage the recorded sound
+     */
+    SMRecorder recorder;
+
+    /**
+     * Constructor of our internalWindowCamera
+     * @param file the file where the sound will be record
+     * @param window The parent of our internal window
      */
     public InternalWindowRecord(File file,MainWindow window) {
         initComponents();
@@ -29,6 +34,9 @@ public class InternalWindowRecord extends InternalWindow{
         ((SMSoundPlayerRecorder)recorder).addLineListener(new SoundManager());
     }
 
+    /**
+     * It will initialize the components of our internal window
+     */
     @Override
     public void initComponents() {
         new JInternalFrame();

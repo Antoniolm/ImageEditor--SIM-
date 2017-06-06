@@ -14,15 +14,20 @@ import sm.sound.SMClipPlayer;
 import sm.sound.SMPlayer;
 
 /**
- *
- * @author LENOVO
+ * That class will create a internal window that will play and sound.
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class InternalWindowSound extends InternalWindow{
     
+    /**
+     * That variable will manage the played sound
+     */
     SMPlayer player;
     
     /**
-     * Creates new form InternalWindowSound
+     * Constructor of our InternalWindowSound
+     * @param f the file that will be played
+     * @param window 
      */
     public InternalWindowSound(File file,MainWindow window) {
         initComponents();
@@ -44,6 +49,9 @@ public class InternalWindowSound extends InternalWindow{
         });
     }
     
+    /**
+     * It will initialize the components of our internal window
+     */
     @Override
     public void initComponents() {
         setClosable(true);

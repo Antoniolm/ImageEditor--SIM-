@@ -1,8 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// *********************************************************************
+// **
+// ** Copyright (C) 2017 Antonio David López Machado
+// **
+// ** This program is free software: you can redistribute it and/or modify
+// ** it under the terms of the GNU General Public License as published by
+// ** the Free Software Foundation, either version 3 of the License, or
+// ** (at your option) any later version.
+// **
+// ** This program is distributed in the hope that it will be useful,
+// ** but WITHOUT ANY WARRANTY; without even the implied warranty of
+// ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// ** GNU General Public License for more details.
+// **
+// ** You should have received a copy of the GNU General Public License
+// ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// **
+// *********************************************************************
+
 package GUI;
 
 import java.awt.image.BufferedImage;
@@ -12,22 +26,45 @@ import sm.ALM.graficos.Canvas2DPanel;
 import sm.ALM.graficos.GeometryType;
 
 /**
- *
- * @author LENOVO
+ * That class will create a internal window that will show an image.
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class InternalWindowImage extends InternalWindow{
     /**
-     * Creates new form InternalWindowImage
+     * Canvas that contain the image of our internal window
      */
     private Canvas2DPanel canvasPanel;
-    private JScrollPane jScrollPane1;
     
+    /**
+     * Constructor of our internalWindowImage
+     * @param window The parent of our internal window
+     */
     public InternalWindowImage(MainWindow window) {
         initComponents();
         parent=window;       
         type=InternalWindowType.IMAGE;
     }
     
+    /**
+     * It will assign a new value to our geometry type in 
+     * the canvas2DPanel
+     * @param geom the new value for our geometry type
+     */
+    void setGeometry(GeometryType geom){
+        canvasPanel.setGeometry(geom);
+    }
+    
+    /**
+     * It will return our canvas
+     * @return 
+     */
+    public Canvas2DPanel getCanvas(){
+        return canvasPanel;
+    }
+    
+    /**
+     * It will initialize the components of our internal window
+     */
     @Override
     public void initComponents() {
         setClosable(true);
@@ -35,7 +72,7 @@ public class InternalWindowImage extends InternalWindow{
         setMaximizable(true);
         setResizable(true);
         setSize(300, 300);
-        jScrollPane1 = new JScrollPane();
+        JScrollPane jScrollPane1 = new JScrollPane();
         canvasPanel = new Canvas2DPanel();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -133,14 +170,5 @@ public class InternalWindowImage extends InternalWindow{
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {                                          
         parent.changeCurrentIntWind(null);
     }                                         
-
-    void setGeometry(GeometryType geom){
-        canvasPanel.setGeometry(geom);
-    }
-    
-    public Canvas2DPanel getCanvas(){
-        return canvasPanel;
-    }
-
     
 }

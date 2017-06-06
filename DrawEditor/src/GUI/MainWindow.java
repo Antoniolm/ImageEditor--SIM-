@@ -70,15 +70,32 @@ import sm.image.KernelProducer;
 import sm.image.LookupTableProducer;
 import sm.image.TintOp;
 
+/**
+ * That class will manage our main window. That object will mange all the
+ * elements of our application.
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class MainWindow extends javax.swing.JFrame {
-    /**
-     * Creates new form MainWindow
-     */
     
+    /**
+     * The current internal window. That can be of any type
+     */
     InternalWindow currentInternalWindow; 
+    
+    /**
+     * The current image. It will be require in some image filters
+     */
     BufferedImage imgSource;
+    
+    /**
+     * It will manage the creation of new currentInternalWindow and
+     * the open/save of files
+     */
     FileManager file;
     
+    /**
+     * Constructor of our MainWindow
+     */
     public MainWindow() {
         setMinimumSize(new Dimension(1500,900));
         initComponents();
@@ -979,6 +996,11 @@ public class MainWindow extends javax.swing.JFrame {
       StateBarPanel.setVisible(SeeSBMenu.isSelected());
     }//GEN-LAST:event_SeeSBMenuActionPerformed
 
+    /**
+     * It will change the state of our elements in the main window. The elements
+     * will set the state of the new current internal window.
+     * @param intWind  the new current internal window
+     */
     public void changeCurrentIntWind(InternalWindow intWind){
        currentInternalWindow=intWind;
        if(currentInternalWindow!=null && currentInternalWindow.getType()==InternalWindowType.IMAGE){
@@ -1034,6 +1056,7 @@ public class MainWindow extends javax.swing.JFrame {
            SaveButton.setEnabled(false);
        }
     }
+    
     //////////////////////////////////////////////////////////////////////////
     //  Menu events
     //////////////////////////////////////////////////////////////////////////
@@ -1905,7 +1928,10 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SizeFontSpinnerStateChanged
     
-    //Methods 
+    /**
+     * It will change the state of our cursor
+     * @param message 
+     */ 
     public void setCursorState(String message){
         CursorPosLabel.setText(message);
     }
