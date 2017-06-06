@@ -23,13 +23,30 @@ package sm.ALM.imagen;
 import java.awt.image.BufferedImage;
 import sm.image.BufferedImageOpAdapter;
 
+/**
+ * That class will apply an umbralization in our images.
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class UmbralizacionOp  extends BufferedImageOpAdapter{
+    /**
+     * The umbral value of our filter
+     */
     private int umbral;
 
+    /**
+     * Constructor
+     * @param umbral umbra value of our filter
+     */
     public UmbralizacionOp(int umbral) {
         this.umbral = umbral;
     }
     
+    /**
+     * It will apply the filter in our source image
+     * @param src original image
+     * @param dest result image
+     * @return the filtered image
+     */
     public BufferedImage filter(BufferedImage src, BufferedImage dest){
         if (src == null) {
             throw new NullPointerException("src image is null");

@@ -69,7 +69,7 @@ public abstract class InternalWindow extends JInternalFrame{
      * @param extension The extension of our file
      * @param parent the parent of our internals windows
      * @param file the file that will show our internal window
-     * @return
+     * @return return a new instance of Internal Window
      * @throws IOException 
      */
     public static InternalWindow getInstance(String extension,MainWindow parent,File file) throws IOException{

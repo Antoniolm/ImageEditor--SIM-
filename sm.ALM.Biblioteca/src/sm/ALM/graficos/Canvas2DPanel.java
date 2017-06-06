@@ -45,19 +45,26 @@ import java.util.ArrayList;
 import java.util.List;
 import static sm.ALM.graficos.GeometryType.*;
 
-
+/**
+ * That class will manage a canvas that has an image inside.
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class Canvas2DPanel extends javax.swing.JPanel {
-    GeometryType geometry;
-    protected BufferedImage image;
-    protected Point initPos;
-    private int currentColor;
-    static float widthSize=300;
-    static float heightSize=300;
-    FigureManager vShape;
-    Attribute attribute;
-    Shape clipShape;
-    boolean editMode;
+    GeometryType geometry;         //current selected geometry type 
+    protected BufferedImage image; //the image that is manage for our canvas
+    protected Point initPos;       //the initial position of our mouse when the user
+                                   //create a new shape
+    private int currentColor;      //current selected color
+    static float widthSize=300;    //current width size of our canvas
+    static float heightSize=300;   //current height size of our canvas
+    FigureManager vShape;          //current manager of shapes
+    Attribute attribute;           //the current state of the attributes of our canvas
+    Shape clipShape;               //shape that define the limit to draw
+    boolean editMode;              //indicate if the canvas is in edit mode or not
     
+    /**
+     * Constructor
+     */
     public Canvas2DPanel() {
         initComponents();
         initPos=new Point(0,0);
@@ -127,8 +134,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @param g 
+     * Draw all the element of our canvas(image and shape)
+     * @param g the graphics where the elements will be draw
      */
     public void paint(Graphics g){
         super.paint(g);
@@ -149,33 +156,40 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @return 
+     * It will return the current geometry type of our canvas
+     * @return current geometry type
      */
     public GeometryType getGeometry(){
         return geometry;
     }
     
     /**
-     * 
-     * @param aType 
+     * It will set a new value to the geometry type of our canvas
+     * @param aType the new value for that variable
      */
     public void setGeometry(GeometryType aType){
         geometry=aType;
     }
     
-    
+    /**
+     * It will return the figure manager
+     * @return figure manager object
+     */
     public FigureManager getFigure(){
         return vShape;
     }
     
+    /**
+     * It will return the group of attribute of our canvas
+     * @return the attribute of our canvas
+     */
     public Attribute getAttribute(){
         return attribute;
     }
     
     /**
-     * 
-     * @param value 
+     * It will set a new value for our color top
+     * @param value the new value for that variable
      */
     public void setColorT(Color value){
         attribute.setColorT(value);
@@ -189,8 +203,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @param value 
+     * It will set a new value for our color bottom
+     * @param value the new value for that variable
      */
     public void setColorB(Color value){
         attribute.setColorB(value);
@@ -204,8 +218,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
         
     /**
-     * 
-     * @param boolValue 
+     * It will change the variable filled. That variable indicate if the shape
+     * will draw filled or not
+     * @param boolValue the new value (true or false)
      */
     public void setFilled(boolean boolValue){
         attribute.filled=boolValue;
@@ -218,6 +233,10 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         repaint();
     }
     
+    /**
+     * It will set the current type of filled
+     * @param type the current type of filled
+     */
     public void setFilledType(String type){
         attribute.setFilledType(type);
         if(editMode){
@@ -230,9 +249,9 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
    
     /**
-     * 
-     * @param stroke
-     * @param value 
+     * It will set the thick of our lines
+     * @param stroke the new stroke
+     * @param value the new size of lines
      */
     public void setThick(Stroke stroke,Integer value){
         attribute.setStroke(stroke,value);
@@ -246,8 +265,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @param style 
+     * It will set the style of our stroke
+     * @param style (solid or broken lines)
      */
     public void setStrokeStyle(String style){
         attribute.setStrokeStyle(style);
@@ -261,8 +280,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
         
     /**
-     * 
-     * @param value 
+     * IT will set the transparency of our canvas
+     * @param value the new transparency
      */
     public void setTransparency(Composite value,int transValue){
         attribute.setComp(value,transValue);
@@ -276,8 +295,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @return 
+     * It will return if is selected or not the transparency feature
+     * @return true if is selected that feature
      */
     public boolean getTransparency(){
         boolean result=false;
@@ -289,8 +308,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @param value 
+     * It will set a new value for our render
+     * @param value the new value
      */
     public void setRender(RenderingHints value){
         attribute.setRender(value);
@@ -304,8 +323,8 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @return 
+     * It will return the current render of our canvas
+     * @return the render object
      */
     public boolean getRender(){
         boolean result=false;
@@ -315,28 +334,44 @@ public class Canvas2DPanel extends javax.swing.JPanel {
         return result;
     }
     
+    /**
+     * it will return the current color top of our canvas
+     * @return the color object
+     */
     public Color getCurrentColor(){
         return (Color)attribute.getColorT();
     }
     
-    public void setFont(String font,int size,boolean bold, boolean italic, boolean underLight){
-        attribute.setFont(new FontClass(font,size,bold,italic,underLight));
+    /**
+     * It will change the current font of our canvas
+     * @param font the font type of our text
+     * @param size the size of our text
+     * @param bold if has bold style or not 
+     * @param italic if has italic style or not
+     * @param underline if has underline style or not
+     */
+    public void setFont(String font,int size,boolean bold, boolean italic, boolean underline){
+        attribute.setFont(new FontClass(font,size,bold,italic,underline));
         if(editMode){
             Figure fig=vShape.getFigure();
             if(fig!=null)
-                fig.getAttribute().setFont(new FontClass(font,size,bold,italic,underLight));
+                fig.getAttribute().setFont(new FontClass(font,size,bold,italic,underline));
         }
         
         repaint();
     }
     
+    /**
+     * It will return the fontclass of our canvas
+     * @return the current fontclass object
+     */
     public FontClass getFontClass(){
         return attribute.getFont();
     }
     
     /**
-     * 
-     * @param value 
+     * It will set the value of our edit mode variable
+     * @param value the new value
      */
     public void setEdit(boolean value){
         editMode=value;
@@ -350,16 +385,16 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @return 
+     * It will return if our canvas is in edit mode or not
+     * @return true if is edit mode 
      */
     public boolean getEdit(){
         return editMode;
     }
     
     /**
-     * 
-     * @param newClip 
+     * It will change the value of our shape clip
+     * @param newClip the new value for our shape clip
      */
     public void setClip(Shape newClip){
         clipShape=newClip;

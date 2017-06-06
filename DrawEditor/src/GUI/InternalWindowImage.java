@@ -56,7 +56,7 @@ public class InternalWindowImage extends InternalWindow{
     
     /**
      * It will return our canvas
-     * @return 
+     * @return our current canvas2DPanel
      */
     public Canvas2DPanel getCanvas(){
         return canvasPanel;

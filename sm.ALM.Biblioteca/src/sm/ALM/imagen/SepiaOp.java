@@ -16,19 +16,29 @@
 // ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // **
 // *********************************************************************
+
 package sm.ALM.imagen;
 
 import java.awt.image.BufferedImage;
 import sm.image.BufferedImageOpAdapter;
 
 /**
- *
- * @author Antonio david lopez machado
+ * That class will create a sepia filter to our images.
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class SepiaOp extends BufferedImageOpAdapter{
+    /**
+     * Constructor
+     */
     public SepiaOp () {
      }
     
+    /**
+     * It will apply the filter in our source image
+     * @param src original image
+     * @param dest result image
+     * @return the filtered image
+     */
     public BufferedImage filter(BufferedImage src, BufferedImage dest){
         if (src == null) {
             throw new NullPointerException("src image is null");

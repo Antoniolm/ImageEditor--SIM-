@@ -29,9 +29,9 @@ public class ResizeDialog extends javax.swing.JDialog {
     
     /**
      * Constructor for our ResizeDialog
-     * @param parent
+     * @param parent the parent of our resize dialog
      * @param modal 
-     * @param IntWind 
+     * @param IntWind  
      */
     public ResizeDialog(java.awt.Frame parent, boolean modal,InternalWindowImage IntWind) {
         super(parent, modal);
@@ -142,7 +142,7 @@ public class ResizeDialog extends javax.swing.JDialog {
 
     /**
      * it return if the user push the confirm button or he didn't do
-     * @return 
+     * @return true if was pushed the confirm button or not
      */
     public boolean isAccepted(){
         return accepted;

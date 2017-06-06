@@ -29,7 +29,7 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 
 /**
- * That class will create a internal window that will play and sound.
+ * That class will manage the attribute of our shapes
  * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class Attribute {

@@ -69,7 +69,7 @@ public class InternalWindowCamera extends InternalWindow{
     /**
      * It will return the instance of our internal window camera
      * @param window The parent of our internal window
-     * @return 
+     * @return the instance of our internalwindow camera.
      */
     public static InternalWindowCamera getInstance(MainWindow window){
         InternalWindowCamera v = new InternalWindowCamera(window);

@@ -72,7 +72,7 @@ public class InternalWindowJMFPlayer extends InternalWindow{
      * It will return the instance of our internal window video
      * @param f the file that will be played
      * @param window The parent of our internal window
-     * @return 
+     * @return the new instance of our internal window video
      */
     public static InternalWindowJMFPlayer getInstance(File f,MainWindow window){
         InternalWindowJMFPlayer v = new InternalWindowJMFPlayer(f,window);
