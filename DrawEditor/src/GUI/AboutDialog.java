@@ -19,13 +19,13 @@
 package GUI;
 
 /**
- * Clase que nos permite mostrar la información de la aplicación(autor, versión, etc) 
+ * This class let us show the information of the applicatoin(author, version, etc)
  * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class AboutDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form AboutDialog
+     * Constructor of our dialog 
      */
     public AboutDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

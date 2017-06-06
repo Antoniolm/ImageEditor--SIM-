@@ -36,18 +36,42 @@ enum InternalWindowType{
 }
 
 /**
- *
- * @author LENOVO
+ * It is the abstract class of our internal windows
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public abstract class InternalWindow extends JInternalFrame{
-    InternalWindowType type;
-    MainWindow parent=null;
+    /** 
+     * The type of our internal window
+     */
+    protected InternalWindowType type;
     
+    /**
+     * The parent of our internal window (Will be a MainWindow object) 
+     */
+    protected MainWindow parent=null;
+    
+    /**
+     * It will return the type of our internal window
+     * @return 
+     */    
     public InternalWindowType getType(){
         return type;
     }
+    
+    /**
+     * It will initialize the components of our internal window
+     */
     public abstract void initComponents();
     
+    /**
+     * It will return a new object. That object will be able to be a image,video or audio internal window
+     * the type is chosen for the extension.
+     * @param extension The extension of our file
+     * @param parent the parent of our internals windows
+     * @param file the file that will show our internal window
+     * @return
+     * @throws IOException 
+     */
     public static InternalWindow getInstance(String extension,MainWindow parent,File file) throws IOException{
         InternalWindow result=null;
         System.out.println(extension);
