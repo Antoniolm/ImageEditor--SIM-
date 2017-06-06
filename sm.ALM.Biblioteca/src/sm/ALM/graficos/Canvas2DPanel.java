@@ -366,17 +366,17 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @return 
+     * It will return the current shape for clip
+     * @return current shape for clip
      */
     public Shape getClip(){
         return clipShape;
     }
     
     /**
-     * 
-     * @param width
-     * @param height 
+     * It will set the width and height size of our image
+     * @param width width of our image
+     * @param height hegiht of our image
      */
     public static void setSizeImage(float width,float height){
         heightSize=height;
@@ -384,21 +384,24 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     }
     
     /**
-     * 
-     * @return 
+     * It will return the height size of our image
+     * @return height size
      */
     public static float getHeightImage(){
         return heightSize;
     }
     
     /**
-     * 
-     * @return 
+     * It will return the width size of our image
+     * @return width size
      */
     public static float getWidthImage(){
         return widthSize;
     }
     
+    /**
+     * It will draw the last shape in our image
+     */
     public void drawInImage(){
         Graphics2D g2d=(Graphics2D) image.getGraphics();
         vShape.draw(g2d,true);
@@ -407,7 +410,7 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     
     /**
      * It will set a new value of our image
-     * @param img 
+     * @param img the new value for our image
      */
     public void setImage(BufferedImage img){
         image = img;
@@ -416,15 +419,16 @@ public class Canvas2DPanel extends javax.swing.JPanel {
     
     /**
      * It will return the image of our canvas
-     * @return 
+     * @return The current image of our canvas
      */
     public BufferedImage getImage(){
         return image;
     }
     
     /**
-     * @param drawVector
-     * @return 
+     * It will get the current image
+     * @param drawVector if is true will clone the image
+     * @return The current image of our canvas
      */
     public BufferedImage getImage(boolean drawVector){
         if (drawVector) {

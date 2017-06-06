@@ -36,10 +36,19 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import sm.ALM.graficos.Canvas2DPanel;
 
+/**
+ * Thi class will be manage the creation of internal window , open and save of files
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class FileManager {
-     
+     /**
+      * <Singleton> unique instance of our fileManagr class
+      */
     private static FileManager fileManager;  
     
+    /**
+     * Constructor
+     */
     private FileManager() {
     }
     
@@ -70,7 +79,7 @@ public class FileManager {
     }
     
     /**
-     * The method will create a new file 
+     * The method will create a new internal window image
      * @param currentIntWind
      * @param window
      * @return 
@@ -98,9 +107,10 @@ public class FileManager {
     }
     
     /**
-     * The method will create a new file 
-     * @param currentIntWind
-     * @param window
+     * The method will create a new internal window image
+     * @param currentIntWind the current internal window
+     * @param window the parent of our internals windows
+     * @param img the image that will be contained for our internal window image.
      * @return 
      */
     public InternalWindowImage newFile(InternalWindow currentIntWind,String title,MainWindow window,BufferedImage img){

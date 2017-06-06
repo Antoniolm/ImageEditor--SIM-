@@ -12,15 +12,26 @@ import javax.swing.JInternalFrame;
 import sm.ALM.graficos.Canvas2DPanel;
 
 /**
- *
- * @author LENOVO
+ * That class will create a dialog to resize our internal window
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class ResizeDialog extends javax.swing.JDialog {
-
-    private InternalWindowImage currentIntWind;
-    private boolean accepted;
     /**
-     * Creates new form ResizePanel
+     * The current internal window. It will have image type
+     */
+    private InternalWindowImage currentIntWind;
+    
+    /**
+     * 
+     * Describe if the user push or not the confirm button
+     */
+    private boolean accepted;
+    
+    /**
+     * Constructor for our ResizeDialog
+     * @param parent
+     * @param modal 
+     * @param IntWind 
      */
     public ResizeDialog(java.awt.Frame parent, boolean modal,InternalWindowImage IntWind) {
         super(parent, modal);
@@ -129,6 +140,10 @@ public class ResizeDialog extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
+    /**
+     * it return if the user push the confirm button or he didn't do
+     * @return 
+     */
     public boolean isAccepted(){
         return accepted;
     }

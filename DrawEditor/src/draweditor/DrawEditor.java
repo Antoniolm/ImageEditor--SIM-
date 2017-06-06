@@ -21,6 +21,10 @@ package draweditor;
 
 import GUI.MainWindow;
 
+/**
+ * Main of our application. It will create the main window 
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class DrawEditor {
 
     /**
