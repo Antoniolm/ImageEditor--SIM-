@@ -126,7 +126,7 @@ public class FileManager {
          newIntWind.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
          newIntWind.setTitle(title);
          
-         Graphics2D g2d =img.createGraphics();
+         Graphics2D g2d =newIntWind.getCanvas().getImage().createGraphics();
          
          newIntWind.getCanvas().setClip(new Rectangle2D.Float(1,1,img.getWidth()-1,img.getHeight()-1));
          return newIntWind;
