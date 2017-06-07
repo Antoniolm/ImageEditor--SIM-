@@ -18,8 +18,10 @@
 // *********************************************************************
 package GUI;
 
-import draweditor.SoundManager;
 import java.io.File;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import sm.sound.SMRecorder;
 import sm.sound.SMSoundPlayerRecorder;
@@ -33,7 +35,7 @@ public class InternalWindowRecord extends InternalWindow{
      * It will be manage the recorded sound
      */
     SMRecorder recorder;
-
+    
     /**
      * Constructor of our internalWindowCamera
      * @param file the file where the sound will be record
@@ -44,7 +46,6 @@ public class InternalWindowRecord extends InternalWindow{
         parent=window;
         type=InternalWindowType.RECORD;
         recorder=new SMSoundPlayerRecorder(file);
-        ((SMSoundPlayerRecorder)recorder).addLineListener(new SoundManager());
     }
 
     /**
@@ -85,6 +86,9 @@ public class InternalWindowRecord extends InternalWindow{
         recordButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/RecordPressed_48x48.png"))); // NOI18N
         recordButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recordButton.setSelected(true);
+                recordButton.setIcon(new ImageIcon(getClass().getResource("/iconos/RecordDisabled_48x48.png")));
+                stopButton.setIcon(new ImageIcon(getClass().getResource("/iconos/StopNormalRed_48x48.png")));
                 recordButtonActionPerformed(evt);
             }
         });
@@ -95,6 +99,9 @@ public class InternalWindowRecord extends InternalWindow{
         stopButton.setSelected(true);
         stopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopButton.setSelected(true);
+                recordButton.setIcon(new ImageIcon(getClass().getResource("/iconos/RecordPressed_48x48.png")));
+                stopButton.setIcon(new ImageIcon(getClass().getResource("/iconos/StopDisabled_48x48.png")));
                 stopButtonActionPerformed(evt);
             }
         });

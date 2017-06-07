@@ -38,6 +38,22 @@ public class InternalWindowSound extends InternalWindow{
     SMPlayer player;
     
     /**
+     * Intern listener class. It will let us update the icons of our
+     * buttons 
+     */
+    private class SoundManager implements LineListener {
+        @Override
+        public void update(LineEvent event) {
+            if (event.getType() == LineEvent.Type.STOP) {
+                    if(player!=null) player.stop();
+                    stopButton.setSelected(true);
+                    playButton.setIcon(new ImageIcon(getClass().getResource("/iconos/PlayPressed_48x48.png")));
+                    stopButton.setIcon(new ImageIcon(getClass().getResource("/iconos/StopDisabled_48x48.png")));
+                }
+        }
+    }
+    
+    /**
      * Constructor of our InternalWindowSound
      * @param f the file that will be played
      * @param window 
@@ -48,18 +64,7 @@ public class InternalWindowSound extends InternalWindow{
         
         type=InternalWindowType.SOUND;
         player = new SMClipPlayer(file);
-        ((SMClipPlayer)player).addLineListener(new LineListener() {
-            @Override
-            public void update(LineEvent event) {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    if(player!=null) player.stop();
-                    stopButton.setSelected(true);
-                    playButton.setIcon(new ImageIcon(getClass().getResource("/iconos/PlayPressed_48x48.png")));
-                    stopButton.setIcon(new ImageIcon(getClass().getResource("/iconos/StopDisabled_48x48.png")));
-                }
-            }
-            
-        });
+        ((SMClipPlayer)player).addLineListener(new SoundManager());
     }
     
     /**

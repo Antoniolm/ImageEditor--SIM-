@@ -43,7 +43,7 @@ public class InternalWindowImage extends InternalWindow{
         initComponents();
         parent=window;       
         type=InternalWindowType.IMAGE;
-    }   
+    }
     
     /**
      * It will assign a new value to our geometry type in 
