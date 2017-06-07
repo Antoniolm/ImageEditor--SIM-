@@ -48,7 +48,7 @@ public class FigureManager {
     }
     
     /**
-     *  It will draw our vector of shapes
+     *  It will draw our shape
      * @param g2d the graphic where the shape will be draw
      * @param drawImage true if is draw in an image
      */

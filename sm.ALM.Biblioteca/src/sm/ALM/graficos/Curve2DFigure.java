@@ -30,12 +30,16 @@ import java.awt.geom.Point2D;
 import java.awt.geom.QuadCurve2D;
 
 /**
- *
- * @author LENOVO
+ * It will manage a curve figure in our system
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class Curve2DFigure extends Figure{    
-    boolean created; 
+    boolean created; //true if the curve figure was make completely
     
+    /**
+     * Constructor
+     * @param anAtt the attribute of our shape 
+     */
     public Curve2DFigure(Attribute anAtt){
         super();
         created=true;
@@ -44,6 +48,11 @@ public class Curve2DFigure extends Figure{
         type=GeometryType.CURVE;
     }
     
+    /**
+     * It will draw our shape
+     * @param g2d the graphic where the shape will be draw
+     * @param drawImage true if is draw in an image
+     */
     @Override
     public void draw(Graphics2D g2d,boolean drawImage) {
         
@@ -69,29 +78,54 @@ public class Curve2DFigure extends Figure{
         }
     }
     
-
+    /**
+     * It will update the position of our second position of our shape
+     * @param initPos
+     * @param point 
+     */
     @Override
     public void updatePosition(Point2D initPos, Point2D point) {
         ((QuadCurve2D.Float) currentShape).setCurve(initPos, new Point2D.Float(0,0), point);
     }
     
+    /**
+     * It will update the curve of our shape
+     * @param point the position of our mouse
+     */
     public void updateCurve(Point2D point){
         ((QuadCurve2D.Float) currentShape).setCurve(((QuadCurve2D.Float) currentShape).getP1() , point, ((QuadCurve2D.Float) currentShape).getP2());
     }
     
+    /**
+     * It will return if the shape was make completely 
+     * @return 
+     */
     public boolean isCreated(){
         return created;
     }
     
+    /**
+     * It will set a new vluae for our create variable
+     * @param value 
+     */
     public void setCreated(boolean value){
         created=value;
     }
 
+    /**
+     * It will set a new position for our shape
+     * @param newPos 
+     */
     @Override
     public void setPosition(Point2D newPos) {
         
     }
 
+    /**
+     * It will return if the shape was selected or not (in edit mode)
+     * @param pos the position of our mouse
+     * @return 
+     */
     @Override
     public boolean wasSelected(Point2D pos) {
         boolean result =false;

@@ -35,12 +35,20 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
+/**
+ * It will manage a text figure in our system
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class Text2DFigure extends Figure{
-    private String text;
-    private String font;
-    private Point2D position;
+    private String text;    //The text will be show in our shape
+    private String font;    //the font that will be used for our shape
+    private Point2D position; //the position of our shape in the canvas
     
-    
+    /**
+     * Constructor
+     * @param initPos the initial position of our text
+     * @param anAtt the attribute of our shape 
+     */
     public Text2DFigure(Point2D initPos,Attribute anAtt){
         super();
         text="";
@@ -56,10 +64,19 @@ public class Text2DFigure extends Figure{
         dialog.setVisible(true);        
     }
     
+    /**
+     * It will set the string that our shape will show
+     * @param aText the string to show
+     */
     public void setString(String aText){
         text=aText;
     }
     
+    /**
+     * It will draw our shape
+     * @param g2d the graphic where the shape will be draw
+     * @param drawImage true if is draw in an image
+     */
     @Override
     public void draw(Graphics2D g2d,boolean drawImage) {
         
@@ -91,6 +108,11 @@ public class Text2DFigure extends Figure{
         }
     }
     
+    /**
+     * It will generate our shape with the current text
+     * @param g2d the current graphics
+     * @param font the font that will be use our text
+     */
     public void getTextShape(Graphics2D g2d, Font font) {
         if(text!=""){          
             FontRenderContext frc = g2d.getFontRenderContext();
@@ -99,17 +121,31 @@ public class Text2DFigure extends Figure{
         }
     }
 
+    /**
+     * It will update the position of our second position of our shape
+     * @param initPos
+     * @param point 
+     */
     @Override
     public void updatePosition(Point2D initPos, Point2D point) {
         
     }
 
+    /**
+     * It will set a new position for our shape
+     * @param newPos 
+     */
     @Override
     public void setPosition(Point2D newPos) {
         newPos.setLocation(newPos.getX()-offSet.getX(),newPos.getY()-offSet.getY());
         position=newPos;
     }
 
+    /**
+     * It will return if the shape was selected or not (in edit mode)
+     * @param pos the position of our mouse
+     * @return 
+     */
     @Override
     public boolean wasSelected(Point2D pos) {
         boolean result =false;

@@ -28,23 +28,37 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
 /**
- *
- * @author Antonio David López Machado
+ * It will manage a line figure in our system
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
  */
 public class Line2DFigure extends Figure{
         
+    /**
+     * Constructor
+     * @param anAtt the attribute of our shape 
+     */
     public Line2DFigure(Attribute anAtt){
         super();
         attribute=anAtt;
         currentShape=new Line2D.Float();
     }
     
+    /**
+     * Constructor
+     * @param initPos the initial position of our line
+     * @param anAtt the attribute of our shape 
+     */
     public Line2DFigure(Point2D initPos,Attribute anAtt){
         super();
         attribute=anAtt;
         currentShape=new Line2D.Float(initPos,initPos);
     }
     
+    /**
+     * It will draw our shape
+     * @param g2d the graphic where the shape will be draw
+     * @param drawImage true if is draw in an image
+     */
     @Override
     public void draw(Graphics2D g2d,boolean drawImage){
         if(editMode && ! drawImage){
@@ -64,11 +78,21 @@ public class Line2DFigure extends Figure{
         g2d.draw(currentShape);
     }
          
+    /**
+     * It will update the position of our second position of our shape
+     * @param initPos
+     * @param point 
+     */
     @Override
     public void updatePosition(Point2D initPos, Point2D point) {
         ((Line2D.Float)currentShape).setLine(initPos, point);
     }
     
+    /**
+     * It will return if the shape was selected or not (in edit mode)
+     * @param pos the position of our mouse
+     * @return 
+     */
     @Override
     public boolean wasSelected(Point2D pos){
         boolean result =false;
@@ -80,6 +104,10 @@ public class Line2DFigure extends Figure{
         return result;
     }
     
+    /**
+     * It will set a new position for our shape
+     * @param newPos 
+     */
     @Override
     public void setPosition(Point2D newPos){
         Point2D point1 = ((Line2D.Float)currentShape).getP1();

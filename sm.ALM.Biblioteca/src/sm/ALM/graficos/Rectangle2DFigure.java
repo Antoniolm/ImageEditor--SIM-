@@ -28,14 +28,27 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 
+/**
+ * It will manage a rectangle figure in our system
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class Rectangle2DFigure extends Figure{
 
+    /**
+     * Constructor
+     * @param anAtt the attribute of our shape 
+     */
     public Rectangle2DFigure(Attribute anAtt){
         super();
         attribute=anAtt;
         currentShape=new Rectangle();
     }
     
+    /**
+     * It will draw our shape
+     * @param g2d the graphic where the shape will be draw
+     * @param drawImage true if is draw in an image
+     */
     @Override
     public void draw(Graphics2D g2d,boolean drawImage) {
         if(editMode && !drawImage){
@@ -64,17 +77,31 @@ public class Rectangle2DFigure extends Figure{
 
     }
 
+    /**
+     * It will update the position of our second position of our shape
+     * @param initPos
+     * @param point 
+     */
     @Override
     public void updatePosition(Point2D initPos, Point2D point) {
         ((Rectangle)currentShape).setFrameFromDiagonal(initPos, point);
     }
     
+    /**
+     * It will set a new position for our shape
+     * @param newPos 
+     */
     @Override
     public void setPosition(Point2D newPos) {
         newPos.setLocation(newPos.getX()-offSet.getX(),newPos.getY()-offSet.getY());
         ((Rectangle)currentShape).setLocation((Point)newPos);
     }
 
+    /**
+     * It will return if the shape was selected or not (in edit mode)
+     * @param pos the position of our mouse
+     * @return 
+     */
     @Override
     public boolean wasSelected(Point2D pos) {
         boolean result=false;
