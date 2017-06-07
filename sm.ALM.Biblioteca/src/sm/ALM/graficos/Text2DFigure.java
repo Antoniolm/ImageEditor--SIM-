@@ -51,7 +51,7 @@ public class Text2DFigure extends Figure{
      */
     public Text2DFigure(Point2D initPos,Attribute anAtt){
         super();
-        text="";
+        text=" ";
         position=initPos;
         attribute=anAtt;
         TextDialog dialog = new TextDialog(new javax.swing.JFrame(), true, this);
@@ -61,7 +61,7 @@ public class Text2DFigure extends Figure{
                 dialog.dispose();
             }
         });
-        dialog.setVisible(true);        
+        dialog.setVisible(true);
     }
     
     /**

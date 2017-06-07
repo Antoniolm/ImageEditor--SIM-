@@ -126,7 +126,10 @@ public class TextDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textButtonActionPerformed
-        currentText.setString(textField.getText());
+        if(textField.getText().isEmpty())
+            currentText.setString(" ");
+        else
+            currentText.setString(textField.getText());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_textButtonActionPerformed
