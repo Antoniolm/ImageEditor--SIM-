@@ -18,11 +18,14 @@
 // *********************************************************************
 package sm.ALM.graficos;
 
+/**
+ * Enum of our type of geometry
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public enum GeometryType {
     POINT,
     LINE,
     RECTANGLE,
-    RRECTANGLE,
     CIRCLE,
     TEXT,
     CURVE

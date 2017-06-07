@@ -23,14 +23,25 @@ import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.util.Map;
 
-
+/**
+ * That class will manage all the feature of a font 
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class FontClass {
-    String fontType;
-    int sizeFont;
-    boolean isBold;
-    boolean isItalic;
-    boolean isUnderLine;
+    String fontType;    //Font type of our text
+    int sizeFont;       //size of our text
+    boolean isBold;     //true if the text use bold style
+    boolean isItalic;   //true if the text use italic style
+    boolean isUnderLine;//true if the text use underline style
     
+    /**
+     * Constructor
+     * @param aFont //the font type
+     * @param aSize //the size of our text
+     * @param bold  //true if is activated that style
+     * @param italic //true if is activated that style
+     * @param underLight  //true if is activated that style
+     */
     public FontClass(String aFont, int aSize,boolean bold, boolean italic, boolean underLight){
         fontType=aFont;
         sizeFont=aSize;
@@ -39,40 +50,78 @@ public class FontClass {
         isUnderLine=underLight;
     }
     
-    public String getFont() {
-        return fontType;
-    }
-
+    /**
+     * It will set the new value of our font type
+     * @param font 
+     */
     public void setFont(String font) {
         this.fontType = font;
     }
-
-    public int getSizeFont() {
-        return sizeFont;
-    }
-
+    
+    /**
+     * It will set the size of word
+     * @param sizeFont 
+     */
     public void setSizeFont(int sizeFont) {
         this.sizeFont = sizeFont;
     }
 
+    /**
+     * It will return the current size of word
+     * @return 
+     */
+    public int getSizeFont() {
+        return sizeFont;
+    }
+    
+    /**
+     * It will return the font tpye
+     * @return 
+     */
+    public String getFont() {
+        return fontType;
+    }
+
+    /**
+     * It will return if the bold style is activated or not
+     * @return true if bold is activated
+     */
     public boolean isBold() {
         return isBold;
     }
     
+    /**
+     * It will return if the italic style is activated or not
+     * @return true if italic is activated
+     */
     public boolean isItalic() {
         return isItalic;
     }
 
+    /**
+     * It will return if the underline style is activated or not
+     * @return true if underline is activated 
+     */
     public boolean isUnder() {
         return isUnderLine;
     }
     
+    /**
+     * It will set the style of our text
+     * @param bold
+     * @param italic
+     * @param underLight 
+     */
     public void setStyle(boolean bold, boolean italic, boolean underLight) {
         isBold=bold;
         isItalic=italic;
         isUnderLine=underLight;
     }
     
+    /**
+     * It will generate the current font
+     * @return the font with all the feautes
+     */
     public Font generateFont(){
         int style=0;
         if(isBold)

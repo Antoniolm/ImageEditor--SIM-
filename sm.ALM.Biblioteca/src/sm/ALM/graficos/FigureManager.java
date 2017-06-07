@@ -31,10 +31,17 @@ import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * That class will manage the current shape of our canvas
+ * @author Antonio David López Machado antoniolm@correo.ugr.es
+ */
 public class FigureManager {
-    private Figure currentShape;
-    private boolean isSelected;
+    private Figure currentShape; //current shae
+    private boolean isSelected; //if the shape is selected or not
     
+    /**
+     * Constructor
+     */
     public FigureManager(){
         currentShape=null;
         isSelected=false;
@@ -42,13 +49,15 @@ public class FigureManager {
     
     /**
      *  It will draw our vector of shapes
-     * @param g2d 
+     * @param g2d the graphic where the shape will be draw
+     * @param drawImage true if is draw in an image
      */
     public void draw(Graphics2D g2d,boolean drawImage){
         if(currentShape!=null){
             currentShape.draw(g2d,drawImage);
         }
     }
+    
     /**
      * It will create a new shape 
      * @return 
@@ -63,9 +72,6 @@ public class FigureManager {
                 break;
             case RECTANGLE: //Case rectangle geoometry
                 currentShape=new Rectangle2DFigure(new Attribute(attribute));
-                break;
-            case RRECTANGLE: //Case rectangle geoometry
-                //currentShape=new RoundRectangle2D.Float();
                 break;
             case CURVE: 
                 currentShape=new Curve2DFigure(new Attribute(attribute));
@@ -82,7 +88,9 @@ public class FigureManager {
     
     /**
      * It will update the currentShape
-     * @param point 
+     * @param point current position of our mouse
+     * @param initPos initial position of our mouse
+     * @param geometry  geometry type 
      */
     public void updateShape(Point2D point,Point2D initPos,GeometryType geometry){
         if(geometry!=GeometryType.POINT && geometry!=GeometryType.TEXT){
@@ -93,7 +101,7 @@ public class FigureManager {
     /**
      * It will return the shape that contain the point p
      * if point p is not in any shape then return null
-     * @param p
+     * @param p the position of mouse
      * @return shape 
      */
     public void getSelectedShape(Point2D p){
@@ -104,7 +112,7 @@ public class FigureManager {
     
     /**
      * it will change the location of our current shape
-     * @param pos 
+     * @param pos current position
      */
     public void setLocationShape(Point2D pos){
         if(currentShape!=null && isSelected){
@@ -113,17 +121,24 @@ public class FigureManager {
     }
         
     /**
-     * 
-     * @return 
+     * It will retunn our current shape
+     * @return the current shape
      */
     public Figure getFigure(){
         return currentShape;
     }
         
+    /**
+     * The last shape was drawn in our image
+     */
     public void shapeInImage(){
         currentShape=null;
     }
     
+    /**
+     * It will set is the figure is in edit mode or not
+     * @param value 
+     */
     public void isEdited(boolean value){
         if(currentShape!=null){
             currentShape.setEdited(value);
