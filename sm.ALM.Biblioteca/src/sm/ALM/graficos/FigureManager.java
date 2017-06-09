@@ -60,7 +60,6 @@ public class FigureManager {
     
     /**
      * It will create a new shape 
-     * @return 
      */
     public void createShape(GeometryType geometry,Attribute attribute,Point2D initPos){
         switch(geometry){
@@ -102,7 +101,6 @@ public class FigureManager {
      * It will return the shape that contain the point p
      * if point p is not in any shape then return null
      * @param p the position of mouse
-     * @return shape 
      */
     public void getSelectedShape(Point2D p){
         isSelected=false;

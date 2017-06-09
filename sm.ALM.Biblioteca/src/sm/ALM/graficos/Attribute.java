@@ -121,7 +121,7 @@ public class Attribute {
     
     /**
      * It will set the new value of our color top
-     * @param aPaint the new value
+     * @param aColor the new value
      */
     public void setColorT(Color aColor) {
         this.colorPaintT = aColor;
@@ -129,7 +129,7 @@ public class Attribute {
     
     /**
      * It will set the new value of our color bottom
-     * @param aPaint the new value
+     * @param aColor the new value
      */
     public void setColorB(Color aColor) {
         this.colorPaintB= aColor;

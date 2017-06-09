@@ -16,6 +16,12 @@
 // ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // **
 // *********************************************************************
+/*
+ * Código consultado para realizar obtenido de diferentes sitios web.
+ * Referencia ha dichos codigos : 
+ *   - https://stackoverflow.com/questions/31829359/java-swing-moving-java-awt-shape
+ *   - http://www.java2s.com/Code/Java/2D-Graphics-GUI/GettingtheShapefromtheOutlineofText.htm
+ */
 package sm.ALM.graficos;
 
 import java.awt.BasicStroke;
@@ -118,7 +124,19 @@ public class Curve2DFigure extends Figure{
      */
     @Override
     public void setPosition(Point2D newPos) {
+        Point2D point1 = ((QuadCurve2D.Float)currentShape).getP1();
+        Point2D point2 = ((QuadCurve2D.Float)currentShape).getP2();
+        Point2D point3 = ((QuadCurve2D.Float)currentShape).getCtrlPt();
         
+        Point2D diff= new Point2D.Double((newPos.getX() - point1.getX()),(newPos.getY() - point1.getY()));
+        point2.setLocation(point2.getX() + diff.getX(), point2.getY() + diff.getY());
+        point3.setLocation(point3.getX() + diff.getX(), point3.getY() + diff.getY());
+        
+        newPos.setLocation(newPos.getX()-offSet.getX(),newPos.getY()-offSet.getY());
+        point2.setLocation(point2.getX()-offSet.getX(),point2.getY()-offSet.getY());
+        point3.setLocation(point3.getX()-offSet.getX(),point3.getY()-offSet.getY());
+        
+        ((QuadCurve2D.Float)currentShape).setCurve(newPos, point3, point2);
     }
 
     /**
@@ -129,10 +147,11 @@ public class Curve2DFigure extends Figure{
     @Override
     public boolean wasSelected(Point2D pos) {
         boolean result =false;
-        /*if (currentShape.getBounds2D().contains(pos)) {            
-            offSet.setLocation(Math.abs(pos.getX() - .getX()), Math.abs(pos.getY() - position.getY()));
+        if (currentShape.getBounds2D().contains(pos)) {
+            Point2D.Double point1 = new Point2D.Double(((QuadCurve2D.Float)currentShape).getX1(), ((QuadCurve2D.Float)currentShape).getY1());
+            offSet.setLocation(pos.getX() - point1.getX(), pos.getY() - point1.getY());
             result=true;
-        } */  
+        }
         return result;
     }
     

@@ -55,7 +55,7 @@ public class InternalWindowSound extends InternalWindow{
     
     /**
      * Constructor of our InternalWindowSound
-     * @param f the file that will be played
+     * @param file the file that will be played
      * @param window 
      */
     public InternalWindowSound(File file,MainWindow window) {
